@@ -1,15 +1,8 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 5 - Dungeon Adventure
- * Due Date 03/17/21
- * 
- */
 
 import java.util.Scanner;
 
 /**
- * Handles logic for game. Recieves input from player. Interacts with Dungeon and Hero classes.
+ * Handles logic for game. Receives input from player. Interacts with Dungeon and Hero classes.
  * 
  * @author Mario Flores Vences
  *
@@ -73,7 +66,7 @@ public class DungeonAdventure {
 			// our input variable
 			input = chooseOption(theScanner);
 			/*
-			 * Strange if else block, do we want the input to all be elses
+			 * Strange if else block, do we want the input to all be else
 			 * or all be ifs - TODO fix
 			 * -----------------------------------------------------------
 			 */
@@ -82,7 +75,7 @@ public class DungeonAdventure {
 			if(input.equalsIgnoreCase("dev")) {
 				dev(theDungeon, theHero, theScanner);
 			}
-			//-----------------
+
 			// Health potion option
 			if(input.equalsIgnoreCase("h")) {
 				theHero.useHealthPotion();
@@ -107,7 +100,7 @@ public class DungeonAdventure {
 
 			/*
 			 * --------------------------------------------------------------------
-			 *End of input if elses
+			 *End of input if else
 			 */
 
 			// in the same loop - check if we are in a monster room
@@ -159,7 +152,7 @@ public class DungeonAdventure {
 		string.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
 		string.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
 		string.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-		string.append("It has the Suprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
+		string.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
 		string.append("(d) Archer: \n The Archer has modest stats.\n");
 		string.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
 		System.out.println(string.toString());
@@ -174,8 +167,9 @@ public class DungeonAdventure {
 	 */
 	public static Hero createHero(final String theChoice, final String theName) {
 		// Naming choices for character represent the hero type?
-		// ala "w" would be for warrior? etc.
+		// aka "w" would be for warrior? etc.
 		// Or, have picture representation of the characters which can be clicked on?
+		//TODO make pictures for each character to be chosen
 
 		if(theChoice.equalsIgnoreCase("a")) {
 			
@@ -227,6 +221,7 @@ public class DungeonAdventure {
 		String input = "";
 		while(flag) {
 			// TODO optionally, up, down, left, right (U, D, L, R) might work better
+			//TODO maybe use enums?
 			System.out.println("Choose a direction (N-W-S-E): ");
 			System.out.print("> ");
 			input = theScanner.next();
@@ -320,7 +315,7 @@ public class DungeonAdventure {
 	 */
 	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
 		
-		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Unhide all Rooms (d) Return");
+		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Uncover all Rooms (d) Return");
 		String input = "";
 		while(!input.equalsIgnoreCase("d")) {
 			

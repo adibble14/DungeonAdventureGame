@@ -1,9 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
 
 /**
  * This class inherits from the Hero abstract class. Creates a Thief character. Overrides special attack method.
@@ -59,7 +53,7 @@ public class Thief extends Hero{
 	}
 	
 	/**
-	 * Suprise Attack special attack. This special deals more damage than a regular attack. It also 
+	 * Surprise Attack special attack. This special deals more damage than a regular attack. It also
 	 * allows the Thief to follow up an attack that does even more damage.
 	 */
 	@Override
@@ -68,7 +62,7 @@ public class Thief extends Hero{
 		int damage = MY_RAND.nextInt(MY_SPECIAL_MAX_DAMAGE * 2) + this.getMaxDamage();
 		double randAccuracy = MY_RAND.nextDouble();
 		
-		System.out.println(this.getName() + " goes for a suprise attack!\n\n");
+		System.out.println(this.getName() + " goes for a surprise attack!\n\n");
 		
 		if(MY_SPECIAL_ACCURACY < randAccuracy) {
 			System.out.println(this.getName() + " almost gets caught! Swiftly escapes at the last second. Dealt No damage....\n\n");

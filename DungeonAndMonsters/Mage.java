@@ -1,9 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
 
 /**
  * This class inherits from the Hero abstract class. Creates a Mage character. Overrides special attack method.
@@ -42,7 +36,7 @@ public class Mage extends Hero {
 	}
 	
 	/**
-	 * Life Steal super attack. This attack does not fail to land. It halves the enemies health value. It also
+	 * Life Steal super attack. This attack does not fail to land. It halves the enemies' health value. It also
 	 * adds that value to this object's health value.
 	 */
 	@Override

@@ -1,10 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 5 - Dungeon Adventure
- * Due Date 03/17/21
- * 
- */
 
 import java.util.Random;
 
@@ -62,17 +55,20 @@ public class Dungeon {
 				this.myDungeon[i][j] = new Room(i, j);
 			}
 		}
-		
-		
+
+
 		// set up entrance & exit & keys. Set player position and current room
+		//TODO should room 0,0 always be the entrance?
 		Room room = this.myDungeon[0][0];
 		room.setEntrance();
 		this.setCurrentRoom(room, theHero);
 		
-		// reassigning room TODO what is this doing?
+		// reassigning room to set as exit
+		//TODO should exit always be on the bottom row?
 		room = this.myDungeon[(this.myDungeon.length - 1)][MY_RAND.nextInt(this.myDungeon.length-1)];
 		room.setExit();
 		// assigning keys, keys should not spawn in exit or entrance
+		//TODO can we delete this since we are using Pillars and not keys
 		int count = 0;
 		while(count < this.myKeyCount) {
 			room = this.myDungeon[MY_RAND.nextInt(this.myDungeon.length)][MY_RAND.nextInt(this.myDungeon.length)];
@@ -132,7 +128,7 @@ public class Dungeon {
 	}
 	
 	/**
-	 * Unhides all Rooms in Dungeon matrix. Used for dev cheats
+	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
 	 */
 	final protected void unhideRooms() {
 		
@@ -151,6 +147,7 @@ public class Dungeon {
 	 * @param theChoice
 	 * @param theHero
 	 */
+	//TODO add enums instead?
 	final protected void movePlayer(final String theChoice, final Hero theHero) {
 		
 		if(theChoice.equalsIgnoreCase("S")) {

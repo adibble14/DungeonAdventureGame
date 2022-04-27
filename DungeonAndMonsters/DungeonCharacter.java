@@ -1,10 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2 - Dungeons vs Monsters
- * Due Date 2/4/2121
- * 
- */
 
 import java.util.Random;
 
@@ -17,7 +10,6 @@ import java.util.Random;
  */
 
 public abstract class DungeonCharacter {
-	// I think we want these as inline comments
 
 	/**
 	 * Random object that will generate random values throughout the program

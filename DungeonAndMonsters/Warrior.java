@@ -1,9 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
 
 /**
  * This class inherits from the Hero abstract class. Creates a Warrior character. Overrides special attack method.
@@ -32,7 +26,7 @@ public class Warrior extends Hero {
 	
 	
 	/**
-	 * Warrior object contructor. Calls on super class constructor to init fields.
+	 * Warrior object constructor. Calls on super class constructor to init fields.
 	 * Initializes Warrior object fields.
 	 * 
 	 * @param theName value given by user input

@@ -1,10 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 5 - Dungeon Adventure
- * Due Date 03/17/21
- * 
- */
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -302,7 +295,7 @@ public class Room {
 	}
 	
 	 /**
-	  * Removes question mark to unhide contents of room.
+	  * Removes question mark to uncover contents of room.
 	  */
 	final protected void unhide() {
 		this.myObjectList.remove("?");
@@ -312,6 +305,7 @@ public class Room {
 	 * Checks to see if player is present in room
 	 * @return
 	 */
+	//TODO not being used
 	final private boolean containsHero() {
 		
 		if(this.myObjectList.get(0).equalsIgnoreCase("C")) {

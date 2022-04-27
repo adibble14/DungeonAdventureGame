@@ -1,9 +1,3 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used exclusively
@@ -26,8 +20,6 @@ public abstract class Hero extends DungeonCharacter {
 	 */
 	
 	private int myTurnCount;
-	
-	//------------------------- New Fields for Assignment 5 -----------------------//
 	
 	/**
 	 * Number of health potions in Hero's inventory
@@ -163,15 +155,6 @@ public abstract class Hero extends DungeonCharacter {
 	 */
 	protected abstract void special(final DungeonCharacter theChar);
 	
-	//---------------------New Stuff-------------------
-	/*
-	 * TCSS 143 B - Winter 2021
-	 * Instructor: Tom Capaul
-	 * Programming Assignment 5 - Dungeon Adventure
-	 * Due Date 03/17/21
-	 * 
-	 */
-	
 	/**
 	 * Set method for number of health potions
 	 * @param theCount
@@ -236,7 +219,7 @@ public abstract class Hero extends DungeonCharacter {
 	}
 	
 	/**
-	 * If Helth Potion count is at least one. Increases Health depending on
+	 * If Health Potion count is at least one. Increases Health depending on
 	 * Health Potion value generated.
 	 * 
 	 */
@@ -266,7 +249,7 @@ public abstract class Hero extends DungeonCharacter {
 	
 	/**
 	 * If Vision Potion count is at least one, interacts with a Dungeon object to
-	 * unhide Rooms that surround the player's current Room location.
+	 * uncover Rooms that surround the player's current Room location.
 	 * 
 	 * @param theDung
 	 */

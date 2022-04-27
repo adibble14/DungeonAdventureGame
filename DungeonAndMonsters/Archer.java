@@ -1,12 +1,6 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
 
 /**
- * This class inherits from the Hero abstract class. Creates a Archer character. Overrides special attack method.
+ * This class inherits from the Hero abstract class. Creates an Archer character. Overrides special attack method.
  * 
  * @author Mario Flores Vences
  * @version 020421

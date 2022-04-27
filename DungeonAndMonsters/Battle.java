@@ -1,9 +1,4 @@
-/*
- * TCSS 143 B - Winter 2021
- * Instructor: Tom Capaul
- * Programming Assignment 2: Heroes vs Monsters
- * Due Date: 02/04/2021
- */
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -39,7 +34,7 @@ public class Battle {
 	final private Scanner MY_CONSOLE;
 	
 	/**
-	 * Class constructor. Initializes fields.
+	 * Class constructor. Initialize fields.
 	 * 
 	 * @param theHero
 	 */
@@ -59,6 +54,8 @@ public class Battle {
 	 * @param theHero hero object that is controlled by user
 	 * @param theMonster monster object that is the opponent of user.
 	 */
+
+	//TODO what happened to these parameters???
 	final protected boolean scene() {
 		// true == player is alive, false == player died or quit game
 		this.myMonster = this.createMonster();
@@ -126,6 +123,7 @@ public class Battle {
 	 * @param theHero user's character choice
 	 * @param theMonster random monster enemy
 	 */
+	//TODO what happened to these parameters???
 	final private void displayInfo() {
 		
 		StringBuffer string = new StringBuffer();
