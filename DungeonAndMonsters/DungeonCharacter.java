@@ -222,7 +222,7 @@ public abstract class DungeonCharacter {
 	 * setHealth to change health value.
 	 */
 	protected void attack( final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		if(this.isAttack()) {
 			
 			int damage = MY_RAND.nextInt(this.myMaxDamage - this.myMinDamage) + this.myMinDamage;

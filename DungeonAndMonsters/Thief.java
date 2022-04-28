@@ -58,7 +58,7 @@ public class Thief extends Hero{
 	 */
 	@Override
 	final protected void special(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		int damage = MY_RAND.nextInt(MY_SPECIAL_MAX_DAMAGE * 2) + this.getMaxDamage();
 		double randAccuracy = MY_RAND.nextDouble();
 		

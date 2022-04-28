@@ -64,6 +64,7 @@ public abstract class Monster extends DungeonCharacter {
 	 * Get method for minimum heal field
 	 * @return returns min heal value
 	 */
+	//TODO use or delete
 	final protected int getMinHeal() {
 		
 		return this.myMinHeal;
@@ -73,6 +74,7 @@ public abstract class Monster extends DungeonCharacter {
 	 * Get method for maximum heal field
 	 * @return returns max heal value
 	 */
+	//TODO use or delete
 	final protected int getMaxHeal() {
 		
 		return this.myMaxHeal;
@@ -132,7 +134,8 @@ public abstract class Monster extends DungeonCharacter {
 		}
 		else {
 			this.setHealth(this.getHealth() + healPoints);
-		}	
+		}
+		//TODO delete this output once GUI is made, since this is VIEW
 		System.out.println(this.getName() + " recovers " + healPoints + " of health.\n\n");
 	}
 	
@@ -142,7 +145,7 @@ public abstract class Monster extends DungeonCharacter {
 	 */
 	@Override
 	protected void attack(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		if(this.isSpecialActive()) {
 			
 			this.special(theChar);

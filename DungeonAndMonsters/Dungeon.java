@@ -98,6 +98,7 @@ public class Dungeon {
 		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length) {
 			return this.myDungeon[theRow][theColumn];
 		}
+		//TODO output these errors in the GUI
 		System.out.println("No such row or column.");
 		return null;
 		
@@ -155,6 +156,7 @@ public class Dungeon {
 				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord() + 1][this.myCurrentRoom.getYCoord()], theHero);
 			}
 			catch(ArrayIndexOutOfBoundsException e) {
+				//TODO output these errors in the GUI
 				System.out.println("Cannot go further down!");
 			}
 		}
@@ -188,6 +190,7 @@ public class Dungeon {
 	 * Returns the String representation of the Rooms and their contents.
 	 * 
 	 */
+	//TODO delete once GUI is made
 	@Override
 	final public String toString() {
 		

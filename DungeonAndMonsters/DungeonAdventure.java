@@ -23,6 +23,7 @@ public class DungeonAdventure {
 		heroInfo();
 		// Assigning player name
 		String playerName = chooseName(console);
+		//TODO delete this output in the main method once GUI is made, since this is VIEW
 		System.out.println("Choose your Hero: ");
 		// Hero choice is a string that represents which hero they want
 		String heroChoice = playerInput(console);
@@ -45,6 +46,7 @@ public class DungeonAdventure {
 	 * @param theDungeon
 	 * @param theHero
 	 */
+	//This is the main Controller method
 	public static void mainLoop(final Scanner theScanner, final Dungeon theDungeon, final Hero theHero) {
 		
 		String input = "";
@@ -57,9 +59,11 @@ public class DungeonAdventure {
 		while(!input.equalsIgnoreCase("d") && theHero.isAlive() && battleResult)  {
 
 			// Status of hero print
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println(theHero.toString());
 
 			// Prints room in x and y coordinates
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println("Current room: " + theDungeon.getCurrentRoom().getXCoord()
 					+ ", " + theDungeon.getCurrentRoom().getYCoord() + "\n\n");
 			// Prompts user for what they want to do and returns it by updating
@@ -88,6 +92,7 @@ public class DungeonAdventure {
 
 			// Prints out dungeon (map) |note, why 'i'?|
 			else if(input.equalsIgnoreCase("i")) {
+				//TODO delete this output once GUI is made, since this is VIEW
 				System.out.println(theDungeon.toString());
 			}
 
@@ -114,8 +119,10 @@ public class DungeonAdventure {
 			// as exits??) if we are at the exit and have enough keys we leave
 			// else we remind the player how many keys they need.
 			else if(theDungeon.getCurrentRoom().isExit()) {
+				//TODO delete this output once GUI is made, since this is VIEW
 				System.out.println(theHero.getName() + " found the exit!");
 				if(theHero.getKeyCount() == 2) {
+					//TODO delete this output once GUI is made, since this is VIEW
 					System.out.println("All Keys retrieved. " + theHero.getName() + " exits the dungeon...");
 					System.out.println("You have cleared the dungeon!");
 					theDungeon.unhideRooms();
@@ -123,12 +130,14 @@ public class DungeonAdventure {
 					return;
 				}
 				else {
+					//TODO delete this output once GUI is made, since this is VIEW
 					System.out.println(theHero.getName() + " needs " + ( 2 -theHero.getKeyCount() ) + " key(s) to open the exit.");
 				}
 			}
 			// ALL AROUND CHECK??
 			// If at any point we stop being alive we break out of main loop
 			// TODO may need to make things more concise
+			//TODO delete this output once GUI is made, since this is VIEW
 			if(!theHero.isAlive()) {
 				System.out.println(theHero.getName() + " took too much damage. They close their eyes for the last time...");
 				System.out.println("Game Over..");
@@ -196,6 +205,7 @@ public class DungeonAdventure {
 		boolean flag = true;
 		String input = "";
 		while(flag) {
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println("Move to another Room (M) | Use Health Potion (H) | Use Vision Potion (V) | See Map (I): ");
 			System.out.print("> ");
 			input = theScanner.next();
@@ -222,6 +232,7 @@ public class DungeonAdventure {
 		while(flag) {
 			// TODO optionally, up, down, left, right (U, D, L, R) might work better
 			//TODO maybe use enums?
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println("Choose a direction (N-W-S-E): ");
 			System.out.print("> ");
 			input = theScanner.next();
@@ -230,6 +241,7 @@ public class DungeonAdventure {
 				flag = false;
 			}
 			else {
+				//TODO delete these errors once GUI made
 				System.out.println("Input not recognized... try again!");
 			}
 		}
@@ -249,7 +261,7 @@ public class DungeonAdventure {
 		String name = "";
 		
 		while(flag) {
-			
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println("Choose Your Name: ");
 			System.out.print("> ");
 			name = theScanner.next();
@@ -266,6 +278,7 @@ public class DungeonAdventure {
 	/**
 	 * Displays general information on the console screen.
 	 */
+	//TODO delete this whole method and add to GUI
 	public static void gamePlay() {
 		
 		StringBuffer string = new StringBuffer();

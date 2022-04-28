@@ -68,7 +68,7 @@ public class Warrior extends Hero {
 	 */
 	@Override
 	final protected  void special(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		int damage = MY_RAND.nextInt(MY_SPECIAL_MAX_DAMAGE - MY_SPECIAL_MIN_DAMAGE) + MY_SPECIAL_MIN_DAMAGE;
 		double randAccuracy = MY_RAND.nextDouble();
 		

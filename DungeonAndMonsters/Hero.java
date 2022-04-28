@@ -119,7 +119,7 @@ public abstract class Hero extends DungeonCharacter {
 	 */
 	@Override
 	protected void attack(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		this.setTurnCount(theChar);
 		
 		System.out.println(this.getName() + " gets " + this.getTurnCount() + " attack chances!\n\n");
@@ -177,6 +177,7 @@ public abstract class Hero extends DungeonCharacter {
 	 * @param theString
 	 */
 	final protected void addInventory(final String theString) {
+		//TODO delete this output once GUI is made, since this is VIEW
 		if(theString.equalsIgnoreCase("h")) {
 			this.myHealthPotionCount++;
 			System.out.println(this.getName() + " found a Health Potion.");
@@ -224,7 +225,7 @@ public abstract class Hero extends DungeonCharacter {
 	 * 
 	 */
 	final protected void useHealthPotion() {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		if(this.getHealth() == this.getMaxHealth()) {
 			System.out.println("Health is already full!");
 			return;
@@ -260,6 +261,7 @@ public abstract class Hero extends DungeonCharacter {
 		int yCoord = theDung.getCurrentRoom().getYCoord();
 		int length = theDung.getDungeon().length;
 		if(this.myVisionPotionCount > 0) {
+			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println(this.getName() + " used a Vision Potion.");
 			// reveal the eight rooms if possible
 			if(xCoord + 1 < length) {
@@ -309,7 +311,7 @@ public abstract class Hero extends DungeonCharacter {
 	 */
 	@Override
 	final public String toString() {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		StringBuffer string = new StringBuffer();
 		string.append("HP: ");
 		string.append(this.getHealth());

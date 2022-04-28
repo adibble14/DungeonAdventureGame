@@ -263,6 +263,7 @@ public class Room {
 			return;
 		}
 		// Pitfall is triggered
+		//TODO delete this output once GUI is made, since this is VIEW
 		if(this.myObjectList.contains("P")) {
 			theHero.setHealth(theHero.getHealth() - this.MY_PIT_DAMAGE);
 			System.out.println(theHero.getName() + " fell into a pit trap! Took " 

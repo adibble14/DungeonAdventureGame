@@ -44,6 +44,7 @@ public class Ogre extends Monster {
 	 * @param theMinHeal value set in this class
 	 * @param theMaxHeal value set in this class
 	 */
+	//TODO not being used, use or delete
 	protected Ogre(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy,
 			final double theHealChance, final int theMinHeal, final int theMaxHeal) {
 	
@@ -79,7 +80,7 @@ public class Ogre extends Monster {
 	 */
 	@Override
 	final protected void special(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		int damage = MY_RAND.nextInt(MY_SPECIAL_MAX_DAMAGE) + MY_SPECIAL_MIN_DAMAGE;
 		double randAccuracy = MY_RAND.nextDouble();
 		

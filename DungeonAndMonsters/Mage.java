@@ -20,6 +20,7 @@ public class Mage extends Hero {
 	 * @param theAccuracy value set in this class
 	 * @param theBlockChance value set in this class
 	 */
+	//TODO not being used, use or delete
 	protected Mage( final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy,
 			final double theBlockChance) {
 		
@@ -41,7 +42,7 @@ public class Mage extends Hero {
 	 */
 	@Override
 	final protected void special(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		System.out.println(this.getName() + " activates life steal!\n\n");
 		
 		int damage = theChar.getHealth() / 2;

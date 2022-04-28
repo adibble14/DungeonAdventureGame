@@ -40,6 +40,7 @@ public class Gremlin extends Monster {
 	 * @param theMinHeal value set in this class
 	 * @param theMaxHeal value set in this class
 	 */
+	//TODO never used, delete or use it
 	protected Gremlin(final String theName, final int theHealth,final int theSpeed, final int theMaxDamage, final int theMinDamage,
 			final double theAccuracy, final double theHealChance, final int theMinHeal, final int theMaxHeal) {
 		
@@ -75,7 +76,8 @@ public class Gremlin extends Monster {
 	 */
 	@Override
 	final protected void special(final DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
+
 		System.out.println(this.getName() + " summons a Gremlin Frenzy!");
 		int count = MY_RAND.nextInt(MY_SPECIAL_MAX_TURNS);
 		

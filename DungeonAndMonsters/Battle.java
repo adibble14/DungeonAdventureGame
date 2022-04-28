@@ -62,7 +62,7 @@ public class Battle {
 		String input = "";
 		System.out.println("A " + this.myMonster.getName() + " has appeared!\n\n");
 		while(!(input.equalsIgnoreCase("d")) && this.myMonster.isAlive() && this.myHero.isAlive()) {
-			
+			//TODO this is view, delete outputs once GUI is made
 			displayInfo();
 			System.out.println("Choose Your Move: \n\n (a) attack   (b) special Move   (c) Health Potion  (d) Quit\n");
 			input = this.playerInput();
@@ -124,6 +124,7 @@ public class Battle {
 	 * @param theMonster random monster enemy
 	 */
 	//TODO what happened to these parameters???
+	//TODO this is view
 	final private void displayInfo() {
 		
 		StringBuffer string = new StringBuffer();

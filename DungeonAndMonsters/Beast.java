@@ -28,6 +28,7 @@ public class Beast extends Monster{
 	 * @param theMinHeal value set in this class
 	 * @param theMaxHeal value set in this class
 	 */
+	//TODO not used, delete or use
 	protected Beast(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy,
 			final double theHealChance, final int theMinHeal, final int theMaxHeal) {
 		
@@ -57,7 +58,7 @@ public class Beast extends Monster{
 	 */
 	@Override
 	final protected void special(DungeonCharacter theChar) {
-		
+		//TODO delete this output once GUI is made, since this is VIEW
 		System.out.println(this.getName() + " goes for a Feral Swipe!\n\n");
 		
 		int damage = theChar.getHealth() / 2;
