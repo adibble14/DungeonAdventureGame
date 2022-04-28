@@ -9,42 +9,33 @@ import java.util.Random;
  */
 
 public class Dungeon {
-	
-	/**
-	 * Random Number object
-	 */
-	final private Random MY_RAND;
-	
+
 	/**
 	 * Matrix of Room objects
 	 */
-	private Room [][] myDungeon;
+	private final Room [][] myDungeon;
 	
 	/**
 	 * References the current room player is in.
 	 */
 	private Room myCurrentRoom;
-	
-	/**
-	 * Number of keys needed for win condition.
-	 */
-	private int myKeyCount;
-	
+
 	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
 	 * 
-	 * @param theHero
+	 * @param theHero Hero specified when user starts game, used to set in the first room
 	 */
 	//TODO could add room size as parameter as well as key count
 	protected Dungeon(final Hero theHero) {
-		
-		this.MY_RAND = new Random();
+
+		//Random Number object
+		Random MY_RAND = new Random();
 		// Rooms are always 5x5
 		this.myDungeon = new Room[5][5];
-		// Always need 2 keys
-		this.myKeyCount = 2;
+		// Number of keys needed for win condition. - Always need 2 keys
+		int myKeyCount = 2;
 
 		//TODO Implement pillars of OO here?
 
@@ -59,7 +50,9 @@ public class Dungeon {
 
 		// set up entrance & exit & keys. Set player position and current room
 		//TODO should room 0,0 always be the entrance?
+		//TODO 4/28 change with room randomization
 		Room room = this.myDungeon[0][0];
+		// Labels room on map with "I" to signify an entrance
 		room.setEntrance();
 		this.setCurrentRoom(room, theHero);
 		
@@ -70,7 +63,7 @@ public class Dungeon {
 		// assigning keys, keys should not spawn in exit or entrance
 		//TODO can we delete this since we are using Pillars and not keys
 		int count = 0;
-		while(count < this.myKeyCount) {
+		while(count < myKeyCount) {
 			room = this.myDungeon[MY_RAND.nextInt(this.myDungeon.length)][MY_RAND.nextInt(this.myDungeon.length)];
 			if(!room.isEntrance() && !room.isExit()) {
 				room.setKey();
@@ -80,8 +73,8 @@ public class Dungeon {
 	}
 	
 	/**
-	 * Returns current room
-	 * @return
+	 * Getter for the current room our Hero is in
+	 * @return current room
 	 */
 	final protected Room getCurrentRoom() {
 		return this.myCurrentRoom;
@@ -90,12 +83,12 @@ public class Dungeon {
 	/**
 	 * Gets a room in the Dungeon Matrix.
 	 * 
-	 * @param theRow
-	 * @param theColumn
-	 * @return
+	 * @param theRow Row specifier for the Matrix, the first array in our 2D array
+	 * @param theColumn Column specifier for the Matrix, the second array in our 2D array
+	 * @return The room specified by the row and column passed in.
 	 */
 	final protected Room getRoom(final int theRow, final int theColumn) {
-		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length) {
+		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length && theRow > 0 && theColumn > 0) {
 			return this.myDungeon[theRow][theColumn];
 		}
 		//TODO output these errors in the GUI
@@ -105,9 +98,8 @@ public class Dungeon {
 	}
 	
 	/**
-	 * Returns the Dungeon Matrix
-	 * 
-	 * @return
+	 * Getter for Dungeon variable
+	 * @return Returns the full 2D array Matrix
 	 */
 	final protected Room [][] getDungeon() {
 		return this.myDungeon;
@@ -116,8 +108,8 @@ public class Dungeon {
 	/**
 	 * Sets the current room field. Places Hero in room.
 	 * 
-	 * @param theRoom
-	 * @param theHero
+	 * @param theRoom Room we wish to place the Hero in
+	 * @param theHero Hero
 	 */
 	final protected void setCurrentRoom(final Room theRoom, final Hero theHero) {
 		
@@ -131,11 +123,9 @@ public class Dungeon {
 	/**
 	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
 	 */
-	final protected void unhideRooms() {
-		
+	final protected void revealRooms() {
 		for(int i = 0; i < this.myDungeon.length; i++) {
 			for(int j = 0; j < this.myDungeon[i].length; j++) {
-				
 				this.myDungeon[i][j].unhide();
 			}
 		}
@@ -145,12 +135,14 @@ public class Dungeon {
 	 * Places the player's Hero object in the direction the player wants.
 	 * Checks to see if move is valid.
 	 * 
-	 * @param theChoice
-	 * @param theHero
+	 * @param theChoice Direction the user chose to move the Hero
+	 * @param theHero The hero
 	 */
 	//TODO add enums instead?
 	final protected void movePlayer(final String theChoice, final Hero theHero) {
-		
+
+		// Trys to set the Hero into the room correlating to theChoice, and if it fails catch the ArrayOutOfBounds
+		// exception and prints an error
 		if(theChoice.equalsIgnoreCase("S")) {
 			try {
 				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord() + 1][this.myCurrentRoom.getYCoord()], theHero);
@@ -194,35 +186,35 @@ public class Dungeon {
 	@Override
 	final public String toString() {
 		
-		StringBuffer string = new StringBuffer();
+		StringBuilder roomContents = new StringBuilder();
 		
-		string.append("***********");
-		string.append("\n");
-		string.append("*");
+		roomContents.append("***********");
+		roomContents.append("\n");
+		roomContents.append("*");
 		
 		for(int i = 0; i < this.myDungeon.length; i++) {
 			for(int j = 0; j < this.myDungeon.length; j++) {
 				
-				string.append(this.myDungeon[i][j].toString());
+				roomContents.append(this.myDungeon[i][j].toString());
 				
 				if(j < this.myDungeon.length - 1) {
-					string.append("|");
+					roomContents.append("|");
 				}
 				else if(i < this.myDungeon.length - 1) {
-					string.append("*");
-					string.append("\n");
-					string.append("*-*-*-*-*-*");
-					string.append("\n");
-					string.append("*");
+					roomContents.append("*");
+					roomContents.append("\n");
+					roomContents.append("*-*-*-*-*-*");
+					roomContents.append("\n");
+					roomContents.append("*");
 				}
 				if(i == this.myDungeon.length - 1 && j == this.myDungeon.length - 1) {
-					string.append("*");
-					string.append("\n");
-					string.append("***********");
+					roomContents.append("*");
+					roomContents.append("\n");
+					roomContents.append("***********");
 				}
 			}
 		}
-		return string.toString();
+		return roomContents.toString();
 	}
 	
 
