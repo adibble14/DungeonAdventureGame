@@ -12,8 +12,9 @@ public class DungeonAdventure {
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
+	 * //TODO could be changed to simply create the Display, keeping things simple
 	 * 
-	 * @param theArgs
+	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
 		
@@ -42,25 +43,26 @@ public class DungeonAdventure {
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
 	 * 
-	 * @param theScanner
-	 * @param theDungeon
-	 * @param theHero
+	 * @param theScanner Scanner that looks for user input
+	 * @param theDungeon Dungeon the user is currently playing in
+	 * @param theHero Hero that the user controls
 	 */
 	//This is the main Controller method
 	public static void mainLoop(final Scanner theScanner, final Dungeon theDungeon, final Hero theHero) {
 		
-		String input = "";
+		String input;
 		// Battle object
 		Battle battle = new Battle(theHero);
-		// Setting result to true to start?? TODO better name
-		boolean battleResult = true;
+		// As long as we continue to win battles we are still in the main loop
+		// If we lose a battle the loop ends
+		boolean battleWon = true;
 		// Main loop starts here, check if hero is alive
 		// not sure why we check fo 'd'
-		while(!input.equalsIgnoreCase("d") && theHero.isAlive() && battleResult)  {
+		while(theHero.isAlive() && battleWon)  {
 
 			// Status of hero print
 			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println(theHero.toString());
+			System.out.println(theHero);
 
 			// Prints room in x and y coordinates
 			//TODO delete this output once GUI is made, since this is VIEW
@@ -69,11 +71,6 @@ public class DungeonAdventure {
 			// Prompts user for what they want to do and returns it by updating
 			// our input variable
 			input = chooseOption(theScanner);
-			/*
-			 * Strange if else block, do we want the input to all be else
-			 * or all be ifs - TODO fix
-			 * -----------------------------------------------------------
-			 */
 
 			// -------------------dev options aka hacks
 			if(input.equalsIgnoreCase("dev")) {
@@ -93,7 +90,7 @@ public class DungeonAdventure {
 			// Prints out dungeon (map) |note, why 'i'?|
 			else if(input.equalsIgnoreCase("i")) {
 				//TODO delete this output once GUI is made, since this is VIEW
-				System.out.println(theDungeon.toString());
+				System.out.println(theDungeon);
 			}
 
 			// Movement option, we ask for input again to choose *where* we move
@@ -103,15 +100,10 @@ public class DungeonAdventure {
 				theDungeon.movePlayer(input, theHero);
 			}
 
-			/*
-			 * --------------------------------------------------------------------
-			 *End of input if else
-			 */
-
 			// in the same loop - check if we are in a monster room
 			if(theDungeon.getCurrentRoom().containsMonster()) {
 				// Run battle separately, but keep the output here
-				battleResult = battle.scene();
+				battleWon = battle.scene();
 				// Remove monster
 				theDungeon.getCurrentRoom().removeMonster();
 			}
@@ -125,8 +117,8 @@ public class DungeonAdventure {
 					//TODO delete this output once GUI is made, since this is VIEW
 					System.out.println("All Keys retrieved. " + theHero.getName() + " exits the dungeon...");
 					System.out.println("You have cleared the dungeon!");
-					theDungeon.unhideRooms();
-					System.out.println(theDungeon.toString());
+					theDungeon.revealRooms();
+					System.out.println(theDungeon);
 					return;
 				}
 				else {
@@ -134,10 +126,8 @@ public class DungeonAdventure {
 					System.out.println(theHero.getName() + " needs " + ( 2 -theHero.getKeyCount() ) + " key(s) to open the exit.");
 				}
 			}
-			// ALL AROUND CHECK??
-			// If at any point we stop being alive we break out of main loop
-			// TODO may need to make things more concise
 			//TODO delete this output once GUI is made, since this is VIEW
+			//TODO this check is unnecessary! Our loop works by checking if the player is alive, it breaks if not
 			if(!theHero.isAlive()) {
 				System.out.println(theHero.getName() + " took too much damage. They close their eyes for the last time...");
 				System.out.println("Game Over..");
@@ -154,17 +144,17 @@ public class DungeonAdventure {
 		// When displaying a lot of information, using StringBuffer
 		// Nice choice, however, we will need to change this when implementing GUI
 		// TODO When implementing GUI, consider different menus for information
-		StringBuffer string = new StringBuffer();
-		string.append("\n\nDungeon Heroes: \n\n");
-		string.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
-		string.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");
-		string.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
-		string.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
-		string.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-		string.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
-		string.append("(d) Archer: \n The Archer has modest stats.\n");
-		string.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
-		System.out.println(string.toString());
+		StringBuilder heroInformation = new StringBuilder();
+		heroInformation.append("\n\nDungeon Heroes: \n\n");
+		heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
+		heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");
+		heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
+		heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
+		heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
+		heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
+		heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
+		heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
+		System.out.println(heroInformation);
 	}
 	
 	/**
@@ -198,8 +188,8 @@ public class DungeonAdventure {
 	/**
 	 * Offers options of the "Main menu" to player and receives input from player
 	 * 
-	 * @param theScanner
-	 * @return
+	 * @param theScanner Scanner for user input
+	 * @return String representation of the option the user chose from the menu, can be 'h', 'v', 'm', 'i', and 'dev'
 	 */
 	public static String chooseOption(final Scanner theScanner) {
 		boolean flag = true;
@@ -222,8 +212,8 @@ public class DungeonAdventure {
 	/**
 	 * Offers directions for player to choose from and handles the input 
 	 * 
-	 * @param theScanner
-	 * @return
+	 * @param theScanner Scanner to take in user input
+	 * @return direction (N, W, S, E)
 	 */
 	public static String chooseDirection(final Scanner theScanner) {
 		
@@ -281,13 +271,13 @@ public class DungeonAdventure {
 	//TODO delete this whole method and add to GUI
 	public static void gamePlay() {
 		
-		StringBuffer string = new StringBuffer();
-		string.append("Gauntlet - A Dungeon Crawling and vs Monster game. \n\n");
-		string.append("Game Play:\n\n- Choose a Hero to do battle with \n- Choose your character name \n");
-		string.append("- Navigate through the dungeon. Find potions along the way to aid you.\n");
-		string.append("- Find the exit to win. Two keys are required to exit. They are somewhere in the dungeon. \n");
-		string.append("- Traps and various monsters await in the Dungeon.\n");
-		System.out.println(string.toString());
+		StringBuilder generalInfo = new StringBuilder();
+		generalInfo.append("Gauntlet - A Dungeon Crawling and vs Monster game. \n\n");
+		generalInfo.append("Game Play:\n\n- Choose a Hero to do battle with \n- Choose your character name \n");
+		generalInfo.append("- Navigate through the dungeon. Find potions along the way to aid you.\n");
+		generalInfo.append("- Find the exit to win. Two keys are required to exit. They are somewhere in the dungeon. \n");
+		generalInfo.append("- Traps and various monsters await in the Dungeon.\n");
+		System.out.println(generalInfo);
 		
 	}
 	
@@ -322,9 +312,9 @@ public class DungeonAdventure {
 	/**
 	 * Development options for testing game, cheats.
 	 * 
-	 * @param theDungeon
-	 * @param theHero
-	 * @param theScanner
+	 * @param theDungeon the dungeon the user is in
+	 * @param theHero the hero the user has chosen
+	 * @param theScanner scanner to look for user input
 	 */
 	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
 		
@@ -335,12 +325,15 @@ public class DungeonAdventure {
 			input = playerInput(theScanner);
 			if(input.equalsIgnoreCase("a")) {
 				theHero.setHealthPotions(5);
+				break;
 			}
 			else if(input.equalsIgnoreCase("b")) {
 				theHero.setVisionPotions(5);
+				break;
 			}
 			else if(input.equalsIgnoreCase("c")) {
-				theDungeon.unhideRooms();
+				theDungeon.revealRooms();
+				break;
 			}
 		}
 	}
