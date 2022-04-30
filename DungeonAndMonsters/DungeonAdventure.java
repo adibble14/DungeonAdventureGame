@@ -1,4 +1,5 @@
 
+import java.awt.*;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,7 @@ public class DungeonAdventure {
 	 */
 	public static void main(String[] theArgs) {
 		
-		Scanner console = new Scanner(System.in);
+		/*Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
 		heroInfo();
@@ -35,8 +36,9 @@ public class DungeonAdventure {
 		// Starter prompt
 		System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
 		// Initiating main loop
-		mainLoop(console, dungeon, hero);
-		
+		mainLoop(console, dungeon, hero);*/
+
+		new MenuGUI();
 	}
 	
 	/**
@@ -55,10 +57,9 @@ public class DungeonAdventure {
 		Battle battle = new Battle(theHero);
 		// As long as we continue to win battles we are still in the main loop
 		// If we lose a battle the loop ends
-		boolean battleWon = true;
 		// Main loop starts here, check if hero is alive
 		// not sure why we check fo 'd'
-		while(theHero.isAlive() && battleWon)  {
+		while(theHero.isAlive())  {
 
 			// Status of hero print
 			//TODO delete this output once GUI is made, since this is VIEW
@@ -103,7 +104,7 @@ public class DungeonAdventure {
 			// in the same loop - check if we are in a monster room
 			if(theDungeon.getCurrentRoom().containsMonster()) {
 				// Run battle separately, but keep the output here
-				battleWon = battle.scene();
+				battle.scene();
 				// Remove monster
 				theDungeon.getCurrentRoom().removeMonster();
 			}
