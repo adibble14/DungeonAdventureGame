@@ -1,2 +1,2 @@
-public class BackpackGUI {
+public class BackpackGUI extends GUI{
 }

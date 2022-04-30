@@ -9,13 +9,10 @@ import java.awt.event.ActionListener;
  */
 public class MenuGUI extends GUI{
 
-    protected boolean isActive;
     /**
      * Constructor which defines what will be inside the Frame
      */
     MenuGUI(){
-        // Start by setting the frame to active
-        isActive = true;
         // setting an image as the background
         Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
         // Content pane works as background in this case
@@ -63,11 +60,8 @@ public class MenuGUI extends GUI{
         JButton play = new JButton("PLAY");
         play.setFont(new Font("Serif", Font.BOLD, 20));
         play.setPreferredSize(new Dimension(200,50));
-        /**
-         * Observer pattern,
-         */
         play.addActionListener(e -> {
-            isActive = false;
+            DungeonAdventure.sceneController("character");
         });
 
         JButton quit = new JButton("QUIT");

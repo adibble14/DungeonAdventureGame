@@ -9,7 +9,6 @@ public abstract class GUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(MY_WINDOW_WIDTH, MY_WINDOW_HEIGHT));
         this.setResizable(true);
-        setVisible(true);
 
         //TODO add action listeners to these items and do the appropriate things
         JMenuBar bar = new JMenuBar();

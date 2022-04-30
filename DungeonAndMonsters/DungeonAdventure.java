@@ -9,7 +9,11 @@ import java.util.Scanner;
  *
  */
 public class DungeonAdventure {
-	
+	// Scene list
+	private static final MenuGUI MENU_GUI = new MenuGUI();
+	private static final BattleGUI BATTLE_GUI = new BattleGUI();
+	private static final DungeonGUI DUNGEON_GUI = new DungeonGUI();
+	private static final BackpackGUI BACKPACK_GUI = new BackpackGUI();
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -18,8 +22,6 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-
-		new MenuGUI();
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
@@ -38,8 +40,24 @@ public class DungeonAdventure {
 		System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
 		// Initiating main loop
 		mainLoop(console, dungeon, hero);
+	}
 
 
+	/**
+	 * Scene manager, pass in string representation of which scene you want
+	 * and it will move you to that scene. I.E. "character" brings you to character scene
+	 * @param theMenuChoice choice for which scene you want
+	 */
+	protected static void sceneController(String theMenuChoice){
+		switch (theMenuChoice){
+			case "character":
+				MENU_GUI.setVisible(false);
+				BATTLE_GUI.setVisible(true);
+			case "backpack":
+				BACKPACK_GUI.setVisible(true);
+			case "dungeon":
+				DUNGEON_GUI.setVisible(true);
+		}
 	}
 	
 	/**

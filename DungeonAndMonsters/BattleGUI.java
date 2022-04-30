@@ -1,2 +1,2 @@
-public class BattleGUI {
+public class BattleGUI extends GUI{
 }
