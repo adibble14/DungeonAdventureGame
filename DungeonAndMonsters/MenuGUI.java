@@ -8,10 +8,11 @@ public class MenuGUI extends GUI{
         @Override
         public void paintComponent(Graphics g){
                 super.paintComponent(g);
-                g.drawImage(img, 0, 0, null);
+                g.drawImage(img,0,0,getWidth(),getHeight(),this);
             }
         });
         pack();
         setVisible(true);
+        this.setSize(900, 650);
     }
 }
