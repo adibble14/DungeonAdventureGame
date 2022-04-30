@@ -18,7 +18,8 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-		
+
+		new MenuGUI();
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
@@ -38,7 +39,7 @@ public class DungeonAdventure {
 		// Initiating main loop
 		mainLoop(console, dungeon, hero);
 
-		new MenuGUI();
+
 	}
 	
 	/**
