@@ -19,7 +19,7 @@ public class DungeonAdventure {
 	 */
 	public static void main(String[] theArgs) {
 		
-		/*Scanner console = new Scanner(System.in);
+		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
 		heroInfo();
@@ -36,7 +36,7 @@ public class DungeonAdventure {
 		// Starter prompt
 		System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
 		// Initiating main loop
-		mainLoop(console, dungeon, hero);*/
+		mainLoop(console, dungeon, hero);
 
 		new MenuGUI();
 	}
