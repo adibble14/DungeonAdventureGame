@@ -56,7 +56,7 @@ public class Battle {
 	 */
 
 	//TODO what happened to these parameters???
-	final protected boolean scene() {
+	final protected void scene() {
 		// true == player is alive, false == player died or quit game
 		this.myMonster = this.createMonster();
 		String input = "";
@@ -69,7 +69,7 @@ public class Battle {
 			
 			if(input.equalsIgnoreCase("d")) {
 				System.out.println("Thanks for Playing!");
-				return false;
+				return;
 			}
 			else if(input.equalsIgnoreCase("a")) {
 				this.myHero.attack(this.myMonster);
@@ -83,17 +83,11 @@ public class Battle {
 			
 			if(!(this.myMonster.isAlive())) {
 				System.out.println(this.myMonster.getName() + " has been defeated.\n\n");
-				return true;
+				System.out.println("Back to dungeon crawling.");
 			} else {
 				this.myMonster.attack(myHero);
 			}
-		
-			if(!(this.myHero.isAlive())) {
-				return false;
-			}
 		}
-		System.out.println("Back to dungeon crawling.");
-		return true;
 	}
 
 	/**
