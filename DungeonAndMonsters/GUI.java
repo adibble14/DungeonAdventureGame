@@ -1,10 +1,13 @@
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class GUI extends JFrame {
+    protected static final int MY_WINDOW_WIDTH = 900;
+    protected static final int MY_WINDOW_HEIGHT = 650;
     GUI(){
         this.setTitle("Dungeons And Monsters");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(900, 650);
+        this.setPreferredSize(new Dimension(MY_WINDOW_WIDTH, MY_WINDOW_HEIGHT));
         this.setResizable(true);
         setVisible(true);
 
