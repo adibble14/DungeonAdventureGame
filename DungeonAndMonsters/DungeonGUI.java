@@ -1,2 +1,2 @@
-public class DungeonGUI {
+public class DungeonGUI extends GUI{
 }

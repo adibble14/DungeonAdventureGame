@@ -4,21 +4,24 @@ import java.util.Scanner;
 
 /**
  * Handles logic for game. Receives input from player. Interacts with Dungeon and Hero classes.
- * 
+ *
  * @author Mario Flores Vences
  *
  */
 public class DungeonAdventure {
-	
+	// Scene list
+	private static final MenuGUI MENU_GUI = new MenuGUI();
+	private static final BattleGUI BATTLE_GUI = new BattleGUI();
+	private static final DungeonGUI DUNGEON_GUI = new DungeonGUI();
+	private static final BackpackGUI BACKPACK_GUI = new BackpackGUI();
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
 	 * //TODO could be changed to simply create the Display, keeping things simple
-	 * 
+	 *
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-		
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
@@ -37,21 +40,37 @@ public class DungeonAdventure {
 		System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
 		// Initiating main loop
 		mainLoop(console, dungeon, hero);
-
-		new MenuGUI();
 	}
-	
+
+
+	/**
+	 * Scene manager, pass in string representation of which scene you want
+	 * and it will move you to that scene. I.E. "character" brings you to character scene
+	 * @param theMenuChoice choice for which scene you want
+	 */
+	protected static void sceneController(String theMenuChoice){
+		switch (theMenuChoice){
+			case "character":
+				MENU_GUI.setVisible(false);
+				BATTLE_GUI.setVisible(true);
+			case "backpack":
+				BACKPACK_GUI.setVisible(true);
+			case "dungeon":
+				DUNGEON_GUI.setVisible(true);
+		}
+	}
+
 	/**
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
-	 * 
+	 *
 	 * @param theScanner Scanner that looks for user input
 	 * @param theDungeon Dungeon the user is currently playing in
 	 * @param theHero Hero that the user controls
 	 */
 	//This is the main Controller method
 	public static void mainLoop(final Scanner theScanner, final Dungeon theDungeon, final Hero theHero) {
-		
+
 		String input;
 		// Battle object
 		Battle battle = new Battle(theHero);
@@ -136,7 +155,7 @@ public class DungeonAdventure {
 			}
 		}
 	}
-	
+
 	/**
 	 * Displays information about the Hero characters on the console screen.
 	 */
@@ -157,10 +176,10 @@ public class DungeonAdventure {
 		heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
 		System.out.println(heroInformation);
 	}
-	
+
 	/**
 	 * Creates a Hero object depending on user's input name and user's choice.
-	 * 
+	 *
 	 * @param theChoice user's preferred choice
 	 * @param theName user's input name
 	 * @return returns Hero Object
@@ -172,23 +191,23 @@ public class DungeonAdventure {
 		//TODO make pictures for each character to be chosen
 
 		if(theChoice.equalsIgnoreCase("a")) {
-			
+
 			return new Warrior(theName);
 		}
 		else if(theChoice.equalsIgnoreCase("b")) {
-			
+
 			return new Mage(theName);
 		}
 		else if(theChoice.equalsIgnoreCase("c")) {
-			
+
 			return new Thief(theName);
 		}
 		return new Archer(theName);
 	}
-	
+
 	/**
 	 * Offers options of the "Main menu" to player and receives input from player
-	 * 
+	 *
 	 * @param theScanner Scanner for user input
 	 * @return String representation of the option the user chose from the menu, can be 'h', 'v', 'm', 'i', and 'dev'
 	 */
@@ -209,15 +228,15 @@ public class DungeonAdventure {
 		}
 		return input;
 	}
-	
+
 	/**
-	 * Offers directions for player to choose from and handles the input 
-	 * 
+	 * Offers directions for player to choose from and handles the input
+	 *
 	 * @param theScanner Scanner to take in user input
 	 * @return direction (N, W, S, E)
 	 */
 	public static String chooseDirection(final Scanner theScanner) {
-		
+
 		boolean flag = true;
 		String input = "";
 		while(flag) {
@@ -227,7 +246,7 @@ public class DungeonAdventure {
 			System.out.println("Choose a direction (N-W-S-E): ");
 			System.out.print("> ");
 			input = theScanner.next();
-			if(input.equalsIgnoreCase("n") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("e") 
+			if(input.equalsIgnoreCase("n") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("e")
 					|| input.equalsIgnoreCase("w") || input.equalsIgnoreCase("z")) {
 				flag = false;
 			}
@@ -238,40 +257,40 @@ public class DungeonAdventure {
 		}
 		return input;
 	}
-	
+
 	/**
 	 * Takes user input for character name. Checks to see if
 	 * input name is valid. Must be one to ten character long.
-	 * 
+	 *
 	 * @param theScanner scanner object used to get user input
 	 * @return returns user input name
 	 */
 	public static String chooseName(final Scanner theScanner) {
-		
+
 		boolean flag = true;
 		String name = "";
-		
+
 		while(flag) {
 			//TODO delete this output once GUI is made, since this is VIEW
 			System.out.println("Choose Your Name: ");
 			System.out.print("> ");
 			name = theScanner.next();
-				if(name.length() >= 1 && name.length() <= 10) {
-					flag = false;
-				}
-				else {
-					System.out.println("Entered name is invalid. Name must be between 1 and 10 characters long.");
-				}
+			if(name.length() >= 1 && name.length() <= 10) {
+				flag = false;
 			}
-			return name;
+			else {
+				System.out.println("Entered name is invalid. Name must be between 1 and 10 characters long.");
+			}
 		}
-	
+		return name;
+	}
+
 	/**
 	 * Displays general information on the console screen.
 	 */
 	//TODO delete this whole method and add to GUI
 	public static void gamePlay() {
-		
+
 		StringBuilder generalInfo = new StringBuilder();
 		generalInfo.append("Gauntlet - A Dungeon Crawling and vs Monster game. \n\n");
 		generalInfo.append("Game Play:\n\n- Choose a Hero to do battle with \n- Choose your character name \n");
@@ -279,12 +298,12 @@ public class DungeonAdventure {
 		generalInfo.append("- Find the exit to win. Two keys are required to exit. They are somewhere in the dungeon. \n");
 		generalInfo.append("- Traps and various monsters await in the Dungeon.\n");
 		System.out.println(generalInfo);
-		
+
 	}
-	
+
 	/**
 	 * Checks to see if user input is valid. Only for choices are valid: a b c d
-	 * 
+	 *
 	 * @return returns user input
 	 */
 	public static String playerInput(final Scanner theScanner) {
@@ -292,37 +311,37 @@ public class DungeonAdventure {
 
 		boolean flag = true;
 		String input = "";
-		
+
 		while(flag) {
 			System.out.print("> ");
 			input = theScanner.next();
 			if(input.equalsIgnoreCase("a") || input.equalsIgnoreCase("b") || input.equalsIgnoreCase("c") || input.equalsIgnoreCase("d") ) {
-				
+
 				flag = false;
 			}
-		
+
 			else {
-				
+
 				System.out.println("Input not recognized! Try again....\n");
-			}	
+			}
 		}
-				
+
 		return input;
 	}
-	
+
 	/**
 	 * Development options for testing game, cheats.
-	 * 
+	 *
 	 * @param theDungeon the dungeon the user is in
 	 * @param theHero the hero the user has chosen
 	 * @param theScanner scanner to look for user input
 	 */
 	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
-		
+
 		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Uncover all Rooms (d) Return");
 		String input = "";
 		while(!input.equalsIgnoreCase("d")) {
-			
+
 			input = playerInput(theScanner);
 			if(input.equalsIgnoreCase("a")) {
 				theHero.setHealthPotions(5);
@@ -338,6 +357,7 @@ public class DungeonAdventure {
 			}
 		}
 	}
-	
+
 
 }
+	
