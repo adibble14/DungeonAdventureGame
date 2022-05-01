@@ -13,11 +13,6 @@ import java.util.Random;
 public class Room {
 	
 	/**
-	 * Random number object
-	 */
-	final private Random MY_RAND;
-	
-	/**
 	 * Chance value to generate a health potion in room
 	 */
 	final private double MY_HEAL_POTION_CHANCE;
@@ -84,7 +79,6 @@ public class Room {
 		
 		this.myXCoord = theXCoord;
 		this.myYCoord = theYCoord;
-		this.MY_RAND = new Random();
 		this.MY_HEAL_POTION_CHANCE = .1;
 		this.MY_VISION_POTION_CHANCE = .05;
 		this.MY_PIT_CHANCE = .1;
@@ -103,17 +97,17 @@ public class Room {
 	 */
 	final private void generateItem() {
 		
-		if(this.MY_RAND.nextDouble() <= this.MY_PIT_CHANCE) {
+		if(Tools.random.nextDouble() <= this.MY_PIT_CHANCE) {
 			this.myObjectList.add("P");
 			return;
 		}
-		if(this.MY_RAND.nextDouble() <= this.MY_MONSTER_CHANCE) {
+		if(Tools.random.nextDouble() <= this.MY_MONSTER_CHANCE) {
 			this.myObjectList.add("X");
 		}
-		if(this.MY_RAND.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
+		if(Tools.random.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
 			this.myObjectList.add("V");
 		}
-		if(this.MY_RAND.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
+		if(Tools.random.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
 			this.myObjectList.add("H");
 		}
 		if(this.myObjectList.isEmpty()) {
