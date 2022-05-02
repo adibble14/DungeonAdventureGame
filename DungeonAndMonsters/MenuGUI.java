@@ -1,9 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  * Frame used for displaying Main Menu
  */
@@ -44,6 +41,7 @@ public class MenuGUI extends GUI{
         titleLabel.setFont(new Font("Serif", Font.BOLD, 45));
         titleLabel.setForeground(Color.BLACK);
 
+        gbc.insets = new Insets(75, 0, 0, 0);
         // Add the label to the menu panel using the grid bag layout constraints
         menuPanel.add(titleLabel,gbc);
 
@@ -81,14 +79,12 @@ public class MenuGUI extends GUI{
 
         // Final constraints when we add the button panel to the menu
         gbc.weighty = 1;
-        gbc.insets = new Insets(100, 1, 100, 1);
+        gbc.insets = new Insets(50, 1, 50, 1);
         menuPanel.add(buttonPanel, gbc);
 
 
         // Add menu panel to the frame
         this.add(menuPanel, gbc);
         pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
 }

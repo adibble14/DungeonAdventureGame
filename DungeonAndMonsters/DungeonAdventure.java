@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class DungeonAdventure {
 	// Scene list
 	private static final MenuGUI MENU_GUI = new MenuGUI();
+	private static final CharacterSelectionGUI CHARACTER_SELECTION_GUI = new CharacterSelectionGUI();
 	private static final BattleGUI BATTLE_GUI = new BattleGUI();
 	private static final DungeonGUI DUNGEON_GUI = new DungeonGUI();
 	private static final BackpackGUI BACKPACK_GUI = new BackpackGUI();
@@ -22,10 +23,11 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
+		sceneController("main");
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
-		heroInfo();
+		//heroInfo();
 		// Assigning player name
 		String playerName = chooseName(console);
 		//TODO delete this output in the main method once GUI is made, since this is VIEW
@@ -50,13 +52,19 @@ public class DungeonAdventure {
 	 */
 	protected static void sceneController(String theMenuChoice){
 		switch (theMenuChoice){
+			case "main":
+				MENU_GUI.setVisible(true);
+				break;
 			case "character":
 				MENU_GUI.setVisible(false);
-				BATTLE_GUI.setVisible(true);
+				CHARACTER_SELECTION_GUI.setVisible(true);
+				break;
 			case "backpack":
 				BACKPACK_GUI.setVisible(true);
+				break;
 			case "dungeon":
 				DUNGEON_GUI.setVisible(true);
+				break;
 		}
 	}
 
@@ -159,22 +167,35 @@ public class DungeonAdventure {
 	/**
 	 * Displays information about the Hero characters on the console screen.
 	 */
-	public static void heroInfo() {
+	public static StringBuilder heroInfo(String characterType) {
 
 		// When displaying a lot of information, using StringBuffer
 		// Nice choice, however, we will need to change this when implementing GUI
 		// TODO When implementing GUI, consider different menus for information
 		StringBuilder heroInformation = new StringBuilder();
-		heroInformation.append("\n\nDungeon Heroes: \n\n");
-		heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
-		heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");
-		heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
-		heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
-		heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-		heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
-		heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
-		heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
-		System.out.println(heroInformation);
+		switch(characterType){
+			case "Warrior":
+				heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
+				heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");
+				break;
+			case "Mage":
+				heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
+				heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
+				break;
+			case "Thief":
+				heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
+				heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
+				break;
+			case "Archer":
+				heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
+				heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
+				break;
+			default:
+				heroInformation.append("No info stored!");
+				break;
+		}
+
+		return heroInformation;
 	}
 
 	/**
@@ -289,15 +310,15 @@ public class DungeonAdventure {
 	 * Displays general information on the console screen.
 	 */
 	//TODO delete this whole method and add to GUI
-	public static void gamePlay() {
+	public static StringBuilder gamePlay() {
 
 		StringBuilder generalInfo = new StringBuilder();
-		generalInfo.append("Gauntlet - A Dungeon Crawling and vs Monster game. \n\n");
+		generalInfo.append("Dungeons and Monsters - A Dungeon Crawling & Monster Fighting Game. \n\n");
 		generalInfo.append("Game Play:\n\n- Choose a Hero to do battle with \n- Choose your character name \n");
 		generalInfo.append("- Navigate through the dungeon. Find potions along the way to aid you.\n");
 		generalInfo.append("- Find the exit to win. Two keys are required to exit. They are somewhere in the dungeon. \n");
 		generalInfo.append("- Traps and various monsters await in the Dungeon.\n");
-		System.out.println(generalInfo);
+		return generalInfo;
 
 	}
 
