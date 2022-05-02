@@ -22,7 +22,7 @@ public class GenerateDungeon {
         exit.setExit();
         dung[x][y] = exit;
         System.out.println("Exit Coords: " + x + " " + y);
-        DFS.dfs(dung, entrance);
+        Tools.dfs(dung, entrance);
         print(dung);
 
     }
