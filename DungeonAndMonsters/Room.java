@@ -11,38 +11,38 @@ import java.util.Random;
  *
  */
 public class Room {
-	
+
 	/**
-	 * Chance value to generate a health potion in room
+	 * Chance value to generate a vision potion in room
 	 */
 	final private double MY_HEAL_POTION_CHANCE;
-	
+
 	/**
 	 * Chance value to generate a vision potion in room
 	 */
 	final private double MY_VISION_POTION_CHANCE;
-	
+
 	/**
 	 * Chance value to generate a pit in room. No other items can generate if
 	 * this occurs
 	 */
 	final private double MY_PIT_CHANCE;
-	
+
 	/**
 	 * Chance value to generate a Monster object in room.
 	 */
 	final private double MY_MONSTER_CHANCE;
-	
+
 	/**
 	 * Amount of damage to player if player steps in room
 	 */
 	final private int MY_PIT_DAMAGE;
-	
+
 	/**
 	 * Holds all generated items. If room is an exit, entrance, or pit, no
 	 * other items should generate
 	 */
-	private ArrayList <String> myObjectList;
+	private ArrayList <Item> myObjectList;
 	
 	/**
 	 * X coord for this room
@@ -53,20 +53,6 @@ public class Room {
 	 * Y coord for this room
 	 */
 	private int myYCoord;
-
-	/**
-	 * Item Legend:
-	 * 		X - Monster
-	 * 		P - Pit
-	 * 		I - Entrance
-	 * 		O - Exit
-	 * 		V - Vision Potion
-	 * 		H - Healing Potion
-	 * 		E - Empty Room
-	 * 		M - Multiple Items
-	 * 		K - key (or crown piece) need two to clear dungeon
-	 * 		C - Player Current Location
-	 */
 	
 	/**
 	 * Room constructor, initializes fields. Takes coords from Dungeon class
@@ -83,7 +69,7 @@ public class Room {
 		this.MY_VISION_POTION_CHANCE = .05;
 		this.MY_PIT_CHANCE = .1;
 		this.MY_MONSTER_CHANCE = .1;
-		this.myObjectList = new ArrayList <String> () ;
+		this.myObjectList = new ArrayList <Item> () ;
 		this.MY_PIT_DAMAGE = 15;
 		this.generateItem();
 		this.hide();
@@ -96,9 +82,9 @@ public class Room {
 	 * 
 	 */
 	final private void generateItem() {
-		
+
 		if(Tools.random.nextDouble() <= this.MY_PIT_CHANCE) {
-			this.myObjectList.add("P");
+			this.myObjectList.add(new Pit());
 			return;
 		}
 		if(Tools.random.nextDouble() <= this.MY_MONSTER_CHANCE) {

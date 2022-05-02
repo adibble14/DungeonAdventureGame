@@ -7,11 +7,10 @@
 
 public class GenerateDungeon {
 
-    public static void main(String[] args) {
-        int size = 15;
-        Room[][] dung = new Room[size][size];
-        int x = Tools.random.nextInt(0, size -1);
-        int y = Tools.random.nextInt(0, size -1);
+    public static void GenerateDungeon(final int theSize) {
+        Room[][] dung = new Room[theSize][theSize];
+        int x = Tools.random.nextInt(0, theSize -1);
+        int y = Tools.random.nextInt(0, theSize -1);
         Room entrance = new Room(x,y);
         entrance.setEntrance();
         dung [x][y] = entrance;
