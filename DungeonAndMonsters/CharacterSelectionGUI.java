@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CharacterSelectionGUI extends GUI{
+public class CharacterSelectionGUI extends JPanel{
     //TODO keep or get rid of?
     Image myArcherImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/archer.jpeg");
     Image myMageImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/mage.png");
@@ -10,7 +10,7 @@ public class CharacterSelectionGUI extends GUI{
     CharacterSelectionGUI(){
         // Settings for our internal frame
         // bg color and how it is laid out.
-        this.getContentPane().setBackground(new Color(32,42,68));
+        this.setBackground(new Color(32,42,68));
         this.setLayout(new GridBagLayout());
 
         // Defining a panel for our characters
@@ -145,7 +145,7 @@ public class CharacterSelectionGUI extends GUI{
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.weighty = 1;
         this.add(characterPanel, gbc);
-        pack();
+
         this.setSize(932, 650);
     }
 }

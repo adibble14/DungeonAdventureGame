@@ -1,2 +1,4 @@
-public class BattleGUI extends GUI{
+import javax.swing.*;
+
+public class BattleGUI extends JPanel {
 }

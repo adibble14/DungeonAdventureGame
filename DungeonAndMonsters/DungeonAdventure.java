@@ -23,7 +23,8 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-		sceneController("main");
+		//sceneController("main");
+		new MainGUI();
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
