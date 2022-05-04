@@ -2,17 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class GUI extends JFrame {
-    protected static final int MY_WINDOW_WIDTH = 900;
-    protected static final int MY_WINDOW_HEIGHT = 650;
+    protected static final int MY_WINDOW_WIDTH = 950;
+    protected static final int MY_WINDOW_HEIGHT = 750;
     GUI(){
+        Icon swordIcon = new ImageIcon("DungeonAndMonsters/sword.png", "Sword");
+        ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/sword.png");
         this.setTitle("Dungeons And Monsters");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(MY_WINDOW_WIDTH, MY_WINDOW_HEIGHT));
-        Icon swordIcon = new ImageIcon("DungeonAndMonsters/sword.png", "Sword");
-        ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/sword.png");
         this.setIconImage(swordImageIcon.getImage());
         this.setResizable(true);
-
+        this.setVisible(true);
+        pack();
         // Menu bar for help and save options
         JMenuBar bar = new JMenuBar();
         this.setJMenuBar(bar);

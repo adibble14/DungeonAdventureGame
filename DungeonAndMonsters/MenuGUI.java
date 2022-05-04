@@ -1,26 +1,24 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
 /**
  * Frame used for displaying Main Menu
  */
-public class MenuGUI extends GUI{
+public class MenuGUI extends JPanel{
+
+    //Setting panel background before constructor
+    Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(img,0,0,getWidth(),getHeight(),this);
+    }
+
 
     /**
      * Constructor which defines what will be inside the Frame
      */
     MenuGUI(){
-        // setting an image as the background
-        Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
-        // Content pane works as background in this case
-        this.setContentPane(new JPanel(){
-        @Override
-        public void paintComponent(Graphics g){
-                super.paintComponent(g);
-                g.drawImage(img,0,0,getWidth(),getHeight(),this);
-            }
-        });
-
         // Creating a panel to hold menu
         JPanel menuPanel = new JPanel();
         // Remove the background color of panel
@@ -55,11 +53,27 @@ public class MenuGUI extends GUI{
         buttonPanel.setOpaque(false);
 
         // Button creation / event handling
-        JButton play = new JButton("PLAY");
-        play.setFont(new Font("Serif", Font.BOLD, 20));
-        play.setPreferredSize(new Dimension(200,50));
-        play.addActionListener(e -> {
+        JButton newGame = new JButton("NEW GAME");
+        newGame.setFont(new Font("Serif", Font.BOLD, 20));
+        newGame.setPreferredSize(new Dimension(200,50));
+        newGame.addActionListener(e -> {
             DungeonAdventure.sceneController("character");
+        });
+
+        JButton loadGame = new JButton("LOAD GAME");
+        loadGame.setFont(new Font("Serif", Font.BOLD, 20));
+        loadGame.setPreferredSize(new Dimension(200,50));
+
+        JButton instr = new JButton("HOW TO PLAY");
+        instr.setFont(new Font("Serif", Font.BOLD, 20));
+        instr.setPreferredSize(new Dimension(200,50));
+        instr.addActionListener(e -> {
+            StringBuilder instructionText = DungeonAdventure.gamePlay();
+            // Formatting using built in Java to HTML
+            String instFormat = instructionText.toString().replace("\n", "<br>");
+            String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></htmt>";
+            // Action listener implementing a dialog box
+            JOptionPane.showMessageDialog(this, finalInstFormat);
         });
 
         JButton quit = new JButton("QUIT");
@@ -69,12 +83,15 @@ public class MenuGUI extends GUI{
 
 
         // Buttons have their own gridbag constraints setup here
-        gbc.insets = new Insets(20,1,20,1);
+        gbc.insets = new Insets(5,1,5,1);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        buttonPanel.add(play, gbc);
-        gbc.gridx = 0;
+        buttonPanel.add(newGame, gbc);
         gbc.gridy = 1;
+        buttonPanel.add(loadGame, gbc);
+        gbc.gridy = 2;
+        buttonPanel.add(instr, gbc);
+        gbc.gridy = 3;
         buttonPanel.add(quit, gbc);
 
         // Final constraints when we add the button panel to the menu
@@ -85,6 +102,5 @@ public class MenuGUI extends GUI{
 
         // Add menu panel to the frame
         this.add(menuPanel, gbc);
-        pack();
     }
 }

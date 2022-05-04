@@ -10,11 +10,7 @@ import java.util.Scanner;
  */
 public class DungeonAdventure {
 	// Scene list
-	private static final MenuGUI MENU_GUI = new MenuGUI();
-	private static final CharacterSelectionGUI CHARACTER_SELECTION_GUI = new CharacterSelectionGUI();
-	private static final BattleGUI BATTLE_GUI = new BattleGUI();
-	private static final DungeonGUI DUNGEON_GUI = new DungeonGUI();
-	private static final BackpackGUI BACKPACK_GUI = new BackpackGUI();
+	private static final MainGUI MAIN_GUI = new MainGUI();
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -23,7 +19,6 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-		sceneController("main");
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
@@ -51,21 +46,7 @@ public class DungeonAdventure {
 	 * @param theMenuChoice choice for which scene you want
 	 */
 	protected static void sceneController(String theMenuChoice){
-		switch (theMenuChoice){
-			case "main":
-				MENU_GUI.setVisible(true);
-				break;
-			case "character":
-				MENU_GUI.setVisible(false);
-				CHARACTER_SELECTION_GUI.setVisible(true);
-				break;
-			case "backpack":
-				BACKPACK_GUI.setVisible(true);
-				break;
-			case "dungeon":
-				DUNGEON_GUI.setVisible(true);
-				break;
-		}
+		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
 	/**
@@ -175,20 +156,32 @@ public class DungeonAdventure {
 		StringBuilder heroInformation = new StringBuilder();
 		switch(characterType){
 			case "Warrior":
-				heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
-				heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");
+				/*heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
+				heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");*/
+				heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
+				heroInformation.append("Special:\nCrushing Blow\n75-175 damage\n40% accuracy");
 				break;
 			case "Mage":
-				heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
-				heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");
+				/*heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
+				heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");*/
+				heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
+				heroInformation.append("Special:\nLife Steal\nhalves enemies health\nheals the damage taken\n100% accuracy");
 				break;
 			case "Thief":
-				heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-				heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");
+				/*heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
+				heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");*/
+				heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
+				heroInformation.append("Special:\nSurprise!\n20-60 damage\ncan also land extra attack\n40-80 damage\n60% accuracy");
 				break;
 			case "Archer":
-				heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
-				heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");
+				/*heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
+				heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");*/
+				heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
+				heroInformation.append("Special:\nVolley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
+				break;
+			case "Priestess":
+				heroInformation.append("Stats: \n75 hp\n5 attack speed\n25-45 damage\n70% accuracy\n30% block\n");
+				heroInformation.append("Special:\nRevive\n45-90 damage\n50% accuracy\nfor every point of damage dealt\npriestess heals that amount of points");
 				break;
 			default:
 				heroInformation.append("No info stored!");
@@ -316,7 +309,7 @@ public class DungeonAdventure {
 		generalInfo.append("Dungeons and Monsters - A Dungeon Crawling & Monster Fighting Game. \n\n");
 		generalInfo.append("Game Play:\n\n- Choose a Hero to do battle with \n- Choose your character name \n");
 		generalInfo.append("- Navigate through the dungeon. Find potions along the way to aid you.\n");
-		generalInfo.append("- Find the exit to win. Two keys are required to exit. They are somewhere in the dungeon. \n");
+		generalInfo.append("- Find the exit to win. Four Pillars of OO are required to exit. They are somewhere in the dungeon. \n");
 		generalInfo.append("- Traps and various monsters await in the Dungeon.\n");
 		return generalInfo;
 
