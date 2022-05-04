@@ -127,6 +127,7 @@ public class CharacterSelectionGUI extends JPanel{
         archerButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("a");
+            DungeonAdventure.setUPGame();
         });
 
         //Mage
@@ -137,6 +138,7 @@ public class CharacterSelectionGUI extends JPanel{
         mageButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("m");
+            DungeonAdventure.setUPGame();
         });
 
         //Thief
@@ -147,6 +149,7 @@ public class CharacterSelectionGUI extends JPanel{
         thiefButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("t");
+            DungeonAdventure.setUPGame();
         });
 
         //Warrior
@@ -157,6 +160,7 @@ public class CharacterSelectionGUI extends JPanel{
         warriorButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("w");
+            DungeonAdventure.setUPGame();
         });
 
         //Priestess
@@ -167,7 +171,7 @@ public class CharacterSelectionGUI extends JPanel{
         priestessButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("p");
-            DungeonAdventure.createHero();
+            DungeonAdventure.setUPGame();
         });
 
         // button placement end -----------------------------------------------

@@ -22,29 +22,12 @@ public class DungeonAdventure {
 	 *
 	 * @param theArgs Command line arguments
 	 */
-	public static void main(String[] theArgs) {
-		Scanner console = new Scanner(System.in);
-		// Prints info to player
-		gamePlay();
-		//heroInfo();
-		// Assigning player name
-		//String playerName = chooseName(console);
-		//TODO delete this output in the main method once GUI is made, since this is VIEW
-		//System.out.println("Choose your Hero: ");
-		// Hero choice is a string that represents which hero they want
-		//String heroChoice = playerInput(getMyHeroChoice());
-		// Spawn hero using hero choice
-		//Hero hero = createHero(getMyHeroChoice(), getUserName());
-		// Instance of dungeon (which has rooms)
-		//Dungeon dungeon = new Dungeon(myHero);
-		// Starter prompt
-		//System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
-		// Initiating main loop
-		//TODO figure out how to not get a null pointer
-		while(myDungeon ==null){
+	public static void main(String[] theArgs) {}
 
-		}
-		mainLoop(console, myDungeon, myHero);
+	public static void setUPGame(){
+		createHero();
+		createDungeon(getMyHero());
+		mainLoop(new Scanner(System.in), getMyDungeon(), getMyHero());
 	}
 
 	public static void createDungeon(Hero theHero){
@@ -52,6 +35,8 @@ public class DungeonAdventure {
 	}
 
 	public static Dungeon getMyDungeon(){return  myDungeon;}
+
+	public static Hero getMyHero(){return  myHero;}
 
 
 
