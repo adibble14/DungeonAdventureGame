@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class GUI extends JFrame {
-    protected static final int MY_WINDOW_WIDTH = 900;
-    protected static final int MY_WINDOW_HEIGHT = 650;
+    protected static final int MY_WINDOW_WIDTH = 950;
+    protected static final int MY_WINDOW_HEIGHT = 750;
     GUI(){
         Icon swordIcon = new ImageIcon("DungeonAndMonsters/sword.png", "Sword");
         ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/sword.png");

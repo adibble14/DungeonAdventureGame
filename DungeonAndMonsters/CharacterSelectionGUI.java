@@ -4,11 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class CharacterSelectionGUI extends JPanel{
-    //TODO keep or get rid of?
-    Image myArcherImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/archer.jpeg");
-    Image myMageImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/mage.png");
-    Image myThiefImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/thief.png");
-    Image myWarriorImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/warrior.jpg");
+
     CharacterSelectionGUI(){
         try {
             //create the font to use. Specify the size!
@@ -111,7 +107,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 2;
         String archerFormat = DungeonAdventure.heroInfo("Archer").toString().replace("\n", "<br>");
-        String finalArcherFormat = "<html><font size='5'>" + archerFormat + "</font></htmt>";
+        String finalArcherFormat = "<html><font size='3'>" + archerFormat + "</font></html>";
         JLabel archerDesc = new JLabel(finalArcherFormat);
         archerDesc.setForeground(Color.white);
         characterPanel.add(archerDesc, gbc);
@@ -120,7 +116,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 1;
         gbc.gridy = 2;
         String mageFormat = DungeonAdventure.heroInfo("Mage").toString().replace("\n", "<br>");
-        String finalMageFormat = "<html><font size='5'>" + mageFormat + "</font></htmt>";
+        String finalMageFormat = "<html><font size='3'>" + mageFormat + "</font></html>";
         JLabel mageDesc = new JLabel(finalMageFormat);
         mageDesc.setForeground(Color.white);
         characterPanel.add(mageDesc, gbc);
@@ -129,7 +125,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 2;
         gbc.gridy = 2;
         String thiefFormat = DungeonAdventure.heroInfo("Thief").toString().replace("\n", "<br>");
-        String finalThiefFormat = "<html><font size='5'>" + thiefFormat + "</font></htmt>";
+        String finalThiefFormat = "<html><font size='3'>" + thiefFormat + "</font></html>";
         JLabel thiefDesc = new JLabel(finalThiefFormat);
         thiefDesc.setForeground(Color.white);
         characterPanel.add(thiefDesc, gbc);
@@ -138,7 +134,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 3;
         gbc.gridy = 2;
         String warriorFormat = DungeonAdventure.heroInfo("Warrior").toString().replace("\n", "<br>");
-        String finalWarriorFormat = "<html><font size='5'>" + warriorFormat + "</font></htmt>";
+        String finalWarriorFormat = "<html><font size='3'>" + warriorFormat + "</font></html>";
         JLabel warriorDesc = new JLabel(finalWarriorFormat);
         warriorDesc.setForeground(Color.white);
         characterPanel.add(warriorDesc, gbc);
@@ -147,7 +143,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 4;
         gbc.gridy = 2;
         String priestessFormat = DungeonAdventure.heroInfo("Priestess").toString().replace("\n", "<br>");
-        String finalPriestessFormat = "<html><font size='5'>" + priestessFormat + "</font></htmt>";
+        String finalPriestessFormat = "<html><font size='3'>" + priestessFormat + "</font></html>";
         JLabel priestessDesc = new JLabel(finalPriestessFormat);
         priestessDesc.setForeground(Color.white);
         characterPanel.add(priestessDesc, gbc);
@@ -158,6 +154,16 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.weighty = 1;
         this.add(characterPanel, gbc);
 
-        this.setSize(932, 650);
+        //TODO make these buttons appear at the bottom of the screen
+        JButton mainMenu = new JButton("MAIN MENU");
+        mainMenu.setFont(new Font("Serif", Font.BOLD, 20));
+        mainMenu.setPreferredSize(new Dimension(200,50));
+        mainMenu.addActionListener(e ->  DungeonAdventure.sceneController("menu"));
+        //characterPanel.add(mainMenu);
+
+        JButton monsters = new JButton("MONSTERS");
+        monsters.setFont(new Font("Serif", Font.BOLD, 20));
+        monsters.setPreferredSize(new Dimension(200,50));
+        //monsters.addActionListener();
     }
 }

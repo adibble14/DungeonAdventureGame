@@ -32,6 +32,10 @@ public class MainGUI extends GUI{
         switch (myCardName){
             case "character":
                 theCardLayout.show(theCardPanel, "character");
+                break;
+            case "menu":
+                theCardLayout.show(theCardPanel,"menu");
+                break;
         }
     }
 }
