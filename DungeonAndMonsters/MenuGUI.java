@@ -46,6 +46,7 @@ public class MenuGUI extends JPanel{
         // Change gridbag constraint settings for ***button panel***
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
         gbc.gridy = 1;
 
         // Create new panel to hold buttons
@@ -87,10 +88,13 @@ public class MenuGUI extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 0;
         buttonPanel.add(newGame, gbc);
+        gbc.gridx = 0;
         gbc.gridy = 1;
         buttonPanel.add(loadGame, gbc);
+        gbc.gridx = 0;
         gbc.gridy = 2;
         buttonPanel.add(instr, gbc);
+        gbc.gridx = 0;
         gbc.gridy = 3;
         buttonPanel.add(quit, gbc);
 
