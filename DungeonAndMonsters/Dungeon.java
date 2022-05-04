@@ -33,43 +33,8 @@ public class Dungeon {
 		//Random Number object
 		Random MY_RAND = new Random();
 		// Rooms are always 5x5
-		this.myDungeon = new Room[5][5];
+		this.myDungeon = GenerateDungeon.GenerateDungeon(10);
 		// Number of keys needed for win condition. - Always need 2 keys
-		int myKeyCount = 2;
-
-		//TODO Implement pillars of OO here?
-
-		// Construct dungeon
-		for(int i = 0; i < this.myDungeon.length; i++) {
-			for(int j = 0; j < this.myDungeon[i].length; j++) {
-				
-				this.myDungeon[i][j] = new Room(i, j);
-			}
-		}
-
-
-		// set up entrance & exit & keys. Set player position and current room
-		//TODO should room 0,0 always be the entrance?
-		//TODO 4/28 change with room randomization
-		Room room = this.myDungeon[0][0];
-		// Labels room on map with "I" to signify an entrance
-		room.setEntrance();
-		this.setCurrentRoom(room, theHero);
-		
-		// reassigning room to set as exit
-		//TODO should exit always be on the bottom row?
-		room = this.myDungeon[(this.myDungeon.length - 1)][MY_RAND.nextInt(this.myDungeon.length-1)];
-		room.setExit();
-		// assigning keys, keys should not spawn in exit or entrance
-		//TODO can we delete this since we are using Pillars and not keys
-		int count = 0;
-		while(count < myKeyCount) {
-			room = this.myDungeon[MY_RAND.nextInt(this.myDungeon.length)][MY_RAND.nextInt(this.myDungeon.length)];
-			if(!room.isEntrance() && !room.isExit()) {
-				room.setKey();
-				count++;
-			}
-		}
 	}
 	
 	/**

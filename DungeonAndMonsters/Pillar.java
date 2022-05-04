@@ -5,11 +5,10 @@ public class Pillar extends Item{
      * Constructor for this class. Simply initializes fields.
      *
      * @param theSpawnChance
-     * @param theName
      * @param theImage
      */
-    protected Pillar(double theSpawnChance, String theName, ImageIcon theImage) {
-        super(theSpawnChance, theName, theImage);
+    protected Pillar(double theSpawnChance, ImageIcon theImage) {
+        super(theSpawnChance, theImage);
     }
 
     /**

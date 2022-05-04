@@ -25,7 +25,7 @@ class Tools {
             Room chosen = neighbors.get(choice);
             neighbors.remove(choice);
             theRooms[chosen.getXCoord()][chosen.getYCoord()] = chosen;
-            if(chosen.isExit())
+            if(chosen.getMyType() == RoomType.EXIT)
                 return true;
             if(DFS(theRooms, chosen)) return true;
 
@@ -44,29 +44,29 @@ class Tools {
 
         if(theRoom.getXCoord()-1 >= 0) {
             if(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()] == null) {
-                result.add(new Room(theRoom.getXCoord()-1, theRoom.getYCoord()));
-            } else if(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()].isExit()) {
+                result.add(new Room(theRoom.getXCoord()-1, theRoom.getYCoord(), RoomType.EMPTY));
+            } else if(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()].getMyType() == RoomType.EXIT) {
                 result.add(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()]);
             }
         }
         if(theRoom.getXCoord()+1 < theRooms.length) {
             if(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()] == null) {
-                result.add(new Room(theRoom.getXCoord()+1, theRoom.getYCoord()));
-            } else if(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()].isExit()) {
+                result.add(new Room(theRoom.getXCoord()+1, theRoom.getYCoord(), RoomType.EMPTY));
+            } else if(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()].getMyType() == RoomType.EXIT) {
                 result.add(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()]);
             }
         }
         if(theRoom.getYCoord()-1 >= 0) {
             if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1] == null) {
-                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()-1));
-            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1].isExit()) {
+                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()-1,RoomType.EMPTY));
+            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1].getMyType() == RoomType.EXIT) {
                 result.add(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1]);
             }
         }
         if(theRoom.getYCoord()+1 < theRooms.length) {
             if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1] == null) {
-                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()+1));
-            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1].isExit()) {
+                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()+1,RoomType.EMPTY));
+            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1].getMyType() == RoomType.EXIT) {
                 result.add(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1]);
             }
         }

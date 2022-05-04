@@ -98,14 +98,7 @@ public class Room {
 	final protected void setEntrance() {
 
 	}
-	
-	/**
-	 * Sets a win condition key in room.
-	 * Key placed with intent for game balance.
-	 */
-	final protected void setKey() {
 
-	}
 	
 	/**
 	 * Sets the object of this room to empty, to null? Change this later possibly
@@ -119,40 +112,25 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean isExit() {
-
+		return this.myType == RoomType.EXIT;
 	}
-	
-	/**
-	 * Checks to see if room is an entrance
-	 * @return
-	 */
-	final protected boolean isEntrance() {
 
-	}
 	
 	/**
 	 * Checks to see if room is empty
 	 * @return
 	 */
 	final protected boolean isEmpty() {
-
+		return this.myType == RoomType.EMPTY;
 	}
-	
-	/**
-	 * Checks to see if room contains more than one item
-	 * Only health, vision, potions and monsters can be stacked together
-	 * @return
-	 */
-	final protected boolean containsMultiple() {
 
-	}
 	
 	/**
 	 * Checks to see if room contains a Monster
 	 * @return
 	 */
 	final protected boolean containsMonster() {
-
+		return this.myType == RoomType.BOSS_ROOM;
 	}
 	/**
 	 * Removes Monster item from room
@@ -168,23 +146,6 @@ public class Room {
 	 */
 	final protected void placePlayer(final Hero theHero) {
 
-		// Start by removing the question mark representing the room
-		this.unhide();
-		// Adds C (player) to the room
-		this.myObjectList.add(0,"C");
-
-		// Empty rooms do nothing
-		if(this.isEmpty()) {
-			return;
-		}
-		// Pitfall is triggered
-		//TODO delete this output once GUI is made, since this is VIEW
-		if(this.myObjectList.contains("P")) {
-			theHero.setHealth(theHero.getHealth() - this.MY_PIT_DAMAGE);
-			System.out.println(theHero.getName() + " fell into a pit trap! Took " 
-			 + " of damage.");
-			return;
-		}
 	}
 	
 	/**
@@ -219,6 +180,19 @@ public class Room {
 	@Override
 	final public String toString() {
 		
-		return this.myObjectList.get(0).toString();
+		switch(this.myType) {
+			case EXIT: return "O";
+			case ENTRANCE: return "N";
+			case EMPTY: return "E";
+			default: return "?";
+		}
+	}
+
+	/**
+	 * Returns this Room's type
+	 * @return
+	 */
+	public RoomType getMyType() {
+		return this.myType;
 	}
 }

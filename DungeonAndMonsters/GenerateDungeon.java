@@ -7,23 +7,21 @@
 
 public class GenerateDungeon {
 
-    public static void GenerateDungeon(final int theSize) {
+    public static Room[][] GenerateDungeon(final int theSize) {
         Room[][] dung = new Room[theSize][theSize];
         int x = Tools.RANDOM.nextInt(0, theSize -1);
         int y = Tools.RANDOM.nextInt(0, theSize -1);
-        Room entrance = new Room(x,y);
-        entrance.setEntrance();
+        Room entrance = new Room(x,y, RoomType.ENTRANCE);
         dung [x][y] = entrance;
         System.out.println("Entrance Coords: " + x + " " + y);
         x = Tools.RANDOM.nextInt(0, 5);
         y = Tools.RANDOM.nextInt(0, 5);
-        Room exit = new Room(x,y);
-        exit.setExit();
+        Room exit = new Room(x,y, RoomType.EXIT);
         dung[x][y] = exit;
         System.out.println("Exit Coords: " + x + " " + y);
         Tools.DFS(dung, entrance);
         print(dung);
-
+        return dung;
     }
 
     static void print(Room [][] arr) {
@@ -42,7 +40,7 @@ public class GenerateDungeon {
     }
 
     public static void main(String[] args) {
-        GenerateDungeon(50);
+        GenerateDungeon(25);
     }
 
 }
