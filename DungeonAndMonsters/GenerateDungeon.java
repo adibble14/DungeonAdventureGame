@@ -9,19 +9,19 @@ public class GenerateDungeon {
 
     public static void GenerateDungeon(final int theSize) {
         Room[][] dung = new Room[theSize][theSize];
-        int x = Tools.random.nextInt(0, theSize -1);
-        int y = Tools.random.nextInt(0, theSize -1);
+        int x = Tools.RANDOM.nextInt(0, theSize -1);
+        int y = Tools.RANDOM.nextInt(0, theSize -1);
         Room entrance = new Room(x,y);
         entrance.setEntrance();
         dung [x][y] = entrance;
         System.out.println("Entrance Coords: " + x + " " + y);
-        x = Tools.random.nextInt(0, 5);
-        y = Tools.random.nextInt(0, 5);
+        x = Tools.RANDOM.nextInt(0, 5);
+        y = Tools.RANDOM.nextInt(0, 5);
         Room exit = new Room(x,y);
         exit.setExit();
         dung[x][y] = exit;
         System.out.println("Exit Coords: " + x + " " + y);
-        Tools.dfs(dung, entrance);
+        Tools.DFS(dung, entrance);
         print(dung);
 
     }

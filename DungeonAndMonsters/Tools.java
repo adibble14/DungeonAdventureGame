@@ -4,7 +4,10 @@ import java.util.Random;
 
 class Tools {
 
-    static Random random = new Random();
+    /**
+     * Random Object that is used across all classes. Used to get a random numbber
+     */
+    static final Random RANDOM = new Random();
 
     /**
      * DFS like algorithm. Randomly walks the matrix starting from given start point.
@@ -14,17 +17,17 @@ class Tools {
      * @param theRooms matrix to recurse
      * @param theStart starting point of the recursion
      */
-    static boolean dfs(Room[][] theRooms, Room theStart) {
-        ArrayList<Room> neighbors = (ArrayList<Room>) getNeighbors(theRooms, theStart);
+    static final boolean DFS(Room[][] theRooms, Room theStart) {
+        ArrayList<Room> neighbors = (ArrayList<Room>) GET_NEIGHBORS(theRooms, theStart);
 
         while(neighbors.size() > 0) {
-            int choice = Tools.random.nextInt(neighbors.size());
+            int choice = Tools.RANDOM.nextInt(neighbors.size());
             Room chosen = neighbors.get(choice);
             neighbors.remove(choice);
             theRooms[chosen.getXCoord()][chosen.getYCoord()] = chosen;
             if(chosen.isExit())
                 return true;
-            if(dfs(theRooms, chosen)) return true;
+            if(DFS(theRooms, chosen)) return true;
 
         }
         return false;
@@ -36,7 +39,7 @@ class Tools {
      * @param theRoom
      * @return
      */
-    private static List<Room> getNeighbors(Room [][] theRooms, Room theRoom) {
+    private static final List<Room> GET_NEIGHBORS(Room [][] theRooms, Room theRoom) {
         List<Room> result = new ArrayList<Room>(); // max of 4 neighbors overall
 
         if(theRoom.getXCoord()-1 >= 0) {

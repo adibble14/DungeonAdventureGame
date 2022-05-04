@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * This is the Room class that contains randomly generated items, entrance, and exit. Interacts with
@@ -83,17 +82,17 @@ public class Room {
 	 */
 	final private void generateItem() {
 
-		if(Tools.random.nextDouble() <= this.MY_PIT_CHANCE) {
+		if(Tools.RANDOM.nextDouble() <= this.MY_PIT_CHANCE) {
 			this.myObjectList.add(new Pit());
 			return;
 		}
-		if(Tools.random.nextDouble() <= this.MY_MONSTER_CHANCE) {
+		if(Tools.RANDOM.nextDouble() <= this.MY_MONSTER_CHANCE) {
 			this.myObjectList.add("X");
 		}
-		if(Tools.random.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
+		if(Tools.RANDOM.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
 			this.myObjectList.add("V");
 		}
-		if(Tools.random.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
+		if(Tools.RANDOM.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
 			this.myObjectList.add("H");
 		}
 		if(this.myObjectList.isEmpty()) {

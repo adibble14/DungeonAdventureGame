@@ -59,7 +59,7 @@ public abstract class Item {
      * Uses this object, each child is used differently.
      * @param obj
      */
-    public abstract void use(Object obj);
+    public abstract void use(Object theObj);
 
 
 
