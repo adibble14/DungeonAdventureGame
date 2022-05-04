@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class CharacterSelectionGUI extends JPanel{
     //TODO keep or get rid of?
@@ -8,6 +10,16 @@ public class CharacterSelectionGUI extends JPanel{
     Image myThiefImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/thief.png");
     Image myWarriorImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/warrior.jpg");
     CharacterSelectionGUI(){
+        try {
+            //create the font to use. Specify the size!
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts\\custom_font.ttf")).deriveFont(12f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(customFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+
         // Settings for our internal frame
         // bg color and how it is laid out.
         this.setBackground(new Color(32,42,68));
