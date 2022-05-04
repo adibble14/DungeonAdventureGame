@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 public class VisionPotion extends Item{
@@ -6,12 +7,9 @@ public class VisionPotion extends Item{
     /**
      * Constructor for this class. Simply initializes fields.
      *
-     * @param theSpawnChance
-     * @param theName
-     * @param theImage
      */
-    protected VisionPotion(double theSpawnChance, String theName, BufferedImage theImage) {
-        super(theSpawnChance, theName, theImage);
+    protected VisionPotion() {
+        super(.05, new ImageIcon("DungeonAndMonsters/potion.png"));
     }
 
     //TODO: Implement this method

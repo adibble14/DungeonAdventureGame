@@ -33,11 +33,6 @@ public class Room {
 	final private double MY_MONSTER_CHANCE;
 
 	/**
-	 * Amount of damage to player if player steps in room
-	 */
-	final private int MY_PIT_DAMAGE;
-
-	/**
 	 * Holds all generated items. If room is an exit, entrance, or pit, no
 	 * other items should generate
 	 */
@@ -69,7 +64,6 @@ public class Room {
 		this.MY_PIT_CHANCE = .1;
 		this.MY_MONSTER_CHANCE = .1;
 		this.myObjectList = new ArrayList <Item> () ;
-		this.MY_PIT_DAMAGE = 15;
 		this.generateItem();
 		this.hide();
 	}
@@ -86,20 +80,21 @@ public class Room {
 			this.myObjectList.add(new Pit());
 			return;
 		}
+		//TODO: Implement Monsters
 		if(Tools.RANDOM.nextDouble() <= this.MY_MONSTER_CHANCE) {
-			this.myObjectList.add("X");
+			this.myObjectList.add(null);
 		}
 		if(Tools.RANDOM.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
-			this.myObjectList.add("V");
+			this.myObjectList.add(new VisionPotion());
 		}
 		if(Tools.RANDOM.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
-			this.myObjectList.add("H");
+			this.myObjectList.add(new HealthPotion());
 		}
 		if(this.myObjectList.isEmpty()) {
 			this.setEmpty();
 		}
 		else if(this.containsMultiple()) {
-			this.myObjectList.add(0, "M");
+			this.myObjectList.add(null);
 		}
 	}
 	
@@ -246,13 +241,8 @@ public class Room {
 		if(this.myObjectList.contains("P")) {
 			theHero.setHealth(theHero.getHealth() - this.MY_PIT_DAMAGE);
 			System.out.println(theHero.getName() + " fell into a pit trap! Took " 
-			+ this.MY_PIT_DAMAGE + " of damage.");
+			 + " of damage.");
 			return;
-		}
-
-		// Adds any objects in the room to the player's inventory
-		for(String s : this.myObjectList) {
-			theHero.addInventory(s);
 		}
 	}
 	
@@ -280,19 +270,7 @@ public class Room {
 	final protected void unhide() {
 		this.myObjectList.remove("?");
 	}
-	
-	/**
-	 * Checks to see if player is present in room
-	 * @return
-	 */
-	//TODO not being used
-	final private boolean containsHero() {
-		
-		if(this.myObjectList.get(0).equalsIgnoreCase("C")) {
-			return true;
-		}
-		return false;
-	}
+
 	
 	/**
 	 * Prints the item that is in the first index of object list.

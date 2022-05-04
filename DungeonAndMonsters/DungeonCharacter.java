@@ -253,4 +253,13 @@ public abstract class DungeonCharacter {
         return this.getHealth() > 0;
     }
 
+    /**
+     *  Subtracts Argument amount from health
+     */
+
+    final protected void takeDamage(final int theAmount) {
+        this.myCurrentHealth = Math.max(this.myCurrentHealth-theAmount, 0);
+
+    }
+
 }

@@ -1,4 +1,4 @@
-import java.awt.image.BufferedImage;
+import javax.swing.*;
 
 public class Pillar extends Item{
     /**
@@ -8,7 +8,7 @@ public class Pillar extends Item{
      * @param theName
      * @param theImage
      */
-    protected Pillar(double theSpawnChance, String theName, BufferedImage theImage) {
+    protected Pillar(double theSpawnChance, String theName, ImageIcon theImage) {
         super(theSpawnChance, theName, theImage);
     }
 

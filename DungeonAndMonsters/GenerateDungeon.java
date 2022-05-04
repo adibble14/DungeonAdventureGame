@@ -41,6 +41,10 @@ public class GenerateDungeon {
         }
     }
 
+    public static void main(String[] args) {
+        GenerateDungeon(50);
+    }
+
 }
 
 

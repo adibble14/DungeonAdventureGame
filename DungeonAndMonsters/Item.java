@@ -1,4 +1,6 @@
-import java.awt.image.BufferedImage;
+import javax.swing.*;
+import java.io.FileNotFoundException;
+
 
 /**
  * Abstract Class represents an in game item.
@@ -14,27 +16,21 @@ public abstract class Item {
     private  double mySpawnChance;
 
     /**
-     * Name of this item
-     */
-    private  String myName;
-
-    /**
      * Image of this item
      */
-    // TODO: 4/30/22  Is this the correct object to use?
-    private BufferedImage myImage;
+    private ImageIcon myImage;
 
     /**
      * Constructor for this class. Simply initializes fields.
      *
      * @param theSpawnChance
-     * @param theName
      * @param theImage
      */
-    protected Item(final double theSpawnChance, final String theName, final BufferedImage theImage) {
-        this.mySpawnChance = theSpawnChance;
-        this.myName = theName;
+    protected Item(final double theSpawnChance, final ImageIcon theImage) {
+
         this.myImage = theImage;
+        this.mySpawnChance = theSpawnChance;
+
     }
 
 
@@ -42,16 +38,11 @@ public abstract class Item {
      * Getters for each field.
      * @return
      */
-
-    final protected String getMyName() {
-        return this.myName;
-    }
-
     final protected double getMySpawnChance() {
         return this.mySpawnChance;
     }
 
-    final protected BufferedImage getMyImage() {
+    final protected ImageIcon getMyImage() {
         return this.myImage;
     }
 
