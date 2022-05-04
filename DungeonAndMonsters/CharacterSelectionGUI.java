@@ -124,30 +124,51 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridy = 2;
         JButton archerButton = new JButton("Archer");
         this.add(archerButton, gbc);
+        archerButton.addActionListener(e -> {
+            setUserName();
+            DungeonAdventure.setMyHeroChoice("a");
+        });
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 2;
         JButton mageButton = new JButton("Mage");
         this.add(mageButton, gbc);
+        mageButton.addActionListener(e -> {
+            setUserName();
+            DungeonAdventure.setMyHeroChoice("m");
+        });
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 2;
         JButton thiefButton = new JButton("Thief");
         this.add(thiefButton, gbc);
+        thiefButton.addActionListener(e -> {
+            setUserName();
+            DungeonAdventure.setMyHeroChoice("t");
+        });
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 2;
         JButton warriorButton = new JButton("Warrior");
         this.add(warriorButton, gbc);
+        warriorButton.addActionListener(e -> {
+            setUserName();
+            DungeonAdventure.setMyHeroChoice("w");
+        });
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 2;
         JButton priestessButton = new JButton("Priestess");
         this.add(priestessButton, gbc);
+        priestessButton.addActionListener(e -> {
+            setUserName();
+            DungeonAdventure.setMyHeroChoice("p");
+            DungeonAdventure.createHero();
+        });
 
         // button placement end -----------------------------------------------
 
@@ -155,7 +176,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.anchor = GridBagConstraints.SOUTH;
         gbc.gridx = 1;
         gbc.gridy = 3;
-        //TODO make these buttons appear at the bottom of the screen
+
         JButton mainMenu = new JButton("MAIN MENU");
         mainMenu.setFont(new Font("Serif", Font.BOLD, 20));
         mainMenu.setPreferredSize(new Dimension(200,50));
@@ -170,5 +191,9 @@ public class CharacterSelectionGUI extends JPanel{
         //monsters.addActionListener();
         this.add(monsters,gbc);
 
+    }
+
+    private void setUserName() {
+        DungeonAdventure.setMyUserName(JOptionPane.showInputDialog(this, "Provide User Name:"));
     }
 }

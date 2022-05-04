@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class DungeonAdventure {
 	// Scene list
 	private static final MainGUI MAIN_GUI = new MainGUI();
+	private static String myUserName;
+	private static String myHeroChoice;
+	private static Hero myHero;
+	private static Dungeon myDungeon;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -24,20 +28,31 @@ public class DungeonAdventure {
 		gamePlay();
 		//heroInfo();
 		// Assigning player name
-		String playerName = chooseName(console);
+		//String playerName = chooseName(console);
 		//TODO delete this output in the main method once GUI is made, since this is VIEW
-		System.out.println("Choose your Hero: ");
+		//System.out.println("Choose your Hero: ");
 		// Hero choice is a string that represents which hero they want
-		String heroChoice = playerInput(console);
+		//String heroChoice = playerInput(getMyHeroChoice());
 		// Spawn hero using hero choice
-		Hero hero = createHero(heroChoice, playerName);
+		//Hero hero = createHero(getMyHeroChoice(), getUserName());
 		// Instance of dungeon (which has rooms)
-		Dungeon dungeon = new Dungeon(hero);
+		//Dungeon dungeon = new Dungeon(myHero);
 		// Starter prompt
-		System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
+		//System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
 		// Initiating main loop
-		mainLoop(console, dungeon, hero);
+		//TODO figure out how to not get a null pointer
+		while(myDungeon ==null){
+
+		}
+		mainLoop(console, myDungeon, myHero);
 	}
+
+	public static void createDungeon(Hero theHero){
+		myDungeon = new Dungeon(theHero);
+	}
+
+	public static Dungeon getMyDungeon(){return  myDungeon;}
+
 
 
 	/**
@@ -193,30 +208,32 @@ public class DungeonAdventure {
 
 	/**
 	 * Creates a Hero object depending on user's input name and user's choice.
-	 *
-	 * @param theChoice user's preferred choice
-	 * @param theName user's input name
+
 	 * @return returns Hero Object
 	 */
-	public static Hero createHero(final String theChoice, final String theName) {
+	public static void createHero() {
 		// Naming choices for character represent the hero type?
 		// aka "w" would be for warrior? etc.
 		// Or, have picture representation of the characters which can be clicked on?
-		//TODO make pictures for each character to be chosen
-
-		if(theChoice.equalsIgnoreCase("a")) {
-
-			return new Warrior(theName);
+		
+		if(getMyHeroChoice().equalsIgnoreCase("w")) {
+			myHero = new Warrior(getUserName());
+			//return new Warrior(getUserName());
 		}
-		else if(theChoice.equalsIgnoreCase("b")) {
-
-			return new Mage(theName);
+		else if(getMyHeroChoice().equalsIgnoreCase("m")) {
+			myHero = new Mage(getUserName());
+			//return new Mage(getUserName());
 		}
-		else if(theChoice.equalsIgnoreCase("c")) {
-
-			return new Thief(theName);
+		else if(getMyHeroChoice().equalsIgnoreCase("t")) {
+			myHero = new Thief(getUserName());
+			//return new Thief(getUserName());
 		}
-		return new Archer(theName);
+		else if(getMyHeroChoice().equalsIgnoreCase("p")){
+			myHero = new Priestess(getUserName());
+			//return new Priestess(getUserName());
+		}
+		myHero = new Archer(getUserName());
+		//return new Archer(getUserName());
 	}
 
 	/**
@@ -276,10 +293,10 @@ public class DungeonAdventure {
 	 * Takes user input for character name. Checks to see if
 	 * input name is valid. Must be one to ten character long.
 	 *
-	 * @param theScanner scanner object used to get user input
+	 * @param
 	 * @return returns user input name
 	 */
-	public static String chooseName(final Scanner theScanner) {
+	/*public static String chooseName(final Scanner theScanner) {
 
 		boolean flag = true;
 		String name = "";
@@ -297,7 +314,13 @@ public class DungeonAdventure {
 			}
 		}
 		return name;
-	}
+	}*/
+
+	public static String getUserName(){return myUserName;}
+	public static void setMyUserName(final String theName){myUserName = theName;}
+
+	public static String getMyHeroChoice(){return myHeroChoice;}
+	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	/**
 	 * Displays general information on the console screen.
@@ -320,7 +343,7 @@ public class DungeonAdventure {
 	 *
 	 * @return returns user input
 	 */
-	public static String playerInput(final Scanner theScanner) {
+	/*public static String playerInput(final Scanner theScanner) {
 		// TODO This looks similar to another method... See chooseDirection
 
 		boolean flag = true;
@@ -341,7 +364,7 @@ public class DungeonAdventure {
 		}
 
 		return input;
-	}
+	}*/
 
 	/**
 	 * Development options for testing game, cheats.
@@ -356,7 +379,7 @@ public class DungeonAdventure {
 		String input = "";
 		while(!input.equalsIgnoreCase("d")) {
 
-			input = playerInput(theScanner);
+			//input = playerInput(theScanner);
 			if(input.equalsIgnoreCase("a")) {
 				theHero.setHealthPotions(5);
 				break;
