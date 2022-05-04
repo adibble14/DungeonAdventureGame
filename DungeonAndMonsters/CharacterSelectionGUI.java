@@ -1,22 +1,13 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class CharacterSelectionGUI extends JPanel{
-        Font customFont;
-    CharacterSelectionGUI(){
 
-        try {
-            //create the font to use. Specify the size!
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(12f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(customFont);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-
+    private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 2);
+    CharacterSelectionGUI(Font pixelFont){
         // Settings for our internal panel
         // bg color and how it is laid out.
         // as well as the grid bag constraints
@@ -26,45 +17,44 @@ public class CharacterSelectionGUI extends JPanel{
 
         // settings for our initial images
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0, 5, 0, 5);
+        gbc.insets = new Insets(10, 5, 0, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
+        gbc.weighty = 1;
         // Image placement ----------------------------------------
         // Archer
         gbc.gridx = 0;
         gbc.gridy = 0;
-        JLabel label = new JLabel(new ImageIcon("DungeonAndMonsters/archer.jpeg"));
-        this.add(label, gbc);
+        JLabel archerLabel = new JLabel(new ImageIcon("DungeonAndMonsters/archer.jpeg"));
+        this.add(archerLabel, gbc);
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel label2 = new JLabel(new ImageIcon("DungeonAndMonsters/mage.jpeg"));
-        this.add(label2, gbc);
+        JLabel mageLabel = new JLabel(new ImageIcon("DungeonAndMonsters/mage.jpeg"));
+        this.add(mageLabel, gbc);
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 0;
-        JLabel label3 = new JLabel(new ImageIcon("DungeonAndMonsters/thief.jpeg"));
-        this.add(label3, gbc);
+        JLabel thiefLabel = new JLabel(new ImageIcon("DungeonAndMonsters/thief.jpeg"));
+        this.add(thiefLabel, gbc);
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 0;
-        JLabel label4 = new JLabel(new ImageIcon("DungeonAndMonsters/warrior.jpeg"));
-        this.add(label4, gbc);
+        JLabel warriorLabel = new JLabel(new ImageIcon("DungeonAndMonsters/warrior.jpeg"));
+        this.add(warriorLabel, gbc);
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 0;
-        JLabel label5 = new JLabel(new ImageIcon("DungeonAndMonsters/priestess.jpeg"));
-        this.add(label5, gbc);
+        JLabel priestessLabel = new JLabel(new ImageIcon("DungeonAndMonsters/priestess.jpeg"));
+        this.add(priestessLabel, gbc);
         // image placement end ----------------------------------------------------------------
 
         // Character description texts start ----------------------------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.ipady = 20;
-
+        gbc.insets = new Insets(0,5,0,5);
         //Archer
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -73,101 +63,145 @@ public class CharacterSelectionGUI extends JPanel{
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + archerFormat + "</h1></font></html>";
         JLabel archerDesc = new JLabel(finalArcherFormat);
-        archerDesc.setFont(customFont);
+        archerDesc.setFont(pixelFont);
+        // Color of text
         archerDesc.setForeground(Color.white);
+
+        // To color a black background with border
+        archerDesc.setOpaque(true);
+        archerDesc.setBackground(Color.BLACK);
+        archerDesc.setBorder(OUTLINE_BORDER);
         this.add(archerDesc, gbc);
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 1;
         String mageFormat = DungeonAdventure.heroInfo("Mage").toString().replace("\n", "<br>");
-        String finalMageFormat = "<html><font size='3'>" + mageFormat + "</font></html>";
+        String finalMageFormat = "<html><style>" +
+                "h1 {text-align: center;}\n" +
+                "</style><h1><<font size='5'>" + mageFormat + "</h1></font></html>";
         JLabel mageDesc = new JLabel(finalMageFormat);
+        mageDesc.setFont(pixelFont);
         mageDesc.setForeground(Color.white);
+
+        mageDesc.setOpaque(true);
+        mageDesc.setBackground(Color.BLACK);
+        mageDesc.setBorder(OUTLINE_BORDER);
         this.add(mageDesc, gbc);
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 1;
         String thiefFormat = DungeonAdventure.heroInfo("Thief").toString().replace("\n", "<br>");
-        String finalThiefFormat = "<html><font size='3'>" + thiefFormat + "</font></html>";
+        String finalThiefFormat = "<html><style>" +
+                "h1 {text-align: center;}\n" +
+                "</style><h1><<font size='5'>" + thiefFormat + "</h1></font></html>";
         JLabel thiefDesc = new JLabel(finalThiefFormat);
+        thiefDesc.setFont(pixelFont);
         thiefDesc.setForeground(Color.white);
+
+        thiefDesc.setOpaque(true);
+        thiefDesc.setBackground(Color.BLACK);
+        thiefDesc.setBorder(OUTLINE_BORDER);
         this.add(thiefDesc, gbc);
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 1;
         String warriorFormat = DungeonAdventure.heroInfo("Warrior").toString().replace("\n", "<br>");
-        String finalWarriorFormat = "<html><font size='3'>" + warriorFormat + "</font></html>";
+        String finalWarriorFormat = "<html><style>" +
+                "h1 {text-align: center;}\n" +
+                "</style><h1><<font size='5'>" + warriorFormat + "</h1></font></html>";
         JLabel warriorDesc = new JLabel(finalWarriorFormat);
+        warriorDesc.setFont(pixelFont);
         warriorDesc.setForeground(Color.white);
+
+        warriorDesc.setOpaque(true);
+        warriorDesc.setBackground(Color.BLACK);
+        warriorDesc.setBorder(OUTLINE_BORDER);
         this.add(warriorDesc, gbc);
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 1;
         String priestessFormat = DungeonAdventure.heroInfo("Priestess").toString().replace("\n", "<br>");
-        String finalPriestessFormat = "<html><font size='3'>" + priestessFormat + "</font></html>";
+        String finalPriestessFormat = "<html><style>" +
+                "h1 {text-align: center;}\n" +
+                "</style><h1><<font size='5'>" + priestessFormat + "</h1></font></html>";
         JLabel priestessDesc = new JLabel(finalPriestessFormat);
+        priestessDesc.setFont(pixelFont);
         priestessDesc.setForeground(Color.white);
+
+        priestessDesc.setOpaque(true);
+        priestessDesc.setBackground(Color.BLACK);
+        priestessDesc.setBorder(OUTLINE_BORDER);
         this.add(priestessDesc, gbc);
         // Character description texts end ------------------------------------------
 
 
         // button placement start -------------------------------------------------------------
-        gbc.weighty = 1;
+
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipady = 20;
         //Archer
         gbc.gridx = 0;
         gbc.gridy = 2;
         JButton archerButton = new JButton("Archer");
+        archerButton.setFont(pixelFont);
         this.add(archerButton, gbc);
         archerButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("a");
+            DungeonAdventure.sceneController("dungeon");
         });
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 2;
         JButton mageButton = new JButton("Mage");
+        mageButton.setFont(pixelFont);
         this.add(mageButton, gbc);
         mageButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("m");
+            DungeonAdventure.sceneController("dungeon");
         });
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 2;
         JButton thiefButton = new JButton("Thief");
+        thiefButton.setFont(pixelFont);
         this.add(thiefButton, gbc);
         thiefButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("t");
+            DungeonAdventure.sceneController("dungeon");
         });
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 2;
         JButton warriorButton = new JButton("Warrior");
+        warriorButton.setFont(pixelFont);
         this.add(warriorButton, gbc);
         warriorButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("w");
+            DungeonAdventure.sceneController("dungeon");
         });
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 2;
         JButton priestessButton = new JButton("Priestess");
+        priestessButton.setFont(pixelFont);
         this.add(priestessButton, gbc);
         priestessButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("p");
             DungeonAdventure.createHero();
+            DungeonAdventure.sceneController("dungeon");
         });
 
         // button placement end -----------------------------------------------
@@ -178,7 +212,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridy = 3;
 
         JButton mainMenu = new JButton("MAIN MENU");
-        mainMenu.setFont(new Font("Serif", Font.BOLD, 20));
+        mainMenu.setFont(pixelFont);
         mainMenu.setPreferredSize(new Dimension(200,50));
         mainMenu.addActionListener(e ->  DungeonAdventure.sceneController("menu"));
         this.add(mainMenu, gbc);
@@ -186,7 +220,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 3;
         gbc.gridy = 3;
         JButton monsters = new JButton("MONSTERS");
-        monsters.setFont(new Font("Serif", Font.BOLD, 20));
+        monsters.setFont(pixelFont);
         monsters.setPreferredSize(new Dimension(200,50));
         //monsters.addActionListener();
         this.add(monsters,gbc);
