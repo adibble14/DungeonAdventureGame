@@ -1,16 +1,28 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
-public class CharacterSelectionGUI extends GUI{
+public class CharacterSelectionGUI extends JPanel{
     //TODO keep or get rid of?
     Image myArcherImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/archer.jpeg");
     Image myMageImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/mage.png");
     Image myThiefImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/thief.png");
     Image myWarriorImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/warrior.jpg");
     CharacterSelectionGUI(){
+        try {
+            //create the font to use. Specify the size!
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Fonts\\custom_font.ttf")).deriveFont(12f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(customFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+
         // Settings for our internal frame
         // bg color and how it is laid out.
-        this.getContentPane().setBackground(new Color(32,42,68));
+        this.setBackground(new Color(32,42,68));
         this.setLayout(new GridBagLayout());
 
         // Defining a panel for our characters
@@ -145,7 +157,7 @@ public class CharacterSelectionGUI extends GUI{
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.weighty = 1;
         this.add(characterPanel, gbc);
-        pack();
+
         this.setSize(932, 650);
     }
 }

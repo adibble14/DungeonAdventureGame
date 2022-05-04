@@ -10,11 +10,7 @@ import java.util.Scanner;
  */
 public class DungeonAdventure {
 	// Scene list
-	private static final MenuGUI MENU_GUI = new MenuGUI();
-	private static final CharacterSelectionGUI CHARACTER_SELECTION_GUI = new CharacterSelectionGUI();
-	private static final BattleGUI BATTLE_GUI = new BattleGUI();
-	private static final DungeonGUI DUNGEON_GUI = new DungeonGUI();
-	private static final BackpackGUI BACKPACK_GUI = new BackpackGUI();
+	private static final MainGUI MAIN_GUI = new MainGUI();
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -23,7 +19,6 @@ public class DungeonAdventure {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
-		sceneController("main");
 		Scanner console = new Scanner(System.in);
 		// Prints info to player
 		gamePlay();
@@ -51,21 +46,7 @@ public class DungeonAdventure {
 	 * @param theMenuChoice choice for which scene you want
 	 */
 	protected static void sceneController(String theMenuChoice){
-		switch (theMenuChoice){
-			case "main":
-				MENU_GUI.setVisible(true);
-				break;
-			case "character":
-				MENU_GUI.setVisible(false);
-				CHARACTER_SELECTION_GUI.setVisible(true);
-				break;
-			case "backpack":
-				BACKPACK_GUI.setVisible(true);
-				break;
-			case "dungeon":
-				DUNGEON_GUI.setVisible(true);
-				break;
-		}
+		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
 	/**

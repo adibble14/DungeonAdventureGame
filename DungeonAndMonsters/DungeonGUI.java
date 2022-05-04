@@ -1,2 +1,4 @@
-public class DungeonGUI extends GUI{
+import javax.swing.*;
+
+public class DungeonGUI extends JPanel {
 }

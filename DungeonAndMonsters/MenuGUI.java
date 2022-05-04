@@ -1,26 +1,24 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
 /**
  * Frame used for displaying Main Menu
  */
-public class MenuGUI extends GUI{
+public class MenuGUI extends JPanel{
+
+    //Setting panel background before constructor
+    Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(img,0,0,getWidth(),getHeight(),this);
+    }
+
 
     /**
      * Constructor which defines what will be inside the Frame
      */
     MenuGUI(){
-        // setting an image as the background
-        Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
-        // Content pane works as background in this case
-        this.setContentPane(new JPanel(){
-        @Override
-        public void paintComponent(Graphics g){
-                super.paintComponent(g);
-                g.drawImage(img,0,0,getWidth(),getHeight(),this);
-            }
-        });
-
         // Creating a panel to hold menu
         JPanel menuPanel = new JPanel();
         // Remove the background color of panel
@@ -85,6 +83,5 @@ public class MenuGUI extends GUI{
 
         // Add menu panel to the frame
         this.add(menuPanel, gbc);
-        pack();
     }
 }

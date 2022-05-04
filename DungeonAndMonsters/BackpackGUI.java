@@ -1,2 +1,4 @@
-public class BackpackGUI extends GUI{
+import javax.swing.*;
+
+public class BackpackGUI extends JPanel {
 }
