@@ -12,27 +12,6 @@ import java.util.ArrayList;
 public class Room {
 
 	/**
-	 * Chance value to generate a vision potion in room
-	 */
-	final private double MY_HEAL_POTION_CHANCE;
-
-	/**
-	 * Chance value to generate a vision potion in room
-	 */
-	final private double MY_VISION_POTION_CHANCE;
-
-	/**
-	 * Chance value to generate a pit in room. No other items can generate if
-	 * this occurs
-	 */
-	final private double MY_PIT_CHANCE;
-
-	/**
-	 * Chance value to generate a Monster object in room.
-	 */
-	final private double MY_MONSTER_CHANCE;
-
-	/**
 	 * Holds all generated items. If room is an exit, entrance, or pit, no
 	 * other items should generate
 	 */
@@ -47,6 +26,11 @@ public class Room {
 	 * Y coord for this room
 	 */
 	private int myYCoord;
+
+	/**
+	 * Enum room type
+	 */
+	private RoomType myType;
 	
 	/**
 	 * Room constructor, initializes fields. Takes coords from Dungeon class
@@ -55,16 +39,14 @@ public class Room {
 	 * @param theXCoord
 	 * @param theYCoord
 	 */
-	protected Room(final int theXCoord, final int theYCoord) {
+	protected Room(final int theXCoord, final int theYCoord, RoomType theType) {
 		
 		this.myXCoord = theXCoord;
 		this.myYCoord = theYCoord;
-		this.MY_HEAL_POTION_CHANCE = .1;
-		this.MY_VISION_POTION_CHANCE = .05;
-		this.MY_PIT_CHANCE = .1;
-		this.MY_MONSTER_CHANCE = .1;
 		this.myObjectList = new ArrayList <Item> () ;
-		this.generateItem();
+		this.myType = theType;
+		if(theType == RoomType.ITEM_ROOM)
+			this.generateItem();
 		this.hide();
 	}
 	
@@ -76,25 +58,13 @@ public class Room {
 	 */
 	final private void generateItem() {
 
-		if(Tools.RANDOM.nextDouble() <= this.MY_PIT_CHANCE) {
-			this.myObjectList.add(new Pit());
-			return;
+		Chest chest = new Chest();
+		if(Tools.RANDOM.nextDouble() < chest.getMySpawnChance()) {
+			this.myObjectList.add(chest);
 		}
-		//TODO: Implement Monsters
-		if(Tools.RANDOM.nextDouble() <= this.MY_MONSTER_CHANCE) {
-			this.myObjectList.add(null);
-		}
-		if(Tools.RANDOM.nextDouble() <= this.MY_VISION_POTION_CHANCE) {
-			this.myObjectList.add(new VisionPotion());
-		}
-		if(Tools.RANDOM.nextDouble() <= this.MY_HEAL_POTION_CHANCE) {
-			this.myObjectList.add(new HealthPotion());
-		}
-		if(this.myObjectList.isEmpty()) {
-			this.setEmpty();
-		}
-		else if(this.containsMultiple()) {
-			this.myObjectList.add(null);
+		Gold gold = new Gold();
+		if(Tools.RANDOM.nextDouble() < gold.getMySpawnChance()) {
+			this.myObjectList.add(gold);
 		}
 	}
 	
@@ -118,10 +88,7 @@ public class Room {
 	 * Sets this room as an exit
 	 */
 	final protected void setExit() {
-		
-		this.myObjectList.clear();
-		this.myObjectList.add("?");
-		this.myObjectList.add("O");
+
 		
 	}
 	
@@ -129,9 +96,7 @@ public class Room {
 	 * Sets this room as an entrance
 	 */
 	final protected void setEntrance() {
-		
-		this.myObjectList.clear();
-		this.myObjectList.add("I");
+
 	}
 	
 	/**
@@ -139,23 +104,14 @@ public class Room {
 	 * Key placed with intent for game balance.
 	 */
 	final protected void setKey() {
-		
-		this.myObjectList.clear();
-		this.myObjectList.add("?");
-		this.myObjectList.add("K");
+
 	}
 	
 	/**
 	 * Sets the object of this room to empty, to null? Change this later possibly
 	 */
 	final protected void setEmpty() {
-		
-		if(this.myObjectList.contains("I") || this.myObjectList.contains("O")
-				|| this.myObjectList.contains("P")) {
-			return;
-		}
-		this.myObjectList.clear();
-		this.myObjectList.add("E");
+
 	}
 	
 	/**
@@ -163,10 +119,7 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean isExit() {
-		if (this.myObjectList.contains("O")) {
-			return true;
-		}
-		return false;
+
 	}
 	
 	/**
@@ -174,10 +127,7 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean isEntrance() {
-		if (this.myObjectList.contains("I")) {
-			return true;
-		}
-		return false;
+
 	}
 	
 	/**
@@ -185,7 +135,7 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean isEmpty() {
-		return this.myObjectList.contains("E");
+
 	}
 	
 	/**
@@ -194,13 +144,7 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean containsMultiple() {
-		
-		if(this.myObjectList.size() > 1) {
-			
-			return true;
-		}
-		
-		return false;
+
 	}
 	
 	/**
@@ -208,10 +152,7 @@ public class Room {
 	 * @return
 	 */
 	final protected boolean containsMonster() {
-		if(this.myObjectList.contains("X")) {
-			return true;
-		}
-		return false;
+
 	}
 	/**
 	 * Removes Monster item from room
@@ -261,14 +202,14 @@ public class Room {
 	 * 
 	 */
 	final protected void hide() {
-		this.myObjectList.add(0, "?");
+
 	}
 	
 	 /**
 	  * Removes question mark to uncover contents of room.
 	  */
 	final protected void unhide() {
-		this.myObjectList.remove("?");
+
 	}
 
 	
