@@ -220,6 +220,18 @@ public class CharacterSelectionGUI extends JPanel{
         mainMenu.addActionListener(e ->  DungeonAdventure.sceneController("menu"));
         this.add(mainMenu, gbc);
 
+        gbc.gridx = 2;
+        gbc.gridy = 3;
+
+        JButton stats = new JButton("Stat Info");
+        stats.setFont(pixelFont);
+        stats.setPreferredSize(new Dimension(200,50));
+        StringBuilder statText = DungeonAdventure.statInfo();
+        String statFormat = statText.toString().replace("\n", "<br>");
+        String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></htmt>";
+        stats.addActionListener(e ->  JOptionPane.showMessageDialog(this, finalStatFormat));
+        this.add(stats, gbc);
+
         gbc.gridx = 3;
         gbc.gridy = 3;
         JButton monsters = new JButton("MONSTERS");
