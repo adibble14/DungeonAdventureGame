@@ -27,7 +27,7 @@ public class DungeonAdventure {
 	public static void setUPGame(){
 		createHero();
 		createDungeon(getMyHero());
-		mainLoop(new Scanner(System.in), getMyDungeon(), getMyHero());
+		//mainLoop(new Scanner(System.in),getMyDungeon(), getMyHero());
 	}
 
 
@@ -44,7 +44,7 @@ public class DungeonAdventure {
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
 	 *
-	 * @param theScanner Scanner that looks for user input
+	 * @param
 	 * @param theDungeon Dungeon the user is currently playing in
 	 * @param theHero Hero that the user controls
 	 */
@@ -136,6 +136,7 @@ public class DungeonAdventure {
 		}
 	}
 
+
 	/**
 	 * Displays information about the Hero characters on the console screen.
 	 */
@@ -147,26 +148,18 @@ public class DungeonAdventure {
 		StringBuilder heroInformation = new StringBuilder();
 		switch(characterType){
 			case "Warrior":
-				/*heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
-				heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");*/
 				heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
 				heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");
 				break;
 			case "Mage":
-				/*heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
-				heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");*/
 				heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
 				heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n100% accuracy");
 				break;
 			case "Thief":
-				/*heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-				heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");*/
 				heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
 				heroInformation.append("Special: Surprise!\n20-60 damage\nCan also land extra attack\n40-80 damage\n60% accuracy.");
 				break;
 			case "Archer":
-				/*heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
-				heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");*/
 				heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
 				heroInformation.append("Special: Volley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
 				break;
@@ -181,6 +174,8 @@ public class DungeonAdventure {
 
 		return heroInformation;
 	}
+
+
 
 	/**
 	 * Creates a Hero object depending on user's input name and user's choice.

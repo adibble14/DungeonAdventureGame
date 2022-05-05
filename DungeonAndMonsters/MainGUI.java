@@ -29,6 +29,7 @@ public class MainGUI extends GUI{
         DungeonGUI dungeonGUI = new DungeonGUI(customFont);
         BattleGUI battleGUI = new BattleGUI(customFont);
         BackpackGUI backpackGUI = new BackpackGUI(customFont);
+        MapGUI mapGUI = new MapGUI(customFont);
 
         // Add the panels to the cardPanel using string constraints
         theCardPanel.add(menuGUI, "menu");
@@ -36,6 +37,7 @@ public class MainGUI extends GUI{
         theCardPanel.add(dungeonGUI, "dungeon");
         theCardPanel.add(battleGUI, "battle");
         theCardPanel.add(backpackGUI, "backpack");
+        theCardPanel.add(mapGUI, "map");
 
         // Start by showing menuGUI
         theCardLayout.show(theCardPanel, "menu");
@@ -51,6 +53,13 @@ public class MainGUI extends GUI{
                 break;
             case "dungeon":
                 theCardLayout.show(theCardPanel, "dungeon");
+                break;
+            case "map":
+                theCardLayout.show(theCardPanel, "map");
+                break;
+            case "backpack":
+                theCardLayout.show(theCardPanel, "backpack");
+                break;
         }
     }
 }

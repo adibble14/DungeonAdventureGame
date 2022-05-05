@@ -24,31 +24,31 @@ public class CharacterSelectionGUI extends JPanel{
         // Archer
         gbc.gridx = 0;
         gbc.gridy = 0;
-        JLabel archerLabel = new JLabel(new ImageIcon("DungeonAndMonsters/archer.jpeg"));
+        JLabel archerLabel = new JLabel(Archer.getImage());
         this.add(archerLabel, gbc);
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel mageLabel = new JLabel(new ImageIcon("DungeonAndMonsters/mage.jpeg"));
+        JLabel mageLabel = new JLabel(Mage.getImage());
         this.add(mageLabel, gbc);
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 0;
-        JLabel thiefLabel = new JLabel(new ImageIcon("DungeonAndMonsters/thief.jpeg"));
+        JLabel thiefLabel = new JLabel(Thief.getImage());
         this.add(thiefLabel, gbc);
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 0;
-        JLabel warriorLabel = new JLabel(new ImageIcon("DungeonAndMonsters/warrior.jpeg"));
+        JLabel warriorLabel = new JLabel(Warrior.getImage());
         this.add(warriorLabel, gbc);
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 0;
-        JLabel priestessLabel = new JLabel(new ImageIcon("DungeonAndMonsters/priestess.jpeg"));
+        JLabel priestessLabel = new JLabel(Priestess.getImage());
         this.add(priestessLabel, gbc);
         // image placement end ----------------------------------------------------------------
 
@@ -152,6 +152,7 @@ public class CharacterSelectionGUI extends JPanel{
         archerButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("a");
+            DungeonAdventure.sceneController("dungeon");
             DungeonAdventure.setUPGame();
         });
 
@@ -164,7 +165,7 @@ public class CharacterSelectionGUI extends JPanel{
         mageButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("m");
-
+            DungeonAdventure.sceneController("dungeon");
             DungeonAdventure.setUPGame();
         });
 
@@ -177,7 +178,7 @@ public class CharacterSelectionGUI extends JPanel{
         thiefButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("t");
-
+            DungeonAdventure.sceneController("dungeon");
             DungeonAdventure.setUPGame();
         });
 
@@ -190,7 +191,7 @@ public class CharacterSelectionGUI extends JPanel{
         warriorButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("w");
-
+            DungeonAdventure.sceneController("dungeon");
             DungeonAdventure.setUPGame();
         });
 
@@ -203,7 +204,7 @@ public class CharacterSelectionGUI extends JPanel{
         priestessButton.addActionListener(e -> {
             setUserName();
             DungeonAdventure.setMyHeroChoice("p");
-
+            DungeonAdventure.sceneController("dungeon");
             DungeonAdventure.setUPGame();
         });
 

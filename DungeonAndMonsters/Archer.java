@@ -1,9 +1,12 @@
+import javax.swing.*;
 
 /**
  * This class inherits from the Hero abstract class. Creates an Archer character. Overrides special attack method.
  */
 
 public class Archer extends Hero {
+
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/archer.jpeg");
 
     /**
      * Constructor with set values. Calls on super constructor to init fields
@@ -46,6 +49,10 @@ public class Archer extends Hero {
             count--;
         }
 
+    }
+
+    public static ImageIcon getImage(){
+        return image;
     }
 
 }
