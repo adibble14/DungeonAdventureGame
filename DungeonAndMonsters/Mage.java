@@ -1,10 +1,12 @@
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * This class inherits from the Hero abstract class. Creates a Mage character. Overrides special attack method.
  */
 
 public class Mage extends Hero {
-
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/mage.jpeg");
     /**
      * Constructor that has set values for object. Calls on super constructor to init fields.
      *
@@ -32,6 +34,10 @@ public class Mage extends Hero {
         theChar.setHealth(damage);
 
         System.out.println(this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health!!\n\n");
+    }
+
+    public static ImageIcon getImage(){
+        return image;
     }
 
 }

@@ -22,37 +22,13 @@ public class DungeonAdventure {
 	 *
 	 * @param theArgs Command line arguments
 	 */
-	public static void main(String[] theArgs) {
-		Scanner console = new Scanner(System.in);
-		// Prints info to player
-		gamePlay();
-		//heroInfo();
-		// Assigning player name
-		//String playerName = chooseName(console);
-		//TODO delete this output in the main method once GUI is made, since this is VIEW
-		//System.out.println("Choose your Hero: ");
-		// Hero choice is a string that represents which hero they want
-		//String heroChoice = playerInput(getMyHeroChoice());
-		// Spawn hero using hero choice
-		//Hero hero = createHero(getMyHeroChoice(), getUserName());
-		// Instance of dungeon (which has rooms)
-		//Dungeon dungeon = new Dungeon(myHero);
-		// Starter prompt
-		//System.out.println(hero.getName() + " finds themself in a dark dungeon. Find a way out....");
-		// Initiating main loop
-		//TODO figure out how to not get a null pointer
-		while(myDungeon ==null){
+	public static void main(String[] theArgs) {}
 
-		}
-		mainLoop(console, myDungeon, myHero);
+	public static void setUPGame(){
+		createHero();
+		createDungeon(getMyHero());
+		//mainLoop(new Scanner(System.in),getMyDungeon(), getMyHero());
 	}
-
-	public static void createDungeon(Hero theHero){
-		myDungeon = new Dungeon(theHero);
-	}
-
-	public static Dungeon getMyDungeon(){return  myDungeon;}
-
 
 
 	/**
@@ -68,7 +44,7 @@ public class DungeonAdventure {
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
 	 *
-	 * @param theScanner Scanner that looks for user input
+	 * @param
 	 * @param theDungeon Dungeon the user is currently playing in
 	 * @param theHero Hero that the user controls
 	 */
@@ -160,6 +136,7 @@ public class DungeonAdventure {
 		}
 	}
 
+
 	/**
 	 * Displays information about the Hero characters on the console screen.
 	 */
@@ -171,32 +148,24 @@ public class DungeonAdventure {
 		StringBuilder heroInformation = new StringBuilder();
 		switch(characterType){
 			case "Warrior":
-				/*heroInformation.append("(a) Warrior: \n The Warrior has the highest health pool and block chance. With modest attack damage.\n");
-				heroInformation.append("It has the Crushing Blow special attack. Which deals a maximum of 175 damage or a guaranteed 50 minimum damage.\n\n\n");*/
 				heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
-				heroInformation.append("Special:\nCrushing Blow\n75-175 damage\n40% accuracy");
+				heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");
 				break;
 			case "Mage":
-				/*heroInformation.append("(b) Mage: \n The Mage has the highest attack damage and health regeneration. However, the health pool is not the best.\n");
-				heroInformation.append("It has the Life Steal special attack. Which absorbs half of the enemy's current health.\n\n\n");*/
 				heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
-				heroInformation.append("Special:\nLife Steal\nhalves enemies health\nheals the damage taken\n100% accuracy");
+				heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n100% accuracy");
 				break;
 			case "Thief":
-				/*heroInformation.append("(c) Thief: \n The Thief has the highest accuracy and speed. However, the attack damage is not the best.\n");
-				heroInformation.append("It has the Surprise Attack special attack. Which deals a minimum of 40 damage and a chance of a follow up attack.\n\n\n");*/
 				heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
-				heroInformation.append("Special:\nSurprise!\n20-60 damage\ncan also land extra attack\n40-80 damage\n60% accuracy");
+				heroInformation.append("Special: Surprise!\n20-60 damage\nCan also land extra attack\n40-80 damage\n60% accuracy.");
 				break;
 			case "Archer":
-				/*heroInformation.append("(d) Archer: \n The Archer has modest stats.\n");
-				heroInformation.append("It has the Arrow Volley special attack. Which shoots a maximum of five arrows.\n\n\n");*/
 				heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
-				heroInformation.append("Special:\nVolley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
+				heroInformation.append("Special: Volley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
 				break;
 			case "Priestess":
 				heroInformation.append("Stats: \n75 hp\n5 attack speed\n25-45 damage\n70% accuracy\n30% block\n");
-				heroInformation.append("Special:\nRevive\n45-90 damage\n50% accuracy\nfor every point of damage dealt\npriestess heals that amount of points");
+				heroInformation.append("Special: Revive\n45-90 damage\n50% accuracy for every point of damage dealt priestess heals 2/3 of the points");
 				break;
 			default:
 				heroInformation.append("No info stored!");
@@ -205,6 +174,8 @@ public class DungeonAdventure {
 
 		return heroInformation;
 	}
+
+
 
 	/**
 	 * Creates a Hero object depending on user's input name and user's choice.
@@ -289,32 +260,6 @@ public class DungeonAdventure {
 		return input;
 	}
 
-	/**
-	 * Takes user input for character name. Checks to see if
-	 * input name is valid. Must be one to ten character long.
-	 *
-	 * @param
-	 * @return returns user input name
-	 */
-	/*public static String chooseName(final Scanner theScanner) {
-
-		boolean flag = true;
-		String name = "";
-
-		while(flag) {
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Choose Your Name: ");
-			System.out.print("> ");
-			name = theScanner.next();
-			if(name.length() >= 1 && name.length() <= 10) {
-				flag = false;
-			}
-			else {
-				System.out.println("Entered name is invalid. Name must be between 1 and 10 characters long.");
-			}
-		}
-		return name;
-	}*/
 
 	public static String getUserName(){return myUserName;}
 	public static void setMyUserName(final String theName){myUserName = theName;}
@@ -322,10 +267,16 @@ public class DungeonAdventure {
 	public static String getMyHeroChoice(){return myHeroChoice;}
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
+	public static void createDungeon(Hero theHero){
+		myDungeon = new Dungeon(theHero);
+	}
+	public static Dungeon getMyDungeon(){return  myDungeon;}
+
+	public static Hero getMyHero(){return  myHero;}
+
 	/**
 	 * Displays general information on the console screen.
 	 */
-	//TODO delete this whole method and add to GUI
 	public static StringBuilder gamePlay() {
 
 		StringBuilder generalInfo = new StringBuilder();
@@ -338,33 +289,19 @@ public class DungeonAdventure {
 
 	}
 
-	/**
-	 * Checks to see if user input is valid. Only for choices are valid: a b c d
-	 *
-	 * @return returns user input
-	 */
-	/*public static String playerInput(final Scanner theScanner) {
-		// TODO This looks similar to another method... See chooseDirection
+	public static StringBuilder statInfo(){
+		StringBuilder statInfo = new StringBuilder();
+		statInfo.append("Stat Definitions\n");
+		statInfo.append("Hit Points (hp): the number of health your hero has\n");
+		statInfo.append("Attack Speed: how fast your hero is. \nEx) 4 attack speed fights monsters with 2 attack speed, hero gets two attacks per 1 monster attack \n");
+		statInfo.append("Damage: the number of damage dealt to the enemy per attack\n");
+		statInfo.append("Accuracy: the chance an attack lands a hit on enemy\n");
+		statInfo.append("Block Rate: the chance your hero can defend an attack from an enemy\n");
 
-		boolean flag = true;
-		String input = "";
 
-		while(flag) {
-			System.out.print("> ");
-			input = theScanner.next();
-			if(input.equalsIgnoreCase("a") || input.equalsIgnoreCase("b") || input.equalsIgnoreCase("c") || input.equalsIgnoreCase("d") ) {
+		return statInfo;
+	}
 
-				flag = false;
-			}
-
-			else {
-
-				System.out.println("Input not recognized! Try again....\n");
-			}
-		}
-
-		return input;
-	}*/
 
 	/**
 	 * Development options for testing game, cheats.

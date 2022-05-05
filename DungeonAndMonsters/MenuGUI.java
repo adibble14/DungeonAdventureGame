@@ -18,30 +18,24 @@ public class MenuGUI extends JPanel{
     /**
      * Constructor which defines what will be inside the Frame
      */
-    MenuGUI(){
-        // Creating a panel to hold menu
-        JPanel menuPanel = new JPanel();
-        // Remove the background color of panel
-        menuPanel.setOpaque(false);
-
+    MenuGUI(Font pixelFont){
         // Using gridbag layout see https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-        menuPanel.setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Change gridbag constraint settings for **Title**
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
 
         // Create a label for the title
         JLabel titleLabel = new JLabel("Dungeons and Monsters");
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 45));
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 50));
         titleLabel.setForeground(Color.BLACK);
+        titleLabel.setBackground(Color.WHITE);
 
         gbc.insets = new Insets(75, 0, 0, 0);
         // Add the label to the menu panel using the grid bag layout constraints
-        menuPanel.add(titleLabel,gbc);
+        this.add(titleLabel,gbc);
 
         // Change gridbag constraint settings for ***button panel***
         gbc.anchor = GridBagConstraints.CENTER;
@@ -84,7 +78,7 @@ public class MenuGUI extends JPanel{
 
 
         // Buttons have their own gridbag constraints setup here
-        gbc.insets = new Insets(5,1,5,1);
+        gbc.insets = new Insets(2,0,2,0);
         gbc.gridx = 0;
         gbc.gridy = 0;
         buttonPanel.add(newGame, gbc);
@@ -99,12 +93,10 @@ public class MenuGUI extends JPanel{
         buttonPanel.add(quit, gbc);
 
         // Final constraints when we add the button panel to the menu
+        gbc.anchor = GridBagConstraints.SOUTH;
         gbc.weighty = 1;
-        gbc.insets = new Insets(50, 1, 50, 1);
-        menuPanel.add(buttonPanel, gbc);
+        gbc.insets = new Insets(0,0,20,0);
+        this.add(buttonPanel, gbc);
 
-
-        // Add menu panel to the frame
-        this.add(menuPanel, gbc);
     }
 }

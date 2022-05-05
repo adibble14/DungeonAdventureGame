@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This class inherits from the Hero abstract class. Creates a Thief character. Overrides special attack method.
@@ -5,6 +6,7 @@
 
 public class Thief extends Hero {
 
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/thief.jpeg");
     /**
      * Constructor with set values. Calls on super constructor to init fields.
      * Initializes Thief class fields.
@@ -53,6 +55,10 @@ public class Thief extends Hero {
             }
             theChar.setHealth(secondResult);
         }
+    }
+
+    public static ImageIcon getImage(){
+        return image;
     }
 
 }

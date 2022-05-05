@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This class inherits from the Hero abstract class. Creates a Warrior character. Overrides special attack method.
@@ -5,6 +6,7 @@
 
 public class Warrior extends Hero {
 
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/warrior.jpeg");
     /**
      * Class constructor with set values. Calls on super constructor to init fields.
      * Initializes class specific fields.
@@ -48,5 +50,8 @@ public class Warrior extends Hero {
 
         System.out.println(this.getName() + " deals a Crushing Blow to " + theChar.getName() + "! Dealt " + damage + " of damage.\n\n");
 
+    }
+    public static ImageIcon getImage(){
+        return image;
     }
 }
