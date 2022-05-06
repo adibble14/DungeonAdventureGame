@@ -1,14 +1,17 @@
 import javax.swing.*;
 
 public class Pillar extends Item{
+
+    private final PillarType MY_TYPE;
     /**
      * Constructor for this class. Simply initializes fields.
      *
      * @param theSpawnChance
      * @param theImage
      */
-    protected Pillar(double theSpawnChance, ImageIcon theImage) {
+    protected Pillar(final double theSpawnChance, final ImageIcon theImage, final PillarType theType) {
         super(theSpawnChance, theImage);
+        this.MY_TYPE = theType;
     }
 
     /**

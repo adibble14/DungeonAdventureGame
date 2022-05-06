@@ -184,6 +184,7 @@ public class Room {
 			case EXIT: return "O";
 			case ENTRANCE: return "N";
 			case EMPTY: return "E";
+			case ITEM_ROOM: return "I";
 			default: return "?";
 		}
 	}

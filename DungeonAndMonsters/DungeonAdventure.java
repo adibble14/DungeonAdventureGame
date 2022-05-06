@@ -15,6 +15,7 @@ public class DungeonAdventure {
 	private static String myHeroChoice;
 	private static Hero myHero;
 	private static Dungeon myDungeon;
+	private static double myItemRoomChance = .35;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -268,7 +269,7 @@ public class DungeonAdventure {
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	public static void createDungeon(Hero theHero){
-		myDungeon = new Dungeon(theHero);
+		myDungeon = new Dungeon(theHero, 10, myItemRoomChance); //TODO: Dungeon now requires a size, chance of Item_Room spawn
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
 

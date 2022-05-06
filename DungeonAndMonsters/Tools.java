@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 class Tools {
 
@@ -9,67 +7,29 @@ class Tools {
      */
     static final Random RANDOM = new Random();
 
-    /**
-     * DFS like algorithm. Randomly walks the matrix starting from given start point.
-     * Creating rooms in null spaces as it goes.
-     * Until the end point is found.
-     *
-     * @param theRooms matrix to recurse
-     * @param theStart starting point of the recursion
-     */
-    static final boolean DFS(Room[][] theRooms, Room theStart) {
-        ArrayList<Room> neighbors = (ArrayList<Room>) GET_NEIGHBORS(theRooms, theStart);
 
-        while(neighbors.size() > 0) {
-            int choice = Tools.RANDOM.nextInt(neighbors.size());
-            Room chosen = neighbors.get(choice);
-            neighbors.remove(choice);
-            theRooms[chosen.getXCoord()][chosen.getYCoord()] = chosen;
-            if(chosen.getMyType() == RoomType.EXIT)
-                return true;
-            if(DFS(theRooms, chosen)) return true;
-
-        }
-        return false;
-    }
 
     /**
      * Finds the valid neighbors of given room
-     * @param theRooms
-     * @param theRoom
-     * @return
+     * @param theRooms Matrix to search from
+     * @param theRoom the reference room to use for finding neighbors
+     * @return a map of the room and the rooms coordinates
      */
-    private static final List<Room> GET_NEIGHBORS(Room [][] theRooms, Room theRoom) {
-        List<Room> result = new ArrayList<Room>(); // max of 4 neighbors overall
+    static final HashMap<int[], Room> GET_NEIGHBORS(Room [][] theRooms, Room theRoom) {
 
-        if(theRoom.getXCoord()-1 >= 0) {
-            if(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()] == null) {
-                result.add(new Room(theRoom.getXCoord()-1, theRoom.getYCoord(), RoomType.EMPTY));
-            } else if(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()].getMyType() == RoomType.EXIT) {
-                result.add(theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()]);
-            }
-        }
-        if(theRoom.getXCoord()+1 < theRooms.length) {
-            if(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()] == null) {
-                result.add(new Room(theRoom.getXCoord()+1, theRoom.getYCoord(), RoomType.EMPTY));
-            } else if(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()].getMyType() == RoomType.EXIT) {
-                result.add(theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()]);
-            }
-        }
-        if(theRoom.getYCoord()-1 >= 0) {
-            if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1] == null) {
-                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()-1,RoomType.EMPTY));
-            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1].getMyType() == RoomType.EXIT) {
-                result.add(theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1]);
-            }
-        }
-        if(theRoom.getYCoord()+1 < theRooms.length) {
-            if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1] == null) {
-                result.add(new Room(theRoom.getXCoord(), theRoom.getYCoord()+1,RoomType.EMPTY));
-            } else if(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1].getMyType() == RoomType.EXIT) {
-                result.add(theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1]);
-            }
-        }
+        HashMap<int[], Room> result = new HashMap<int[], Room>(); // max of 4 neighbors overall
+        int row = theRoom.getXCoord();
+        int col = theRoom.getYCoord();
+
+        boolean north = ((row - 1) >= 0);
+        boolean south = ((row + 1)) < theRooms.length;
+        boolean west = ((col - 1)) >= 0;
+        boolean east = ((col + 1)) < theRooms[row].length;
+
+        if (north) result.put(new int[]{theRoom.getXCoord()-1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()]);
+        if (south) result.put(new int[]{theRoom.getXCoord()+1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()]);
+        if (west) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()-1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1]);
+        if (east) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()+1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1]);
 
         return result;
 

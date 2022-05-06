@@ -1,5 +1,6 @@
-
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Builds a matrix consisting of Room objects. Interacts with Hero objects as well.
@@ -21,20 +22,22 @@ public class Dungeon {
 	private Room myCurrentRoom;
 
 	/**
+	 * Chance of an Item_Room to appear
+	 */
+	private final double MY_ITEM_ROOM_CHANCE;
+
+	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
 	 * 
 	 * @param theHero Hero specified when user starts game, used to set in the first room
 	 */
-	//TODO could add room size as parameter as well as key count
-	protected Dungeon(final Hero theHero) {
+	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
 
-		//Random Number object
-		Random MY_RAND = new Random();
-		// Rooms are always 5x5
-		this.myDungeon = GenerateDungeon.GenerateDungeon(10);
-		// Number of keys needed for win condition. - Always need 2 keys
+		this.myDungeon = this.generateDungeon(theSize);
+		this.MY_ITEM_ROOM_CHANCE = theItemRoomChance;
+		System.out.println(this);
 	}
 	
 	/**
@@ -56,8 +59,7 @@ public class Dungeon {
 		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length && theRow > 0 && theColumn > 0) {
 			return this.myDungeon[theRow][theColumn];
 		}
-		//TODO output these errors in the GUI
-		System.out.println("No such row or column.");
+
 		return null;
 		
 	}
@@ -103,85 +105,98 @@ public class Dungeon {
 	 * @param theChoice Direction the user chose to move the Hero
 	 * @param theHero The hero
 	 */
-	//TODO add enums instead?
+	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
 	final protected void movePlayer(final String theChoice, final Hero theHero) {
 
-		// Trys to set the Hero into the room correlating to theChoice, and if it fails catch the ArrayOutOfBounds
-		// exception and prints an error
-		if(theChoice.equalsIgnoreCase("S")) {
-			try {
-				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord() + 1][this.myCurrentRoom.getYCoord()], theHero);
-			}
-			catch(ArrayIndexOutOfBoundsException e) {
-				//TODO output these errors in the GUI
-				System.out.println("Cannot go further down!");
+		ArrayList<Room> neighbors = (ArrayList<Room>) Tools.GET_NEIGHBORS(this.myDungeon, this.myCurrentRoom).values();
+		for(Room r : neighbors) {
+			if(r.getXCoord() == -1 && r.getYCoord() == -1 ) {
+				r.placePlayer(theHero);
 			}
 		}
-		else if(theChoice.equalsIgnoreCase("N")) {
-			try {
-				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord() - 1][this.myCurrentRoom.getYCoord()], theHero);
-			}
-			catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Cannot go further up!");
-			}
-		}
-		else if(theChoice.equalsIgnoreCase("E")) {
-			try {
-				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord()][this.myCurrentRoom.getYCoord() + 1], theHero);
-			}
-			catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Cannot go further right!");
-			}
-		}
-		else if(theChoice.equalsIgnoreCase("W")) {
-			try {
-				this.setCurrentRoom(this.myDungeon[this.myCurrentRoom.getXCoord()][this.myCurrentRoom.getYCoord() - 1], theHero);
-			}
-			catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Cannot go further left!");
-			}
-		}
+
 	}
-	
+
 	/**
-	 * Returns the String representation of the Rooms and their contents.
-	 * 
+	 * Prints the Dungeon. Shows what the types for each Room.
+	 * For debug purposes at this point.
+	 * @return
 	 */
 	//TODO delete once GUI is made
 	@Override
 	final public String toString() {
 		
 		StringBuilder roomContents = new StringBuilder();
-		
-		roomContents.append("***********");
-		roomContents.append("\n");
-		roomContents.append("*");
-		
-		for(int i = 0; i < this.myDungeon.length; i++) {
-			for(int j = 0; j < this.myDungeon.length; j++) {
-				
-				roomContents.append(this.myDungeon[i][j].toString());
-				
-				if(j < this.myDungeon.length - 1) {
-					roomContents.append("|");
-				}
-				else if(i < this.myDungeon.length - 1) {
-					roomContents.append("*");
-					roomContents.append("\n");
-					roomContents.append("*-*-*-*-*-*");
-					roomContents.append("\n");
-					roomContents.append("*");
-				}
-				if(i == this.myDungeon.length - 1 && j == this.myDungeon.length - 1) {
-					roomContents.append("*");
-					roomContents.append("\n");
-					roomContents.append("***********");
+
+		for(int i = 0; i < myDungeon.length; i++) {
+			for(int j = 0; j < myDungeon.length; j++) {
+				if(myDungeon[i][j] == null)
+					roomContents.append("* ");
+				else {
+					myDungeon[i][j].unhide();
+					roomContents.append(myDungeon[i][j].toString() + " ");
 				}
 			}
+			roomContents.append("\n");
 		}
 		return roomContents.toString();
 	}
-	
+
+	private  Room[][] generateDungeon(final int theSize) {
+		Room[][] dung = new Room[theSize][theSize];
+		int x = Tools.RANDOM.nextInt(0, theSize -1);
+		int y = Tools.RANDOM.nextInt(0, theSize -1);
+		Room entrance = new Room(x,y, RoomType.ENTRANCE);
+		dung [x][y] = entrance;
+		System.out.println("Entrance Coords: " + x + " " + y);
+		x = Tools.RANDOM.nextInt(0, 5);
+		y = Tools.RANDOM.nextInt(0, 5);
+		Room exit = new Room(x,y, RoomType.EXIT);
+		dung[x][y] = exit;
+		System.out.println("Exit Coords: " + x + " " + y);
+		this.DFSGenerateRooms(dung, entrance);
+		return dung;
+	}
+
+	/**
+	 * DFS like algorithm. Randomly walks the matrix starting from given start point.
+	 * Creating rooms in null spaces as it goes.
+	 * Until the end point is found.
+	 *
+	 * @param theRooms matrix to recurse
+	 * @param theStart starting point of the recursion
+	 */
+	private boolean DFSGenerateRooms(Room[][] theRooms, Room theStart) {
+		HashMap<int[], Room> neighbors = Tools.GET_NEIGHBORS(theRooms, theStart);
+		ArrayList<int[]> keys = new ArrayList<>(neighbors.keySet());
+
+		while(keys.size() > 0) {
+			int choice = Tools.RANDOM.nextInt(keys.size());
+			int [] chosen = keys.get(choice);
+			keys.remove(choice);
+			if(neighbors.get(chosen) == null) {
+				Room room = new Room(chosen[0], chosen[1], getRoomType());
+				theRooms[chosen[0]][chosen[1]] = room;
+				if(DFSGenerateRooms(theRooms, room)) return true;
+			}
+			else if(neighbors.get(chosen).getMyType() == RoomType.EXIT)
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Randomly chooses between Empty and Item_Room RoomTypes.
+	 * Item_Room type should appear less often.
+	 *
+	 * @return the RoomType
+	 */
+	private RoomType getRoomType() {
+		if(Tools.RANDOM.nextDouble() < this.MY_ITEM_ROOM_CHANCE) {
+			return RoomType.ITEM_ROOM;
+		}
+		return RoomType.EMPTY;
+	}
 
 }
 
