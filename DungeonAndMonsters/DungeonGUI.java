@@ -1,12 +1,16 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class DungeonGUI extends JPanel {
     // white outline border to be used in dungeon
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 5);
 
-    DungeonGUI(Font thePixelFont){
+    DungeonGUI(Font thePixelFont) {
         Hero hero = DungeonAdventure.getMyHero();
         // regular layout setup
         GridBagConstraints gbc = new GridBagConstraints();
@@ -70,4 +74,5 @@ public class DungeonGUI extends JPanel {
         }
 
     }
+
 }
