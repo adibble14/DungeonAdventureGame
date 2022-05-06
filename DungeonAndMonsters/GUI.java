@@ -5,8 +5,8 @@ public abstract class GUI extends JFrame {
     protected static final int MY_WINDOW_WIDTH = 950;
     protected static final int MY_WINDOW_HEIGHT = 650;
     GUI(){
-        Icon swordIcon = new ImageIcon("DungeonAndMonsters/sword.png", "Sword");
-        ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/sword.png");
+        Icon swordIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png", "Sword");
+        ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png");
         this.setTitle("Dungeons And Monsters");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(MY_WINDOW_WIDTH, MY_WINDOW_HEIGHT));

@@ -7,7 +7,7 @@ import java.awt.*;
 public class MenuGUI extends JPanel{
 
     //Setting panel background before constructor
-    Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/danksouls.jpg");
+    Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/danksouls.jpg");
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);

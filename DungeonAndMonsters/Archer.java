@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Archer extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/archer.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/archer.jpeg");
 
     /**
      * Constructor with set values. Calls on super constructor to init fields

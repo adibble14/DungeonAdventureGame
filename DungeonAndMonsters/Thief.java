@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Thief extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/thief.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/thief.jpeg");
     /**
      * Constructor with set values. Calls on super constructor to init fields.
      * Initializes Thief class fields.

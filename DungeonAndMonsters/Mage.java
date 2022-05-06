@@ -6,7 +6,7 @@ import java.awt.*;
  */
 
 public class Mage extends Hero {
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/mage.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/mage.jpeg");
     /**
      * Constructor that has set values for object. Calls on super constructor to init fields.
      *
