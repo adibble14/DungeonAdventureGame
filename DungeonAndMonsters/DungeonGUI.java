@@ -20,6 +20,11 @@ public class DungeonGUI extends JPanel {
         displayPanel.setBorder(OUTLINE_BORDER);
         this.add(displayPanel, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JLabel dungeonLabel = new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
+        displayPanel.add(dungeonLabel, gbc);
+
 
         //--------------------------------buttons
         JPanel buttonPanel = new JPanel(new GridBagLayout());
