@@ -180,6 +180,12 @@ public class DungeonGUI extends JPanel {
         else if(Tools.getMySouth() && Tools.getMyWest()){
             return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
         }
+        else if(Tools.getMySouth() && Tools.getMyNorth()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));
+        }
+        else if(Tools.getMyWest() && Tools.getMyEast()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));
+        }
         else if(Tools.getMySouth()){
             return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
         }
