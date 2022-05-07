@@ -7,7 +7,7 @@ class Tools {
      */
     static final Random RANDOM = new Random();
 
-    private static Boolean myNorth = false;
+   /* private static Boolean myNorth = false;
     private static Boolean mySouth = false;
     private static Boolean myEast = false;
     private static Boolean myWest = false;
@@ -42,7 +42,7 @@ class Tools {
 
     public static void setMyWest(Boolean myWest) {
         Tools.myWest = myWest;
-    }
+    }*/
 
     /**
      * Finds the valid neighbors of given room
@@ -56,15 +56,16 @@ class Tools {
         int row = theRoom.getXCoord();
         int col = theRoom.getYCoord();
 
-        myNorth = ((row - 1) >= 0);
-        mySouth = ((row + 1)) < theRooms.length;
-        myWest = ((col - 1)) >= 0;
-        myEast = ((col + 1)) < theRooms[row].length;
+        Boolean north = ((row - 1) >= 0);
+        Boolean south = ((row + 1)) < theRooms.length;
+        Boolean west = ((col - 1)) >= 0;
+        Boolean east = ((col + 1)) < theRooms[row].length;
 
-        if (myNorth) result.put(new int[]{theRoom.getXCoord()-1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()]);
-        if (mySouth) result.put(new int[]{theRoom.getXCoord()+1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()]);
-        if (myWest) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()-1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1]);
-        if (myEast) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()+1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1]);
+        if (north) result.put(new int[]{theRoom.getXCoord()-1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()-1][theRoom.getYCoord()]);
+        if (south) result.put(new int[]{theRoom.getXCoord()+1, theRoom.getYCoord()}, theRooms[theRoom.getXCoord()+1][theRoom.getYCoord()]);
+        if (west) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()-1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()-1]);
+        if (east) result.put(new int[]{theRoom.getXCoord(), theRoom.getYCoord()+1}, theRooms[theRoom.getXCoord()][theRoom.getYCoord()+1]);
+
 
         return result;
 

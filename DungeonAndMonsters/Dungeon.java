@@ -34,7 +34,7 @@ public class Dungeon {
 	 */
 	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
 
-		this.myDungeon = this.generateDungeon(theSize);
+		this.myDungeon = this.generateDungeon(theSize, theHero);
 		this.myItemRoomChance = .15;
 		System.out.println(this);
 	}
@@ -141,11 +141,12 @@ public class Dungeon {
 		return roomContents.toString();
 	}
 
-	private  Room[][] generateDungeon(final int theSize) {
+	private  Room[][] generateDungeon(final int theSize, Hero theHero) {
 		Room[][] dung = new Room[theSize][theSize];
 		int x = Tools.RANDOM.nextInt(0, theSize -1);
 		int y = Tools.RANDOM.nextInt(0, theSize -1);
 		Room entrance = new Room(x,y, RoomType.ENTRANCE);
+		setCurrentRoom(entrance, theHero);
 		dung [x][y] = entrance;
 		System.out.println("Entrance Coords: " + x + " " + y);
 		x = Tools.RANDOM.nextInt(0, theSize-1);
@@ -203,5 +204,8 @@ public class Dungeon {
 		return RoomType.EMPTY;
 	}
 
+	public Room[][] getMyDungeon() {
+		return myDungeon;
+	}
 }
 

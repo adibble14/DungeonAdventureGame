@@ -21,6 +21,8 @@ public class DungeonGUI extends JPanel {
     // Name for hero
     private static JLabel myHeroName;
 
+    private static JLabel myDungeonLabel;
+
     // TODO |ANY VALUE THAT WILL CHANGE ON THIS PAGE I.E. HEALTH SHOULD HAVE A STATIC LABEL
     // TODO |OR TEXT OR WHATEVER THAT WE CHANGE OUTSIDE
     DungeonGUI(Font thePixelFont) {
@@ -49,9 +51,10 @@ public class DungeonGUI extends JPanel {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel dungeonLabel = setMyDungeonRoom();
+        myDungeonLabel = new JLabel();
+        //JLabel dungeonLabel = setMyDungeonRoom();
         // = new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
-        displayPanel.add(dungeonLabel, gbc);
+        displayPanel.add(myDungeonLabel, gbc);
 
 
 
@@ -131,6 +134,7 @@ public class DungeonGUI extends JPanel {
         setDungeonHero(theHero);
         setMyHeroImage(theHero);
         setMyHeroName(theHero);
+        setMyDungeonRoom(theDungeon);
         //setMyRoomLabel(theDungeon);
     }
 
@@ -147,55 +151,51 @@ public class DungeonGUI extends JPanel {
         myHeroName.setText(theHero.getName());
     }
 
-    private static void setMyRoomLabel(Dungeon theDungeon){
+    public static void setMyRoomLabel(Dungeon theDungeon){
         myRoomLabel.setText("Current room: " + theDungeon.getCurrentRoom().getXCoord()
                 + ", " + theDungeon.getCurrentRoom().getYCoord());
     }
+    //TODO issue with the dungeon coordinates
+    public static void setMyDungeonRoom(Dungeon theDung){
+        Room room = theDung.getCurrentRoom();
+        int row = room.getXCoord();
+        int col = room.getYCoord();
 
-    private static JLabel setMyDungeonRoom(){
-        if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyEast() && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_4.png"));
+        Room south = theDung.getRoom(row-1, col);
+        Room north = theDung.getRoom(row+1, col);
+        Room west = theDung.getRoom(row, col+1);
+        Room east = theDung.getRoom(row, col-1);
+
+        if(north != null && south != null && east != null && west != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_4.png"));return;
+        }else if(north != null && south != null && east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));return;
+        }else if(north != null && south != null && west != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));return;
+        }else if(south != null && west != null && east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));return;
+        }else if(north != null && west != null && east!= null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));return;
+        }else if(north != null && west != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));return;
+        }else if(north != null && east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));return;
+        }else if(south != null && west != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));return;
+        }else if(south != null && east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));return;
+        }else if(south != null && north != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));return;
+        }else if(west != null && east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));return;
+        }else if(north != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));return;
+        }else if(south != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));return;
+        }else if(east != null){
+            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));return;
         }
-        else if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyEast()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
-        }
-        else if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
-        }
-        else if(Tools.getMySouth() && Tools.getMyEast() && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
-        }
-        else if(Tools.getMyNorth() && Tools.getMyEast() && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_up.png"));
-        }
-        else if(Tools.getMyNorth()  && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
-        }
-        else if(Tools.getMyNorth() && Tools.getMyEast()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));
-        }
-        else if(Tools.getMySouth() && Tools.getMyEast()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));
-        }
-        else if(Tools.getMySouth() && Tools.getMyWest()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
-        }
-        else if(Tools.getMySouth() && Tools.getMyNorth()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));
-        }
-        else if(Tools.getMyWest() && Tools.getMyEast()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));
-        }
-        else if(Tools.getMySouth()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
-        }
-        else if(Tools.getMyNorth()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));
-        }
-        else if(Tools.getMyEast()){
-            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));
-        }
-        return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_right.png"));
+        myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_right.png"));
 
     }
 }

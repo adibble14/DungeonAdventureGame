@@ -76,14 +76,6 @@ public class MenuGUI extends JPanel{
         quit.setPreferredSize(new Dimension(200,50));
         quit.addActionListener(e -> System.exit(0));
 
-        JButton testDungeon = new JButton("testDungeon");
-        testDungeon.setFont(new Font("Serif", Font.BOLD, 20));
-        testDungeon.setPreferredSize(new Dimension(200,50));
-        testDungeon.addActionListener(e -> DungeonAdventure.sceneController("dungeon"));
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        buttonPanel.add(testDungeon, gbc);
-
 
         // Buttons have their own gridbag constraints setup here
         gbc.insets = new Insets(2,0,2,0);
