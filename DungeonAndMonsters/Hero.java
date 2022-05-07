@@ -33,6 +33,11 @@ public abstract class Hero extends DungeonCharacter {
     private int myKeyCount;
 
     /**
+     * Inventory of this player. Underneath data structure is a hashmap
+     */
+    private PlayerInventory myInventory;
+
+    /**
      * Child constructor of Hero class. Calls super class constructor to init fields.
      * Inits Hero class exclusive fields.
      *
@@ -52,6 +57,7 @@ public abstract class Hero extends DungeonCharacter {
         this.myHealthPotionCount = 0;
         this.myVisionPotionCount = 0;
         this.myKeyCount = 0;
+        this.myInventory = new PlayerInventory();
     }
 
     /**
@@ -146,7 +152,7 @@ public abstract class Hero extends DungeonCharacter {
      * @param theCount the number of health potions
      */
     final protected void setHealthPotions(final int theCount) {
-        this.myHealthPotionCount = theCount;
+        this.myInventory.addItem(ItemType.HEALTH_POTION, theCount);
     }
 
     /**
@@ -155,7 +161,7 @@ public abstract class Hero extends DungeonCharacter {
      * @param theCount the number of vision potions
      */
     final protected void setVisionPotions(final int theCount) {
-        this.myVisionPotionCount = theCount;
+        this.myInventory.addItem(ItemType.VISION_POTION, theCount);
     }
 
     /**
@@ -164,17 +170,7 @@ public abstract class Hero extends DungeonCharacter {
      * @param theString the input
      */
     final protected void addInventory(final String theString) {
-        //TODO delete this output once GUI is made, since this is VIEW
-        if (theString.equalsIgnoreCase("h")) {
-            this.myHealthPotionCount++;
-            System.out.println(this.getName() + " found a Health Potion.");
-        } else if (theString.equalsIgnoreCase("v")) {
-            System.out.println(this.getName() + " found a Vision Potion.");
-            this.myVisionPotionCount++;
-        } else if (theString.equalsIgnoreCase("k")) {
-            this.myKeyCount++;
-            System.out.println(this.getName() + " found a key! " + (2 - this.getKeyCount()) + " more keys needed.");
-        }
+
     }
 
     /**
@@ -192,7 +188,7 @@ public abstract class Hero extends DungeonCharacter {
      * @return the number of health potions
      */
     final protected int getHealthPotionCount() {
-        return this.myHealthPotionCount;
+        return this.myInventory.getItemCount(ItemType.HEALTH_POTION);
     }
 
     /**
@@ -201,7 +197,7 @@ public abstract class Hero extends DungeonCharacter {
      * @return the number of vision potions
      */
     final protected int getVisionPotionCount() {
-        return this.myVisionPotionCount;
+        return this.myInventory.getItemCount(ItemType.VISION_POTION);
     }
 
     /**

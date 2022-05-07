@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Builds a matrix consisting of Room objects. Interacts with Hero objects as well.
@@ -24,7 +23,7 @@ public class Dungeon {
 	/**
 	 * Chance of an Item_Room to appear
 	 */
-	private final double MY_ITEM_ROOM_CHANCE;
+	private  double myItemRoomChance;
 
 	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
@@ -36,7 +35,7 @@ public class Dungeon {
 	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
 
 		this.myDungeon = this.generateDungeon(theSize);
-		this.MY_ITEM_ROOM_CHANCE = theItemRoomChance;
+		this.myItemRoomChance = .15;
 		System.out.println(this);
 	}
 	
@@ -149,12 +148,17 @@ public class Dungeon {
 		Room entrance = new Room(x,y, RoomType.ENTRANCE);
 		dung [x][y] = entrance;
 		System.out.println("Entrance Coords: " + x + " " + y);
-		x = Tools.RANDOM.nextInt(0, 5);
-		y = Tools.RANDOM.nextInt(0, 5);
+		x = Tools.RANDOM.nextInt(0, theSize-1);
+		y = Tools.RANDOM.nextInt(0, theSize-1);
 		Room exit = new Room(x,y, RoomType.EXIT);
 		dung[x][y] = exit;
 		System.out.println("Exit Coords: " + x + " " + y);
-		this.DFSGenerateRooms(dung, entrance);
+		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
+		x = Tools.RANDOM.nextInt(0, theSize-1);
+		y = Tools.RANDOM.nextInt(0, theSize-1);
+		Room bossRoom = new Room(x,y,RoomType.BOSS_ROOM);
+		dung[x][y] = bossRoom;
+		this.DFSGenerateRooms(dung, bossRoom, RoomType.EMPTY);
 		return dung;
 	}
 
@@ -166,7 +170,7 @@ public class Dungeon {
 	 * @param theRooms matrix to recurse
 	 * @param theStart starting point of the recursion
 	 */
-	private boolean DFSGenerateRooms(Room[][] theRooms, Room theStart) {
+	private boolean DFSGenerateRooms(Room[][] theRooms, Room theStart, RoomType theEnd) {
 		HashMap<int[], Room> neighbors = Tools.GET_NEIGHBORS(theRooms, theStart);
 		ArrayList<int[]> keys = new ArrayList<>(neighbors.keySet());
 
@@ -177,9 +181,9 @@ public class Dungeon {
 			if(neighbors.get(chosen) == null) {
 				Room room = new Room(chosen[0], chosen[1], getRoomType());
 				theRooms[chosen[0]][chosen[1]] = room;
-				if(DFSGenerateRooms(theRooms, room)) return true;
+				if(DFSGenerateRooms(theRooms, room, theEnd)) return true;
 			}
-			else if(neighbors.get(chosen).getMyType() == RoomType.EXIT)
+			else if(neighbors.get(chosen).getMyType() == theEnd)
 				return true;
 		}
 		return false;
@@ -192,7 +196,8 @@ public class Dungeon {
 	 * @return the RoomType
 	 */
 	private RoomType getRoomType() {
-		if(Tools.RANDOM.nextDouble() < this.MY_ITEM_ROOM_CHANCE) {
+		Double dub = Tools.RANDOM.nextDouble();
+		if( dub < .10) { //TODO: Replace magic number
 			return RoomType.ITEM_ROOM;
 		}
 		return RoomType.EMPTY;

@@ -14,12 +14,19 @@ public class Chest extends Item{
     private double myMimicChance;
 
     /**
+     * Flag for if this chest is a mimic
+     */
+    private boolean myIsMimic;
+
+    /**
      * Constructor for this class. Simply initializes fields.
      *
      */
     protected Chest() {
         super(.1, new ImageIcon("DungeonAndMonsters/potion.png"));
+        this.myContents = new ArrayList<>();
         this.myMimicChance = .17;
+        this.myIsMimic = false;
         this.addContents();
     }
 
@@ -40,11 +47,12 @@ public class Chest extends Item{
     /**
      * Initiates myContents field by adding a maximum of three Items.
      */
+    //new Mimic("Mimic",150,5,30,15,.7,.2,10,15);
     private void addContents() {
 
         // 17% chance of being a mimic
         if(Tools.RANDOM.nextDouble() < this.myMimicChance) {
-            this.myContents.add(null); //TODO: Create a Mimic monster.
+            this.myIsMimic = true; //TODO: Create a Mimic monster.
             return;
         }
 
@@ -61,5 +69,13 @@ public class Chest extends Item{
 
 
 
+    }
+
+    /**
+     * Access method for boolean myIsMimic flag
+     * @return
+     */
+    public boolean isMimic() {
+        return this.myIsMimic;
     }
 }

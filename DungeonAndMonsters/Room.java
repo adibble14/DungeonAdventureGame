@@ -185,6 +185,7 @@ public class Room {
 			case ENTRANCE: return "N";
 			case EMPTY: return "E";
 			case ITEM_ROOM: return "I";
+			case BOSS_ROOM: return "B";
 			default: return "?";
 		}
 	}

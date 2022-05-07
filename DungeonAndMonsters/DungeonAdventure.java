@@ -269,7 +269,7 @@ public class DungeonAdventure {
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	public static void createDungeon(Hero theHero){
-		myDungeon = new Dungeon(theHero, 10, myItemRoomChance); //TODO: Dungeon now requires a size, chance of Item_Room spawn
+		myDungeon = new Dungeon(theHero, 10, .15); //TODO: Dungeon now requires a size, chance of Item_Room spawn
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
 
