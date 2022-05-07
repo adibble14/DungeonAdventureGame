@@ -46,9 +46,11 @@ public class DungeonGUI extends JPanel {
         gbc.insets = new Insets(0,0,0,20);
         displayPanel.add(myRoomLabel,gbc);
 
+
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel dungeonLabel = new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
+        JLabel dungeonLabel = setMyDungeonRoom();
+        // = new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
         displayPanel.add(dungeonLabel, gbc);
 
 
@@ -148,5 +150,46 @@ public class DungeonGUI extends JPanel {
     private static void setMyRoomLabel(Dungeon theDungeon){
         myRoomLabel.setText("Current room: " + theDungeon.getCurrentRoom().getXCoord()
                 + ", " + theDungeon.getCurrentRoom().getYCoord());
+    }
+
+    private static JLabel setMyDungeonRoom(){
+        if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyEast() && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_4.png"));
+        }
+        else if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyEast()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
+        }
+        else if(Tools.getMyNorth() && Tools.getMySouth() && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
+        }
+        else if(Tools.getMySouth() && Tools.getMyEast() && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
+        }
+        else if(Tools.getMyNorth() && Tools.getMyEast() && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_up.png"));
+        }
+        else if(Tools.getMyNorth()  && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
+        }
+        else if(Tools.getMyNorth() && Tools.getMyEast()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));
+        }
+        else if(Tools.getMySouth() && Tools.getMyEast()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));
+        }
+        else if(Tools.getMySouth() && Tools.getMyWest()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
+        }
+        else if(Tools.getMySouth()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
+        }
+        else if(Tools.getMyNorth()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));
+        }
+        else if(Tools.getMyEast()){
+            return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));
+        }
+        return new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_right.png"));
+
     }
 }
