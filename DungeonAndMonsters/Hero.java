@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used exclusively
@@ -50,9 +51,9 @@ public abstract class Hero extends DungeonCharacter {
      * @param theBlockChance value given by child class
      */
     protected Hero(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage,
-                   final double theAccuracy, final double theBlockChance) {
+                   final double theAccuracy, final double theBlockChance, final ImageIcon theSprite) {
 
-        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy);
+        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite);
         this.setBlockChance(theBlockChance);
         this.myHealthPotionCount = 0;
         this.myVisionPotionCount = 0;

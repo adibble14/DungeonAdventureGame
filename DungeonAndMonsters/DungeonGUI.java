@@ -79,7 +79,7 @@ public class DungeonGUI extends JPanel {
         // Player portrait
         gbc.gridx = 0;
         gbc.gridy = 1;
-        myHeroImage = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png"));
+        myHeroImage = new JLabel("",SwingConstants.CENTER);
         myHeroImage.setBorder(OUTLINE_BORDER);
         playerArea.add(myHeroImage, gbc);
 
@@ -129,7 +129,6 @@ public class DungeonGUI extends JPanel {
         setDungeonHero(theHero);
         setMyHeroImage(theHero);
         setMyHeroName(theHero);
-        //setMyHeroImage(theHero);
         //setMyRoomLabel(theDungeon);
     }
 
@@ -139,7 +138,7 @@ public class DungeonGUI extends JPanel {
     }
 
     private static void setMyHeroImage(Hero theHero){
-        //myHeroImage.setIcon(theHero.getImage());
+        myHeroImage.setIcon(theHero.getMySprite());
     }
 
     private static void setMyHeroName(Hero theHero){

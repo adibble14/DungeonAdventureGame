@@ -14,7 +14,7 @@ public class Mage extends Hero {
      */
     protected Mage(final String theName) {
 
-        super(theName, 75, 4, 80, 50, .7, .3);
+        super(theName, 75, 4, 80, 50, .7, .3, image);
     }
 
     /**
