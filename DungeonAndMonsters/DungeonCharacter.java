@@ -1,4 +1,5 @@
 
+import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -41,6 +42,11 @@ public abstract class DungeonCharacter {
     private int myMaxHealth;
 
     /**
+     * stores the object's image also called Sprites
+     */
+    private ImageIcon mySprite;
+
+    /**
      * Parent constructor for all classes in package.
      *
      * @param theName      stores name given by the user
@@ -49,8 +55,9 @@ public abstract class DungeonCharacter {
      * @param theMaxDamage stores maximum damage value given by child class
      * @param theMinDamage stores minimum damage value given by child class
      * @param theAccuracy  stores minimum damage value given by child class
+     * @param theSprite    stores the image associated with the object
      */
-    protected DungeonCharacter(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy) {
+    protected DungeonCharacter(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy, final ImageIcon theSprite) {
         this.setName(theName);
         this.setHealth(theHealth);
         this.setMaxHealth(theHealth);
@@ -58,6 +65,7 @@ public abstract class DungeonCharacter {
         this.setMaxDamage(theMaxDamage);
         this.setMinDamage(theMinDamage);
         this.setAccuracy(theAccuracy);
+        this.setSprite(theSprite);
         this.MY_RAND = new Random();
     }
 
@@ -106,6 +114,11 @@ public abstract class DungeonCharacter {
         return this.myMaxDamage;
     }
 
+    /**
+     * Getter for the object's image Sprite
+     * @return access to image Sprite
+     */
+    final protected ImageIcon getMySprite(){return this.mySprite;}
     /**
      * Set method for name value
      *
@@ -191,6 +204,14 @@ public abstract class DungeonCharacter {
             throw new IllegalArgumentException("Accuracy value must be greater than zero.");
         }
         this.myAccuracy = theAccuracy;
+    }
+
+    /**
+     * Setter for the object's image Sprite
+     * @param theSprite takes an ImageIcon to set as the image for the object
+     */
+    final protected void setSprite(final ImageIcon theSprite){
+        this.mySprite = theSprite;
     }
 
 

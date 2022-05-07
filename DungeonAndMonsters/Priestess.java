@@ -5,7 +5,7 @@ public class Priestess extends Hero{
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/priestess.jpeg");
     protected Priestess(final String theName) {
 
-        super(theName, 75, 5, 45, 25, .7, .3);
+        super(theName, 75, 5, 45, 25, .7, .3, image);
     }
 
 

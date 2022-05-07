@@ -188,28 +188,23 @@ public class DungeonAdventure {
 	 * @return returns Hero Object
 	 */
 	public static void createHero() {
-		// Naming choices for character represent the hero type?
-		// aka "w" would be for warrior? etc.
-		// Or, have picture representation of the characters which can be clicked on?
-		
-		if(getMyHeroChoice().equalsIgnoreCase("w")) {
-			myHero = new Warrior(getUserName());
-			//return new Warrior(getUserName());
+		switch(getMyHeroChoice()){
+			case "w":
+				myHero = new Warrior(getUserName());
+				break;
+			case "m":
+				myHero = new Mage(getUserName());
+				break;
+			case "t":
+				myHero = new Thief(getUserName());
+				break;
+			case "p":
+				myHero = new Priestess(getUserName());
+				break;
+			case "a":
+				myHero = new Archer(getUserName());
+				break;
 		}
-		else if(getMyHeroChoice().equalsIgnoreCase("m")) {
-			myHero = new Mage(getUserName());
-			//return new Mage(getUserName());
-		}
-		else if(getMyHeroChoice().equalsIgnoreCase("t")) {
-			myHero = new Thief(getUserName());
-			//return new Thief(getUserName());
-		}
-		else if(getMyHeroChoice().equalsIgnoreCase("p")){
-			myHero = new Priestess(getUserName());
-			//return new Priestess(getUserName());
-		}
-		myHero = new Archer(getUserName());
-		//return new Archer(getUserName());
 	}
 
 	/**
