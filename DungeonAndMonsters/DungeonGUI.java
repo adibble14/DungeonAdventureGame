@@ -1,6 +1,9 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DungeonGUI extends JPanel {
     // white outline border to be used in dungeon
@@ -40,25 +43,27 @@ public class DungeonGUI extends JPanel {
         this.add(displayPanel, gbc);
 
         // Room indicator
+
         myRoomLabel = new JLabel("Room: [0,0]");
         myRoomLabel.setForeground(Color.white);
+        myRoomLabel.setFont(thePixelFont);
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0,0,0,20);
+        gbc.insets = new Insets(20,10,0,0);
+        gbc.weightx = 1;
+        gbc.weighty = 1;
         displayPanel.add(myRoomLabel,gbc);
 
 
         gbc.gridx = 1;
         gbc.gridy = 0;
         myDungeonLabel = new JLabel();
-        //JLabel dungeonLabel = setMyDungeonRoom();
-        // = new JLabel(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
         displayPanel.add(myDungeonLabel, gbc);
 
 
 
-        // TODO Will split up button panel into to areas
+        // TODO Will split up button panel into two areas
         //--------------------------------buttons
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         buttonPanel.setOpaque(true);
@@ -79,7 +84,14 @@ public class DungeonGUI extends JPanel {
         buttonArea.setOpaque(false);
         gbc.anchor = GridBagConstraints.EAST;
         buttonPanel.add(buttonArea);
-        //gbc.weighty = 1;
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        myHeroName = new JLabel();
+        myHeroName.setFont(thePixelFont);
+        myHeroName.setForeground(Color.WHITE);
+        playerArea.add(myHeroName, gbc);
 
         // Player portrait
         gbc.gridx = 0;
@@ -98,14 +110,7 @@ public class DungeonGUI extends JPanel {
 
 
         //end buttons --------------------------------------------
-        gbc.insets = new Insets(5,5,5,5);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        myHeroName = new JLabel();
-        myHeroName.setFont(thePixelFont);
-        myHeroName.setForeground(Color.WHITE);
-        buttonArea.add(myHeroName, gbc);
-
+        gbc.insets = new Insets(10,5,10,5);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -135,7 +140,7 @@ public class DungeonGUI extends JPanel {
         setMyHeroImage(theHero);
         setMyHeroName(theHero);
         setMyDungeonRoom(theDungeon);
-        //setMyRoomLabel(theDungeon);
+        setMyRoomLabel(theDungeon);
     }
 
     private static void setDungeonHero(Hero theHero){
@@ -152,19 +157,30 @@ public class DungeonGUI extends JPanel {
     }
 
     public static void setMyRoomLabel(Dungeon theDungeon){
-        myRoomLabel.setText("Current room: " + theDungeon.getCurrentRoom().getXCoord()
-                + ", " + theDungeon.getCurrentRoom().getYCoord());
+        myRoomLabel.setText("Current room: [" + theDungeon.getCurrentRoom().getXCoord()
+                + "," + theDungeon.getCurrentRoom().getYCoord() + "]");
     }
     //TODO issue with the dungeon coordinates
     public static void setMyDungeonRoom(Dungeon theDung){
         Room room = theDung.getCurrentRoom();
+        HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
+        for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
+            System.out.println("Key: " + Arrays.toString(set.getKey()) + " " + "Value: " + set.getValue());
+        }
+
+        System.out.println("Room: " + room);
         int row = room.getXCoord();
         int col = room.getYCoord();
-
-        Room south = theDung.getRoom(row-1, col);
-        Room north = theDung.getRoom(row+1, col);
-        Room west = theDung.getRoom(row, col+1);
-        Room east = theDung.getRoom(row, col-1);
+        System.out.println("Row: " +row);
+        System.out.println("Col: " + col);
+        Room south = theDung.getRoom(row+1, col);
+        Room north = theDung.getRoom(row-1, col);
+        Room west = theDung.getRoom(row, col-1);
+        Room east = theDung.getRoom(row, col+1);
+        System.out.println("South: " + south);
+        System.out.println("North: " + north);
+        System.out.println("West: " + west);
+        System.out.println("East: " + east);
 
         if(north != null && south != null && east != null && west != null){
             myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_4.png"));return;
@@ -194,8 +210,8 @@ public class DungeonGUI extends JPanel {
             myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));return;
         }else if(east != null){
             myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));return;
-        }
-        myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_right.png"));
+        }else
+            myDungeonLabel.setText("Closed off room! Error!");
 
     }
 }

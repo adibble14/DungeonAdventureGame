@@ -204,6 +204,7 @@ public class Dungeon {
 		return RoomType.EMPTY;
 	}
 
+	//TODO do we need a dungeon getter?
 	public Room[][] getMyDungeon() {
 		return myDungeon;
 	}

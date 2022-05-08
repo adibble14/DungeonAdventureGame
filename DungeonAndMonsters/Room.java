@@ -168,7 +168,7 @@ public class Room {
 	
 	 /**
 	  * Removes question mark to uncover contents of room.
-	  */
+	  */ //TODO empty?
 	final protected void unhide() {
 
 	}
