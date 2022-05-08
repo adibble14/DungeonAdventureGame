@@ -55,7 +55,7 @@ public class Dungeon {
 	 * @return The room specified by the row and column passed in.
 	 */
 	final protected Room getRoom(final int theRow, final int theColumn) {
-		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length && theRow > 0 && theColumn > 0) {
+		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length && theRow >= 0 && theColumn >= 0) {
 			return this.myDungeon[theRow][theColumn];
 		}
 
@@ -202,11 +202,6 @@ public class Dungeon {
 			return RoomType.ITEM_ROOM;
 		}
 		return RoomType.EMPTY;
-	}
-
-	//TODO do we need a dungeon getter?
-	public Room[][] getMyDungeon() {
-		return myDungeon;
 	}
 }
 
