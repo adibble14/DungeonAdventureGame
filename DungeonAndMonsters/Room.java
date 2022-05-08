@@ -31,7 +31,11 @@ public class Room {
 	 * Enum room type
 	 */
 	private RoomType myType;
-	
+
+	/**
+	 * Boolean, whether a monster is in this room
+	 */
+	private boolean myContainsMonster;
 	/**
 	 * Room constructor, initializes fields. Takes coords from Dungeon class
 	 * Coords are index values.
@@ -43,10 +47,14 @@ public class Room {
 		
 		this.myXCoord = theXCoord;
 		this.myYCoord = theYCoord;
-		this.myObjectList = new ArrayList <Item> () ;
+		this.myObjectList = null;
+		this.myContainsMonster = false;
 		this.myType = theType;
-		if(theType == RoomType.ITEM_ROOM)
+		if(theType == RoomType.ITEM_ROOM) {
+			this.myObjectList = new ArrayList <Item> ();
 			this.generateItem();
+		}
+
 		this.hide();
 	}
 	
@@ -57,15 +65,11 @@ public class Room {
 	 * 
 	 */
 	final private void generateItem() {
-
+		if(Tools.RANDOM.nextDouble() < .2) {
+			this.myContainsMonster = true;
+		}
 		Chest chest = new Chest();
-		if(Tools.RANDOM.nextDouble() < chest.getMySpawnChance()) {
-			this.myObjectList.add(chest);
-		}
-		Gold gold = new Gold();
-		if(Tools.RANDOM.nextDouble() < gold.getMySpawnChance()) {
-			this.myObjectList.add(gold);
-		}
+		this.myObjectList.add(chest);
 	}
 	
 	/**
@@ -83,28 +87,14 @@ public class Room {
 	final protected int getYCoord() {
 		return this.myYCoord;
 	}
-	
-	/**
-	 * Sets this room as an exit
-	 */
-	final protected void setExit() {
-
-		
-	}
-	
-	/**
-	 * Sets this room as an entrance
-	 */
-	final protected void setEntrance() {
-
-	}
 
 	
 	/**
 	 * Sets the object of this room to empty, to null? Change this later possibly
 	 */
 	final protected void setEmpty() {
-
+		this.myType = RoomType.EMPTY;
+		this.myObjectList = null;
 	}
 	
 	/**
@@ -117,26 +107,15 @@ public class Room {
 
 	
 	/**
-	 * Checks to see if room is empty
-	 * @return
-	 */
-	final protected boolean isEmpty() {
-		return this.myType == RoomType.EMPTY;
-	}
-
-	
-	/**
 	 * Checks to see if room contains a Monster
 	 * @return
 	 */
 	final protected boolean containsMonster() {
-		return this.myType == RoomType.BOSS_ROOM;
+		return this.myContainsMonster;
 	}
-	/**
-	 * Removes Monster item from room
-	 */
+
 	final protected void removeMonster() {
-		this.myObjectList.remove("X");
+		this.myContainsMonster = false;
 	}
 	
 	/**
@@ -186,6 +165,7 @@ public class Room {
 			case EMPTY: return "E";
 			case ITEM_ROOM: return "I";
 			case BOSS_ROOM: return "B";
+			case PIT: return "S";
 			default: return "?";
 		}
 	}
@@ -196,5 +176,11 @@ public class Room {
 	 */
 	public RoomType getMyType() {
 		return this.myType;
+	}
+
+	public void addItemsToPlayerInventory(final Hero theHero) {
+		for(Item i : this.myObjectList) {
+			theHero.addInventory(i, 1);
+		}
 	}
 }

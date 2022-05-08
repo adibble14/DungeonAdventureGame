@@ -38,9 +38,18 @@ public class Chest extends Item{
      */
     @Override
     public void use(Object theObj) {
+
         if(theObj.getClass() == Hero.class) {
             Hero player = (Hero) theObj;
-            player.addInventory("Stuff"); //TODO: Fix player inventory
+            if(this.myIsMimic) {
+                // TODO: Call a battle here
+                return;
+            }else {
+                for(Item i : this.myContents) {
+                    player.addInventory(i, 1);
+                }
+            }
+
         }
     }
 

@@ -13,6 +13,11 @@ public class PlayerInventory {
     private HashMap<ItemType, Integer> myInventory;
 
     /**
+     * Map data structure that will hold Pillars
+     */
+    private HashMap<Pillar,Integer> myPillars;
+
+    /**
      * Gold currency of the player
      */
     private int myGoldAmount;
@@ -21,8 +26,9 @@ public class PlayerInventory {
      * Constructor of this class
      */
     public PlayerInventory() {
-        this.myInventory = new HashMap<ItemType, Integer>();
+        this.myInventory = new HashMap();
         this.myGoldAmount = 0;
+        this.myPillars = new HashMap<>();
     }
 
     /**
@@ -58,6 +64,20 @@ public class PlayerInventory {
         return this.myInventory.get(theItem);
     }
 
+    /**
+     * Adds a pillar to pillar inventory
+     * @param thePillar
+     */
+    public void addPillar(final Pillar thePillar) {
+        this.myPillars.put(thePillar, 1);
+    }
+
+    /**
+     * Returns the current Pillars held in pillar inventory
+     */
+    public Pillar[] getPillars() {
+        return this.myPillars.keySet().toArray(new Pillar[this.myPillars.size()]);
+    }
     /**
      * Should return all item counts, will probably not be used.
      * Not implemented yet.

@@ -168,10 +168,19 @@ public abstract class Hero extends DungeonCharacter {
     /**
      * Depending on String value, increases count of potions and key count
      *
-     * @param theString the input
+     * @param theItem the input
      */
-    final protected void addInventory(final String theString) {
-
+    final protected void addInventory(final Item theItem, final int theAmount) {
+        if(theItem.getClass() == HealthPotion.class) {
+            this.myInventory.addItem(ItemType.HEALTH_POTION, theAmount);
+        } else if(theItem.getClass() == VisionPotion.class) {
+            this.myInventory.addItem(ItemType.VISION_POTION, theAmount);
+        } else if (theItem.getClass() == Pillar.class) {
+            this.myInventory.addPillar((Pillar) theItem);
+        } else if(theItem.getClass() == Gold.class) {
+            Gold g = (Gold) theItem;
+            g.use(this);
+        }
     }
 
     /**

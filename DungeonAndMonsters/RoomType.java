@@ -5,4 +5,7 @@ public enum RoomType {
     EMPTY,
     ITEM_ROOM,
     BOSS_ROOM,
+    MONSTER_ROOM,
+    PIT,
+    UNIQUE
 }

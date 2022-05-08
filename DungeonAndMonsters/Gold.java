@@ -19,9 +19,6 @@ public class Gold extends Item{
 
     @Override
     public void use(Object theObj) {
-        if(theObj.getClass() == Hero.class) {
-            Hero player = (Hero) theObj;
-            //TODO: make the player able to use gold.
-        }
+        //TODO: gold shouldnt have this, make gold not an Item?
     }
 }

@@ -26,6 +26,11 @@ public class Dungeon {
 	private  double myItemRoomChance;
 
 	/**
+	 * Chance of spawning a pit in room
+	 */
+	private double myPitSpawnChance;
+
+	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
@@ -34,8 +39,9 @@ public class Dungeon {
 	 */
 	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
 
+		this.myItemRoomChance = theItemRoomChance;
+		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
 		this.myDungeon = this.generateDungeon(theSize, theHero);
-		this.myItemRoomChance = .15;
 		System.out.println(this);
 	}
 	
@@ -159,7 +165,12 @@ public class Dungeon {
 		y = Tools.RANDOM.nextInt(0, theSize-1);
 		Room bossRoom = new Room(x,y,RoomType.BOSS_ROOM);
 		dung[x][y] = bossRoom;
-		this.DFSGenerateRooms(dung, bossRoom, RoomType.EMPTY);
+		x = Tools.RANDOM.nextInt(0,theSize-1);
+		y = Tools.RANDOM.nextInt(0,theSize-1);
+		Room unique = new Room(x,y,RoomType.UNIQUE);
+		dung[x][y] = unique;
+		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
+		dung[x][y].setEmpty();
 		return dung;
 	}
 
@@ -180,7 +191,7 @@ public class Dungeon {
 			int [] chosen = keys.get(choice);
 			keys.remove(choice);
 			if(neighbors.get(chosen) == null) {
-				Room room = new Room(chosen[0], chosen[1], getRoomType());
+				Room room = new Room(chosen[0], chosen[1], getRandomRoomType());
 				theRooms[chosen[0]][chosen[1]] = room;
 				if(DFSGenerateRooms(theRooms, room, theEnd)) return true;
 			}
@@ -196,9 +207,12 @@ public class Dungeon {
 	 *
 	 * @return the RoomType
 	 */
-	private RoomType getRoomType() {
+	private RoomType getRandomRoomType() {
 		Double dub = Tools.RANDOM.nextDouble();
-		if( dub < .10) { //TODO: Replace magic number
+		if(dub < this.myPitSpawnChance) {
+			return RoomType.PIT;
+		}
+		if( dub < this.myItemRoomChance) {
 			return RoomType.ITEM_ROOM;
 		}
 		return RoomType.EMPTY;
