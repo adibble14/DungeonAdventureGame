@@ -194,7 +194,9 @@ public class DungeonGUI extends JPanel {
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+            repaint();
         });
+
 
         // Up button
         gbc.gridx = 2;
@@ -204,6 +206,7 @@ public class DungeonGUI extends JPanel {
         buttonArea.add(upMove, gbc);
         upMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
+            repaint();
         });
 
         // Down button
@@ -214,6 +217,7 @@ public class DungeonGUI extends JPanel {
         buttonArea.add(downMove, gbc);
         downMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
+            repaint();
         });
 
         // Right button
@@ -224,6 +228,7 @@ public class DungeonGUI extends JPanel {
         buttonArea.add(rightMove, gbc);
         rightMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
+            repaint();
         });
     }
 
