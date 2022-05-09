@@ -85,9 +85,9 @@ public class Dungeon {
 	 */
 	final protected void setCurrentRoom(final Room theRoom, final Hero theHero) {
 		
-		if(this.myCurrentRoom != null) {
+		/*if(this.myCurrentRoom != null) {
 			this.myCurrentRoom.removePlayer();
-		}
+		}*/
 		this.myCurrentRoom = theRoom;
 		this.myCurrentRoom.placePlayer(theHero);
 	}

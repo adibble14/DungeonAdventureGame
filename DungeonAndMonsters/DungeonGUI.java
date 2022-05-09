@@ -12,6 +12,8 @@ public class DungeonGUI extends JPanel {
     // Hero reference
     private static Hero myDungeonHero;
 
+    private static Dungeon myDungeon;
+
     // Health indicator reference
     private static JLabel myHealthLabel;
 
@@ -27,6 +29,8 @@ public class DungeonGUI extends JPanel {
     // Display "window" we have inside the display panel
     // Used for displaying the hero in game, monsters, items, rooms
     private static drawWindow myDungeonWindow;
+
+
 
     // TODO temporary variable to test dungeonWindow
     private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
@@ -188,6 +192,9 @@ public class DungeonGUI extends JPanel {
         JButton leftMove = new JButton("Left");
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
+        leftMove.addActionListener(e->{
+           changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+        });
 
         // Up button
         gbc.gridx = 2;
@@ -195,6 +202,9 @@ public class DungeonGUI extends JPanel {
         JButton upMove = new JButton("Up");
         upMove.setFont(thePixelFont);
         buttonArea.add(upMove, gbc);
+        upMove.addActionListener(e->{
+            changeRooms(getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
+        });
 
         // Down button
         gbc.gridx = 2;
@@ -202,6 +212,9 @@ public class DungeonGUI extends JPanel {
         JButton downMove = new JButton("Down");
         downMove.setFont(thePixelFont);
         buttonArea.add(downMove, gbc);
+        downMove.addActionListener(e->{
+            changeRooms(getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
+        });
 
         // Right button
         gbc.gridx = 3;
@@ -209,7 +222,23 @@ public class DungeonGUI extends JPanel {
         JButton rightMove = new JButton("Right");
         rightMove.setFont(thePixelFont);
         buttonArea.add(rightMove, gbc);
+        rightMove.addActionListener(e->{
+            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
+        });
     }
+
+    public static void changeRooms(int theX, int theY){
+        Room newCurrent = myDungeon.getRoom(theX, theY);
+        if(newCurrent != null){
+            myDungeon.setCurrentRoom(newCurrent, myDungeonHero);
+            setMyRoomLabel(myDungeon);
+            setMyDungeonRoom(myDungeon);
+        }else{
+            System.out.println("can't go that way!");
+        }
+
+    }
+
 
     /**
      * Equivalent to DungeonGUI's Start method. We call this when we first swap to
@@ -218,6 +247,7 @@ public class DungeonGUI extends JPanel {
      * @param theDungeon Dungeon that is generated on createDungeon method.
      */
     public static void setUpVisualDungeon(Hero theHero, Dungeon theDungeon){
+        setDungeon(theDungeon);
         // Sets the Dungeon Hero locally inside DungeonGUI as well as his health
         setDungeonHero(theHero);
         // Sets the image of the hero
@@ -238,6 +268,14 @@ public class DungeonGUI extends JPanel {
     private static void setDungeonHero(final Hero theHero){
         myDungeonHero = theHero;
         myHealthLabel.setText("Current health: " + myDungeonHero.getHealth());
+    }
+
+    public static Dungeon getDungeon(){
+        return myDungeon;
+    }
+
+    public static void setDungeon(Dungeon theDungeon){
+        myDungeon = theDungeon;
     }
 
     /**
