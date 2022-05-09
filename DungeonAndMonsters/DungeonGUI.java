@@ -345,7 +345,7 @@ public class DungeonGUI extends JPanel {
         }else if(south != null && west != null && east != null){
             myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
         }else if(north != null && west != null && east!= null){
-            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_up.png"));
         }else if(north != null && west != null){
             myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
         }else if(north != null && east != null){
