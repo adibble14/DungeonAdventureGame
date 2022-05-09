@@ -12,83 +12,50 @@ import java.util.Scanner;
  *
  */
 public class Battle {
-	
-	/**
-	 * Hero Object field
-	 */
-	private Hero myHero;
-	
-	/**
-	 * Monster Object field
-	 */
-	private Monster myMonster;
-	
-	/**
-	 * Random Object field
-	 */
-	final private Random MY_RAND;
-	
-	/**
-	 * Scanner object field
-	 */
-	final private Scanner MY_CONSOLE;
-	
-	/**
-	 * Class constructor. Initialize fields.
-	 * 
-	 * @param theHero
-	 */
-	protected Battle(final Hero theHero) {
-		
-		this.MY_CONSOLE = new Scanner(System.in);
-		this.MY_RAND = new Random();
-		this.myHero = theHero;
-		this.myMonster = null;
-	}
-	
-	/**
-	 * Game loop. Has game logic. Takes user input; then calls on DungeonCharacter methods to attack other DungeonCharacters or to heal.
-	 * Creates a Monster Object.
-	 * 
-	 * @param theConsole scanner object used to get user input
-	 * @param theHero hero object that is controlled by user
-	 * @param theMonster monster object that is the opponent of user.
-	 */
 
-	//TODO what happened to these parameters???
-	final protected void scene() {
-		// true == player is alive, false == player died or quit game
-		this.myMonster = this.createMonster();
-		String input = "";
-		System.out.println("A " + this.myMonster.getName() + " has appeared!\n\n");
-		while(!(input.equalsIgnoreCase("d")) && this.myMonster.isAlive() && this.myHero.isAlive()) {
-			//TODO this is view, delete outputs once GUI is made
-			displayInfo();
-			System.out.println("Choose Your Move: \n\n (a) attack   (b) special Move   (c) Health Potion  (d) Quit\n");
-			input = this.playerInput();
-			
-			if(input.equalsIgnoreCase("d")) {
-				System.out.println("Thanks for Playing!");
-				return;
-			}
-			else if(input.equalsIgnoreCase("a")) {
-				this.myHero.attack(this.myMonster);
-			}
-			else if(input.equalsIgnoreCase("b")) {
-				this.myHero.special(this.myMonster);
-			}
-			else if(input.equalsIgnoreCase("c")) {
-				this.myHero.useHealthPotion();
-			}
-			
-			if(!(this.myMonster.isAlive())) {
-				System.out.println(this.myMonster.getName() + " has been defeated.\n\n");
-				System.out.println("Back to dungeon crawling.");
-			} else {
-				this.myMonster.attack(myHero);
-			}
+
+	private Hero myHero;
+	private Monster myMonster;
+
+	protected Battle(final Hero theHero) {
+		this.myHero = theHero;
+		this.myMonster = createMonster();
+	}
+
+	protected Battle(final Hero theHero, final Monster theMonster) {
+		this.myHero = theHero;
+		this.myMonster = theMonster;
+	}
+
+	/**
+	 * the DungeonCharacter with the highest speed stat goes first
+	 */
+	public void attackPhase() {
+		if(this.myHero.getSpeed() > this.myMonster.getSpeed()) {
+			this.myHero.attack(this.myMonster);
+			this.myMonster.attack(this.myHero);
+		} else {
+			this.myMonster.attack(this.myHero);
+			this.myHero.attack(this.myMonster);
 		}
 	}
+
+	/**
+	 * There may be other items that will be usable during battles?
+	 *
+	 */
+	//TODO: Edit this method so it takes a parameter, if it is the case that other types of items may be used during battles
+	public void useItem() {
+		this.myHero.useHealthPotion();
+		this.myMonster.attack(this.myHero);
+	}
+	public void block() {
+		if(!this.myHero.block()) {
+			this.myMonster.attack(this.myHero);
+		}
+	}
+	
+
 
 	/**
 	 * Creates a random Monster object.
@@ -97,7 +64,7 @@ public class Battle {
 	 */
 	final private Monster createMonster() {
 		
-		int numb = this.MY_RAND.nextInt(256);
+		int numb = Tools.RANDOM.nextInt(256);
 		
 		if((numb % 2) == 0 && numb > 50) {
 			return new Ogre();
@@ -109,48 +76,5 @@ public class Battle {
 			return new Beast();
 		}
 		return new Skeleton();	
-	}
-
-	/**
-	 * Displays the health status of two DungeonCharacters on the console screen
-	 * 
-	 * @param theHero user's character choice
-	 * @param theMonster random monster enemy
-	 */
-	//TODO what happened to these parameters???
-	//TODO this is view
-	final private void displayInfo() {
-		
-		StringBuffer string = new StringBuffer();
-		string.append(this.myHero.getName() + "'s HP: " + this.myHero.getHealth() + "\n");
-		string.append(this.myMonster.getName() + "'s HP: " + this.myMonster.getHealth() + "\n");
-		System.out.println(string.toString());
-	}
-	
-	/**
-	 * Checks to see if user input is valid. Only for choices are valid: a b c d
-	 * 
-	 * @return returns user input
-	 */
-	final private String playerInput() {
-		
-		boolean flag = true;
-		String input = "";
-		
-		while(flag) {
-			System.out.print("> ");
-			input = this.MY_CONSOLE.next();
-			if(input.equalsIgnoreCase("a") || input.equalsIgnoreCase("b") || input.equalsIgnoreCase("c") || input.equalsIgnoreCase("d") ) {
-				
-				flag = false;
-			}
-		
-			else {
-				
-				System.out.println("Input not recognized! Try again....\n");
-			}	
-		}
-				
-		return input;
 	}
 }

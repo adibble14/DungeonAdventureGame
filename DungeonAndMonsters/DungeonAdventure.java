@@ -57,7 +57,7 @@ public class DungeonAdventure {
 
 		String input;
 		// Battle object
-		Battle battle = new Battle(theHero);
+		//Battle battle = new Battle(theHero);
 		// As long as we continue to win battles we are still in the main loop
 		// If we lose a battle the loop ends
 		// Main loop starts here, check if hero is alive
@@ -107,7 +107,7 @@ public class DungeonAdventure {
 			// in the same loop - check if we are in a monster room
 			if(theDungeon.getCurrentRoom().containsMonster()) {
 				// Run battle separately, but keep the output here
-				battle.scene();
+				//battle.scene();
 				// Remove monster
 				theDungeon.getCurrentRoom().removeMonster();
 			}
