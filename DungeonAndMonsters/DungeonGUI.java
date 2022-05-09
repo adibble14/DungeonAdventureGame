@@ -29,10 +29,9 @@ public class DungeonGUI extends JPanel {
     private static drawWindow myDungeonWindow;
 
     // TODO temporary variable to test dungeonWindow
-    private JLabel thiefInGameImage = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
+    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
 
-    // TODO |ANY VALUE THAT WILL CHANGE ON THIS PAGE I.E. HEALTH SHOULD HAVE A STATIC LABEL
-    // TODO |OR TEXT OR WHATEVER THAT WE CHANGE OUTSIDE
+    // TODO Any variables that are updated outside this class make static?
     DungeonGUI(Font thePixelFont) {
         // Set up DungeonGUI Layout, it contains two panels
         GridBagConstraints gbc = new GridBagConstraints();
@@ -78,7 +77,6 @@ public class DungeonGUI extends JPanel {
         myRoomLabel.setForeground(Color.white);
         myRoomLabel.setFont(thePixelFont);
 
-        //gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.10;
@@ -86,6 +84,7 @@ public class DungeonGUI extends JPanel {
 
         displayPanel.add(myRoomLabel,gbc);
 
+        // displayWindow panel, what we see inside the game
         gbc.insets = new Insets(20,10,20,10);
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -94,16 +93,19 @@ public class DungeonGUI extends JPanel {
         myDungeonWindow = new drawWindow();
         myDungeonWindow.setBorder(OUTLINE_BORDER);
         displayPanel.add(myDungeonWindow, gbc);
-        // area for putting things into the display window
-
-        gbc.anchor = GridBagConstraints.EAST;
-        gbc.weightx = 1;
-        myDungeonWindow.add(thiefInGameImage,gbc);
 
 
+        // area for putting things into the display window ------------
+
+        // Adding the temporary thief inGame sprite
+        myDungeonWindow.add(myThiefInGameSprite,gbc);
+
+
+        // Resetting some constraints
         gbc.anchor = GridBagConstraints.CENTER;
-        // Area set for player info, image, and health
         gbc.insets = new Insets(0,0,0,10);
+
+
         //This area is for player image, name and health
         JPanel playerArea = new JPanel(new GridBagLayout());
         playerArea.setOpaque(false);
@@ -121,6 +123,8 @@ public class DungeonGUI extends JPanel {
         //gbc.anchor = GridBagConstraints.EAST;
         buttonPanel.add(buttonArea, gbc);
 
+
+        // playerArea - Place to have user stats and image -------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -145,7 +149,7 @@ public class DungeonGUI extends JPanel {
         playerArea.add(myHealthLabel, gbc);
 
 
-        //end buttons --------------------------------------------
+        //end buttons - for use in buttonArea panel ----------------
         gbc.insets = new Insets(10,5,10,5);
 
         // Backpack button
@@ -231,25 +235,44 @@ public class DungeonGUI extends JPanel {
      * with the hero's health
      * @param theHero
      */
-    private static void setDungeonHero(Hero theHero){
+    private static void setDungeonHero(final Hero theHero){
         myDungeonHero = theHero;
         myHealthLabel.setText("Current health: " + myDungeonHero.getHealth());
     }
 
-    private static void setMyHeroImage(Hero theHero){
+    /**
+     * Sets the GUI hero image
+     * @param theHero user selected hero
+     */
+    private static void setMyHeroImage(final Hero theHero){
         myHeroImage.setIcon(theHero.getMySprite());
     }
 
-    private static void setMyHeroName(Hero theHero){
+    /**
+     * Sets the GUI hero name
+     * @param theHero user selected hero
+     */
+    private static void setMyHeroName(final Hero theHero){
         myHeroName.setText(theHero.getName());
     }
 
-    public static void setMyRoomLabel(Dungeon theDungeon){
+    /**
+     * Sets the GUI room location, i.e. the 0th row and 0th column
+     * room would be 'Current room: [0,0]'
+     * @param theDungeon Dungeon created after CharacterSelect
+     */
+    public static void setMyRoomLabel(final Dungeon theDungeon){
         myRoomLabel.setText("Current room: [" + theDungeon.getCurrentRoom().getXCoord()
                 + "," + theDungeon.getCurrentRoom().getYCoord() + "]");
     }
-    //TODO issue with the dungeon coordinates
-    public static void setMyDungeonRoom(Dungeon theDung){
+
+    /**
+     * Fancy way of changing the image representation of the room
+     * we are currently in inside the game. In the GUI we have an image that
+     * changes depending on free rooms around us.
+     * @param theDung Dungeon created after CharacterSelect
+     */
+    public static void setMyDungeonRoom(final Dungeon theDung){
         Room room = theDung.getCurrentRoom();
         HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
         for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
@@ -303,6 +326,10 @@ public class DungeonGUI extends JPanel {
 
     }
 
+    /**
+     * Inner class drawWindow that works as the display panel showing off the
+     * current room's image, as well as the inGame player and inGame enemies, items, etc.
+     */
     protected static class drawWindow extends JPanel{
         private Image myWindowImg;
 
@@ -316,7 +343,11 @@ public class DungeonGUI extends JPanel {
             g.drawImage(myWindowImg,0,0,getWidth(),getHeight(),this);
         }
 
-        protected void setWindowImg(Image theWindowImg){
+        /**
+         * changes the image background of this display (which is the room image).
+         * @param theWindowImg Image we wish to display as the background
+         */
+        protected void setWindowImg(final Image theWindowImg){
             myWindowImg = theWindowImg;
         }
     }
