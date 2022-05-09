@@ -24,66 +24,102 @@ public class DungeonGUI extends JPanel {
     // Name for hero
     private static JLabel myHeroName;
 
-    private static JLabel myDungeonLabel;
+    // Display "window" we have inside the display panel
+    // Used for displaying the hero in game, monsters, items, rooms
+    private static drawWindow myDungeonWindow;
+
+    // TODO temporary variable to test dungeonWindow
+    private JLabel thiefInGameImage = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
 
     // TODO |ANY VALUE THAT WILL CHANGE ON THIS PAGE I.E. HEALTH SHOULD HAVE A STATIC LABEL
     // TODO |OR TEXT OR WHATEVER THAT WE CHANGE OUTSIDE
     DungeonGUI(Font thePixelFont) {
-        //Hero hero = DungeonAdventure.getMyHero();
-        // regular layout setup
+        // Set up DungeonGUI Layout, it contains two panels
         GridBagConstraints gbc = new GridBagConstraints();
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new GridBagLayout());
 
-        // Setting up our display area
+        // Constraints for display area
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1;
+        gbc.weightx = 1;
+        gbc.gridy = 0;
+        gbc.gridheight = 3;
+        gbc.gridx = 0;
 
+        // Panel 1) Display area containing the window showing what's going on in the game
+        // as well as the room indicator. TAKES UP 3/4 of the window
         JPanel displayPanel = new JPanel(new GridBagLayout());
         displayPanel.setOpaque(true);
         displayPanel.setBackground(Color.BLACK);
         displayPanel.setBorder(OUTLINE_BORDER);
         this.add(displayPanel, gbc);
 
-        // Room indicator
-
-        myRoomLabel = new JLabel("Room: [0,0]");
-        myRoomLabel.setForeground(Color.white);
-        myRoomLabel.setFont(thePixelFont);
-        gbc.anchor = GridBagConstraints.NORTHWEST;
+        // Constraints for Button Area
+        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.gridheight = 1;
+        gbc.gridy = 4;
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(20,10,0,0);
+        gbc.weighty = 0;
         gbc.weightx = 1;
-        gbc.weighty = 1;
-        displayPanel.add(myRoomLabel,gbc);
 
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        myDungeonLabel = new JLabel();
-        displayPanel.add(myDungeonLabel, gbc);
-
-
-
-        // TODO Will split up button panel into two areas
-        //--------------------------------buttons
+        // Panel 2) buttons - buttons representing how the user interacts with the display
+        // should take up 1/4th of the window
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.setBorder(OUTLINE_BORDER);
         this.add(buttonPanel, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        // Children panel setup ------------------------------------
+
+        // Room indicator
+        myRoomLabel = new JLabel("Room: [0,0]");
+        myRoomLabel.setForeground(Color.white);
+        myRoomLabel.setFont(thePixelFont);
+
+        //gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.10;
+        gbc.weighty = 1;
+
+        displayPanel.add(myRoomLabel,gbc);
+
+        gbc.insets = new Insets(20,10,20,10);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.9;
+        gbc.anchor = GridBagConstraints.NORTHEAST;
+        myDungeonWindow = new drawWindow();
+        myDungeonWindow.setBorder(OUTLINE_BORDER);
+        displayPanel.add(myDungeonWindow, gbc);
+        // area for putting things into the display window
+
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 1;
+        myDungeonWindow.add(thiefInGameImage,gbc);
+
+
+        gbc.anchor = GridBagConstraints.CENTER;
+        // Area set for player info, image, and health
+        gbc.insets = new Insets(0,0,0,10);
         //This area is for player image, name and health
         JPanel playerArea = new JPanel(new GridBagLayout());
         playerArea.setOpaque(false);
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        buttonPanel.add(playerArea);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        buttonPanel.add(playerArea, gbc);
 
+        // Movement, map, guide, etc.
         JPanel buttonArea = new JPanel(new GridBagLayout());
         buttonArea.setOpaque(false);
-        gbc.anchor = GridBagConstraints.EAST;
-        buttonPanel.add(buttonArea);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        //gbc.anchor = GridBagConstraints.EAST;
+        buttonPanel.add(buttonArea, gbc);
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
@@ -112,8 +148,9 @@ public class DungeonGUI extends JPanel {
         //end buttons --------------------------------------------
         gbc.insets = new Insets(10,5,10,5);
 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
+        // Backpack button
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         JButton backpack = new JButton("Backpack");
         backpack.setFont(thePixelFont);
         buttonArea.add(backpack, gbc);
@@ -121,8 +158,9 @@ public class DungeonGUI extends JPanel {
             DungeonAdventure.sceneController("backpack");
         });
 
-        gbc.gridx = 1;
-        gbc.gridy = 2;
+        // Map button
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         JButton map = new JButton("Map");
         map.setFont(thePixelFont);
         buttonArea.add(map, gbc);
@@ -130,19 +168,69 @@ public class DungeonGUI extends JPanel {
             DungeonAdventure.sceneController("map");
         });
 
+        // Quit button
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        JButton quit = new JButton("Quit");
+        quit.setFont(thePixelFont);
+        buttonArea.add(quit,gbc);
+        quit.addActionListener(e -> {
+            System.exit(0);
+        });
 
+        // Left button
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        JButton leftMove = new JButton("Left");
+        leftMove.setFont(thePixelFont);
+        buttonArea.add(leftMove, gbc);
 
+        // Up button
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        JButton upMove = new JButton("Up");
+        upMove.setFont(thePixelFont);
+        buttonArea.add(upMove, gbc);
 
+        // Down button
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        JButton downMove = new JButton("Down");
+        downMove.setFont(thePixelFont);
+        buttonArea.add(downMove, gbc);
+
+        // Right button
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        JButton rightMove = new JButton("Right");
+        rightMove.setFont(thePixelFont);
+        buttonArea.add(rightMove, gbc);
     }
 
+    /**
+     * Equivalent to DungeonGUI's Start method. We call this when we first swap to
+     * DungeonGUI page. Set's the players image, their name, their health, etc.
+     * @param theHero Hero that the user chose on CharacterSelect
+     * @param theDungeon Dungeon that is generated on createDungeon method.
+     */
     public static void setUpVisualDungeon(Hero theHero, Dungeon theDungeon){
+        // Sets the Dungeon Hero locally inside DungeonGUI as well as his health
         setDungeonHero(theHero);
+        // Sets the image of the hero
         setMyHeroImage(theHero);
+        // Sets the name specified by what the player types in
         setMyHeroName(theHero);
+        // Sets the starting room number in the corner of the GUI
         setMyDungeonRoom(theDungeon);
+        // Sets the image associated with where we are.
         setMyRoomLabel(theDungeon);
     }
 
+    /**
+     * sets the Dungeon Hero locally, as well as set's the health label
+     * with the hero's health
+     * @param theHero
+     */
     private static void setDungeonHero(Hero theHero){
         myDungeonHero = theHero;
         myHealthLabel.setText("Current health: " + myDungeonHero.getHealth());
@@ -183,35 +271,53 @@ public class DungeonGUI extends JPanel {
         System.out.println("East: " + east);
 
         if(north != null && south != null && east != null && west != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_4.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_4.png"));
         }else if(north != null && south != null && east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
         }else if(north != null && south != null && west != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
         }else if(south != null && west != null && east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
         }else if(north != null && west != null && east!= null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
         }else if(north != null && west != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
         }else if(north != null && east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));
         }else if(south != null && west != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
         }else if(south != null && east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));
         }else if(south != null && north != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));
         }else if(west != null && east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));
         }else if(north != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));
         }else if(south != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
         }else if(east != null){
-            myDungeonLabel.setIcon(new ImageIcon("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));return;
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));
         }else
-            myDungeonLabel.setText("Closed off room! Error!");
+            System.out.println("Error! Room with no exits!");
 
+    }
+
+    protected static class drawWindow extends JPanel{
+        private Image myWindowImg;
+
+        drawWindow(){
+            this.setLayout(new GridBagLayout());
+            this.setVisible(true);
+        }
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.drawImage(myWindowImg,0,0,getWidth(),getHeight(),this);
+        }
+
+        protected void setWindowImg(Image theWindowImg){
+            myWindowImg = theWindowImg;
+        }
     }
 }

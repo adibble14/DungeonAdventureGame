@@ -20,6 +20,8 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.insets = new Insets(10, 5, 0, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weighty = 1;
+
+
         // Image placement ----------------------------------------
         // Archer
         gbc.gridx = 0;
@@ -54,7 +56,7 @@ public class CharacterSelectionGUI extends JPanel{
 
         // Character description texts start ----------------------------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(0,5,0,5);
+        gbc.insets = new Insets(3,5,3,5);
         //Archer
         gbc.gridx = 0;
         gbc.gridy = 1;
