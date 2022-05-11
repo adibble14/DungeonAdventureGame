@@ -8,6 +8,7 @@ public class BattleGUI extends JPanel {
     private static JLabel heroImage;
     private static JLabel monsterImage;
 
+    private static Battle myBattle;
     BattleGUI(Font thePixelFont) {
         Battle battle = new Battle(DungeonAdventure.getMyHero());
 
@@ -101,6 +102,12 @@ public class BattleGUI extends JPanel {
         JButton attack = new JButton("Attack");
         attack.setFont(thePixelFont);
         buttonArea.add(attack, gbc);
+        attack.addActionListener(e->{
+            if(myBattle.myHero.getHealth() > 0){
+                getMyBattle().attackPhase();
+                setBattle(myBattle);
+            }
+        });
 
 
         gbc.gridx = 1;
@@ -108,6 +115,12 @@ public class BattleGUI extends JPanel {
         JButton special = new JButton("Special Attack");
         special.setFont(thePixelFont);
         buttonArea.add(special, gbc);
+        special.addActionListener(e->{
+            if(myBattle.myHero.getHealth() > 0){
+                getMyBattle().myHero.special(getMyBattle().myMonster);
+                setBattle(myBattle);
+            }
+        });
 
 
         gbc.gridx = 3;
@@ -115,19 +128,34 @@ public class BattleGUI extends JPanel {
         JButton healthPotion = new JButton("Use Health Potion");
         healthPotion.setFont(thePixelFont);
         buttonArea.add(healthPotion, gbc);
+        healthPotion.addActionListener(e->{
+            myBattle.myHero.useHealthPotion();
+        });
 
         gbc.gridx = 4;
         gbc.gridy = 1;
         JButton surrender = new JButton("Surrender");
         surrender.setFont(thePixelFont);
         buttonArea.add(surrender, gbc);
+        surrender.addActionListener(e->{
+
+        });
 
     }
 
     public static void setBattle(Battle battle){
+        setMyBattle(battle);
         Hero hero = battle.myHero;
         Monster monster = battle.myMonster;
 
+        /*if(hero.getHealth() == 0){
+            JOptionPane lose = new JOptionPane("GAME OVER");
+        }
+
+        if(monster.getHealth() == 0){
+            JOptionPane win = new JOptionPane("Congrats! You defeated the enemy");
+            DungeonAdventure.sceneController("dungeon");
+        }*/
         heroImage.setIcon(hero.getMySprite());
         monsterImage.setIcon(monster.getMySprite());
 
@@ -144,6 +172,11 @@ public class BattleGUI extends JPanel {
 
         myStatsLabel.setText(finalStatsFormat);
     }
+
+
+
+    public static void setMyBattle(Battle battle){myBattle = battle;}
+    public static Battle getMyBattle(){return myBattle;}
 
 
 }

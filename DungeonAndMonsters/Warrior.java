@@ -50,6 +50,8 @@ public class Warrior extends Hero {
 
         System.out.println(this.getName() + " deals a Crushing Blow to " + theChar.getName() + "! Dealt " + damage + " of damage.\n\n");
 
+        theChar.attack(this);
+
     }
     public static ImageIcon getImage(){
         return image;
