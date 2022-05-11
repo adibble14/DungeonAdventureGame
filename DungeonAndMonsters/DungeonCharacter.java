@@ -115,11 +115,6 @@ public abstract class DungeonCharacter {
     }
 
     /**
-     * Getter for the object's image Sprite
-     * @return access to image Sprite
-     */
-    final protected ImageIcon getMySprite(){return this.mySprite;}
-    /**
      * Set method for name value
      *
      * @param theName takes string given by player
@@ -207,12 +202,19 @@ public abstract class DungeonCharacter {
     }
 
     /**
+     * Getter for the object's image Sprite
+     * @return access to image Sprite
+     */
+    final protected ImageIcon getMySprite(){return this.mySprite;}
+    /**
      * Setter for the object's image Sprite
      * @param theSprite takes an ImageIcon to set as the image for the object
      */
     final protected void setSprite(final ImageIcon theSprite){
         this.mySprite = theSprite;
     }
+
+
 
 
     /**
@@ -282,5 +284,8 @@ public abstract class DungeonCharacter {
         this.myCurrentHealth = Math.max(this.myCurrentHealth-theAmount, 0);
 
     }
+
+    public double getMyAccuracy(){return myAccuracy;}
+
 
 }

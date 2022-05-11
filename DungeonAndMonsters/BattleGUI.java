@@ -4,7 +4,9 @@ import java.awt.*;
 
 public class BattleGUI extends JPanel {
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 5);
-
+    private static JLabel myStatsLabel;
+    private static JLabel heroImage;
+    private static JLabel monsterImage;
 
     BattleGUI(Font thePixelFont) {
         Battle battle = new Battle(DungeonAdventure.getMyHero());
@@ -54,21 +56,23 @@ public class BattleGUI extends JPanel {
         gbc.gridy = 0;
         displayPanel.add(character1, gbc);
 
-        JLabel heroImage = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png"));
+        heroImage = new JLabel();
         heroImage.setBorder(OUTLINE_BORDER);
         character1.add(heroImage, gbc);
+
 
         JPanel stats = new JPanel(new GridBagLayout());
         stats.setOpaque(false);
         gbc.gridx = 1;
         gbc.gridy = 0;
         displayPanel.add(stats, gbc);
-        JLabel statsLabel = new JLabel(getStats(battle));
-        statsLabel.setFont(thePixelFont);
-        stats.add(statsLabel, gbc);
+        myStatsLabel = new JLabel("STATS");
+        myStatsLabel.setFont(thePixelFont);
+        myStatsLabel.setForeground(Color.WHITE);
+        stats.add(myStatsLabel, gbc);
 
-        JLabel heroImage2 = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png"));
-        heroImage2.setBorder(OUTLINE_BORDER);
+        monsterImage = new JLabel();
+        monsterImage.setBorder(OUTLINE_BORDER);
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.009;
@@ -79,7 +83,7 @@ public class BattleGUI extends JPanel {
         gbc.gridy = 0;
         displayPanel.add(character2, gbc);
 
-        character2.add(heroImage2, gbc);
+        character2.add(monsterImage, gbc);
 
         //-----buttons panel
         JPanel buttonArea = new JPanel(new GridBagLayout());
@@ -120,16 +124,26 @@ public class BattleGUI extends JPanel {
 
     }
 
-    //TODO need to fix
-    public static String getStats(Battle battle){
-        /*Hero hero = battle.myHero;
+    public static void setBattle(Battle battle){
+        Hero hero = battle.myHero;
         Monster monster = battle.myMonster;
 
-        StringBuilder string = new StringBuilder("STATS\n" + hero.getHealth() + " Health "
-        + monster.getHealth());*/
-        String string = "";
+        heroImage.setIcon(hero.getMySprite());
+        monsterImage.setIcon(monster.getMySprite());
 
-        return string.toString();
+        StringBuilder string = new StringBuilder("STATS" + "\n"+ hero.getHealth() + " Health "
+        + monster.getHealth() +"\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
+        +hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + hero.getMyAccuracy() +
+                " Accuracy " + monster.getMyAccuracy() + "\n" + hero.getBlockChance() + " Block Chance n/a" + "\n"+
+                "n/a Heal Chance " + monster.getHealChance());
 
+        String statsFormat = string.toString().replace("\n", "<br>");
+        String finalStatsFormat = "<html><style>" +
+                "h1 {text-align: center;}\n" +
+                "</style><h1><<font size='5'>" + statsFormat + "</h1></font></html>";
+
+        myStatsLabel.setText(finalStatsFormat);
     }
+
+
 }
