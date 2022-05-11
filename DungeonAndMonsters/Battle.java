@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class Battle {
 
 
-	private Hero myHero;
-	private Monster myMonster;
+	Hero myHero;
+	Monster myMonster;
 
 	protected Battle(final Hero theHero) {
 		this.myHero = theHero;
@@ -77,4 +77,7 @@ public class Battle {
 		}
 		return new Skeleton();	
 	}
+
+
+
 }
