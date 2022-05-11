@@ -44,102 +44,6 @@ public class DungeonAdventure {
 		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
-	/**
-	 * Main loop of the game. Is active as long as player does not quit, die, or have not
-	 * beat the game yet.
-	 *
-	 * @param
-	 * @param theDungeon Dungeon the user is currently playing in
-	 * @param theHero Hero that the user controls
-	 */
-	//This is the main Controller method
-	public static void mainLoop(final Scanner theScanner, final Dungeon theDungeon, final Hero theHero) {
-
-		String input;
-		// Battle object
-		//Battle battle = new Battle(theHero);
-		// As long as we continue to win battles we are still in the main loop
-		// If we lose a battle the loop ends
-		// Main loop starts here, check if hero is alive
-		// not sure why we check fo 'd'
-		while(theHero.isAlive())  {
-
-			// Status of hero print
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println(theHero);
-
-			// Prints room in x and y coordinates
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Current room: " + theDungeon.getCurrentRoom().getXCoord()
-					+ ", " + theDungeon.getCurrentRoom().getYCoord() + "\n\n");
-			// Prompts user for what they want to do and returns it by updating
-			// our input variable
-			input = chooseOption(theScanner);
-
-			// -------------------dev options aka hacks
-			if(input.equalsIgnoreCase("dev")) {
-				dev(theDungeon, theHero, theScanner);
-			}
-
-			// Health potion option
-			if(input.equalsIgnoreCase("h")) {
-				theHero.useHealthPotion();
-			}
-
-			// Vision potion option
-			else if(input.equalsIgnoreCase("v")) {
-				theHero.useVisionPotion(theDungeon);
-			}
-
-			// Prints out dungeon (map) |note, why 'i'?|
-			else if(input.equalsIgnoreCase("i")) {
-				//TODO delete this output once GUI is made, since this is VIEW
-				System.out.println(theDungeon);
-			}
-
-			// Movement option, we ask for input again to choose *where* we move
-			else if(input.equalsIgnoreCase("m")) {
-				input = chooseDirection(theScanner);
-				// Then we move
-				theDungeon.movePlayer(input, theHero);
-			}
-
-			// in the same loop - check if we are in a monster room
-			if(theDungeon.getCurrentRoom().containsMonster()) {
-				// Run battle separately, but keep the output here
-				//battle.scene();
-				// Remove monster
-				theDungeon.getCurrentRoom().removeMonster();
-			}
-			// Check as an else to a monster room (monsters cannot be in the same room
-			// as exits??) if we are at the exit and have enough keys we leave
-			// else we remind the player how many keys they need.
-			else if(theDungeon.getCurrentRoom().isExit()) {
-				//TODO delete this output once GUI is made, since this is VIEW
-				System.out.println(theHero.getName() + " found the exit!");
-				if(theHero.getKeyCount() == 2) {
-					//TODO delete this output once GUI is made, since this is VIEW
-					System.out.println("All Keys retrieved. " + theHero.getName() + " exits the dungeon...");
-					System.out.println("You have cleared the dungeon!");
-					theDungeon.revealRooms();
-					System.out.println(theDungeon);
-					return;
-				}
-				else {
-					//TODO delete this output once GUI is made, since this is VIEW
-					System.out.println(theHero.getName() + " needs " + ( 2 -theHero.getKeyCount() ) + " key(s) to open the exit.");
-				}
-			}
-			//TODO delete this output once GUI is made, since this is VIEW
-			//TODO this check is unnecessary! Our loop works by checking if the player is alive, it breaks if not
-			if(!theHero.isAlive()) {
-				System.out.println(theHero.getName() + " took too much damage. They close their eyes for the last time...");
-				System.out.println("Game Over..");
-				return;
-			}
-		}
-	}
-
 
 	/**
 	 * Displays information about the Hero characters on the console screen.
@@ -206,60 +110,6 @@ public class DungeonAdventure {
 		}
 	}
 
-	/**
-	 * Offers options of the "Main menu" to player and receives input from player
-	 *
-	 * @param theScanner Scanner for user input
-	 * @return String representation of the option the user chose from the menu, can be 'h', 'v', 'm', 'i', and 'dev'
-	 */
-	public static String chooseOption(final Scanner theScanner) {
-		boolean flag = true;
-		String input = "";
-		while(flag) {
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Move to another Room (M) | Use Health Potion (H) | Use Vision Potion (V) | See Map (I): ");
-			System.out.print("> ");
-			input = theScanner.next();
-			if(input.equalsIgnoreCase("h") || input.equalsIgnoreCase("v") || input.equalsIgnoreCase("m") || input.equalsIgnoreCase("i") || input.equalsIgnoreCase("dev")) {
-				flag = false;
-			}
-			else {
-				System.out.println("Input not recognized... try again!!");
-			}
-		}
-		return input;
-	}
-
-	/**
-	 * Offers directions for player to choose from and handles the input
-	 *
-	 * @param theScanner Scanner to take in user input
-	 * @return direction (N, W, S, E)
-	 */
-	public static String chooseDirection(final Scanner theScanner) {
-
-		boolean flag = true;
-		String input = "";
-		while(flag) {
-			// TODO optionally, up, down, left, right (U, D, L, R) might work better
-			//TODO maybe use enums?
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Choose a direction (N-W-S-E): ");
-			System.out.print("> ");
-			input = theScanner.next();
-			if(input.equalsIgnoreCase("n") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("e")
-					|| input.equalsIgnoreCase("w") || input.equalsIgnoreCase("z")) {
-				flag = false;
-			}
-			else {
-				//TODO delete these errors once GUI made
-				System.out.println("Input not recognized... try again!");
-			}
-		}
-		return input;
-	}
-
-
 	public static String getUserName(){return myUserName;}
 	public static void setMyUserName(final String theName){myUserName = theName;}
 
@@ -309,7 +159,7 @@ public class DungeonAdventure {
 	 * @param theHero the hero the user has chosen
 	 * @param theScanner scanner to look for user input
 	 */
-	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
+	/*public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
 
 		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Uncover all Rooms (d) Return");
 		String input = "";
@@ -329,7 +179,7 @@ public class DungeonAdventure {
 				break;
 			}
 		}
-	}
+	}*/
 
 
 }
