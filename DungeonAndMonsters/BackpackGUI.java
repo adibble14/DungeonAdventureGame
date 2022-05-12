@@ -17,6 +17,7 @@ public class BackpackGUI extends GUI {
         this.setBackground(Color.BLACK);
         // Size this frame to be slightly smaller
         this.setSize(450, 300);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         // Not resizable and starts invisible
         this.setResizable(false);
         this.setVisible(false);

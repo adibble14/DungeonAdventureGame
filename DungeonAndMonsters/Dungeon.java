@@ -34,14 +34,13 @@ public class Dungeon {
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
-	 * 
-	 * @param theHero Hero specified when user starts game, used to set in the first room
+	 *
 	 */
-	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
+	protected Dungeon(final int theSize, final double theItemRoomChance) {
 
 		this.myItemRoomChance = theItemRoomChance;
 		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
-		this.myDungeon = this.generateDungeon(theSize, theHero);
+		this.myDungeon = this.generateDungeon(theSize);
 		System.out.println(this);
 	}
 	
@@ -81,15 +80,9 @@ public class Dungeon {
 	 * Sets the current room field. Places Hero in room.
 	 * 
 	 * @param theRoom Room we wish to place the Hero in
-	 * @param theHero Hero
 	 */
-	final protected void setCurrentRoom(final Room theRoom, final Hero theHero) {
-		
-		/*if(this.myCurrentRoom != null) {
-			this.myCurrentRoom.removePlayer();
-		}*/
+	final protected void setCurrentRoom(final Room theRoom) {
 		this.myCurrentRoom = theRoom;
-		this.myCurrentRoom.placePlayer(theHero);
 	}
 	
 	/**
@@ -129,12 +122,12 @@ public class Dungeon {
 		return roomContents.toString();
 	}
 
-	private  Room[][] generateDungeon(final int theSize, Hero theHero) {
+	private  Room[][] generateDungeon(final int theSize) {
 		Room[][] dung = new Room[theSize][theSize];
 		int x = Tools.RANDOM.nextInt(0, theSize -1);
 		int y = Tools.RANDOM.nextInt(0, theSize -1);
 		Room entrance = new Room(x,y, RoomType.ENTRANCE);
-		setCurrentRoom(entrance, theHero);
+		setCurrentRoom(entrance);
 		dung [x][y] = entrance;
 		System.out.println("Entrance Coords: " + x + " " + y);
 		x = Tools.RANDOM.nextInt(0, theSize-1);

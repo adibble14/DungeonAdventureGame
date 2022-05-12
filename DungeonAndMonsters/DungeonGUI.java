@@ -33,7 +33,7 @@ public class DungeonGUI extends JPanel {
 
 
     // TODO temporary variable to test dungeonWindow
-    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
+    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
 
     // TODO Any variables that are updated outside this class make static?
     DungeonGUI(Font thePixelFont) {
@@ -89,7 +89,7 @@ public class DungeonGUI extends JPanel {
         displayPanel.add(myRoomLabel,gbc);
 
         // displayWindow panel, what we see inside the game
-        gbc.insets = new Insets(20,10,20,10);
+        gbc.insets = new Insets(20,0,20,10);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.9;
@@ -255,7 +255,7 @@ public class DungeonGUI extends JPanel {
     public static void changeRooms(int theX, int theY){
         Room newCurrent = myDungeon.getRoom(theX, theY);
         if(newCurrent != null){
-            myDungeon.setCurrentRoom(newCurrent, myDungeonHero);
+            myDungeon.setCurrentRoom(newCurrent);
             setMyRoomLabel(myDungeon);
             setMyDungeonRoom(myDungeon);
         }else{
@@ -358,7 +358,7 @@ public class DungeonGUI extends JPanel {
         System.out.println("Contains Monster? " + room.containsMonster());
 
         if(north != null && south != null && east != null && west != null){
-            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_4.png"));
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png"));
         }else if(north != null && south != null && east != null){
             myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
         }else if(north != null && south != null && west != null){
