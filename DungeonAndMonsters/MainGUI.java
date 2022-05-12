@@ -10,6 +10,8 @@ public class MainGUI extends GUI{
     JPanel theCardPanel = new JPanel(theCardLayout);
     // Pixel font
     private Font customFont;
+
+    private BackpackGUI backpackGUI;
     MainGUI(){
         try {
             //create the font to use. Specify the size!
@@ -28,7 +30,7 @@ public class MainGUI extends GUI{
         CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(customFont);
         DungeonGUI dungeonGUI = new DungeonGUI(customFont);
         BattleGUI battleGUI = new BattleGUI(customFont);
-        BackpackGUI backpackGUI = new BackpackGUI(customFont);
+        backpackGUI = new BackpackGUI(customFont);
         MapGUI mapGUI = new MapGUI(customFont);
 
         // Add the panels to the cardPanel using string constraints
@@ -36,7 +38,7 @@ public class MainGUI extends GUI{
         theCardPanel.add(characterSelectionGUI, "character");
         theCardPanel.add(dungeonGUI, "dungeon");
         theCardPanel.add(battleGUI, "battle");
-        theCardPanel.add(backpackGUI, "backpack");
+        //theCardPanel.add(backpackGUI, "backpack");
         theCardPanel.add(mapGUI, "map");
 
         // Start by showing menuGUI
@@ -58,7 +60,8 @@ public class MainGUI extends GUI{
                 theCardLayout.show(theCardPanel, "map");
                 break;
             case "backpack":
-                theCardLayout.show(theCardPanel, "backpack");
+                //theCardLayout.show(theCardPanel, "backpack");
+                backpackGUI.setVisible(true);
                 break;
         }
     }
