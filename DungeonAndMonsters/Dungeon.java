@@ -95,32 +95,14 @@ public class Dungeon {
 	/**
 	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
 	 */
-	final protected void revealRooms() {
+	/*final protected void revealRooms() {
 		for(int i = 0; i < this.myDungeon.length; i++) {
 			for(int j = 0; j < this.myDungeon[i].length; j++) {
 				this.myDungeon[i][j].unhide();
 			}
 		}
-	}
-	
-	/**
-	 * Places the player's Hero object in the direction the player wants.
-	 * Checks to see if move is valid.
-	 * 
-	 * @param theChoice Direction the user chose to move the Hero
-	 * @param theHero The hero
-	 */
-	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
-	final protected void movePlayer(final String theChoice, final Hero theHero) {
+	}*/
 
-		ArrayList<Room> neighbors = (ArrayList<Room>) Tools.GET_NEIGHBORS(this.myDungeon, this.myCurrentRoom).values();
-		for(Room r : neighbors) {
-			if(r.getXCoord() == -1 && r.getYCoord() == -1 ) {
-				r.placePlayer(theHero);
-			}
-		}
-
-	}
 
 	/**
 	 * Prints the Dungeon. Shows what the types for each Room.

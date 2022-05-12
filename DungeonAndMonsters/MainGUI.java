@@ -63,6 +63,9 @@ public class MainGUI extends GUI{
                 //theCardLayout.show(theCardPanel, "backpack");
                 backpackGUI.setVisible(true);
                 break;
+            case "battle":
+                theCardLayout.show(theCardPanel, "battle");
+                break;
         }
     }
 }

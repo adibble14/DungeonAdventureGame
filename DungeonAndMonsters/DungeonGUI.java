@@ -193,8 +193,13 @@ public class DungeonGUI extends JPanel {
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
-           changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
 
@@ -207,6 +212,11 @@ public class DungeonGUI extends JPanel {
         upMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
         // Down button
@@ -218,6 +228,11 @@ public class DungeonGUI extends JPanel {
         downMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
         // Right button
@@ -229,6 +244,11 @@ public class DungeonGUI extends JPanel {
         rightMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
     }
 
@@ -335,6 +355,7 @@ public class DungeonGUI extends JPanel {
         System.out.println("North: " + north);
         System.out.println("West: " + west);
         System.out.println("East: " + east);
+        System.out.println("Contains Monster? " + room.containsMonster());
 
         if(north != null && south != null && east != null && west != null){
             myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_4.png"));

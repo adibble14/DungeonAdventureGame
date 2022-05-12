@@ -48,6 +48,7 @@ public class Archer extends Hero {
             theChar.setHealth(result);
             count--;
         }
+        theChar.attack(this);
 
     }
 
