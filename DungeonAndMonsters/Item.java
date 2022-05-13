@@ -30,7 +30,6 @@ public abstract class Item {
 
         this.myImage = theImage;
         this.mySpawnChance = theSpawnChance;
-
     }
 
 
@@ -51,7 +50,4 @@ public abstract class Item {
      * @param obj
      */
     public abstract void use(Object theObj);
-
-
-
 }

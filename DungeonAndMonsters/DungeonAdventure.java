@@ -101,7 +101,7 @@ public class DungeonAdventure {
 			else if(input.equalsIgnoreCase("m")) {
 				input = chooseDirection(theScanner);
 				// Then we move
-				theDungeon.movePlayer(input, theHero);
+				theDungeon.movePlayer(input, theHero);//TODO: fix this after running
 			}
 
 			// in the same loop - check if we are in a monster room

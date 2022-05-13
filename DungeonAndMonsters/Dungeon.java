@@ -111,7 +111,8 @@ public class Dungeon {
 	 * @param theHero The hero
 	 */
 	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
-	final protected void movePlayer(final String theChoice, final Hero theHero) {
+	//final int theXCoord, final int theYCoord
+	final protected void movePlayer(final String string, final Hero theHero) {
 
 		ArrayList<Room> neighbors = (ArrayList<Room>) Tools.GET_NEIGHBORS(this.myDungeon, this.myCurrentRoom).values();
 		for(Room r : neighbors) {
@@ -147,6 +148,14 @@ public class Dungeon {
 		return roomContents.toString();
 	}
 
+	/**
+	 * Generates the Dungeon, does a lot so it will be very difficult to write a unit test for.
+	 *
+	 * @param theSize
+	 * @param theHero
+	 * @return
+	 */
+	//Idea: use BFS to connect bossrooms, other rooms to a room,
 	private  Room[][] generateDungeon(final int theSize, Hero theHero) {
 		Room[][] dung = new Room[theSize][theSize];
 		int x = Tools.RANDOM.nextInt(0, theSize -1);

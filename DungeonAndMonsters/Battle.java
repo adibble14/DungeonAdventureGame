@@ -59,9 +59,13 @@ public class Battle {
 
 	/**
 	 * Creates a random Monster object.
+	 * Sort of like a factory method to create a random Monster.
 	 * 
 	 * @return returns a Monster object.
 	 */
+	//TODO: New monster type, Swarm_Of_*Someothermonster
+	// pretty much a group of a monster we already have.
+
 	final private Monster createMonster() {
 		
 		int numb = Tools.RANDOM.nextInt(256);
