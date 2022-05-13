@@ -88,13 +88,12 @@ public class Dungeon {
 	/**
 	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
 	 */
-	/*final protected void revealRooms() {
+	final protected void revealRooms() {
 		for(int i = 0; i < this.myDungeon.length; i++) {
 			for(int j = 0; j < this.myDungeon[i].length; j++) {
 				this.myDungeon[i][j].unhide();
 			}
 		}
-<<<<<<< HEAD
 	}
 	
 	/**
@@ -107,9 +106,7 @@ public class Dungeon {
 	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
 	//final int theXCoord, final int theYCoord
 	final protected void movePlayer(final String string, final Hero theHero) {
-=======
-	}*/
->>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
+	}
 
 
 	/**
@@ -137,7 +134,6 @@ public class Dungeon {
 		return roomContents.toString();
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Generates the Dungeon, does a lot so it will be very difficult to write a unit test for.
 	 *
@@ -145,11 +141,7 @@ public class Dungeon {
 	 * @param theHero
 	 * @return
 	 */
-	//Idea: use BFS to connect bossrooms, other rooms to a room,
-	private  Room[][] generateDungeon(final int theSize, Hero theHero) {
-=======
 	private  Room[][] generateDungeon(final int theSize) {
->>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
 		Room[][] dung = new Room[theSize][theSize];
 		int x = Tools.RANDOM.nextInt(0, theSize -1);
 		int y = Tools.RANDOM.nextInt(0, theSize -1);
@@ -173,6 +165,16 @@ public class Dungeon {
 		dung[x][y] = unique;
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
 		dung[x][y].setEmpty();
+		// O(n^2) running time of placing monsters
+		for(Room [] r : dung) {
+			for(Room room : r) {
+				RoomType type = room.getMyType();
+				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
+				&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
+					room.setMonster();
+				}
+			}
+		}
 		return dung;
 	}
 

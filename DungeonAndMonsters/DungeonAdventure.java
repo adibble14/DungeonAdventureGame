@@ -44,7 +44,6 @@ public class DungeonAdventure {
 		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
@@ -140,9 +139,6 @@ public class DungeonAdventure {
 			}
 		}
 	}
-
-=======
->>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
 
 	/**
 	 * Displays information about the Hero characters on the console screen.
@@ -258,7 +254,7 @@ public class DungeonAdventure {
 	 * @param theHero the hero the user has chosen
 	 * @param theScanner scanner to look for user input
 	 */
-	/*public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
+	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
 
 		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Uncover all Rooms (d) Return");
 		String input = "";
@@ -278,7 +274,7 @@ public class DungeonAdventure {
 				break;
 			}
 		}
-	}*/
+	}
 
 
 }

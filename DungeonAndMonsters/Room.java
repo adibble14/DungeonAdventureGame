@@ -65,9 +65,6 @@ public class Room {
 	 * 
 	 */
 	final private void generateItem() {
-		if(Tools.RANDOM.nextDouble() < .2) {
-			this.myContainsMonster = true;
-		}
 		Chest chest = new Chest();
 		this.myObjectList.add(chest);
 	}
@@ -114,6 +111,15 @@ public class Room {
 		return this.myContainsMonster;
 	}
 
+	/**
+	 * Sets a monster into this room.
+	 */
+	final protected void setMonster() {
+		this.myContainsMonster = true;
+	}
+	/**
+	 * Removes monster from this room by setting boolean field to false
+	 */
 	final protected void removeMonster() {
 		this.myContainsMonster = false;
 	}

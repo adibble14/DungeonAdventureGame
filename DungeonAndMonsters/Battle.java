@@ -30,10 +30,16 @@ public class Battle {
 	/**
 	 * the DungeonCharacter with the highest speed stat goes first
 	 */
-	public void attackPhase() {
+	protected void attackPhase(final boolean theSpecialCase) {
 		if(this.myHero.getSpeed() > this.myMonster.getSpeed()) {
-			this.myHero.attack(this.myMonster);
-			this.myMonster.attack(this.myHero);
+			if(theSpecialCase) {
+				this.myHero.special(this.myMonster);
+				this.myMonster.attack(this.myHero);
+			} else {
+				this.myHero.attack(this.myMonster);
+				this.myMonster.attack(this.myHero);
+			}
+
 		} else {
 			this.myMonster.attack(this.myHero);
 			this.myHero.attack(this.myMonster);
