@@ -34,6 +34,8 @@ public class Mage extends Hero {
         theChar.setHealth(damage);
 
         System.out.println(this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health!!\n\n");
+
+        theChar.attack(this);
     }
 
     public static ImageIcon getImage(){

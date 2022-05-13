@@ -55,6 +55,7 @@ public class Thief extends Hero {
             }
             theChar.setHealth(secondResult);
         }
+        theChar.attack(this);
     }
 
     public static ImageIcon getImage(){

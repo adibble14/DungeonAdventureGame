@@ -33,7 +33,7 @@ public class DungeonGUI extends JPanel {
 
 
     // TODO temporary variable to test dungeonWindow
-    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinRogueChar.png"));
+    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
 
     // TODO Any variables that are updated outside this class make static?
     DungeonGUI(Font thePixelFont) {
@@ -89,7 +89,7 @@ public class DungeonGUI extends JPanel {
         displayPanel.add(myRoomLabel,gbc);
 
         // displayWindow panel, what we see inside the game
-        gbc.insets = new Insets(20,10,20,10);
+        gbc.insets = new Insets(20,0,20,10);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.9;
@@ -193,8 +193,13 @@ public class DungeonGUI extends JPanel {
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
-           changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
 
@@ -207,6 +212,11 @@ public class DungeonGUI extends JPanel {
         upMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
         // Down button
@@ -218,6 +228,11 @@ public class DungeonGUI extends JPanel {
         downMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
 
         // Right button
@@ -229,13 +244,18 @@ public class DungeonGUI extends JPanel {
         rightMove.addActionListener(e->{
             changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
             repaint();
+            if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
+                Battle battle = new Battle(myDungeonHero);
+                BattleGUI.setBattle(battle);
+                DungeonAdventure.sceneController("battle");
+            }
         });
     }
 
     public static void changeRooms(int theX, int theY){
         Room newCurrent = myDungeon.getRoom(theX, theY);
         if(newCurrent != null){
-            myDungeon.setCurrentRoom(newCurrent, myDungeonHero);
+            myDungeon.setCurrentRoom(newCurrent);
             setMyRoomLabel(myDungeon);
             setMyDungeonRoom(myDungeon);
         }else{
@@ -335,9 +355,10 @@ public class DungeonGUI extends JPanel {
         System.out.println("North: " + north);
         System.out.println("West: " + west);
         System.out.println("East: " + east);
+        System.out.println("Contains Monster? " + room.containsMonster());
 
         if(north != null && south != null && east != null && west != null){
-            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_4.png"));
+            myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png"));
         }else if(north != null && south != null && east != null){
             myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
         }else if(north != null && south != null && west != null){

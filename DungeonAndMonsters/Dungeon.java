@@ -34,14 +34,13 @@ public class Dungeon {
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
-	 * 
-	 * @param theHero Hero specified when user starts game, used to set in the first room
+	 *
 	 */
-	protected Dungeon(final Hero theHero, final int theSize, final double theItemRoomChance) {
+	protected Dungeon(final int theSize, final double theItemRoomChance) {
 
 		this.myItemRoomChance = theItemRoomChance;
 		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
-		this.myDungeon = this.generateDungeon(theSize, theHero);
+		this.myDungeon = this.generateDungeon(theSize);
 		System.out.println(this);
 	}
 	
@@ -81,26 +80,21 @@ public class Dungeon {
 	 * Sets the current room field. Places Hero in room.
 	 * 
 	 * @param theRoom Room we wish to place the Hero in
-	 * @param theHero Hero
 	 */
-	final protected void setCurrentRoom(final Room theRoom, final Hero theHero) {
-		
-		/*if(this.myCurrentRoom != null) {
-			this.myCurrentRoom.removePlayer();
-		}*/
+	final protected void setCurrentRoom(final Room theRoom) {
 		this.myCurrentRoom = theRoom;
-		this.myCurrentRoom.placePlayer(theHero);
 	}
 	
 	/**
 	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
 	 */
-	final protected void revealRooms() {
+	/*final protected void revealRooms() {
 		for(int i = 0; i < this.myDungeon.length; i++) {
 			for(int j = 0; j < this.myDungeon[i].length; j++) {
 				this.myDungeon[i][j].unhide();
 			}
 		}
+<<<<<<< HEAD
 	}
 	
 	/**
@@ -113,15 +107,10 @@ public class Dungeon {
 	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
 	//final int theXCoord, final int theYCoord
 	final protected void movePlayer(final String string, final Hero theHero) {
+=======
+	}*/
+>>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
 
-		ArrayList<Room> neighbors = (ArrayList<Room>) Tools.GET_NEIGHBORS(this.myDungeon, this.myCurrentRoom).values();
-		for(Room r : neighbors) {
-			if(r.getXCoord() == -1 && r.getYCoord() == -1 ) {
-				r.placePlayer(theHero);
-			}
-		}
-
-	}
 
 	/**
 	 * Prints the Dungeon. Shows what the types for each Room.
@@ -148,6 +137,7 @@ public class Dungeon {
 		return roomContents.toString();
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Generates the Dungeon, does a lot so it will be very difficult to write a unit test for.
 	 *
@@ -157,11 +147,14 @@ public class Dungeon {
 	 */
 	//Idea: use BFS to connect bossrooms, other rooms to a room,
 	private  Room[][] generateDungeon(final int theSize, Hero theHero) {
+=======
+	private  Room[][] generateDungeon(final int theSize) {
+>>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
 		Room[][] dung = new Room[theSize][theSize];
 		int x = Tools.RANDOM.nextInt(0, theSize -1);
 		int y = Tools.RANDOM.nextInt(0, theSize -1);
 		Room entrance = new Room(x,y, RoomType.ENTRANCE);
-		setCurrentRoom(entrance, theHero);
+		setCurrentRoom(entrance);
 		dung [x][y] = entrance;
 		System.out.println("Entrance Coords: " + x + " " + y);
 		x = Tools.RANDOM.nextInt(0, theSize-1);

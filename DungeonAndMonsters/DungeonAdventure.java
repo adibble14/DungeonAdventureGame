@@ -44,6 +44,7 @@ public class DungeonAdventure {
 		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Main loop of the game. Is active as long as player does not quit, die, or have not
 	 * beat the game yet.
@@ -140,6 +141,8 @@ public class DungeonAdventure {
 		}
 	}
 
+=======
+>>>>>>> c815c5c4f6a36fc74116e9c248f821b603702acf
 
 	/**
 	 * Displays information about the Hero characters on the console screen.
@@ -206,60 +209,6 @@ public class DungeonAdventure {
 		}
 	}
 
-	/**
-	 * Offers options of the "Main menu" to player and receives input from player
-	 *
-	 * @param theScanner Scanner for user input
-	 * @return String representation of the option the user chose from the menu, can be 'h', 'v', 'm', 'i', and 'dev'
-	 */
-	public static String chooseOption(final Scanner theScanner) {
-		boolean flag = true;
-		String input = "";
-		while(flag) {
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Move to another Room (M) | Use Health Potion (H) | Use Vision Potion (V) | See Map (I): ");
-			System.out.print("> ");
-			input = theScanner.next();
-			if(input.equalsIgnoreCase("h") || input.equalsIgnoreCase("v") || input.equalsIgnoreCase("m") || input.equalsIgnoreCase("i") || input.equalsIgnoreCase("dev")) {
-				flag = false;
-			}
-			else {
-				System.out.println("Input not recognized... try again!!");
-			}
-		}
-		return input;
-	}
-
-	/**
-	 * Offers directions for player to choose from and handles the input
-	 *
-	 * @param theScanner Scanner to take in user input
-	 * @return direction (N, W, S, E)
-	 */
-	public static String chooseDirection(final Scanner theScanner) {
-
-		boolean flag = true;
-		String input = "";
-		while(flag) {
-			// TODO optionally, up, down, left, right (U, D, L, R) might work better
-			//TODO maybe use enums?
-			//TODO delete this output once GUI is made, since this is VIEW
-			System.out.println("Choose a direction (N-W-S-E): ");
-			System.out.print("> ");
-			input = theScanner.next();
-			if(input.equalsIgnoreCase("n") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("e")
-					|| input.equalsIgnoreCase("w") || input.equalsIgnoreCase("z")) {
-				flag = false;
-			}
-			else {
-				//TODO delete these errors once GUI made
-				System.out.println("Input not recognized... try again!");
-			}
-		}
-		return input;
-	}
-
-
 	public static String getUserName(){return myUserName;}
 	public static void setMyUserName(final String theName){myUserName = theName;}
 
@@ -267,7 +216,7 @@ public class DungeonAdventure {
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	public static void createDungeon(Hero theHero){
-		myDungeon = new Dungeon(theHero, 10, .15); //TODO: Dungeon now requires a size, chance of Item_Room spawn
+		myDungeon = new Dungeon(10, .15); //TODO: Dungeon now requires a size, chance of Item_Room spawn
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
 
@@ -309,7 +258,7 @@ public class DungeonAdventure {
 	 * @param theHero the hero the user has chosen
 	 * @param theScanner scanner to look for user input
 	 */
-	public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
+	/*public static void dev(final Dungeon theDungeon, final Hero theHero, final Scanner theScanner) {
 
 		System.out.println("Enable Cheats: (a) Increase Health potions by five (b) Increase Vision Potions by five (c) Uncover all Rooms (d) Return");
 		String input = "";
@@ -329,7 +278,7 @@ public class DungeonAdventure {
 				break;
 			}
 		}
-	}
+	}*/
 
 
 }

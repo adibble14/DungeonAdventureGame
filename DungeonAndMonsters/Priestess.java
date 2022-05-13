@@ -37,6 +37,7 @@ public class Priestess extends Hero{
             }
             theChar.setHealth(result);
         }
+        theChar.attack(this);
 
 
     }

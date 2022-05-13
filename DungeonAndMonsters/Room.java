@@ -117,24 +117,7 @@ public class Room {
 	final protected void removeMonster() {
 		this.myContainsMonster = false;
 	}
-	
-	/**
-	 * Interacts with Hero object. Increases Hero inventory, depending
-	 * what item is in room. Damages player if room is a pit.
-	 * @param theHero
-	 */
-	final protected void placePlayer(final Hero theHero) {
 
-	}
-	
-	/**
-	 * Removes player from room and clears room. To simulate
-	 * player picking up items.
-	 */
-	final protected void removePlayer() {
-		this.myObjectList.remove("C");
-		this.setEmpty();
-	}
 	
 	/**
 	 * Appends a question mark at the beginning of list
@@ -142,7 +125,6 @@ public class Room {
 	 * 
 	 */
 	final protected void hide() {
-
 	}
 	
 	 /**
