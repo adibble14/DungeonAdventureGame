@@ -63,7 +63,7 @@ public class MenuGUI extends JPanel{
         instr.setFont(new Font("Serif", Font.BOLD, 20));
         instr.setPreferredSize(new Dimension(200,50));
         instr.addActionListener(e -> {
-            StringBuilder instructionText = DungeonAdventure.gamePlay();
+            StringBuilder instructionText = GUI.gamePlay();
             // Formatting using built in Java to HTML
             String instFormat = instructionText.toString().replace("\n", "<br>");
             String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></htmt>";

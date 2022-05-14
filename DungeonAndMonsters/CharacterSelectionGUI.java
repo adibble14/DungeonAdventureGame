@@ -1,8 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+
 
 public class CharacterSelectionGUI extends JPanel{
 
@@ -60,7 +59,7 @@ public class CharacterSelectionGUI extends JPanel{
         //Archer
         gbc.gridx = 0;
         gbc.gridy = 1;
-        String archerFormat = DungeonAdventure.heroInfo("Archer").toString().replace("\n", "<br>");
+        String archerFormat = heroInfo("Archer").toString().replace("\n", "<br>");
         String finalArcherFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + archerFormat + "</h1></font></html>";
@@ -78,7 +77,7 @@ public class CharacterSelectionGUI extends JPanel{
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 1;
-        String mageFormat = DungeonAdventure.heroInfo("Mage").toString().replace("\n", "<br>");
+        String mageFormat = heroInfo("Mage").toString().replace("\n", "<br>");
         String finalMageFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + mageFormat + "</h1></font></html>";
@@ -94,7 +93,7 @@ public class CharacterSelectionGUI extends JPanel{
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 1;
-        String thiefFormat = DungeonAdventure.heroInfo("Thief").toString().replace("\n", "<br>");
+        String thiefFormat = heroInfo("Thief").toString().replace("\n", "<br>");
         String finalThiefFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + thiefFormat + "</h1></font></html>";
@@ -110,7 +109,7 @@ public class CharacterSelectionGUI extends JPanel{
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 1;
-        String warriorFormat = DungeonAdventure.heroInfo("Warrior").toString().replace("\n", "<br>");
+        String warriorFormat = heroInfo("Warrior").toString().replace("\n", "<br>");
         String finalWarriorFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + warriorFormat + "</h1></font></html>";
@@ -126,7 +125,7 @@ public class CharacterSelectionGUI extends JPanel{
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 1;
-        String priestessFormat = DungeonAdventure.heroInfo("Priestess").toString().replace("\n", "<br>");
+        String priestessFormat = heroInfo("Priestess").toString().replace("\n", "<br>");
         String finalPriestessFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + priestessFormat + "</h1></font></html>";
@@ -229,7 +228,7 @@ public class CharacterSelectionGUI extends JPanel{
         JButton stats = new JButton("Stat Info");
         stats.setFont(pixelFont);
         stats.setPreferredSize(new Dimension(200,50));
-        StringBuilder statText = DungeonAdventure.statInfo();
+        StringBuilder statText = statInfo();
         String statFormat = statText.toString().replace("\n", "<br>");
         String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></htmt>";
         stats.addActionListener(e ->  JOptionPane.showMessageDialog(this, finalStatFormat));
@@ -247,5 +246,56 @@ public class CharacterSelectionGUI extends JPanel{
 
     private void setUserName() {
         DungeonAdventure.setMyUserName(JOptionPane.showInputDialog(this, "Provide User Name:"));
+    }
+
+    /**
+     * Displays information about the Hero characters on the console screen.
+     */
+    public static StringBuilder heroInfo(String characterType) {
+
+        // When displaying a lot of information, using StringBuffer
+        // Nice choice, however, we will need to change this when implementing GUI
+        // TODO When implementing GUI, consider different menus for information
+        StringBuilder heroInformation = new StringBuilder();
+        switch(characterType){
+            case "Warrior":
+                heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
+                heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");
+                break;
+            case "Mage":
+                heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
+                heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n100% accuracy");
+                break;
+            case "Thief":
+                heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
+                heroInformation.append("Special: Surprise!\n20-60 damage\nCan also land extra attack\n40-80 damage\n60% accuracy.");
+                break;
+            case "Archer":
+                heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
+                heroInformation.append("Special: Volley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
+                break;
+            case "Priestess":
+                heroInformation.append("Stats: \n75 hp\n5 attack speed\n25-45 damage\n70% accuracy\n30% block\n");
+                heroInformation.append("Special: Revive\n45-90 damage\n50% accuracy for every point of damage dealt priestess heals 2/3 of the points");
+                break;
+            default:
+                heroInformation.append("No info stored!");
+                break;
+        }
+
+        return heroInformation;
+    }
+
+    public static StringBuilder statInfo(){
+        StringBuilder statInfo = new StringBuilder();
+        statInfo.append("Stat Definitions\n");
+        statInfo.append("Hit Points (hp): the number of health your hero has\n");
+        statInfo.append("Attack Speed: how fast your hero is. \nEx) 4 attack speed fights monsters with 2 attack speed, hero gets two attacks per 1 monster attack \n");
+        statInfo.append("Damage: the number of damage dealt to the enemy per attack\n");
+        statInfo.append("Accuracy: the chance an attack lands a hit on enemy\n");
+        statInfo.append("Block Rate: the chance your hero can defend an attack from an enemy\n");
+
+
+        return statInfo;
     }
 }

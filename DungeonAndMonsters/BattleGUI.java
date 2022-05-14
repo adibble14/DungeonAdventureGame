@@ -137,6 +137,7 @@ public class BattleGUI extends JPanel {
         JButton surrender = new JButton("Surrender");
         surrender.setFont(thePixelFont);
         buttonArea.add(surrender, gbc);
+        //TODO
         surrender.addActionListener(e->{
 
         });
@@ -148,14 +149,6 @@ public class BattleGUI extends JPanel {
         Hero hero = battle.myHero;
         Monster monster = battle.myMonster;
 
-        /*if(hero.getHealth() == 0){
-            JOptionPane lose = new JOptionPane("GAME OVER");
-        }
-
-        if(monster.getHealth() == 0){
-            JOptionPane win = new JOptionPane("Congrats! You defeated the enemy");
-            DungeonAdventure.sceneController("dungeon");
-        }*/
         heroImage.setIcon(hero.getMySprite());
         monsterImage.setIcon(monster.getMySprite());
 

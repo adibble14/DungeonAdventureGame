@@ -1,5 +1,8 @@
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Builds a matrix consisting of Room objects. Interacts with Hero objects as well.
@@ -84,29 +87,7 @@ public class Dungeon {
 	final protected void setCurrentRoom(final Room theRoom) {
 		this.myCurrentRoom = theRoom;
 	}
-	
-	/**
-	 * Uncovers all Rooms in Dungeon matrix. Used for dev cheats
-	 */
-	final protected void revealRooms() {
-		for(int i = 0; i < this.myDungeon.length; i++) {
-			for(int j = 0; j < this.myDungeon[i].length; j++) {
-				this.myDungeon[i][j].unhide();
-			}
-		}
-	}
-	
-	/**
-	 * Places the player's Hero object in the direction the player wants.
-	 * Checks to see if move is valid.
-	 * 
-	 * @param theChoice Direction the user chose to move the Hero
-	 * @param theHero The hero
-	 */
-	//TODO Modify theChoice parameter so we can compare the x and y coordinates of a Room
-	//final int theXCoord, final int theYCoord
-	final protected void movePlayer(final String string, final Hero theHero) {
-	}
+
 
 
 	/**
@@ -138,7 +119,6 @@ public class Dungeon {
 	 * Generates the Dungeon, does a lot so it will be very difficult to write a unit test for.
 	 *
 	 * @param theSize
-	 * @param theHero
 	 * @return
 	 */
 	private  Room[][] generateDungeon(final int theSize) {
@@ -220,6 +200,69 @@ public class Dungeon {
 			return RoomType.ITEM_ROOM;
 		}
 		return RoomType.EMPTY;
+	}
+
+	/**
+	 * Fancy way of changing the image representation of the room
+	 * we are currently in inside the game. In the GUI we have an image that
+	 * changes depending on free rooms around us.
+	 * @param theDung Dungeon created after CharacterSelect
+	 */
+	public static DungeonGUI.drawWindow setMyDungeonRoom(final Dungeon theDung){
+		Room room = theDung.getCurrentRoom();
+		HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
+		for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
+			System.out.println("Key: " + Arrays.toString(set.getKey()) + " " + "Value: " + set.getValue());
+		}
+
+		System.out.println("Room: " + room);
+		int row = room.getXCoord();
+		int col = room.getYCoord();
+		System.out.println("Row: " +row);
+		System.out.println("Col: " + col);
+		Room south = theDung.getRoom(row+1, col);
+		Room north = theDung.getRoom(row-1, col);
+		Room west = theDung.getRoom(row, col-1);
+		Room east = theDung.getRoom(row, col+1);
+		System.out.println("South: " + south);
+		System.out.println("North: " + north);
+		System.out.println("West: " + west);
+		System.out.println("East: " + east);
+		System.out.println("Contains Monster? " + room.containsMonster());
+
+		DungeonGUI.drawWindow myDungeonWindow = null;
+
+		if(north != null && south != null && east != null && west != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png"));
+		}else if(north != null && south != null && east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
+		}else if(north != null && south != null && west != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
+		}else if(south != null && west != null && east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
+		}else if(north != null && west != null && east!= null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_up.png"));
+		}else if(north != null && west != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
+		}else if(north != null && east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));
+		}else if(south != null && west != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
+		}else if(south != null && east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));
+		}else if(south != null && north != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));
+		}else if(west != null && east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));
+		}else if(north != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));
+		}else if(south != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
+		}else if(east != null){
+			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));
+		}
+		return myDungeonWindow;
+
 	}
 }
 

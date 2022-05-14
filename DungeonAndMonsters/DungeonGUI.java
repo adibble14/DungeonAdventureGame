@@ -1,16 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DungeonGUI extends JPanel {
     // white outline border to be used in dungeon
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 5);
-
-    // Hero reference
-    private static Hero myDungeonHero;
 
     private static Dungeon myDungeon;
 
@@ -193,12 +187,10 @@ public class DungeonGUI extends JPanel {
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
-            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
-                Battle battle = new Battle(myDungeonHero);
-                BattleGUI.setBattle(battle);
-                DungeonAdventure.sceneController("battle");
+                DungeonAdventure.createBattle();
             }
         });
 
@@ -210,12 +202,10 @@ public class DungeonGUI extends JPanel {
         upMove.setFont(thePixelFont);
         buttonArea.add(upMove, gbc);
         upMove.addActionListener(e->{
-            changeRooms(getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
+            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
-                Battle battle = new Battle(myDungeonHero);
-                BattleGUI.setBattle(battle);
-                DungeonAdventure.sceneController("battle");
+                DungeonAdventure.createBattle();
             }
         });
 
@@ -226,12 +216,10 @@ public class DungeonGUI extends JPanel {
         downMove.setFont(thePixelFont);
         buttonArea.add(downMove, gbc);
         downMove.addActionListener(e->{
-            changeRooms(getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
+            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow,getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
-                Battle battle = new Battle(myDungeonHero);
-                BattleGUI.setBattle(battle);
-                DungeonAdventure.sceneController("battle");
+                DungeonAdventure.createBattle();
             }
         });
 
@@ -242,17 +230,16 @@ public class DungeonGUI extends JPanel {
         rightMove.setFont(thePixelFont);
         buttonArea.add(rightMove, gbc);
         rightMove.addActionListener(e->{
-            changeRooms(getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
+            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
-                Battle battle = new Battle(myDungeonHero);
-                BattleGUI.setBattle(battle);
-                DungeonAdventure.sceneController("battle");
+                DungeonAdventure.createBattle();
             }
         });
     }
 
-    public static void changeRooms(int theX, int theY){
+    //TODO delete if working
+    /*public static void changeRooms(int theX, int theY){
         Room newCurrent = myDungeon.getRoom(theX, theY);
         if(newCurrent != null){
             myDungeon.setCurrentRoom(newCurrent);
@@ -262,7 +249,7 @@ public class DungeonGUI extends JPanel {
             System.out.println("can't go that way!");
         }
 
-    }
+    }*/
 
 
     /**
@@ -274,25 +261,20 @@ public class DungeonGUI extends JPanel {
     public static void setUpVisualDungeon(Hero theHero, Dungeon theDungeon){
         setDungeon(theDungeon);
         // Sets the Dungeon Hero locally inside DungeonGUI as well as his health
-        setDungeonHero(theHero);
+        setHealthLabel(theHero);
         // Sets the image of the hero
         setMyHeroImage(theHero);
         // Sets the name specified by what the player types in
         setMyHeroName(theHero);
         // Sets the starting room number in the corner of the GUI
-        setMyDungeonRoom(theDungeon);
-        // Sets the image associated with where we are.
-        setMyRoomLabel(theDungeon);
+        DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord());
+
+        myRoomLabel = DungeonAdventure.setMyRoomLabel(theDungeon);
     }
 
-    /**
-     * sets the Dungeon Hero locally, as well as set's the health label
-     * with the hero's health
-     * @param theHero
-     */
-    private static void setDungeonHero(final Hero theHero){
-        myDungeonHero = theHero;
-        myHealthLabel.setText("Current health: " + myDungeonHero.getHealth());
+
+    private static void setHealthLabel(final Hero theHero){
+        myHealthLabel.setText("Current health: " + theHero.getHealth());
     }
 
     public static Dungeon getDungeon(){
@@ -324,10 +306,11 @@ public class DungeonGUI extends JPanel {
      * room would be 'Current room: [0,0]'
      * @param theDungeon Dungeon created after CharacterSelect
      */
-    public static void setMyRoomLabel(final Dungeon theDungeon){
+    //TODO delete if working
+    /*public static void setMyRoomLabel(final Dungeon theDungeon){
         myRoomLabel.setText("Current room: [" + theDungeon.getCurrentRoom().getXCoord()
                 + "," + theDungeon.getCurrentRoom().getYCoord() + "]");
-    }
+    }*/
 
     /**
      * Fancy way of changing the image representation of the room
@@ -335,7 +318,8 @@ public class DungeonGUI extends JPanel {
      * changes depending on free rooms around us.
      * @param theDung Dungeon created after CharacterSelect
      */
-    public static void setMyDungeonRoom(final Dungeon theDung){
+    //TODO delete if working
+    /*public static void setMyDungeonRoom(final Dungeon theDung){
         Room room = theDung.getCurrentRoom();
         HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
         for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
@@ -388,7 +372,7 @@ public class DungeonGUI extends JPanel {
         }else
             System.out.println("Error! Room with no exits!");
 
-    }
+    }*/
 
     /**
      * Inner class drawWindow that works as the display panel showing off the
