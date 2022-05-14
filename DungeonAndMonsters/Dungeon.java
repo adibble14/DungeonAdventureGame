@@ -146,15 +146,17 @@ public class Dungeon {
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
 		dung[x][y].setEmpty();
 		// O(n^2) running time of placing monsters
-		/*for(Room [] r : dung) {
+		for(Room [] r : dung) {
 			for(Room room : r) {
+				if(room == null)
+					continue;
 				RoomType type = room.getMyType();
 				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
 				&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
 					room.setMonster();
 				}
 			}
-		}*/
+		}
 		return dung;
 	}
 
