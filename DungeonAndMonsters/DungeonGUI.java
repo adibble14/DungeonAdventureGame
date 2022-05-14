@@ -187,7 +187,7 @@ public class DungeonGUI extends JPanel {
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
-            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1);
+            myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1));
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
                 DungeonAdventure.createBattle();
@@ -202,7 +202,7 @@ public class DungeonGUI extends JPanel {
         upMove.setFont(thePixelFont);
         buttonArea.add(upMove, gbc);
         upMove.addActionListener(e->{
-            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord());
+            myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord()));
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
                 DungeonAdventure.createBattle();
@@ -216,7 +216,7 @@ public class DungeonGUI extends JPanel {
         downMove.setFont(thePixelFont);
         buttonArea.add(downMove, gbc);
         downMove.addActionListener(e->{
-            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow,getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord());
+            myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(),getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord()));
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
                 DungeonAdventure.createBattle();
@@ -230,7 +230,7 @@ public class DungeonGUI extends JPanel {
         rightMove.setFont(thePixelFont);
         buttonArea.add(rightMove, gbc);
         rightMove.addActionListener(e->{
-            myDungeonWindow =  DungeonAdventure.changeRooms(myDungeon, myDungeonWindow, getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1);
+            myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1));
             repaint();
             if(getDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){
                 DungeonAdventure.createBattle();
@@ -267,15 +267,18 @@ public class DungeonGUI extends JPanel {
         // Sets the name specified by what the player types in
         setMyHeroName(theHero);
         // Sets the starting room number in the corner of the GUI
-        DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord());
+        myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord()));
 
-        myRoomLabel = DungeonAdventure.setMyRoomLabel(theDungeon);
+        myRoomLabel.setText(DungeonAdventure.getRoomLabel(theDungeon));
     }
 
 
     private static void setHealthLabel(final Hero theHero){
         myHealthLabel.setText("Current health: " + theHero.getHealth());
     }
+
+    public static JLabel getMyRoomLabel(){return myRoomLabel;}
+
 
     public static Dungeon getDungeon(){
         return myDungeon;
@@ -398,5 +401,6 @@ public class DungeonGUI extends JPanel {
         protected void setWindowImg(final Image theWindowImg){
             myWindowImg = theWindowImg;
         }
+        protected Image getMyWindowImg(){return myWindowImg;}
     }
 }

@@ -81,23 +81,23 @@ public class DungeonAdventure {
 	public static Hero getMyHero(){return  myHero;}
 
 
-	public static DungeonGUI.drawWindow changeRooms(Dungeon theDungeon, DungeonGUI.drawWindow theWindow, int theX, int theY){
+	public static Image changeRooms(Dungeon theDungeon, Image theCurrentImage, int theX, int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		if(newCurrent != null){
 			theDungeon.setCurrentRoom(newCurrent);
-			setMyRoomLabel(myDungeon);
+			DungeonGUI.getMyRoomLabel().setText(getRoomLabel(theDungeon));
 			return Dungeon.setMyDungeonRoom(theDungeon);
 		}else{
 			System.out.println("can't go that way!");
-			return theWindow;
+			return theCurrentImage;
 		}
 
 	}
 
-	public static DungeonGUI.drawWindow setRoomWindow(Dungeon theDungeon, int theX, int theY){
+	public static Image setRoomWindow(Dungeon theDungeon, int theX, int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		theDungeon.setCurrentRoom(newCurrent);
-		setMyRoomLabel(myDungeon);
+
 		return Dungeon.setMyDungeonRoom(theDungeon);
 	}
 
@@ -106,9 +106,9 @@ public class DungeonAdventure {
 	 * room would be 'Current room: [0,0]'
 	 * @param theDungeon Dungeon created after CharacterSelect
 	 */
-	public static JLabel setMyRoomLabel(final Dungeon theDungeon){
-		return new JLabel("Current room: [" + theDungeon.getCurrentRoom().getXCoord()
-				+ "," + theDungeon.getCurrentRoom().getYCoord() + "]");
+	public static String getRoomLabel(final Dungeon theDungeon){
+		return "Current room: [" + theDungeon.getCurrentRoom().getXCoord()
+				+ "," + theDungeon.getCurrentRoom().getYCoord() + "]";
 	}
 
 	public static void createBattle(){

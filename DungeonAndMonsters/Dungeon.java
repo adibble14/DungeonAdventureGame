@@ -146,7 +146,7 @@ public class Dungeon {
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
 		dung[x][y].setEmpty();
 		// O(n^2) running time of placing monsters
-		for(Room [] r : dung) {
+		/*for(Room [] r : dung) {
 			for(Room room : r) {
 				RoomType type = room.getMyType();
 				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
@@ -154,7 +154,7 @@ public class Dungeon {
 					room.setMonster();
 				}
 			}
-		}
+		}*/
 		return dung;
 	}
 
@@ -208,7 +208,7 @@ public class Dungeon {
 	 * changes depending on free rooms around us.
 	 * @param theDung Dungeon created after CharacterSelect
 	 */
-	public static DungeonGUI.drawWindow setMyDungeonRoom(final Dungeon theDung){
+	public static Image setMyDungeonRoom(final Dungeon theDung){
 		Room room = theDung.getCurrentRoom();
 		HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
 		for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
@@ -228,40 +228,37 @@ public class Dungeon {
 		System.out.println("North: " + north);
 		System.out.println("West: " + west);
 		System.out.println("East: " + east);
-		System.out.println("Contains Monster? " + room.containsMonster());
 
-		DungeonGUI.drawWindow myDungeonWindow = null;
 
 		if(north != null && south != null && east != null && west != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png");
 		}else if(north != null && south != null && east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png");
 		}else if(north != null && south != null && west != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png");
 		}else if(south != null && west != null && east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png");
 		}else if(north != null && west != null && east!= null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_up.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_up.png");
 		}else if(north != null && west != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png");
 		}else if(north != null && east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png");
 		}else if(south != null && west != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png");
 		}else if(south != null && east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png");
 		}else if(south != null && north != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png");
 		}else if(west != null && east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png");
 		}else if(north != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png");
 		}else if(south != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png"));
-		}else if(east != null){
-			myDungeonWindow.setWindowImg(Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png"));
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png");
+		}else{
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png");
 		}
-		return myDungeonWindow;
 
 	}
 }
