@@ -122,7 +122,7 @@ public class DungeonAdventure {
 	public static char checkRoom(){
 		Room currentRoom = myDungeon.getCurrentRoom();
 
-		if(currentRoom.getMyType() == RoomType.BOSS_ROOM /*|| currentRoom.containsMonster()*/){
+		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
 			DungeonAdventure.createBattle();
 			return 'b';
 		}else if(currentRoom.getMyType() == RoomType.PIT){
