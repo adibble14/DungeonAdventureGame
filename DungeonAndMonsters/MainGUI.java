@@ -9,16 +9,18 @@ public class MainGUI extends GUI{
     // Panel to hold the cardlayout
     JPanel theCardPanel = new JPanel(theCardLayout);
     // Pixel font
-    private Font customFont;
-
-    private BackpackGUI backpackGUI;
+    private Font theCustomFont;
+    // Reference to backpack frame
+    private BackpackGUI theBackpackGui;
+    // Reference to the hero
+    private Hero theHero;
     MainGUI(){
         try {
             //create the font to use. Specify the size!
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(25f);
+            theCustomFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(25f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
-            ge.registerFont(customFont);
+            ge.registerFont(theCustomFont);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
@@ -26,12 +28,12 @@ public class MainGUI extends GUI{
         this.add(theCardPanel);
 
         // Create all our content panels
-        MenuGUI menuGUI = new MenuGUI(customFont);
-        CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(customFont);
-        DungeonGUI dungeonGUI = new DungeonGUI(customFont);
-        BattleGUI battleGUI = new BattleGUI(customFont);
-        backpackGUI = new BackpackGUI(customFont);
-        MapGUI mapGUI = new MapGUI(customFont);
+        MenuGUI menuGUI = new MenuGUI(theCustomFont);
+        CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(theCustomFont);
+        DungeonGUI dungeonGUI = new DungeonGUI(theCustomFont);
+        BattleGUI battleGUI = new BattleGUI(theCustomFont);
+        theBackpackGui = new BackpackGUI(theCustomFont);
+        MapGUI mapGUI = new MapGUI(theCustomFont);
 
         // Add the panels to the cardPanel using string constraints
         theCardPanel.add(menuGUI, "menu");
@@ -43,6 +45,15 @@ public class MainGUI extends GUI{
 
         // Start by showing menuGUI
         theCardLayout.show(theCardPanel, "menu");
+    }
+
+    public BackpackGUI getBackpackGui(){
+        return theBackpackGui;
+    }
+
+    public void setTheHero(Hero myHero){
+        theHero = myHero;
+        theBackpackGui.setMyHero(myHero);
     }
 
     protected void setCurrentCard(String myCardName){
@@ -61,7 +72,7 @@ public class MainGUI extends GUI{
                 break;
             case "backpack":
                 //theCardLayout.show(theCardPanel, "backpack");
-                backpackGUI.setVisible(true);
+                theBackpackGui.setVisible(true);
                 break;
             case "battle":
                 theCardLayout.show(theCardPanel, "battle");

@@ -211,6 +211,11 @@ public abstract class Hero extends DungeonCharacter {
     }
 
     /**
+     * Returns the amount of gold in Hero's inventory
+     * @return gold in integer form
+     */
+    final protected int getGoldCount(){return this.myInventory.getMyGoldAmount();}
+    /**
      * If Health Potion count is at least one. Increases Health depending on
      * Health Potion value generated.
      */

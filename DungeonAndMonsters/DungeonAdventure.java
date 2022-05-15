@@ -26,6 +26,7 @@ public class DungeonAdventure {
 	// START METHOD
 	public static void setUPGame(){
 		createHero();
+		MAIN_GUI.setTheHero(myHero);
 		createDungeon(getMyHero());
 		// First run through updating the dungeonGUI scene
 		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
