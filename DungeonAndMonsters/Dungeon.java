@@ -146,7 +146,7 @@ public class Dungeon {
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
 		dung[x][y].setEmpty();
 		// O(n^2) running time of placing monsters
-		/*for(Room [] r : dung) {
+		for(Room [] r : dung) {
 			for(Room room : r) {
 				if(room == null)
 					continue;
@@ -156,7 +156,7 @@ public class Dungeon {
 					room.setMonster();
 				}
 			}
-		}*/
+		}
 		return dung;
 	}
 
