@@ -230,6 +230,7 @@ public class Dungeon {
 		System.out.println("North: " + north);
 		System.out.println("West: " + west);
 		System.out.println("East: " + east);
+		System.out.println("Room contains monster?" + room.containsMonster());
 
 
 		if(north != null && south != null && east != null && west != null){

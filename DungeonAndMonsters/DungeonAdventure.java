@@ -116,6 +116,25 @@ public class DungeonAdventure {
 		BattleGUI.setBattle(new Battle(myHero));
 	}
 
+	/**
+	 * Check rooms for monsters, boss, pits, and items and acts accordingly
+	 */
+	public static char checkRoom(){
+		Room currentRoom = myDungeon.getCurrentRoom();
+
+		if(currentRoom.getMyType() == RoomType.BOSS_ROOM /*|| currentRoom.containsMonster()*/){
+			DungeonAdventure.createBattle();
+			return 'b';
+		}else if(currentRoom.getMyType() == RoomType.PIT){
+			myHero.takeDamage(10);
+			DungeonGUI.setHealthLabel(myHero);
+			return 'p';
+		}
+		return '0';
+
+	}
+
+
 
 
 
