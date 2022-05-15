@@ -3,14 +3,19 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class BattleGUI extends JPanel {
+    // Border
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 5);
+    // Stats for player and monster
     private static JLabel myStatsLabel;
-    private static JLabel heroImage;
+    // Hero face image
+    private static JLabel heroFaceImage;
+    // Hero in game image
+    private static JLabel heroInGameImage;
+    // Monster image
     private static JLabel monsterImage;
-
+    // Battle variable we set later
     private static Battle myBattle;
     BattleGUI(Font thePixelFont) {
-        Battle battle = new Battle(DungeonAdventure.getMyHero());
 
         GridBagConstraints gbc = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
@@ -24,9 +29,8 @@ public class BattleGUI extends JPanel {
         gbc.gridheight = 3;
         gbc.gridx = 0;
 
-        JPanel displayPanel = new JPanel(new GridBagLayout());
+        drawWindow displayPanel = new drawWindow();
         displayPanel.setOpaque(true);
-        displayPanel.setBackground(Color.BLACK);
         displayPanel.setBorder(OUTLINE_BORDER);
         this.add(displayPanel, gbc);
 
@@ -57,11 +61,19 @@ public class BattleGUI extends JPanel {
         gbc.gridy = 0;
         displayPanel.add(character1, gbc);
 
-        heroImage = new JLabel();
-        heroImage.setBorder(OUTLINE_BORDER);
-        character1.add(heroImage, gbc);
+        heroFaceImage = new JLabel();
+        heroFaceImage.setOpaque(true);
+        heroFaceImage.setBackground(Color.BLACK);
+        heroFaceImage.setBorder(OUTLINE_BORDER);
+        character1.add(heroFaceImage, gbc);
 
+        heroInGameImage = new JLabel();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(150,20,0,0);
+        character1.add(heroInGameImage, gbc);
 
+        gbc.insets = new Insets(0,0,0,0);
         JPanel stats = new JPanel(new GridBagLayout());
         stats.setOpaque(false);
         gbc.gridx = 1;
@@ -149,7 +161,8 @@ public class BattleGUI extends JPanel {
         Hero hero = battle.myHero;
         Monster monster = battle.myMonster;
 
-        heroImage.setIcon(hero.getMySprite());
+        heroFaceImage.setIcon(hero.getMySprite());
+        heroInGameImage.setIcon(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
         monsterImage.setIcon(monster.getMySprite());
 
         StringBuilder string = new StringBuilder("STATS" + "\n"+ hero.getHealth() + " Health "
@@ -171,5 +184,22 @@ public class BattleGUI extends JPanel {
     public static void setMyBattle(Battle battle){myBattle = battle;}
     public static Battle getMyBattle(){return myBattle;}
 
+    /**
+     * Inner class drawWindow that works as the display panel showing off the
+     * current room's image, as well as the inGame player and inGame enemies, items, etc.
+     */
+    protected static class drawWindow extends JPanel{
+        private Image myWindowImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/FinalFantasyEsqBattle.png");
+
+        drawWindow(){
+            this.setLayout(new GridBagLayout());
+            this.setVisible(true);
+        }
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.drawImage(myWindowImg,0,0,getWidth(),getHeight(),this);
+        }
+    }
 
 }
