@@ -15,7 +15,7 @@ public class Room {
 	 * Holds all generated items. If room is an exit, entrance, or pit, no
 	 * other items should generate
 	 */
-	private ArrayList <Item> myObjectList;
+	private Chest myChest;
 	
 	/**
 	 * X coord for this room
@@ -47,26 +47,12 @@ public class Room {
 		
 		this.myXCoord = theXCoord;
 		this.myYCoord = theYCoord;
-		this.myObjectList = null;
+		this.myChest = null;
 		this.myContainsMonster = false;
 		this.myType = theType;
-		if(theType == RoomType.ITEM_ROOM) {
-			this.myObjectList = new ArrayList <Item> ();
-			this.generateItem();
-		}
-
+		if(theType == RoomType.ITEM_ROOM)
+			this.myChest = new Chest();
 		this.hide();
-	}
-	
-	/**
-	 * Generates a random object to be placed in the room
-	 * If pit is generated, nothing else can be generated
-	 * Other than the pit, other items can be present in room.
-	 * 
-	 */
-	final private void generateItem() {
-		Chest chest = new Chest();
-		this.myObjectList.add(chest);
 	}
 	
 	/**
@@ -91,7 +77,7 @@ public class Room {
 	 */
 	final protected void setEmpty() {
 		this.myType = RoomType.EMPTY;
-		this.myObjectList = null;
+		this.myChest = null;
 	}
 	
 	/**
@@ -167,8 +153,8 @@ public class Room {
 	}
 
 	public void addItemsToPlayerInventory(final Hero theHero) {
-		for(Item i : this.myObjectList) {
-			theHero.addInventory(i, 1);
+		if(this.myChest != null) {
+			this.myChest.use(theHero);
 		}
 	}
 }

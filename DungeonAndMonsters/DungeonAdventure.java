@@ -13,7 +13,7 @@ public class DungeonAdventure {
 	private static String myHeroChoice;
 	private static Hero myHero;
 	private static Dungeon myDungeon;
-	private static double myItemRoomChance = .35;
+	private static double myItemRoomChance = .5;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -118,6 +118,14 @@ public class DungeonAdventure {
 	}
 
 	/**
+	 * Used when a chest is a mimic. Need to make a battle with a mimic happen.
+	 * @param theMonster
+	 */
+	public static void createBattle(Monster theMonster){
+		DungeonAdventure.sceneController("battle");
+		BattleGUI.setBattle(new Battle(myHero, theMonster));
+	}
+	/**
 	 * Check rooms for monsters, boss, pits, and items and acts accordingly
 	 */
 	public static char checkRoom(){
@@ -130,6 +138,14 @@ public class DungeonAdventure {
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
 			return 'p';
+		} else if(currentRoom.getMyType() == RoomType.ITEM_ROOM) {
+			currentRoom.addItemsToPlayerInventory(myHero);
+			PlayerInventory inv = myHero.getMyInventory();
+			for(Object s : inv.getAllItems()) {
+				MAIN_GUI.getBackpackGui().addItemToBackpack((String) s);
+			}
+
+			return 'I';
 		}
 		return '0';
 

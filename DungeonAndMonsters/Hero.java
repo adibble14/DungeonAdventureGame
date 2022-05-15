@@ -325,5 +325,10 @@ public abstract class Hero extends DungeonCharacter {
                 "\n\n";
     }
 
-
+    /**
+     * Returns this player's inventory object
+     */
+    protected PlayerInventory getMyInventory() {
+        return this.myInventory;
+    }
 }

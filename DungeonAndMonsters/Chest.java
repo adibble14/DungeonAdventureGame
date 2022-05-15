@@ -25,7 +25,7 @@ public class Chest extends Item{
     protected Chest() {
         super(.1, new ImageIcon("DungeonAndMonsters/potion.png"));
         this.myContents = new ArrayList<>();
-        this.myMimicChance = .17;
+        this.myMimicChance = 0;
         this.myIsMimic = false;
         this.addContents();
     }
@@ -38,18 +38,14 @@ public class Chest extends Item{
      */
     @Override
     public void use(Object theObj) {
-
-        if(theObj.getClass() == Hero.class) {
-            Hero player = (Hero) theObj;
-            if(this.myIsMimic) {
-                // TODO: Call a battle here
-                return;
-            }else {
-                for(Item i : this.myContents) {
-                    player.addInventory(i, 1);
-                }
+        Hero player = (Hero) theObj;
+        if(this.myIsMimic) {
+            DungeonAdventure.createBattle(new Mimic());
+            return;
+        }else {
+            for(Item i : this.myContents) {
+                player.addInventory(i, 1);
             }
-
         }
     }
 
@@ -58,7 +54,6 @@ public class Chest extends Item{
      */
     //new Mimic("Mimic",150,5,30,15,.7,.2,10,15);
     private void addContents() {
-
         // 17% chance of being a mimic
         if(Tools.RANDOM.nextDouble() < this.myMimicChance) {
             this.myIsMimic = true; //TODO: Create a Mimic monster.

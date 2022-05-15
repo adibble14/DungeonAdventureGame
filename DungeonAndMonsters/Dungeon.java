@@ -145,18 +145,7 @@ public class Dungeon {
 		dung[x][y] = unique;
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
 		dung[x][y].setEmpty();
-		// O(n^2) running time of placing monsters
-		for(Room [] r : dung) {
-			for(Room room : r) {
-				if(room == null)
-					continue;
-				RoomType type = room.getMyType();
-				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
-				&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
-					room.setMonster();
-				}
-			}
-		}
+		this.placeMonsters();
 		return dung;
 	}
 
@@ -261,6 +250,27 @@ public class Dungeon {
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png");
 		}else{
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png");
+		}
+
+	}
+
+	/**
+	 * Sets Room's boolean containsMonsters to true.
+	 */
+	private void placeMonsters() {
+		if(this.myDungeon == null)
+			return;
+		// O(n^2) running time of placing monsters
+		for(Room [] r : this.myDungeon) {
+			for(Room room : r) {
+				if(room == null)
+					continue;
+				RoomType type = room.getMyType();
+				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
+						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
+					room.setMonster();
+				}
+			}
 		}
 
 	}

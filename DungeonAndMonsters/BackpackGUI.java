@@ -80,13 +80,13 @@ public class BackpackGUI extends GUI {
             if(button instanceof JButton && ((JButton) button).getIcon() == null){
                 button.setEnabled(true);
                 switch(theItem){
-                    case "healthPotion":
+                    case "HEALTH_POTION":
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).addActionListener(e -> {
                             //TODO use potion functionality
                         });
                         break;
-                    case "visionPotion":
+                    case "VISION_POTION":
                         ((JButton) button).setIcon(potionIcon);
                         break;
                     default:

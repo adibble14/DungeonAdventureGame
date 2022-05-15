@@ -16,6 +16,9 @@ public class Mimic extends Monster{
     protected Mimic(String theName, int theHealth, int theSpeed, int theMaxDamage, int theMinDamage, double theAccuracy, double theHealChance, int theMinHeal, int theMaxHeal) {
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal);
     }
+    protected Mimic() {
+        super("Mimic",140,5,15,5,.5,0,0,0);
+    }
 
     /**
      * Maybe eats the gold of the player?

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -79,12 +80,31 @@ public class PlayerInventory {
         return this.myPillars.keySet().toArray(new Pillar[this.myPillars.size()]);
     }
     /**
-     * Should return all item counts, will probably not be used.
-     * Not implemented yet.
-     * @return
+     * Returns an array of all items in player inventory, except gold
+     * @return A String representation of an item's name.
      */
-    public int getAllItemCounts() {
-    //TODO: Decide if this is needed.
-        return -1;
+    public Object [] getAllItems() {
+        ArrayList<String> result = new ArrayList<>();
+        ArrayList<ItemType> itemTypes = new ArrayList<>(this.myInventory.keySet());
+        for(ItemType i : itemTypes) {
+            for(int j = 0; j < this.myInventory.get(i); j++) {
+                result.add(i.toString());
+            }
+        }
+        System.out.println(Arrays.toString(result.toArray()));
+        return result.toArray();
+    }
+
+    public String toString() {
+
+        StringBuilder string = new StringBuilder();
+        string.append("Player Inventory: ");
+        string.append("\n");
+        Object [] items = this.getAllItems();
+        for(Object i : items) {
+            string.append((String) i);
+            string.append("\n");
+        }
+        return string.toString();
     }
 }
