@@ -13,7 +13,7 @@ public class DungeonAdventure {
 	private static String myHeroChoice;
 	private static Hero myHero;
 	private static Dungeon myDungeon;
-	private static double myItemRoomChance = .5;
+	private static double myItemRoomChance = .7;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -147,6 +147,7 @@ public class DungeonAdventure {
 			while(MAIN_GUI.getBackpackGui().getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
 				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.VISION_POTION.toString());
 			}
+			MAIN_GUI.getBackpackGui().refreshGoldValue();
 			currentRoom.setEmpty();
 			return 'I';
 		}

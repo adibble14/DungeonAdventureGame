@@ -20,5 +20,7 @@ public class Gold extends Item{
     @Override
     public void use(Object theObj) {
         //TODO: gold shouldnt have this, make gold not an Item?
+        Hero player = (Hero) theObj;
+        player.setGoldAmount(this.myValue);
     }
 }

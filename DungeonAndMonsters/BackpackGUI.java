@@ -30,7 +30,7 @@ public class BackpackGUI extends GUI {
         // Change the name of the frame
         this.setTitle("Backpack!");
         // Size this frame to be slightly smaller
-        this.setSize(450, 300);
+        this.setSize(450, 400);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         // Not resizable and starts invisible
         this.setResizable(false);
@@ -115,5 +115,12 @@ public class BackpackGUI extends GUI {
     }
     public int getMyActiveVisionPotions() {
         return this.myActiveVisionPotions;
+    }
+
+    /**
+     * refreshes gold label when player received more gold.
+     */
+    public void refreshGoldValue() {
+        playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
     }
 }

@@ -177,9 +177,6 @@ public abstract class Hero extends DungeonCharacter {
             this.myInventory.addItem(ItemType.VISION_POTION, theAmount);
         } else if (theItem.getClass() == Pillar.class) {
             this.myInventory.addPillar((Pillar) theItem);
-        } else if(theItem.getClass() == Gold.class) {
-            Gold g = (Gold) theItem;
-            g.use(this);
         }
     }
 
@@ -215,6 +212,13 @@ public abstract class Hero extends DungeonCharacter {
      * @return gold in integer form
      */
     final protected int getGoldCount(){return this.myInventory.getMyGoldAmount();}
+
+    /**
+     * Sets gold amount of player
+     */
+    final protected void setGoldAmount(final int theValue) {
+        this.myInventory.addGold(theValue);
+    }
     /**
      * If Health Potion count is at least one. Increases Health depending on
      * Health Potion value generated.

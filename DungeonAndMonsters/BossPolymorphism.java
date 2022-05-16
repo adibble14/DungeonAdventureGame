@@ -30,4 +30,12 @@ public class BossPolymorphism extends BossMonsters{
     protected void special(DungeonCharacter theChar) {
 
     }
+
+    /**
+     * Adds Pillar to player inventory
+     * @param theHero
+     */
+    protected void defeated(Hero theHero) {
+        //theHero.getMyInventory().addPillar(new Pillar());
+    }
 }

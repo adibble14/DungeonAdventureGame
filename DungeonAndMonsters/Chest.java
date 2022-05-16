@@ -44,6 +44,9 @@ public class Chest extends Item{
             return;
         }else {
             for(Item i : this.myContents) {
+                if(i.getClass() == Gold.class) {
+                    i.use(player);
+                }
                 player.addInventory(i, 1);
             }
         }
