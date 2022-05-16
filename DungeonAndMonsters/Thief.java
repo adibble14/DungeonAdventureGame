@@ -15,7 +15,7 @@ public class Thief extends Hero {
      */
     protected Thief(final String theName) {
 
-        super(theName, 95, 6, 20, 10, .9, .4, image);
+        super(theName, 95, 6, 20, 10, .9, .4, image, image);
     }
 
     /**

@@ -15,7 +15,7 @@ public class Warrior extends Hero {
      */
     protected Warrior(final String theName) {
 
-        super(theName, 125, 3, 50, 30, .8, .6, image);
+        super(theName, 125, 3, 50, 30, .8, .6, image, image);
     }
 
 

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class DungeonGUI extends JPanel {
     // white outline border to be used in dungeon
@@ -24,10 +25,16 @@ public class DungeonGUI extends JPanel {
     // Used for displaying the hero in game, monsters, items, rooms
     private static drawWindow myDungeonWindow;
 
+    private static JButton upMove;
+    private static JButton downMove;
+    private static JButton leftMove;
+    private static JButton rightMove;
+
 
 
     // TODO temporary variable to test dungeonWindow
-    private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
+    //private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
+    private static JLabel myInGameSprite = new JLabel();
     private static JLabel myInGamePit = new JLabel(new ImageIcon("DungeonAndMonsters/random images/pit.png"));
 
     // TODO Any variables that are updated outside this class make static?
@@ -97,7 +104,7 @@ public class DungeonGUI extends JPanel {
         // area for putting things into the display window ------------
 
         // Adding the temporary thief inGame sprite
-        myDungeonWindow.add(myThiefInGameSprite,gbc);
+        myDungeonWindow.add(myInGameSprite,gbc);
 
 
         // Resetting some constraints
@@ -184,16 +191,17 @@ public class DungeonGUI extends JPanel {
         // Left button
         gbc.gridx = 1;
         gbc.gridy = 1;
-        JButton leftMove = new JButton("Left");
+        leftMove = new JButton("Left");
         leftMove.setFont(thePixelFont);
         buttonArea.add(leftMove, gbc);
         leftMove.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1));
+            enableButtons();
+            disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
             char init = DungeonAdventure.checkRoom();
             if(init == 'p'){
                 addPit(gbc);
-               // myDungeonWindow.add(myInGamePit, gbc);
             }
             repaint();
         });
@@ -202,16 +210,17 @@ public class DungeonGUI extends JPanel {
         // Up button
         gbc.gridx = 2;
         gbc.gridy = 0;
-        JButton upMove = new JButton("Up");
+        upMove = new JButton("Up");
         upMove.setFont(thePixelFont);
         buttonArea.add(upMove, gbc);
         upMove.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord()));
+            enableButtons();
+            disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
             char init = DungeonAdventure.checkRoom();
             if(init == 'p'){
                 addPit(gbc);
-                //myDungeonWindow.add(myInGamePit, gbc);
             }
             repaint();
         });
@@ -219,16 +228,17 @@ public class DungeonGUI extends JPanel {
         // Down button
         gbc.gridx = 2;
         gbc.gridy = 2;
-        JButton downMove = new JButton("Down");
+        downMove = new JButton("Down");
         downMove.setFont(thePixelFont);
         buttonArea.add(downMove, gbc);
         downMove.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(),getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord()));
+            enableButtons();
+            disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
             char init = DungeonAdventure.checkRoom();
             if(init == 'p'){
                 addPit(gbc);
-                //myDungeonWindow.add(myInGamePit, gbc);
             }
             repaint();
         });
@@ -236,16 +246,17 @@ public class DungeonGUI extends JPanel {
         // Right button
         gbc.gridx = 3;
         gbc.gridy = 1;
-        JButton rightMove = new JButton("Right");
+        rightMove = new JButton("Right");
         rightMove.setFont(thePixelFont);
         buttonArea.add(rightMove, gbc);
         rightMove.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1));
+            enableButtons();
+            disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
             char init = DungeonAdventure.checkRoom();
             if(init == 'p'){
                 addPit(gbc);
-                //myDungeonWindow.add(myInGamePit, gbc);
             }
             repaint();
         });
@@ -263,12 +274,18 @@ public class DungeonGUI extends JPanel {
         setHealthLabel(theHero);
         // Sets the image of the hero
         setMyHeroImage(theHero);
+
+        setMyInGameSprite(theHero);
         // Sets the name specified by what the player types in
         setMyHeroName(theHero);
         // Sets the starting room number in the corner of the GUI
         myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord()));
 
         myRoomLabel.setText(DungeonAdventure.getRoomLabel(theDungeon));
+
+        ArrayList theRooms = Dungeon.availableRooms(theDungeon);
+        disableButtons(theRooms);
+
     }
 
 
@@ -295,6 +312,10 @@ public class DungeonGUI extends JPanel {
         myHeroImage.setIcon(theHero.getMySprite());
     }
 
+    private static void setMyInGameSprite(final Hero theHero){
+        myInGameSprite.setIcon(theHero.getMyInGameSprite());
+    }
+
     /**
      * Sets the GUI hero name
      * @param theHero user selected hero
@@ -307,15 +328,38 @@ public class DungeonGUI extends JPanel {
      * adds the pit image to the dungeon
      * @param gbc
      */
-    public static void addPit(GridBagConstraints gbc){
+    private static void addPit(GridBagConstraints gbc){
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weighty = 0.5;
         gbc.weightx = 0.5;
-        gbc.insets = new Insets(60,80,60,80);
+        gbc.insets = new Insets(70,80,70,80);
         gbc.anchor = GridBagConstraints.SOUTH;
         myDungeonWindow.add(myInGamePit, gbc);
     }
+
+    private static void disableButtons(ArrayList theRooms){
+        if(!theRooms.contains("south")){
+            downMove.setEnabled(false);
+        }
+        if(!theRooms.contains("north")){
+            upMove.setEnabled(false);
+        }
+        if(!theRooms.contains("west")){
+            leftMove.setEnabled(false);
+        }
+        if(!theRooms.contains("east")){
+            rightMove.setEnabled(false);
+        }
+    }
+
+    private static void enableButtons(){
+        downMove.setEnabled(true);
+        upMove.setEnabled(true);
+        rightMove.setEnabled(true);
+        leftMove.setEnabled(true);
+    }
+
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

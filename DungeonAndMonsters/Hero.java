@@ -41,8 +41,7 @@ public abstract class Hero extends DungeonCharacter {
     /**
      * Child constructor of Hero class. Calls super class constructor to init fields.
      * Inits Hero class exclusive fields.
-     *
-     * @param theName        value given by user
+     *  @param theName        value given by user
      * @param theHealth      value given by child class
      * @param theSpeed       value given by child class
      * @param theMaxDamage   value given by child class
@@ -51,9 +50,9 @@ public abstract class Hero extends DungeonCharacter {
      * @param theBlockChance value given by child class
      */
     protected Hero(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage,
-                   final double theAccuracy, final double theBlockChance, final ImageIcon theSprite) {
+                   final double theAccuracy, final double theBlockChance, final ImageIcon theSprite, final ImageIcon theInGameSprite) {
 
-        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite);
+        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite, theInGameSprite);
         this.setBlockChance(theBlockChance);
         this.myHealthPotionCount = 0;
         this.myVisionPotionCount = 0;

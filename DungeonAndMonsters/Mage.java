@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * This class inherits from the Hero abstract class. Creates a Mage character. Overrides special attack method.
@@ -14,7 +13,7 @@ public class Mage extends Hero {
      */
     protected Mage(final String theName) {
 
-        super(theName, 75, 4, 80, 50, .7, .3, image);
+        super(theName, 75, 4, 80, 50, .7, .3, image, image);
     }
 
     /**

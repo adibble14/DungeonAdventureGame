@@ -7,6 +7,7 @@ import javax.swing.*;
 public class Archer extends Hero {
 
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png");
+    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png");
 
     /**
      * Constructor with set values. Calls on super constructor to init fields
@@ -16,7 +17,7 @@ public class Archer extends Hero {
      */
     protected Archer(final String theName) {
 
-        super(theName, 100, 4, 30, 25, .7, .5,image);
+        super(theName, 100, 4, 30, 25, .7, .5,image, inGameImage);
     }
 
     /**

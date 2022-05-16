@@ -89,7 +89,6 @@ public class DungeonAdventure {
 			DungeonGUI.getMyRoomLabel().setText(getRoomLabel(theDungeon));
 			return Dungeon.setMyDungeonRoom(theDungeon);
 		}else{
-			System.out.println("can't go that way!");
 			return theCurrentImage;
 		}
 

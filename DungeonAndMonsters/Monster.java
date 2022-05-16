@@ -37,7 +37,7 @@ public abstract class Monster extends DungeonCharacter {
                       final double theAccuracy, final double theHealChance, final int theMinHeal, final int theMaxHeal) {
 
         // TODO fix, give sprites to every monster
-        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, null);
+        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, null, null);
         this.setHealChance(theHealChance);
         this.setMinHeal(theMinHeal);
         this.setMaxHeal(theMaxHeal);

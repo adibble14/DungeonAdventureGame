@@ -194,13 +194,44 @@ public class Dungeon {
 	}
 
 	/**
+	 * returns all the possible ways to move
+	 * @param theDung
+	 * @return
+	 */
+	public static ArrayList availableRooms(final Dungeon theDung){
+		ArrayList theRooms = new ArrayList();
+		Room room = theDung.getCurrentRoom();
+		int row = room.getXCoord();
+		int col = room.getYCoord();
+		Room south = theDung.getRoom(row+1, col);
+		Room north = theDung.getRoom(row-1, col);
+		Room west = theDung.getRoom(row, col-1);
+		Room east = theDung.getRoom(row, col+1);
+
+		if(south != null){
+			theRooms.add("south");
+		}
+		if(north != null){
+			theRooms.add("north");
+		}
+		if(west != null){
+			theRooms.add("west");
+		}
+		if(east != null){
+			theRooms.add("east");
+		}
+
+		return theRooms;
+	}
+
+	/**
 	 * Fancy way of changing the image representation of the room
 	 * we are currently in inside the game. In the GUI we have an image that
 	 * changes depending on free rooms around us.
 	 * @param theDung Dungeon created after CharacterSelect
 	 */
 	public static Image setMyDungeonRoom(final Dungeon theDung){
-		Room room = theDung.getCurrentRoom();
+		/*Room room = theDung.getCurrentRoom();
 		HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
 		for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
 			System.out.println("Key: " + Arrays.toString(set.getKey()) + " " + "Value: " + set.getValue());
@@ -219,36 +250,44 @@ public class Dungeon {
 		System.out.println("North: " + north);
 		System.out.println("West: " + west);
 		System.out.println("East: " + east);
-		System.out.println("Room contains monster?" + room.containsMonster());
+		System.out.println("Room contains monster?" + room.containsMonster());*/
+		ArrayList theRooms = availableRooms(theDung);
+		Boolean north = theRooms.contains("north");
+		Boolean south = theRooms.contains("south");
+		Boolean east = theRooms.contains("east");
+		Boolean west = theRooms.contains("west");
+		
 
 
-		if(north != null && south != null && east != null && west != null){
+		if(north && south && east && west){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png");
-		}else if(north != null && south != null && east != null){
+		}else if(north && south && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png");
-		}else if(north != null && south != null && west != null){
+		}else if(north && south && west){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_left.png");
-		}else if(south != null && west != null && east != null){
+		}else if(south && west && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_down.png");
-		}else if(north != null && west != null && east!= null){
+		}else if(north && west && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_up.png");
-		}else if(north != null && west != null){
+		}else if(north && west){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topleft.png");
-		}else if(north != null && east != null){
+		}else if(north && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_topright.png");
-		}else if(south != null && west != null){
+		}else if(south && west){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomleft.png");
-		}else if(south != null && east != null){
+		}else if(south && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_bottomright.png");
-		}else if(south != null && north != null){
+		}else if(south && north){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_updown.png");
-		}else if(west != null && east != null){
+		}else if(west && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_2_leftright.png");
-		}else if(north != null){
+		}else if(north){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_up.png");
-		}else if(south != null){
+		}else if(south){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_down.png");
-		}else{
+		}else if(east){
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_right.png");
+		} else{
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/Dungeon_1_left.png");
 		}
 

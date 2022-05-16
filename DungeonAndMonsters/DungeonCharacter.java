@@ -46,6 +46,8 @@ public abstract class DungeonCharacter {
      */
     private ImageIcon mySprite;
 
+    private ImageIcon myInGameSprite;
+
     /**
      * Parent constructor for all classes in package.
      *
@@ -57,7 +59,8 @@ public abstract class DungeonCharacter {
      * @param theAccuracy  stores minimum damage value given by child class
      * @param theSprite    stores the image associated with the object
      */
-    protected DungeonCharacter(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy, final ImageIcon theSprite) {
+    protected DungeonCharacter(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage, final double theAccuracy,
+                               final ImageIcon theSprite, final ImageIcon theInGameSprite) {
         this.setName(theName);
         this.setHealth(theHealth);
         this.setMaxHealth(theHealth);
@@ -66,6 +69,7 @@ public abstract class DungeonCharacter {
         this.setMinDamage(theMinDamage);
         this.setAccuracy(theAccuracy);
         this.setSprite(theSprite);
+        this.setMyInGameSprite(theInGameSprite);
         this.MY_RAND = new Random();
     }
 
@@ -213,6 +217,9 @@ public abstract class DungeonCharacter {
     final protected void setSprite(final ImageIcon theSprite){
         this.mySprite = theSprite;
     }
+
+    final protected ImageIcon getMyInGameSprite(){return this.myInGameSprite;}
+    final protected void setMyInGameSprite(final ImageIcon theSprite){this.myInGameSprite = theSprite;}
 
 
 

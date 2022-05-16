@@ -89,12 +89,19 @@ public class BackpackGUI extends GUI {
                         this.myActiveHealthPotions++;
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).addActionListener(e -> {
-                            //TODO use potion functionality
+                            myHero.setHealth(myHero.getHealth() + 25);
+                            DungeonGUI.setHealthLabel(myHero);
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
                         });
                         break;
                     case "VISION_POTION":
                         this.myActiveVisionPotions++;
                         ((JButton) button).setIcon(potionIcon);
+                        ((JButton) button).addActionListener(e -> {
+                            System.out.println("vision");
+                            //TODO use potion functionality
+                        });
                         break;
                     default:
                         System.out.println("Null item");
