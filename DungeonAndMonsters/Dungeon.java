@@ -123,19 +123,19 @@ public class Dungeon {
 	 */
 	private  Room[][] generateDungeon(final int theSize) {
 		Room[][] dung = new Room[theSize][theSize];
-		int x = Tools.RANDOM.nextInt(0, theSize -1);
-		int y = Tools.RANDOM.nextInt(0, theSize -1);
+		int x = Tools.RANDOM.nextInt(0, theSize/3-1);
+		int y = Tools.RANDOM.nextInt(0, theSize-1);
 		Room entrance = new Room(x,y, RoomType.ENTRANCE);
 		setCurrentRoom(entrance);
 		dung [x][y] = entrance;
 		System.out.println("Entrance Coords: " + x + " " + y);
-		x = Tools.RANDOM.nextInt(0, theSize-1);
+		x = Tools.RANDOM.nextInt(theSize/2, theSize-1);
 		y = Tools.RANDOM.nextInt(0, theSize-1);
 		Room exit = new Room(x,y, RoomType.EXIT);
 		dung[x][y] = exit;
 		System.out.println("Exit Coords: " + x + " " + y);
 		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
-		x = Tools.RANDOM.nextInt(0, theSize-1);
+		x = theSize-1;
 		y = Tools.RANDOM.nextInt(0, theSize-1);
 		Room bossRoom = new Room(x,y,RoomType.BOSS_ROOM);
 		dung[x][y] = bossRoom;
@@ -302,8 +302,9 @@ public class Dungeon {
 		// O(n^2) running time of placing monsters
 		for(Room [] r : this.myDungeon) {
 			for(Room room : r) {
-				if(room == null)
+				if(room == null){
 					continue;
+				}
 				RoomType type = room.getMyType();
 				if(Tools.RANDOM.nextDouble() < .15 && type != RoomType.EXIT && type != RoomType.ENTRANCE
 						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
