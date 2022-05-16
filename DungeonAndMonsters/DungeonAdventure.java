@@ -141,10 +141,13 @@ public class DungeonAdventure {
 		} else if(currentRoom.getMyType() == RoomType.ITEM_ROOM) {
 			currentRoom.addItemsToPlayerInventory(myHero);
 			PlayerInventory inv = myHero.getMyInventory();
-			for(Object s : inv.getAllItems()) {
-				MAIN_GUI.getBackpackGui().addItemToBackpack((String) s);
+			while(MAIN_GUI.getBackpackGui().getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {
+				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.HEALTH_POTION.toString());
 			}
-
+			while(MAIN_GUI.getBackpackGui().getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
+				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.VISION_POTION.toString());
+			}
+			currentRoom.setEmpty();
 			return 'I';
 		}
 		return '0';

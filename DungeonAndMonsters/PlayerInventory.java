@@ -62,7 +62,7 @@ public class PlayerInventory {
      * @return item count or null if item does not exist in inventory map
      */
     public int getItemCount(final ItemType theItem) {
-        return this.myInventory.get(theItem);
+        return this.myInventory.getOrDefault(theItem, 0);
     }
 
     /**

@@ -11,6 +11,9 @@ public class BackpackGUI extends GUI {
     // How many objects we can hold on the y axis
     private final int myBackpackHeight = 5;
 
+    private int myActiveHealthPotions;
+    private int myActiveVisionPotions;
+
     // Panel to store things
     private static final JPanel myItemPanel = new JPanel();
     private static final JPanel myGoldPanel = new JPanel();
@@ -47,6 +50,8 @@ public class BackpackGUI extends GUI {
         playerGoldCount.setFont(pixelFont);
         playerGoldCount.setForeground(Color.white);
         myItemPanel.add(playerGoldCount, gbc);
+        this.myActiveHealthPotions = 0;
+        this.myActiveVisionPotions = 0;
     }
 
     /**
@@ -81,12 +86,14 @@ public class BackpackGUI extends GUI {
                 button.setEnabled(true);
                 switch(theItem){
                     case "HEALTH_POTION":
+                        this.myActiveHealthPotions++;
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).addActionListener(e -> {
                             //TODO use potion functionality
                         });
                         break;
                     case "VISION_POTION":
+                        this.myActiveVisionPotions++;
                         ((JButton) button).setIcon(potionIcon);
                         break;
                     default:
@@ -101,5 +108,12 @@ public class BackpackGUI extends GUI {
     public void setMyHero(Hero theHero){
         myHero = theHero;
         playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
+    }
+
+    public int getMyActiveHealthPotions() {
+        return this.myActiveHealthPotions;
+    }
+    public int getMyActiveVisionPotions() {
+        return this.myActiveVisionPotions;
     }
 }
