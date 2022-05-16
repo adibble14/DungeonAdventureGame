@@ -7,6 +7,7 @@ import javax.swing.*;
 public class Thief extends Hero {
 
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/thiefpixel.png");
+    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png");
     /**
      * Constructor with set values. Calls on super constructor to init fields.
      * Initializes Thief class fields.
@@ -15,7 +16,7 @@ public class Thief extends Hero {
      */
     protected Thief(final String theName) {
 
-        super(theName, 95, 6, 20, 10, .9, .4, image, image);
+        super(theName, 95, 6, 20, 10, .9, .4, image, inGameImage);
     }
 
     /**
