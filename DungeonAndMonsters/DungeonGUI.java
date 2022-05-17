@@ -278,6 +278,8 @@ public class DungeonGUI extends JPanel {
         setMyInGameSprite(theHero);
         // Sets the name specified by what the player types in
         setMyHeroName(theHero);
+
+        myDungeonWindow.remove(myInGamePit);
         // Sets the starting room number in the corner of the GUI
         myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord()));
 

@@ -136,6 +136,9 @@ public class DungeonAdventure {
 		}else if(currentRoom.getMyType() == RoomType.PIT){
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
+			if(myHero.getHealth() <= 0){		//because the player died
+				gameOver();
+			}
 			return 'p';
 		} else if(currentRoom.getMyType() == RoomType.ITEM_ROOM) {
 			currentRoom.addItemsToPlayerInventory(myHero);
@@ -152,6 +155,20 @@ public class DungeonAdventure {
 		}
 		return '0';
 
+	}
+
+
+	public static void gameOver(){
+		int input = JOptionPane.showConfirmDialog(null, "GAME OVER.\nPLAY AGAIN?"); // 0=yes, 1=no, 2=cancel
+
+		if(input == 0){		//play again
+			playAgain();
+		}else{		//close the game
+			System.exit(0);
+		}
+	}
+	public static void playAgain(){
+		sceneController("menu");
 	}
 
 

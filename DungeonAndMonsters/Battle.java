@@ -1,5 +1,6 @@
 
 
+import javax.swing.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -41,8 +42,23 @@ public class Battle {
 			}
 
 		} else {
-			this.myMonster.attack(this.myHero);
-			this.myHero.attack(this.myMonster);
+			if(theSpecialCase) {
+				this.myMonster.attack(this.myHero);
+				this.myHero.special(this.myMonster);
+			} else {
+				this.myMonster.attack(this.myHero);
+				this.myHero.attack(this.myMonster);
+			}
+		}
+
+		if(myHero.getHealth() <= 0){
+			BattleGUI.updateBattle();
+			DungeonAdventure.gameOver();
+		}else if(myMonster.getHealth() <= 0){
+			BattleGUI.updateBattle();
+			battleWin();
+			DungeonAdventure.sceneController("dungeon");
+			DungeonGUI.setHealthLabel(myHero);
 		}
 	}
 
@@ -88,6 +104,8 @@ public class Battle {
 		return new Skeleton();	
 	}
 
-
+	public static void battleWin(){
+		JOptionPane.showMessageDialog(null,"Congrats! You won the battle!");
+	}
 
 }

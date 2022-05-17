@@ -117,7 +117,7 @@ public class BattleGUI extends JPanel {
         attack.addActionListener(e->{
             if(myBattle.myHero.getHealth() > 0){
                 getMyBattle().attackPhase(false);
-                setBattle(myBattle);
+                updateBattle();
             }
         });
 
@@ -129,8 +129,8 @@ public class BattleGUI extends JPanel {
         buttonArea.add(special, gbc);
         special.addActionListener(e->{
             if(myBattle.myHero.getHealth() > 0){
-                getMyBattle().myHero.special(getMyBattle().myMonster);
-                setBattle(myBattle);
+                getMyBattle().attackPhase(true);
+                updateBattle();
             }
         });
 
@@ -142,6 +142,7 @@ public class BattleGUI extends JPanel {
         buttonArea.add(healthPotion, gbc);
         healthPotion.addActionListener(e->{
             myBattle.myHero.useHealthPotion();
+            updateBattle();
         });
 
         gbc.gridx = 4;
@@ -156,18 +157,26 @@ public class BattleGUI extends JPanel {
 
     }
 
-    public static void setBattle(Battle battle){
-        setMyBattle(battle);
-        Hero hero = battle.myHero;
-        Monster monster = battle.myMonster;
+    public static void setBattle(Battle theBattle){
+        setMyBattle(theBattle);
+        Hero hero = theBattle.myHero;
+        Monster monster = theBattle.myMonster;
 
         heroFaceImage.setIcon(hero.getMySprite());
         heroInGameImage.setIcon(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
         monsterImage.setIcon(monster.getMySprite());
 
+        updateBattle();
+    }
+
+    public static void updateBattle(){
+        Hero hero = myBattle.myHero;
+        Monster monster = myBattle.myMonster;
+
+
         StringBuilder string = new StringBuilder("STATS" + "\n"+ hero.getHealth() + " Health "
-        + monster.getHealth() +"\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
-        +hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + hero.getMyAccuracy() +
+                + monster.getHealth() +"\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
+                +hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + hero.getMyAccuracy() +
                 " Accuracy " + monster.getMyAccuracy() + "\n" + hero.getBlockChance() + " Block Chance n/a" + "\n"+
                 "n/a Heal Chance " + monster.getHealChance());
 

@@ -89,7 +89,7 @@ public class BackpackGUI extends GUI {
                         this.myActiveHealthPotions++;
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).addActionListener(e -> {
-                            myHero.setHealth(myHero.getHealth() + 25);
+                            myHero.useHealthPotion();
                             DungeonGUI.setHealthLabel(myHero);
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);

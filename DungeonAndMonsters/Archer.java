@@ -17,7 +17,7 @@ public class Archer extends Hero {
      */
     protected Archer(final String theName) {
 
-        super(theName, 100, 4, 30, 25, .7, .5,image, inGameImage);
+        super(theName, 500, 4, 30, 25, .7, .5,image, inGameImage);
     }
 
     /**

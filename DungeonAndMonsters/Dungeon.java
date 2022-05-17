@@ -231,26 +231,6 @@ public class Dungeon {
 	 * @param theDung Dungeon created after CharacterSelect
 	 */
 	public static Image setMyDungeonRoom(final Dungeon theDung){
-		/*Room room = theDung.getCurrentRoom();
-		HashMap<int[], Room> roomHashMap = Tools.GET_NEIGHBORS(theDung.getDungeon(), room);
-		for(Map.Entry<int[], Room> set: roomHashMap.entrySet()) {
-			System.out.println("Key: " + Arrays.toString(set.getKey()) + " " + "Value: " + set.getValue());
-		}
-
-		System.out.println("Room: " + room);
-		int row = room.getXCoord();
-		int col = room.getYCoord();
-		System.out.println("Row: " +row);
-		System.out.println("Col: " + col);
-		Room south = theDung.getRoom(row+1, col);
-		Room north = theDung.getRoom(row-1, col);
-		Room west = theDung.getRoom(row, col-1);
-		Room east = theDung.getRoom(row, col+1);
-		System.out.println("South: " + south);
-		System.out.println("North: " + north);
-		System.out.println("West: " + west);
-		System.out.println("East: " + east);
-		System.out.println("Room contains monster?" + room.containsMonster());*/
 		ArrayList theRooms = availableRooms(theDung);
 		Boolean north = theRooms.contains("north");
 		Boolean south = theRooms.contains("south");
