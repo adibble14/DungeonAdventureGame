@@ -123,28 +123,34 @@ public class Dungeon {
 	 */
 	private  Room[][] generateDungeon(final int theSize) {
 		Room[][] dung = new Room[theSize][theSize];
-		int x = Tools.RANDOM.nextInt(0, theSize/3-1);
-		int y = Tools.RANDOM.nextInt(0, theSize-1);
-		Room entrance = new Room(x,y, RoomType.ENTRANCE);
+
+		int entranceXCoord = Tools.RANDOM.nextInt(0, theSize/3-1);
+		int entranceYCoord = Tools.RANDOM.nextInt(0, theSize-1);
+		int exitXCoord = Tools.RANDOM.nextInt(theSize/2, theSize-1);
+		int exitYCoord = Tools.RANDOM.nextInt(0, theSize-1);
+		int bossX = theSize-1;
+		int bossY = Tools.RANDOM.nextInt(0, theSize-1);
+		int uniqueX = Tools.RANDOM.nextInt(0,theSize-1);
+		int uniqueY = Tools.RANDOM.nextInt(0,theSize-1);
+
+		Room entrance = new Room(entranceXCoord,entranceYCoord, RoomType.ENTRANCE);
+		Room exit = new Room(exitXCoord,exitYCoord, RoomType.EXIT);
+		Room bossRoom = new Room(bossX,bossY,RoomType.BOSS_ROOM);
+		Room unique = new Room(uniqueX,uniqueY,RoomType.UNIQUE);
+
 		setCurrentRoom(entrance);
-		dung [x][y] = entrance;
-		System.out.println("Entrance Coords: " + x + " " + y);
-		x = Tools.RANDOM.nextInt(theSize/2, theSize-1);
-		y = Tools.RANDOM.nextInt(0, theSize-1);
-		Room exit = new Room(x,y, RoomType.EXIT);
-		dung[x][y] = exit;
-		System.out.println("Exit Coords: " + x + " " + y);
+
+		dung[entranceXCoord][entranceYCoord] = entrance;
+		dung[exitXCoord][exitYCoord] = exit;
+		dung[bossX][bossY] = bossRoom;
+		dung[uniqueX][uniqueY] = unique;
+
+		System.out.println("Entrance Coords: " + entranceXCoord + " " + entranceYCoord);
+		System.out.println("Exit Coords: " + exitXCoord + " " + exitYCoord);
+
 		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
-		x = theSize-1;
-		y = Tools.RANDOM.nextInt(0, theSize-1);
-		Room bossRoom = new Room(x,y,RoomType.BOSS_ROOM);
-		dung[x][y] = bossRoom;
-		x = Tools.RANDOM.nextInt(0,theSize-1);
-		y = Tools.RANDOM.nextInt(0,theSize-1);
-		Room unique = new Room(x,y,RoomType.UNIQUE);
-		dung[x][y] = unique;
 		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
-		dung[x][y].setEmpty();
+		dung[uniqueX][uniqueY].setEmpty();
 		this.placeMonsters();
 		return dung;
 	}
