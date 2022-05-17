@@ -14,6 +14,7 @@ public class DungeonAdventure {
 	private static Hero myHero;
 	private static Dungeon myDungeon;
 	private static double myItemRoomChance = .7;
+	private static int numDungeonsPassed;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -25,11 +26,12 @@ public class DungeonAdventure {
 
 	// START METHOD
 	public static void setUPGame(){
+		numDungeonsPassed = 0;
 		createHero();
 		MAIN_GUI.setTheHero(myHero);
-		createDungeon(getMyHero());
+		createDungeon();
 		// First run through updating the dungeonGUI scene
-		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
+		//DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
 
 
@@ -74,8 +76,9 @@ public class DungeonAdventure {
 	public static String getMyHeroChoice(){return myHeroChoice;}
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
-	public static void createDungeon(Hero theHero){
+	public static void createDungeon(){
 		myDungeon = new Dungeon( 10, .15);
+		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
 
@@ -170,6 +173,53 @@ public class DungeonAdventure {
 	public static void playAgain(){
 		sceneController("menu");
 	}
+
+	public static void battleWin(){
+		if(myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){		//if the user defeated a boss monster, then advance to next dungeon
+			numDungeonsPassed++;
+			if(numDungeonsPassed == 1){		//TODO add corresponding pillar into backpack and also show image in the message dialog
+				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Inheritance!\nYou have been awarded the Pillar of Inheritance!");
+				nextDungeon();
+			}else if(numDungeonsPassed == 2){
+				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Encapsulation!\nYou have been awarded the Pillar of Encapsulation!");
+				nextDungeon();
+			}else if(numDungeonsPassed == 3){
+				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Abstraction!\nYou have been awarded the Pillar of Abstraction!");
+				nextDungeon();
+			} else{	//beat all 4 dungeons
+				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Polymorphism!\nYou have been awarded the Pillar of Polymorphism!");
+				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
+				if(input == 0){		//play again
+					playAgain();
+				}else{		//close the game
+					System.exit(0);
+				}
+			}
+		}else{
+			JOptionPane.showMessageDialog(null,"Congrats! You won the battle!");
+			DungeonAdventure.sceneController("dungeon");
+			DungeonGUI.setHealthLabel(myHero);
+		}
+	}
+
+	public static void nextDungeon(){
+		createDungeon();	//creating new dungeon
+		myHero.setHealth(myHero.getMaxHealth()); //setting health back to full  //TODO should we set the health back to full???
+		sceneController("dungeon");
+		DungeonGUI.setHealthLabel(myHero);
+		DungeonGUI.enableButtons();
+	}
+
+	public static String getNameOfDungeon(){
+		switch(numDungeonsPassed){
+			case 1: return "Inheritance";
+			case 2: return "Encapsulation";
+			case 3: return "Abstraction";
+			default:return "Polymorphism";
+		}
+	}
+
+
 
 
 

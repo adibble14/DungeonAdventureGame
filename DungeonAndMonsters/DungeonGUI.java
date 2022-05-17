@@ -90,6 +90,7 @@ public class DungeonGUI extends JPanel {
 
         displayPanel.add(myRoomLabel,gbc);
 
+
         // displayWindow panel, what we see inside the game
         gbc.insets = new Insets(20,0,20,10);
         gbc.gridx = 1;
@@ -355,7 +356,7 @@ public class DungeonGUI extends JPanel {
         }
     }
 
-    private static void enableButtons(){
+    static void enableButtons(){
         downMove.setEnabled(true);
         upMove.setEnabled(true);
         rightMove.setEnabled(true);

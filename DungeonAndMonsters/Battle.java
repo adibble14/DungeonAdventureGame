@@ -56,9 +56,9 @@ public class Battle {
 			DungeonAdventure.gameOver();
 		}else if(myMonster.getHealth() <= 0){
 			BattleGUI.updateBattle();
-			battleWin();
-			DungeonAdventure.sceneController("dungeon");
-			DungeonGUI.setHealthLabel(myHero);
+			DungeonAdventure.battleWin();
+			//DungeonAdventure.sceneController("dungeon");
+			//DungeonGUI.setHealthLabel(myHero);
 		}
 	}
 
@@ -104,8 +104,5 @@ public class Battle {
 		return new Skeleton();	
 	}
 
-	public static void battleWin(){
-		JOptionPane.showMessageDialog(null,"Congrats! You won the battle!");
-	}
 
 }
