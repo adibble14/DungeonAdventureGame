@@ -131,6 +131,7 @@ public class DungeonAdventure {
 	 * Check rooms for monsters, boss, pits, and items and acts accordingly
 	 */
 	public static char checkRoom(){
+		StringBuilder playerConsole = new StringBuilder();
 		Room currentRoom = myDungeon.getCurrentRoom();
 
 		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
@@ -139,6 +140,8 @@ public class DungeonAdventure {
 		}else if(currentRoom.getMyType() == RoomType.PIT){
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
+			playerConsole.append(myUserName + " has taken 10 damage from a pit trap!");
+			DungeonGUI.setPlayerConsole(playerConsole);
 			if(myHero.getHealth() <= 0){		//because the player died
 				gameOver();
 			}
@@ -148,15 +151,20 @@ public class DungeonAdventure {
 			PlayerInventory inv = myHero.getMyInventory();
 			while(MAIN_GUI.getBackpackGui().getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {
 				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.HEALTH_POTION.toString());
+				playerConsole.append(myUserName).append(" has obtained a Health Potion!\n");
 			}
 			while(MAIN_GUI.getBackpackGui().getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
 				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.VISION_POTION.toString());
+				playerConsole.append(myUserName).append(" has obtained a Vision Potion!\n");
 			}
 			MAIN_GUI.getBackpackGui().refreshGoldValue();
 			currentRoom.setEmpty();
+			DungeonGUI.setPlayerConsole(playerConsole);
 			return 'I';
+		} else{
+			DungeonGUI.setPlayerConsole(playerConsole);
+			return '0';
 		}
-		return '0';
 
 	}
 

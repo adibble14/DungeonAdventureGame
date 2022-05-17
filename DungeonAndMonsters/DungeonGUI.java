@@ -12,6 +12,8 @@ public class DungeonGUI extends JPanel {
     // Health indicator reference
     private static JLabel myHealthLabel;
 
+    // Console to display what's going on in the dungeon
+    private static JTextArea myPlayerConsole;
     // Room indicator (we are in room 0,0)
     private static JLabel myRoomLabel;
 
@@ -25,17 +27,18 @@ public class DungeonGUI extends JPanel {
     // Used for displaying the hero in game, monsters, items, rooms
     private static drawWindow myDungeonWindow;
 
-    private static JButton upMove;
-    private static JButton downMove;
-    private static JButton leftMove;
-    private static JButton rightMove;
+    // Buttons used for movement
+    private static JButton myUpMoveButton;
+    private static JButton myDownMoveButton;
+    private static JButton myLeftMoveButton;
+    private static JButton myRightMoveButton;
 
 
 
     // TODO temporary variable to test dungeonWindow
     //private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
     private static JLabel myInGameSprite = new JLabel();
-    private static JLabel myInGamePit = new JLabel(new ImageIcon("DungeonAndMonsters/random images/pit.png"));
+    private static JLabel myInGamePit = new JLabel(new ImageIcon("DungeonAndMonsters/random images/smallerpit.png"));
 
     // TODO Any variables that are updated outside this class make static?
     DungeonGUI(Font thePixelFont) {
@@ -83,16 +86,33 @@ public class DungeonGUI extends JPanel {
         myRoomLabel.setForeground(Color.white);
         myRoomLabel.setFont(thePixelFont);
 
+        // Padding left and right of console and room label
+        gbc.insets = new Insets(0,2,0,2);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 0.10;
+        gbc.weightx = 0;
         gbc.weighty = 1;
 
         displayPanel.add(myRoomLabel,gbc);
 
+        // Console for player statuses during dungeon traversal
+        myPlayerConsole = new JTextArea();
+        myPlayerConsole.setBackground(Color.BLACK);
+        myPlayerConsole.setFont(thePixelFont);
+        myPlayerConsole.setForeground(Color.white);
+        myPlayerConsole.setLineWrap(true);
+        myPlayerConsole.setWrapStyleWord(true);
+        myPlayerConsole.setEditable(false);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+
+        displayPanel.add(myPlayerConsole,gbc);
+
 
         // displayWindow panel, what we see inside the game
         gbc.insets = new Insets(20,0,20,10);
+        gbc.gridheight = 2;
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.9;
@@ -105,6 +125,9 @@ public class DungeonGUI extends JPanel {
         // area for putting things into the display window ------------
 
         // Adding the temporary thief inGame sprite
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
         myDungeonWindow.add(myInGameSprite,gbc);
 
 
@@ -120,6 +143,7 @@ public class DungeonGUI extends JPanel {
         gbc.gridy = 0;
         gbc.weightx = 0;
         gbc.weighty = 0;
+        gbc.gridheight = 3;
         buttonPanel.add(playerArea, gbc);
 
         // Movement, map, guide, etc.
@@ -127,11 +151,13 @@ public class DungeonGUI extends JPanel {
         buttonArea.setOpaque(false);
         gbc.gridx = 1;
         gbc.gridy = 0;
+        gbc.gridheight = 3;
         //gbc.anchor = GridBagConstraints.EAST;
         buttonPanel.add(buttonArea, gbc);
 
 
         // playerArea - Place to have user stats and image -------------
+        gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -192,10 +218,10 @@ public class DungeonGUI extends JPanel {
         // Left button
         gbc.gridx = 1;
         gbc.gridy = 1;
-        leftMove = new JButton("Left");
-        leftMove.setFont(thePixelFont);
-        buttonArea.add(leftMove, gbc);
-        leftMove.addActionListener(e->{
+        myLeftMoveButton = new JButton("Left");
+        myLeftMoveButton.setFont(thePixelFont);
+        buttonArea.add(myLeftMoveButton, gbc);
+        myLeftMoveButton.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -211,10 +237,10 @@ public class DungeonGUI extends JPanel {
         // Up button
         gbc.gridx = 2;
         gbc.gridy = 0;
-        upMove = new JButton("Up");
-        upMove.setFont(thePixelFont);
-        buttonArea.add(upMove, gbc);
-        upMove.addActionListener(e->{
+        myUpMoveButton = new JButton("Up");
+        myUpMoveButton.setFont(thePixelFont);
+        buttonArea.add(myUpMoveButton, gbc);
+        myUpMoveButton.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord()));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -229,10 +255,10 @@ public class DungeonGUI extends JPanel {
         // Down button
         gbc.gridx = 2;
         gbc.gridy = 2;
-        downMove = new JButton("Down");
-        downMove.setFont(thePixelFont);
-        buttonArea.add(downMove, gbc);
-        downMove.addActionListener(e->{
+        myDownMoveButton = new JButton("Down");
+        myDownMoveButton.setFont(thePixelFont);
+        buttonArea.add(myDownMoveButton, gbc);
+        myDownMoveButton.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(),getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord()));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -247,10 +273,10 @@ public class DungeonGUI extends JPanel {
         // Right button
         gbc.gridx = 3;
         gbc.gridy = 1;
-        rightMove = new JButton("Right");
-        rightMove.setFont(thePixelFont);
-        buttonArea.add(rightMove, gbc);
-        rightMove.addActionListener(e->{
+        myRightMoveButton = new JButton("Right");
+        myRightMoveButton.setFont(thePixelFont);
+        buttonArea.add(myRightMoveButton, gbc);
+        myRightMoveButton.addActionListener(e->{
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -296,6 +322,9 @@ public class DungeonGUI extends JPanel {
         myHealthLabel.setText("Current health: " + theHero.getHealth());
     }
 
+    static void setPlayerConsole(StringBuilder theMessage){
+        myPlayerConsole.setText(theMessage.toString());
+    }
     public static JLabel getMyRoomLabel(){return myRoomLabel;}
 
 
@@ -334,33 +363,33 @@ public class DungeonGUI extends JPanel {
     private static void addPit(GridBagConstraints gbc){
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weighty = 0.5;
-        gbc.weightx = 0.5;
-        gbc.insets = new Insets(70,80,70,80);
-        gbc.anchor = GridBagConstraints.SOUTH;
+        //gbc.weighty = 0.5;
+        //gbc.weightx = 0.5;
+        //gbc.insets = new Insets(70,80,70,80);
+        //gbc.anchor = GridBagConstraints.SOUTH;
         myDungeonWindow.add(myInGamePit, gbc);
     }
 
     private static void disableButtons(ArrayList theRooms){
         if(!theRooms.contains("south")){
-            downMove.setEnabled(false);
+            myDownMoveButton.setEnabled(false);
         }
         if(!theRooms.contains("north")){
-            upMove.setEnabled(false);
+            myUpMoveButton.setEnabled(false);
         }
         if(!theRooms.contains("west")){
-            leftMove.setEnabled(false);
+            myLeftMoveButton.setEnabled(false);
         }
         if(!theRooms.contains("east")){
-            rightMove.setEnabled(false);
+            myRightMoveButton.setEnabled(false);
         }
     }
 
     static void enableButtons(){
-        downMove.setEnabled(true);
-        upMove.setEnabled(true);
-        rightMove.setEnabled(true);
-        leftMove.setEnabled(true);
+        myDownMoveButton.setEnabled(true);
+        myUpMoveButton.setEnabled(true);
+        myRightMoveButton.setEnabled(true);
+        myLeftMoveButton.setEnabled(true);
     }
 
 

@@ -6,7 +6,8 @@ import javax.swing.*;
 
 public class Warrior extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/warrior.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/WarriorPixel.png");
+    private static final ImageIcon CharacterSelectWarrior = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectWarrior.png");
     /**
      * Class constructor with set values. Calls on super constructor to init fields.
      * Initializes class specific fields.
@@ -54,6 +55,6 @@ public class Warrior extends Hero {
 
     }
     public static ImageIcon getImage(){
-        return image;
+        return CharacterSelectWarrior;
     }
 }

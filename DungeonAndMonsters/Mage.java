@@ -5,7 +5,9 @@ import javax.swing.*;
  */
 
 public class Mage extends Hero {
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/mage.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/MageFaceSprite.png");
+    private static final ImageIcon characterSelectImage = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectMage.png");
+    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/MageInGameSprite.png");
     /**
      * Constructor that has set values for object. Calls on super constructor to init fields.
      *
@@ -13,7 +15,7 @@ public class Mage extends Hero {
      */
     protected Mage(final String theName) {
 
-        super(theName, 75, 4, 80, 50, .7, .3, image, image);
+        super(theName, 75, 4, 80, 50, .7, .3, image, inGameImage);
     }
 
     /**
@@ -38,7 +40,7 @@ public class Mage extends Hero {
     }
 
     public static ImageIcon getImage(){
-        return image;
+        return characterSelectImage;
     }
 
 }

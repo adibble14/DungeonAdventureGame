@@ -11,51 +11,56 @@ public class CharacterSelectionGUI extends JPanel{
         // bg color and how it is laid out.
         // as well as the grid bag constraints
         GridBagConstraints gbc = new GridBagConstraints();
-        this.setBackground(new Color(32,42,68));
+        //this.setBackground(new Color(32,42,68));
+        this.setBackground(Color.BLACK);
         this.setLayout(new GridBagLayout());
 
         // settings for our initial images
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(10, 5, 0, 5);
+        gbc.insets = new Insets(10, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weighty = 1;
-
+        gbc.weightx = 0.5;
 
         // Image placement ----------------------------------------
         // Archer
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel archerLabel = new JLabel(Archer.getImage());
+        archerLabel.setBorder(OUTLINE_BORDER);
         this.add(archerLabel, gbc);
 
         //Mage
         gbc.gridx = 1;
         gbc.gridy = 0;
         JLabel mageLabel = new JLabel(Mage.getImage());
+        mageLabel.setBorder(OUTLINE_BORDER);
         this.add(mageLabel, gbc);
 
         //Thief
         gbc.gridx = 2;
         gbc.gridy = 0;
         JLabel thiefLabel = new JLabel(Thief.getImage());
+        thiefLabel.setBorder(OUTLINE_BORDER);
         this.add(thiefLabel, gbc);
 
         //Warrior
         gbc.gridx = 3;
         gbc.gridy = 0;
         JLabel warriorLabel = new JLabel(Warrior.getImage());
+        warriorLabel.setBorder(OUTLINE_BORDER);
         this.add(warriorLabel, gbc);
 
         //Priestess
         gbc.gridx = 4;
         gbc.gridy = 0;
         JLabel priestessLabel = new JLabel(Priestess.getImage());
+        priestessLabel.setBorder(OUTLINE_BORDER);
         this.add(priestessLabel, gbc);
         // image placement end ----------------------------------------------------------------
 
         // Character description texts start ----------------------------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(3,5,3,5);
         //Archer
         gbc.gridx = 0;
         gbc.gridy = 1;

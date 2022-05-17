@@ -7,6 +7,7 @@ import javax.swing.*;
 public class Archer extends Hero {
 
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png");
+    private static final ImageIcon characterSelectArcher = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectArcher.png");
     private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png");
 
     /**
@@ -54,7 +55,7 @@ public class Archer extends Hero {
     }
 
     public static ImageIcon getImage(){
-        return image;
+        return characterSelectArcher;
     }
 
 }
