@@ -33,4 +33,9 @@ public abstract class BossMonsters extends Monster {
      */
     protected abstract void secondPhase();
 
+    /**
+     * Gives the player a Pillar when this bosss is defeated
+     */
+    protected abstract void defeated(Hero theHero);
+
 }

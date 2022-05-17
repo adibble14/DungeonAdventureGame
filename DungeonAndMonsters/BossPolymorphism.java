@@ -18,23 +18,31 @@ public class BossPolymorphism extends BossMonsters{
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal, thePillar);
     }
 
-    //Overall, increases stats
+    /**
+     * Activated when Boss gets to a certain health amount
+     * Modifies stats to become more powerful
+     */
     @Override
     protected void secondPhase() {
         this.setHealth(this.getHealth() + (this.getHealth()/2));
         this.setMaxDamage(this.getMaxDamage() + 25); //TODO: Magic number
-        this.setAccuracy(this.getMyAccuracy() + .15);
+        this.setAccuracy(this.getMyAccuracy() - .05);
     }
 
+    /**
+     * Brings down theChar's health to 1
+     * @param theChar object to deal damage to
+     */
     @Override
     protected void special(DungeonCharacter theChar) {
-
+        theChar.setHealth(1);
     }
 
     /**
      * Adds Pillar to player inventory
      * @param theHero
      */
+    @Override
     protected void defeated(Hero theHero) {
         //theHero.getMyInventory().addPillar(new Pillar());
     }
