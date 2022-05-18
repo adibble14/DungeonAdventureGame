@@ -58,4 +58,12 @@ public class DungeonTest {
         dungeon.setCurrentRoom(room);
         assertEquals(room, dungeon.getCurrentRoom());
     }
+
+    @Test
+    public void testRandomGeneration() {
+
+        for(int i = 0; i < 10; i++) {
+            Dungeon dung = new Dungeon(10, .7);
+        }
+    }
 }

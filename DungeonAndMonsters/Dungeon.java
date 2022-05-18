@@ -130,7 +130,7 @@ public class Dungeon {
 		int exitYCoord = Tools.RANDOM.nextInt(0, theSize-1);
 		int bossX = theSize-1;
 		int bossY = Tools.RANDOM.nextInt(0, theSize-1);
-		int uniqueX = Tools.RANDOM.nextInt(0,theSize-1);
+		int uniqueX = 0;
 		int uniqueY = Tools.RANDOM.nextInt(0,theSize-1);
 
 		Room entrance = new Room(entranceXCoord,entranceYCoord, RoomType.ENTRANCE);
