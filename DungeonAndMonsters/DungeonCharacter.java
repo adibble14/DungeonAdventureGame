@@ -1,17 +1,18 @@
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * This is the parent abstract class that is inherited from the Hero and Monster class.
  */
 
-public abstract class DungeonCharacter {
+public abstract class DungeonCharacter implements Serializable {
 
     /**
      * Random object that will generate random values throughout the program
      */
-    protected final Random MY_RAND;
+    protected transient final Random MY_RAND;
     /**
      * stores the object's character name
      */
@@ -23,30 +24,30 @@ public abstract class DungeonCharacter {
     /**
      * stores the object's speed value. Influences the amount of turns the hero class can take.
      */
-    private int mySpeed;
+    private transient int mySpeed;
     /**
      * stores the object's maximum damage value.
      */
-    private int myMaxDamage;
+    private transient int myMaxDamage;
     /**
      * stores the object's minimum damage value.
      */
-    private int myMinDamage;
+    private transient int myMinDamage;
     /**
      * stores the object's accuracy value. Influences whether attack lands or misses.
      */
-    private double myAccuracy;
+    private transient double myAccuracy;
     /**
      * stores the object's maximum health value.
      */
-    private int myMaxHealth;
+    private transient int myMaxHealth;
 
     /**
      * stores the object's image also called Sprites
      */
-    private ImageIcon mySprite;
+    private transient ImageIcon mySprite;
 
-    private ImageIcon myInGameSprite;
+    private transient ImageIcon myInGameSprite;
 
     /**
      * Parent constructor for all classes in package.

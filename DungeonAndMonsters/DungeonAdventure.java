@@ -1,14 +1,15 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * Handles logic for game. Receives input from player. Interacts with Dungeon and Hero classes.
  */
-public class DungeonAdventure {
+public class DungeonAdventure implements Serializable {
 	// Scene list
-	private static final MainGUI MAIN_GUI = new MainGUI();
+	private static MainGUI MAIN_GUI = new MainGUI();
 	private static String myUserName;
 	private static String myHeroChoice;
 	private static Hero myHero;
@@ -22,7 +23,8 @@ public class DungeonAdventure {
 	 *
 	 * @param theArgs Command line arguments
 	 */
-	public static void main(String[] theArgs) {}
+	public static void main(String[] theArgs) {
+	}
 
 	// START METHOD
 	public static void setUPGame(){
