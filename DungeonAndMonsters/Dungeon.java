@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  */
 
-public class Dungeon {
+public class Dungeon implements Serializable {
 
 	/**
 	 * Matrix of Room objects
@@ -26,12 +27,12 @@ public class Dungeon {
 	/**
 	 * Chance of an Item_Room to appear
 	 */
-	private  double myItemRoomChance;
+	private transient double myItemRoomChance;
 
 	/**
 	 * Chance of spawning a pit in room
 	 */
-	private double myPitSpawnChance;
+	private transient double myPitSpawnChance;
 
 	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
