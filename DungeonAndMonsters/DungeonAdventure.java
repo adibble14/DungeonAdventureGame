@@ -159,6 +159,7 @@ public class DungeonAdventure implements Serializable {
 				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.VISION_POTION.toString());
 				playerConsole.append(myUserName).append(" has obtained a Vision Potion!\n");
 			}
+
 			MAIN_GUI.getBackpackGui().refreshGoldValue();
 			currentRoom.setEmpty();
 			DungeonGUI.setPlayerConsole(playerConsole);

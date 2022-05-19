@@ -15,6 +15,8 @@ public class BattleGUI extends JPanel {
     private static JLabel monsterImage;
     // Battle variable we set later
     private static Battle myBattle;
+
+    private static JTextArea myPlayerConsole;
     BattleGUI(Font thePixelFont) {
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -33,6 +35,20 @@ public class BattleGUI extends JPanel {
         displayPanel.setOpaque(true);
         displayPanel.setBorder(OUTLINE_BORDER);
         this.add(displayPanel, gbc);
+
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridheight = 1;
+        gbc.gridy = 3;
+        gbc.gridx = 0;
+        gbc.weighty = 0;
+        gbc.weightx = 1;
+
+
+        JPanel consolePanel = new JPanel(new GridBagLayout());
+        consolePanel.setOpaque(true);
+        consolePanel.setBackground(Color.BLACK);
+        consolePanel.setBorder(OUTLINE_BORDER);
+        this.add(consolePanel, gbc);
 
         // Constraints for Button Area
         gbc.anchor = GridBagConstraints.SOUTH;
@@ -84,6 +100,8 @@ public class BattleGUI extends JPanel {
         myStatsLabel.setForeground(Color.WHITE);
         stats.add(myStatsLabel, gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 0;
         monsterImage = new JLabel();
         monsterImage.setBorder(OUTLINE_BORDER);
         gbc.anchor = GridBagConstraints.NORTHEAST;
@@ -97,6 +115,20 @@ public class BattleGUI extends JPanel {
         displayPanel.add(character2, gbc);
 
         character2.add(monsterImage, gbc);
+
+
+        myPlayerConsole = new JTextArea();
+        myPlayerConsole.setBackground(Color.BLACK);
+        myPlayerConsole.setFont(thePixelFont);
+        myPlayerConsole.setForeground(Color.white);
+        myPlayerConsole.setLineWrap(true);
+        myPlayerConsole.setWrapStyleWord(true);
+        myPlayerConsole.setEditable(false);
+        myPlayerConsole.setPreferredSize(new Dimension(900,50));
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        consolePanel.add(myPlayerConsole);
 
         //-----buttons panel
         JPanel buttonArea = new JPanel(new GridBagLayout());
@@ -141,7 +173,7 @@ public class BattleGUI extends JPanel {
         healthPotion.setFont(thePixelFont);
         buttonArea.add(healthPotion, gbc);
         healthPotion.addActionListener(e->{
-            myBattle.myHero.useHealthPotion();
+            myBattle.myHero.useHealthPotion();  //TODO this returns an int, set the console message with this health value
             updateBattle();
         });
 
@@ -163,7 +195,7 @@ public class BattleGUI extends JPanel {
         Monster monster = theBattle.myMonster;
 
         heroFaceImage.setIcon(hero.getMySprite());
-        heroInGameImage.setIcon(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
+        heroInGameImage.setIcon(hero.getMyInGameSprite());
         monsterImage.setIcon(monster.getMySprite());
 
         updateBattle();
@@ -192,6 +224,10 @@ public class BattleGUI extends JPanel {
 
     public static void setMyBattle(Battle battle){myBattle = battle;}
     public static Battle getMyBattle(){return myBattle;}
+
+    static void setPlayerConsole(StringBuilder theMessage){
+        myPlayerConsole.setText(theMessage.toString());
+    }
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

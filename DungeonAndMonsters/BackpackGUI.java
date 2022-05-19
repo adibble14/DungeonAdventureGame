@@ -88,16 +88,23 @@ public class BackpackGUI extends GUI {
                     case "HEALTH_POTION":
                         this.myActiveHealthPotions++;
                         ((JButton) button).setIcon(potionIcon);
+                        ((JButton) button).setToolTipText("Health Potion");
                         ((JButton) button).addActionListener(e -> {
-                            myHero.useHealthPotion();
-                            DungeonGUI.setHealthLabel(myHero);
-                            button.setEnabled(false);
-                            ((JButton) button).setIcon(null);
+                            if(myHero.getHealth() < myHero.getMaxHealth()) {        //can't use potion if health already full
+                                int healthAmount = myHero.useHealthPotion();
+                                DungeonGUI.setHealthLabel(myHero);
+                                DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
+                                button.setEnabled(false);
+                                ((JButton) button).setIcon(null);
+                            }else{
+                                DungeonGUI.setPlayerConsole(new StringBuilder("Health is Already Full"));
+                            }
                         });
                         break;
                     case "VISION_POTION":
                         this.myActiveVisionPotions++;
                         ((JButton) button).setIcon(potionIcon);
+                        ((JButton) button).setToolTipText("Vision Potion");
                         ((JButton) button).addActionListener(e -> {
                             System.out.println("vision");
                             //TODO use potion functionality

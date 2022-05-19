@@ -57,8 +57,6 @@ public class Battle {
 		}else if(myMonster.getHealth() <= 0){
 			BattleGUI.updateBattle();
 			DungeonAdventure.battleWin();
-			//DungeonAdventure.sceneController("dungeon");
-			//DungeonGUI.setHealthLabel(myHero);
 		}
 	}
 
@@ -68,7 +66,7 @@ public class Battle {
 	 */
 	//TODO: Edit this method so it takes a parameter, if it is the case that other types of items may be used during battles
 	public void useItem() {
-		this.myHero.useHealthPotion();
+		this.myHero.useHealthPotion();		//this now returns an integer
 		this.myMonster.attack(this.myHero);
 	}
 	public void block() {

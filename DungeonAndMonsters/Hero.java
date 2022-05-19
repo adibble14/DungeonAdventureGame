@@ -18,10 +18,6 @@ public abstract class Hero extends DungeonCharacter {
 
     private int myTurnCount;
 
-    /**
-     * Number of health potions in Hero's inventory
-     */
-    private int myHealthPotionCount;
 
     /**
      * Number of Vision potions in Hero's Inventory
@@ -54,7 +50,6 @@ public abstract class Hero extends DungeonCharacter {
 
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite, theInGameSprite);
         this.setBlockChance(theBlockChance);
-        this.myHealthPotionCount = 0;
         this.myVisionPotionCount = 0;
         this.myKeyCount = 0;
         this.myInventory = new PlayerInventory();
@@ -222,26 +217,15 @@ public abstract class Hero extends DungeonCharacter {
      * If Health Potion count is at least one. Increases Health depending on
      * Health Potion value generated.
      */
-    final protected void useHealthPotion() {
-        //TODO delete this output once GUI is made, since this is VIEW
-        if (this.getHealth() == this.getMaxHealth()) {
-            System.out.println("Health is already full!");
-            return;
-        }
-        if (this.myHealthPotionCount > 0) {
+    final protected int useHealthPotion() {
+        int healthPotionMinAmount = 10;
 
-            int healthPotionMinAmount = 10;
+        int healthPotionMaxAmount = 25;
+        int health = this.MY_RAND.nextInt(healthPotionMaxAmount - healthPotionMinAmount) + healthPotionMinAmount;
+        int result = this.getHealth() + health;
+        this.setHealth(Math.min(result, this.getMaxHealth()));
 
-            int healthPotionMaxAmount = 25;
-            int health = this.MY_RAND.nextInt(healthPotionMaxAmount - healthPotionMinAmount) + healthPotionMinAmount;
-            int result = this.getHealth() + health;
-            this.setHealth(Math.min(result, this.getMaxHealth()));
-            this.myHealthPotionCount--;
-            System.out.println(this.getName() + " used a Health Potion. Recovered " + health + " of health.");
-        } else {
-            System.out.println("No Health Potions in Inventory!");
-        }
-
+        return health;
     }
 
     /**
