@@ -32,13 +32,13 @@ public class Warrior extends Hero {
         int damage = MY_RAND.nextInt(specialMaxDamage - specialMinDamage) + specialMinDamage;
         double randAccuracy = MY_RAND.nextDouble();
 
-        System.out.println(this.getName() + " activates Crushing Blow!\n\n");
+        //System.out.println(this.getName() + " activates Crushing Blow!\n\n");
 
         double specialAccuracy = .4;
         if (specialAccuracy < randAccuracy) {
 
             damage = specialMinDamage;
-            System.out.println(this.getName() + " stumbles the attack...\n");
+           //System.out.println(this.getName() + " stumbles the attack...\n");
         }
 
         int result = theChar.getHealth() - damage;
@@ -50,8 +50,8 @@ public class Warrior extends Hero {
         theChar.setHealth(result);
 
         System.out.println(this.getName() + " deals a Crushing Blow to " + theChar.getName() + "! Dealt " + damage + " of damage.\n\n");
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals a Crushing Blow that dealt " + damage + " of damage. "));
 
-        theChar.attack(this);
 
     }
     public static ImageIcon getImage(){

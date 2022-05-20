@@ -80,6 +80,7 @@ public class Skeleton extends Monster {
     final protected void special(final DungeonCharacter theChar) {
         //TODO delete this output once GUI is made, since this is VIEW
         System.out.println(this.getName() + " prepares to reassemble itself after death! \n\n");
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " prepares to reassemble itself after death! "));
         this.setSpecialActive(true);
 
     }

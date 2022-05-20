@@ -30,13 +30,12 @@ public class Mage extends Hero {
         int damage = theChar.getHealth() / 2;
         int result = this.getHealth() + damage;
 
-        this.setHealth(Math.min(result, this.getMaxHealth()));
+        this.setHealth(result);
 
         theChar.setHealth(damage);
 
         System.out.println(this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health!!\n\n");
-
-        theChar.attack(this);
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health! "));
     }
 
     public static ImageIcon getImage(){

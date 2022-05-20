@@ -29,19 +29,23 @@ public class Archer extends Hero {
     final protected void special(final DungeonCharacter theChar) {
 
         //TODO delete this output once GUI is made, since this is VIEW
-        System.out.println(this.getName() + " shoots a volley of arrows!\n");
+        //System.out.println(this.getName() + " shoots a volley of arrows!\n");
 
         int specialMaxTurns = 5;
         int count = MY_RAND.nextInt(specialMaxTurns);
+        int totalArrows = count;
 
         if (count == 0) {
 
             System.out.println("The attack misses!");
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + "'s attack missed! "));
         }
+        int totalDamage = 0;
         while (count > 0 && theChar.isAlive()) {
 
             int specialMaxDamage = 20;
             int damage = MY_RAND.nextInt(specialMaxDamage) + this.getMaxDamage();
+            totalDamage += damage;
             int result = theChar.getHealth() - damage;
             if (result < 0) {
                 result = 0;
@@ -50,7 +54,7 @@ public class Archer extends Hero {
             theChar.setHealth(result);
             count--;
         }
-        theChar.attack(this);
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " shoots " + totalArrows + " arrows that deal " + totalDamage + " damage. "));
 
     }
 

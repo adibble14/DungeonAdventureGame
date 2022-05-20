@@ -76,11 +76,6 @@ public class MenuGUI extends JPanel{
         quit.setPreferredSize(new Dimension(200,50));
         quit.addActionListener(e -> System.exit(0));
 
-        JButton battle = new JButton("to Battle");
-        battle.setFont(new Font("Serif", Font.BOLD, 20));
-        battle.setPreferredSize(new Dimension(200,50));
-        battle.addActionListener(e -> DungeonAdventure.sceneController("battle"));
-
 
         // Buttons have their own gridbag constraints setup here
         gbc.insets = new Insets(2,0,2,0);
@@ -96,9 +91,6 @@ public class MenuGUI extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 3;
         buttonPanel.add(quit, gbc);
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        buttonPanel.add(battle, gbc);
 
         // Final constraints when we add the button panel to the menu
         gbc.anchor = GridBagConstraints.SOUTH;

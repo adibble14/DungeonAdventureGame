@@ -38,19 +38,21 @@ public class Gremlin extends Monster {
     final protected void special(final DungeonCharacter theChar) {
         //TODO delete this output once GUI is made, since this is VIEW
 
-        System.out.println(this.getName() + " summons a Gremlin Frenzy!");
+        //System.out.println(this.getName() + " summons a Gremlin Frenzy!");
 
         int specialMaxTurns = 3;
         int count = MY_RAND.nextInt(specialMaxTurns);
 
         if (count == 0) {
 
-            System.out.println("No Gremlins showed up!\n\n");
+            //System.out.println("No Gremlins showed up!\n\n");
         }
+        int totalDamage = 0;
         while (count > 0 && theChar.isAlive()) {
 
             int specialMaxDamage = 30;
             int damage = MY_RAND.nextInt(specialMaxDamage / 2) + specialMaxDamage;
+            totalDamage+=damage;
             int result = theChar.getHealth() - damage;
             if (result < 0) {
                 result = 0;
@@ -59,6 +61,7 @@ public class Gremlin extends Monster {
             theChar.setHealth(result);
             count--;
         }
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + theChar.getName() + " gets hit by " + count + " Gremlin minions! Took " + totalDamage + " of damage. "));
     }
 
 }

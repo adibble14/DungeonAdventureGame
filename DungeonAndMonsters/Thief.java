@@ -31,14 +31,16 @@ public class Thief extends Hero {
         int damage = MY_RAND.nextInt(specialMaxDamage * 2) + this.getMaxDamage();
         double randAccuracy = MY_RAND.nextDouble();
 
-        System.out.println(this.getName() + " goes for a surprise attack!\n\n");
+        //System.out.println(this.getName() + " goes for a surprise attack!\n\n");
 
         double specialAccuracy = .6;
         if (specialAccuracy < randAccuracy) {
             System.out.println(this.getName() + " almost gets caught! Swiftly escapes at the last second. Dealt No damage....\n\n");
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " almost gets caught! Swiftly escapes at the last second. Dealt No damage. "));
         } else if (specialAccuracy > randAccuracy) {
 
             System.out.println(this.getName() + " lands the backstab! Dealt " + damage + " of damage.\n");
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " lands the backstab! Dealt " + damage + " of damage. "));
 
             int result = theChar.getHealth() - damage;
             if (result < 0) {
@@ -49,6 +51,7 @@ public class Thief extends Hero {
         if ((specialAccuracy / 2) > randAccuracy && theChar.isAlive()) {
 
             damage += this.getMaxDamage();
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " connects another attack for " + damage + " damage. "));
             System.out.println(this.getName() + " connects another attack! Dealt " + damage + " more of damage.\n\n");
 
             int secondResult = theChar.getHealth() - damage;
@@ -57,7 +60,6 @@ public class Thief extends Hero {
             }
             theChar.setHealth(secondResult);
         }
-        theChar.attack(this);
     }
 
     public static ImageIcon getImage(){

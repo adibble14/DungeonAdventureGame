@@ -41,13 +41,13 @@ public class Ogre extends Monster {
         int damage = MY_RAND.nextInt(specialMaxDamage) + specialMinDamage;
         double randAccuracy = MY_RAND.nextDouble();
 
-        System.out.println(this.getName() + " throws a Devastating Blow!\n\n");
+        //System.out.println(this.getName() + " throws a Devastating Blow!\n\n");
 
         double specialAccuracy = .5;
         if (specialAccuracy < randAccuracy) {
 
             damage = specialMinDamage;
-            System.out.println(theChar.getName() + " dodges the attack! Splash damage taken.\n");
+            //System.out.println(theChar.getName() + " dodges the attack! Splash damage taken.\n");
         }
 
         int result = theChar.getHealth() - damage;
@@ -59,6 +59,7 @@ public class Ogre extends Monster {
         theChar.setHealth(result);
 
         System.out.println(this.getName() + " deals a Devastating Blow to " + theChar.getName() + "! Dealt " + damage + " of damage.\n\n");
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals a Devastating Blow to " + theChar.getName() + " of "+ damage + " damage. "));
     }
 
 

@@ -108,6 +108,7 @@ public abstract class Monster extends DungeonCharacter {
         this.setHealth(Math.min((this.getHealth() + healPoints), this.getMaxHealth()));
         //TODO delete this output once GUI is made, since this is VIEW
         System.out.println(this.getName() + " recovers " + healPoints + " of health.\n\n");
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " recovers " + healPoints + " of health. "));
     }
 
     /**
@@ -125,16 +126,14 @@ public abstract class Monster extends DungeonCharacter {
 
         Hero hero = (Hero) theChar;
 
-        System.out.println(this.getName() + " goes for the attack!\n\n");
-
         if (!(hero.block())) {
 
             super.attack(hero);
         } else {
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() +hero.getName() + " blocked the attack! "));
             System.out.println(hero.getName() + " blocked the attack!\n\n");
         }
 
-        System.out.println(this.getName() + " attempts to heal!\n\n");
         this.heal();
 
     }

@@ -16,7 +16,7 @@ public class BattleGUI extends JPanel {
     // Battle variable we set later
     private static Battle myBattle;
 
-    private static JTextArea myPlayerConsole;
+    private static JTextArea myBattleConsole;
     BattleGUI(Font thePixelFont) {
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -117,18 +117,18 @@ public class BattleGUI extends JPanel {
         character2.add(monsterImage, gbc);
 
 
-        myPlayerConsole = new JTextArea();
-        myPlayerConsole.setBackground(Color.BLACK);
-        myPlayerConsole.setFont(thePixelFont);
-        myPlayerConsole.setForeground(Color.white);
-        myPlayerConsole.setLineWrap(true);
-        myPlayerConsole.setWrapStyleWord(true);
-        myPlayerConsole.setEditable(false);
-        myPlayerConsole.setPreferredSize(new Dimension(900,50));
+        myBattleConsole = new JTextArea();
+        myBattleConsole.setBackground(Color.BLACK);
+        myBattleConsole.setFont(thePixelFont);
+        myBattleConsole.setForeground(Color.white);
+        myBattleConsole.setLineWrap(true);
+        myBattleConsole.setWrapStyleWord(true);
+        myBattleConsole.setEditable(false);
+        myBattleConsole.setPreferredSize(new Dimension(900,50));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        consolePanel.add(myPlayerConsole);
+        consolePanel.add(myBattleConsole);
 
         //-----buttons panel
         JPanel buttonArea = new JPanel(new GridBagLayout());
@@ -143,11 +143,12 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JButton attack = new JButton("Attack");
+        JButton attack = new JButton("  Attack  ");
         attack.setFont(thePixelFont);
         buttonArea.add(attack, gbc);
         attack.addActionListener(e->{
             if(myBattle.myHero.getHealth() > 0){
+                setBattleConsole(new StringBuilder());
                 getMyBattle().attackPhase(false);
                 updateBattle();
             }
@@ -161,31 +162,46 @@ public class BattleGUI extends JPanel {
         buttonArea.add(special, gbc);
         special.addActionListener(e->{
             if(myBattle.myHero.getHealth() > 0){
+                setBattleConsole(new StringBuilder());
                 getMyBattle().attackPhase(true);
                 updateBattle();
             }
         });
 
-
         gbc.gridx = 3;
+        gbc.gridy = 1;
+        JButton attackInfo = new JButton("Attack Info");
+        attackInfo.setFont(thePixelFont);
+        buttonArea.add(attackInfo, gbc);
+        attackInfo.addActionListener(e->{
+            //TODO
+        });
+
+
+        gbc.gridx = 4;
         gbc.gridy = 1;
         JButton healthPotion = new JButton("Use Health Potion");
         healthPotion.setFont(thePixelFont);
         buttonArea.add(healthPotion, gbc);
         healthPotion.addActionListener(e->{
-            myBattle.myHero.useHealthPotion();  //TODO this returns an int, set the console message with this health value
-            updateBattle();
+            PlayerInventory inv = getMyBattle().myHero.getMyInventory();
+            if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
+                int heal = myBattle.myHero.useHealthPotion();
+                setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
+                updateBattle();
+                //TODO take away health potions from inventory
+            }
         });
 
-        gbc.gridx = 4;
+        gbc.gridx = 5;
         gbc.gridy = 1;
-        JButton surrender = new JButton("Surrender");
-        surrender.setFont(thePixelFont);
-        buttonArea.add(surrender, gbc);
-        //TODO
-        surrender.addActionListener(e->{
-
+        JButton backpack = new JButton("  Backpack  ");
+        backpack.setFont(thePixelFont);
+        buttonArea.add(backpack, gbc);
+        backpack.addActionListener(e->{
+            DungeonAdventure.sceneController("backpack");
         });
+
 
     }
 
@@ -225,9 +241,11 @@ public class BattleGUI extends JPanel {
     public static void setMyBattle(Battle battle){myBattle = battle;}
     public static Battle getMyBattle(){return myBattle;}
 
-    static void setPlayerConsole(StringBuilder theMessage){
-        myPlayerConsole.setText(theMessage.toString());
+    static void setBattleConsole(StringBuilder theMessage){
+        myBattleConsole.setText(theMessage.toString());
     }
+    
+    static StringBuilder getBattleConsole(){return new StringBuilder(myBattleConsole.getText());}
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

@@ -39,6 +39,7 @@ public class Beast extends Monster {
 
         int damage = theChar.getHealth() / 2;
         theChar.setHealth(damage);
+        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " halves "+ theChar.getName() + "'s health with the Feral Swipe. "));
         System.out.println(this.getName() + " halves " + theChar.getName() + "'s health!\n\n");
     }
 

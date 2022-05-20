@@ -111,13 +111,10 @@ public abstract class Hero extends DungeonCharacter {
         //TODO delete this output once GUI is made, since this is VIEW
         this.setTurnCount(theChar);
 
-        System.out.println(this.getName() + " gets " + this.getTurnCount() + " attack chances!\n\n");
-
         int turns = this.getTurnCount();
 
         while (theChar.isAlive() && turns > 0) {
-
-            System.out.println(this.getName() + " goes for the attack....\n\n");
+            
             super.attack(theChar);
             turns--;
         }

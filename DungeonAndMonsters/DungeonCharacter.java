@@ -246,10 +246,12 @@ public abstract class DungeonCharacter implements Serializable {
 
             theChar.setHealth(result);
 
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " dealt " + damage + " of damage. "));
             System.out.println(this.getName() + " landed an attack on " + theChar.getName() + "!! Dealt " + damage + " of damage.\n\n");
 
 
         } else {
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + "'s attack missed! "));
             System.out.println(this.getName() + "'s attack missed!\n\n");
         }
     }

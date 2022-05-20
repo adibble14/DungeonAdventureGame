@@ -219,6 +219,7 @@ public class DungeonAdventure implements Serializable {
 		sceneController("dungeon");
 		DungeonGUI.setHealthLabel(myHero);
 		DungeonGUI.enableButtons();
+		checkRoom();
 	}
 
 	public static String getNameOfDungeon(){
