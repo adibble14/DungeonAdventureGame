@@ -1,11 +1,12 @@
 import javax.swing.*;
+import java.io.Serializable;
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used exclusively
  * by hero objects.
  */
 
-public abstract class Hero extends DungeonCharacter {
+public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Stores hero object's block chance value.

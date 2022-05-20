@@ -71,6 +71,9 @@ public class DungeonAdventure implements Serializable {
 				break;
 		}
 	}
+	public static void setMyHero(final Hero theHero) {
+		myHero = theHero;
+	}
 
 	public static String getUserName(){return myUserName;}
 	public static void setMyUserName(final String theName){myUserName = theName;}

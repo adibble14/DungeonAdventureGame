@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +7,7 @@ import java.util.HashMap;
  * Represents the Players inventory
  */
 
-public class PlayerInventory {
+public class PlayerInventory implements Serializable {
 
     /**
      * Map data structure that will hold Item and Item count info.

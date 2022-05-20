@@ -53,9 +53,30 @@ public abstract class GUI extends JFrame {
         help.add(instr); help.add(about); help.add(quit);
 
         JMenuItem saveGame = new JMenuItem("Save Game");
-        saveGame.setEnabled(false);
+        saveGame.setEnabled(true);
+        saveGame.addActionListener( e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Save Game");
+            int selection = chooser.showSaveDialog(null);
+            if(selection == JFileChooser.APPROVE_OPTION) {
+                String s = chooser.getSelectedFile().toString();
+                SaveGame.save(s);
+                System.out.println(s);
+            }
+
+        });
 
         JMenuItem loadGame = new JMenuItem("Load Game");
+        loadGame.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Load");
+            int selection = chooser.showOpenDialog(null);
+            if(selection == JFileChooser.APPROVE_OPTION) {
+                String s = chooser.getSelectedFile().toString();
+                SaveGame.load(s);
+                System.out.println(s);
+            }
+        });
         save.add(saveGame); save.add(loadGame);
 
     }
