@@ -57,4 +57,8 @@ public class Warrior extends Hero {
     public static ImageIcon getImage(){
         return CharacterSelectWarrior;
     }
+
+    public static String getSpecialInfo(){
+        return "Crushing blow. This attack does much more damage than a regular attack. If this attack misses, it deals a guaranteed minimum value of damage.";
+    }
 }

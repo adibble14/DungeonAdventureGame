@@ -64,4 +64,8 @@ public class Gremlin extends Monster {
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + theChar.getName() + " gets hit by " + count + " Gremlin minions! Took " + totalDamage + " of damage. "));
     }
 
+    public static String getSpecialInfo(){
+        return "Gremlin Frenzy. Generates a random number of gremlins that each deal their own attack.";
+    }
+
 }

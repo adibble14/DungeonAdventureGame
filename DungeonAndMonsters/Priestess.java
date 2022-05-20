@@ -44,4 +44,9 @@ public class Priestess extends Hero{
     public static ImageIcon getImage(){
         return image;
     }
+
+
+    public static String getSpecialInfo(){
+        return "Healing. For every point of damage dealt, priestess will heal 2/3 the amount.";
+    }
 }

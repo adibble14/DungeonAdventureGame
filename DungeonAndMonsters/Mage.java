@@ -42,4 +42,8 @@ public class Mage extends Hero {
         return characterSelectImage;
     }
 
+    public static String getSpecialInfo(){
+        return "Life Steal. This attack does not fail to land. It halves the enemies' health value. It also adds that value to the mage's health.";
+    }
+
 }

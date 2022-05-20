@@ -62,4 +62,9 @@ public class Archer extends Hero {
         return characterSelectArcher;
     }
 
+    public static String getSpecialInfo(){
+        return "Volley special attack. Shoots a random number of arrows with a maximum of 5.";
+    }
+
+
 }

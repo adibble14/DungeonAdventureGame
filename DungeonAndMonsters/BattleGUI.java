@@ -174,7 +174,7 @@ public class BattleGUI extends JPanel {
         attackInfo.setFont(thePixelFont);
         buttonArea.add(attackInfo, gbc);
         attackInfo.addActionListener(e->{
-            //TODO
+            JOptionPane info = new JOptionPane(getAttackInfo());
         });
 
 
@@ -247,6 +247,19 @@ public class BattleGUI extends JPanel {
     
     static StringBuilder getBattleConsole(){return new StringBuilder(myBattleConsole.getText());}
 
+    private static String getAttackInfo(){
+        return "BATTLE FORMAT:\nWhoever has the fastest attack speed goes first.\nOnce a character attacks, its opponent attacks afterwards.\nYou can choose to use a special attack and " +
+                "any items in your inventory at any time.\nThe monsters also have a special attack that is activated randomly.\nThe battle is to the death!\n" +
+                "May the odds be ever in your favor!\n" + specialInfo();
+    }
+
+    private static String specialInfo(){
+        Hero hero = getMyBattle().myHero;
+        Monster monster = getMyBattle().myMonster;
+    }
+
+
+
     /**
      * Inner class drawWindow that works as the display panel showing off the
      * current room's image, as well as the inGame player and inGame enemies, items, etc.
@@ -264,5 +277,6 @@ public class BattleGUI extends JPanel {
             g.drawImage(myWindowImg,0,0,getWidth(),getHeight(),this);
         }
     }
+
 
 }
