@@ -58,6 +58,16 @@ public class PlayerInventory implements Serializable {
     }
 
     /**
+     * Removes an Item from the player's inventory
+     */
+    public void removeItem(final ItemType theItem) {
+        if(this.myInventory.get(theItem)  != null && this.myInventory.get(theItem) > 0) {
+            this.myInventory.put(theItem, this.myInventory.get(theItem) - 1);
+        }
+
+    }
+
+    /**
      * Returns the count of the passed in item.
      * @param theItem
      * @return item count or null if item does not exist in inventory map
