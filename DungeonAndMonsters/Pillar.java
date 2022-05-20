@@ -6,11 +6,10 @@ public class Pillar extends Item{
     /**
      * Constructor for this class. Simply initializes fields.
      *
-     * @param theSpawnChance
      * @param theImage
      */
-    protected Pillar(final double theSpawnChance, final ImageIcon theImage, final PillarType theType) {
-        super(theSpawnChance, theImage);
+    protected Pillar(final ImageIcon theImage, final PillarType theType) {
+        super(theImage);
         this.MY_TYPE = theType;
     }
 

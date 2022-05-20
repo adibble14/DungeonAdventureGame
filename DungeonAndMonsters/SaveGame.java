@@ -17,7 +17,10 @@ public class SaveGame {
         try {
             FileOutputStream outputFile = new FileOutputStream(theFile);
             ObjectOutputStream out = new ObjectOutputStream(outputFile);
+            // writing objects to output file
             out.writeObject(DungeonAdventure.getMyHero());
+            out.writeObject(DungeonAdventure.getMyDungeon());
+            // post operation clean up
             out.flush();
             out.close();
             outputFile.close();
@@ -33,8 +36,13 @@ public class SaveGame {
         try {
             FileInputStream inputFile = new FileInputStream(theFile);
             ObjectInputStream in = new ObjectInputStream(inputFile);
+            // Reading object data from file
             Hero hero = (Hero) in.readObject();
+            Dungeon dungeon = (Dungeon) in.readObject();
+            // setting read objects to class fields
             DungeonAdventure.setMyHero(hero);
+            DungeonAdventure.setMyDungeon(dungeon);
+            // post operation clean up
             inputFile.close();
             in.close();
 

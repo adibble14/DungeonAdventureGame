@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.Serializable;
 
 public class Gold extends Item{
 
@@ -13,7 +14,7 @@ public class Gold extends Item{
      *
      */
     protected Gold() {
-        super(.20, new ImageIcon("DungeonAndMonsters/gold.png"));
+        super(new ImageIcon("DungeonAndMonsters/gold.png"));
         this.myValue = Tools.RANDOM.nextInt(5, 51);
     }
 

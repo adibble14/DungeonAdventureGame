@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class VisionPotion extends Item{
+public class VisionPotion extends Item {
 
 
     /**
@@ -9,7 +10,7 @@ public class VisionPotion extends Item{
      *
      */
     protected VisionPotion() {
-        super(.05, new ImageIcon("DungeonAndMonsters/potion.png"));
+        super(new ImageIcon("DungeonAndMonsters/potion.png"));
     }
 
     //TODO: Implement this method

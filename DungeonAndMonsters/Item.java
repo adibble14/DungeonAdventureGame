@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 
 
 /**
@@ -7,39 +8,24 @@ import java.io.FileNotFoundException;
  *
  */
 
-public abstract class Item {
-
-    /**
-     * Represents the chance of spawning this item.
-     *
-     */
-    private  double mySpawnChance;
+public abstract class Item implements Serializable {
 
     /**
      * Image of this item
      */
-    private ImageIcon myImage;
+    private transient ImageIcon myImage;
 
     /**
      * Constructor for this class. Simply initializes fields.
      *
-     * @param theSpawnChance
      * @param theImage
      */
-    protected Item(final double theSpawnChance, final ImageIcon theImage) {
+    protected Item(final ImageIcon theImage) {
 
         this.myImage = theImage;
-        this.mySpawnChance = theSpawnChance;
     }
 
 
-    /**
-     * Getters for each field.
-     * @return
-     */
-    final protected double getMySpawnChance() {
-        return this.mySpawnChance;
-    }
 
     final protected ImageIcon getMyImage() {
         return this.myImage;

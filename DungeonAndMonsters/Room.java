@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @version 031221
  *
  */
-public class Room {
+public class Room implements Serializable {
 
 	/**
 	 * Holds all generated items. If room is an exit, entrance, or pit, no

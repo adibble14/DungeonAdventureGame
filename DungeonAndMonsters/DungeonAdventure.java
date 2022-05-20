@@ -71,8 +71,21 @@ public class DungeonAdventure implements Serializable {
 				break;
 		}
 	}
+
+	/**
+	 * Set method used when loading save file
+	 * @param theHero
+	 */
 	public static void setMyHero(final Hero theHero) {
 		myHero = theHero;
+	}
+
+	/**
+	 * Set method used when loading in save file
+	 * @param theDungeon
+	 */
+	public static void setMyDungeon(final Dungeon theDungeon) {
+		myDungeon = theDungeon;
 	}
 
 	public static String getUserName(){return myUserName;}

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 public class HealthPotion extends Item {
 
@@ -16,7 +17,7 @@ public class HealthPotion extends Item {
      *
      */
     protected HealthPotion() {
-        super(.15, new ImageIcon("DungeonAndMonsters/potion.png"));
+        super(new ImageIcon("DungeonAndMonsters/potion.png"));
         this.myAffectAmount = 15;
     }
 

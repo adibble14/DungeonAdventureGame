@@ -1,17 +1,18 @@
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chest extends Item{
+public class Chest extends Item {
 
     /**
      * Item Contents that this chest holds
      */
-    private ArrayList<Item> myContents;
+    private final ArrayList<Item> myContents;
 
     /**
      * Chance of this chest being a mimic monster
      */
-    private double myMimicChance;
+    private final double myMimicChance;
 
     /**
      * Flag for if this chest is a mimic
@@ -23,7 +24,7 @@ public class Chest extends Item{
      *
      */
     protected Chest() {
-        super(.1, new ImageIcon("DungeonAndMonsters/potion.png"));
+        super(new ImageIcon("DungeonAndMonsters/potion.png"));
         this.myContents = new ArrayList<>();
         this.myMimicChance = 0;
         this.myIsMimic = false;
