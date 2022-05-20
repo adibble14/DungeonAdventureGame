@@ -63,6 +63,9 @@ public class PlayerInventory implements Serializable {
     public void removeItem(final ItemType theItem) {
         if(this.myInventory.get(theItem)  != null && this.myInventory.get(theItem) > 0) {
             this.myInventory.put(theItem, this.myInventory.get(theItem) - 1);
+            if(getItemCount(theItem) == 0){
+                BattleGUI.disableHealthButton();
+            }
         }
 
     }

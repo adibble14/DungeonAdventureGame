@@ -47,4 +47,9 @@ public class BossInheritance extends BossMonsters{
     protected void special(DungeonCharacter theChar) {
 
     }
+
+    @Override
+    public String getSpecialInfo(){  //TODO
+        return "";
+    }
 }

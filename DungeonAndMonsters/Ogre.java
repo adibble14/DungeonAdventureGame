@@ -62,7 +62,8 @@ public class Ogre extends Monster {
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals a Devastating Blow to " + theChar.getName() + " of "+ damage + " damage. "));
     }
 
-    public static String getSpecialInfo(){
+    @Override
+    public String getSpecialInfo(){
         return "Devastating Blow. This special has a guaranteed min value damage.";
     }
 

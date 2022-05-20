@@ -43,7 +43,8 @@ public class Beast extends Monster {
         System.out.println(this.getName() + " halves " + theChar.getName() + "'s health!\n\n");
     }
 
-    public static String getSpecialInfo(){
+    @Override
+    public String getSpecialInfo(){
         return "Feral Swipe. This special always deals half the enemies' health value.";
     }
 

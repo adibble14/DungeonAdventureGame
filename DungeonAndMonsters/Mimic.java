@@ -25,7 +25,12 @@ public class Mimic extends Monster{
      * @param theChar object to deal damage to
      */
     @Override
-    protected void special(DungeonCharacter theChar) {
+    protected void special(DungeonCharacter theChar) {  //TODO
 
+    }
+
+    @Override
+    public String getSpecialInfo(){  //TODO
+        return "";
     }
 }

@@ -38,4 +38,7 @@ public abstract class BossMonsters extends Monster {
      */
     protected abstract void defeated(Hero theHero);
 
+
+    public abstract String getSpecialInfo();
+
 }

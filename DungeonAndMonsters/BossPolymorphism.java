@@ -46,4 +46,9 @@ public class BossPolymorphism extends BossMonsters{
     protected void defeated(Hero theHero) {
         //theHero.getMyInventory().addPillar(new Pillar());
     }
+
+    @Override
+    public String getSpecialInfo(){  //TODO
+        return "";
+    }
 }

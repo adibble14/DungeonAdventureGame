@@ -297,5 +297,7 @@ public abstract class DungeonCharacter implements Serializable {
 
     public double getMyAccuracy(){return myAccuracy;}
 
+    public abstract String getSpecialInfo();
+
 
 }

@@ -45,8 +45,8 @@ public class Priestess extends Hero{
         return image;
     }
 
-
-    public static String getSpecialInfo(){
+    @Override
+    public String getSpecialInfo(){
         return "Healing. For every point of damage dealt, priestess will heal 2/3 the amount.";
     }
 }

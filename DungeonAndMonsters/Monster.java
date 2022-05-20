@@ -166,4 +166,6 @@ public abstract class Monster extends DungeonCharacter {
      */
     protected abstract void special(final DungeonCharacter theChar);
 
+    public abstract String getSpecialInfo();
+
 }

@@ -236,4 +236,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     protected PlayerInventory getMyInventory() {
         return this.myInventory;
     }
+
+    public abstract String getSpecialInfo();
 }

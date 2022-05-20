@@ -15,6 +15,7 @@ public class BattleGUI extends JPanel {
     private static JLabel monsterImage;
     // Battle variable we set later
     private static Battle myBattle;
+    private static JButton healthPotion;
 
     private static JTextArea myBattleConsole;
     BattleGUI(Font thePixelFont) {
@@ -174,13 +175,13 @@ public class BattleGUI extends JPanel {
         attackInfo.setFont(thePixelFont);
         buttonArea.add(attackInfo, gbc);
         attackInfo.addActionListener(e->{
-            JOptionPane info = new JOptionPane(getAttackInfo());
+            JOptionPane.showMessageDialog(this, getAttackInfo());
         });
 
 
         gbc.gridx = 4;
         gbc.gridy = 1;
-        JButton healthPotion = new JButton("Use Health Potion");
+        healthPotion = new JButton("Use Health Potion");
         healthPotion.setFont(thePixelFont);
         buttonArea.add(healthPotion, gbc);
         healthPotion.addActionListener(e->{
@@ -189,7 +190,6 @@ public class BattleGUI extends JPanel {
                 int heal = myBattle.myHero.useHealthPotion();
                 setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
                 updateBattle();
-                //TODO take away health potions from inventory
             }
         });
 
@@ -213,6 +213,14 @@ public class BattleGUI extends JPanel {
         heroFaceImage.setIcon(hero.getMySprite());
         heroInGameImage.setIcon(hero.getMyInGameSprite());
         monsterImage.setIcon(monster.getMySprite());
+
+
+        PlayerInventory inv = getMyBattle().myHero.getMyInventory();
+        if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
+            enableHealthButton();
+        }else{
+            disableHealthButton();
+        }
 
         updateBattle();
     }
@@ -256,7 +264,13 @@ public class BattleGUI extends JPanel {
     private static String specialInfo(){
         Hero hero = getMyBattle().myHero;
         Monster monster = getMyBattle().myMonster;
+
+        return "Special Info:\n" + hero.getName() +": "+hero.getSpecialInfo() +"\n" +monster.getName() +": "+ monster.getSpecialInfo();
     }
+
+
+    static void enableHealthButton(){healthPotion.setEnabled(true);}
+    static void disableHealthButton(){healthPotion.setEnabled(false);}
 
 
 
