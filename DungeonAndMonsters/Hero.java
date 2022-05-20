@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used exclusively
@@ -19,12 +20,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     private int myTurnCount;
 
-
-    /**
-     * Number of Vision potions in Hero's Inventory
-     */
-    private int myVisionPotionCount;
-
     /**
      * Number of keys in Hero's inventory
      */
@@ -33,7 +28,9 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     /**
      * Inventory of this player. Underneath data structure is a hashmap
      */
-    private PlayerInventory myInventory;
+    private final PlayerInventory myInventory;
+
+    private final ArrayList<HealthPotion> myHealthPotions;
 
     /**
      * Child constructor of Hero class. Calls super class constructor to init fields.
@@ -51,9 +48,9 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite, theInGameSprite);
         this.setBlockChance(theBlockChance);
-        this.myVisionPotionCount = 0;
         this.myKeyCount = 0;
         this.myInventory = new PlayerInventory();
+        this.myHealthPotions = new ArrayList<>();
     }
 
     /**
@@ -139,32 +136,10 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      */
     protected abstract void special(final DungeonCharacter theChar);
 
-    /**
-     * Set method for number of health potions
-     *
-     * @param theCount the number of health potions
-     */
-    final protected void setHealthPotions(final int theCount) {
-        this.myInventory.addItem(ItemType.HEALTH_POTION, theCount);
-    }
-
-    /**
-     * Set method for number of vision potions
-     *
-     * @param theCount the number of vision potions
-     */
-    final protected void setVisionPotions(final int theCount) {
-        this.myInventory.addItem(ItemType.VISION_POTION, theCount);
-    }
-
-    /**
-     * Depending on String value, increases count of potions and key count
-     *
-     * @param theItem the input
-     */
     final protected void addInventory(final Item theItem, final int theAmount) {
         if(theItem.getClass() == HealthPotion.class) {
             this.myInventory.addItem(ItemType.HEALTH_POTION, theAmount);
+            this.myHealthPotions.add((HealthPotion) theItem);
         } else if(theItem.getClass() == VisionPotion.class) {
             this.myInventory.addItem(ItemType.VISION_POTION, theAmount);
         } else if (theItem.getClass() == Pillar.class) {
@@ -216,14 +191,13 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      * Health Potion value generated.
      */
     final protected int useHealthPotion() {
-        int healthPotionMinAmount = 10;
-
-        int healthPotionMaxAmount = 25;
-        int health = this.MY_RAND.nextInt(healthPotionMaxAmount - healthPotionMinAmount) + healthPotionMinAmount;
-        int result = this.getHealth() + health;
-        this.setHealth(Math.min(result, this.getMaxHealth()));
-
-        return health;
+        int currentHealth = this.getHealth();
+        if(this.myInventory.getItemCount(ItemType.HEALTH_POTION) > 0) {
+            this.myHealthPotions.get(0).use(this);
+            this.myHealthPotions.remove(0);
+            this.myInventory.removeItem(ItemType.HEALTH_POTION);
+        }
+        return this.getHealth() - currentHealth;
     }
 
     /**
@@ -233,60 +207,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      * @param theDung the dungeon
      */
     final protected void useVisionPotion(final Dungeon theDung) {
-
-        Room room;
-        int xCoord = theDung.getCurrentRoom().getXCoord();
-        int yCoord = theDung.getCurrentRoom().getYCoord();
-        int length = theDung.getDungeon().length;
-        if (this.myVisionPotionCount > 0) {
-            //TODO delete this output once GUI is made, since this is VIEW
-            System.out.println(this.getName() + " used a Vision Potion.");
-            // reveal the eight rooms if possible
-            if (xCoord + 1 < length) {
-                room = theDung.getRoom(xCoord + 1, yCoord);
-                assert room != null;
-                room.unhide();
-            }
-            if (xCoord - 1 >= 0) {
-                room = theDung.getRoom(xCoord - 1, yCoord);
-                assert room != null;
-                room.unhide();
-            }
-            if (yCoord + 1 < length) {
-                room = theDung.getRoom(xCoord, yCoord + 1);
-                assert room != null;
-                room.unhide();
-            }
-            if (yCoord - 1 >= 0) {
-                room = theDung.getRoom(xCoord, yCoord - 1);
-                assert room != null;
-                room.unhide();
-            }
-            // revealing diagonal rooms
-            if (xCoord - 1 >= 0 && yCoord - 1 >= 0) {
-                room = theDung.getRoom(xCoord - 1, yCoord - 1);
-                assert room != null;
-                room.unhide();
-            }
-            if (xCoord + 1 < length && yCoord - 1 >= 0) {
-                room = theDung.getRoom(xCoord + 1, yCoord - 1);
-                assert room != null;
-                room.unhide();
-            }
-            if (xCoord - 1 >= 0 && yCoord + 1 < length) {
-                room = theDung.getRoom(xCoord - 1, yCoord + 1);
-                assert room != null;
-                room.unhide();
-            }
-            if (xCoord + 1 < length && yCoord + 1 < length) {
-                room = theDung.getRoom(xCoord + 1, yCoord + 1);
-                assert room != null;
-                room.unhide();
-            }
-            this.myVisionPotionCount--;
-        } else {
-            System.out.println("No Vision Potions in inventory!");
-        }
 
     }
 

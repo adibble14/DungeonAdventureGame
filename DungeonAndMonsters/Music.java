@@ -19,7 +19,7 @@ public class Music {
             }
         } catch(Exception e) {
             System.out.println("Error in playing a song file.");
-            System.out.println(theFile + " does not exist");
+            e.printStackTrace();
         }
     }
 }
