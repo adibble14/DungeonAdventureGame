@@ -90,15 +90,13 @@ public class BackpackGUI extends GUI {
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).setToolTipText("Health Potion");
                         ((JButton) button).addActionListener(e -> {
-                            if(myHero.getHealth() < myHero.getMaxHealth()) {        //can't use potion if health already full
                                 int healthAmount = myHero.useHealthPotion();
                                 DungeonGUI.setHealthLabel(myHero);
                                 DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
+                                BattleGUI.updateBattle();
+                                BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
                                 button.setEnabled(false);
                                 ((JButton) button).setIcon(null);
-                            }else{
-                                DungeonGUI.setPlayerConsole(new StringBuilder("Health is Already Full"));
-                            }
                         });
                         break;
                     case "VISION_POTION":
@@ -118,6 +116,25 @@ public class BackpackGUI extends GUI {
             }
         }
     }
+
+    /**
+     * removes a component from the item Panel. Right now only used for removing health potions when pushing button in battle GUI
+     * @param theItem
+     */
+    public static void removeItemFromBackPack(final String theItem){
+        for (Component button:
+                myItemPanel.getComponents()) {
+            switch (theItem) {
+                case "HEALTH_POTION":
+                    ((JButton) button).setToolTipText(null);
+                    button.setEnabled(false);
+                    ((JButton) button).setIcon(null);
+                    break;
+            }
+            break;
+        }
+    }
+
 
     public void setMyHero(Hero theHero){
         myHero = theHero;

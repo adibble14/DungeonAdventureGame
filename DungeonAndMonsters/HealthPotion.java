@@ -18,7 +18,7 @@ public class HealthPotion extends Item {
      */
     protected HealthPotion() {
         super(new ImageIcon("DungeonAndMonsters/potion.png"));
-        this.myAffectAmount = 15;
+        this.myAffectAmount = 25;
     }
 
     /**
@@ -27,10 +27,7 @@ public class HealthPotion extends Item {
      */
     @Override
     public void use(Object theObject) {
-        if(theObject.getClass() == Hero.class) {
-            Hero player = (Hero) theObject;
-            player.setHealth(player.getMaxHealth() + this.myAffectAmount);
-        }
-
+        Hero player = (Hero) theObject;
+        player.setHealth(player.getHealth() + this.myAffectAmount);
     }
 }

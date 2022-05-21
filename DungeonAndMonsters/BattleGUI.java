@@ -190,6 +190,7 @@ public class BattleGUI extends JPanel {
                 int heal = myBattle.myHero.useHealthPotion();
                 setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
                 updateBattle();
+                BackpackGUI.removeItemFromBackPack("HEALTH_POTION");
             }
         });
 
@@ -214,6 +215,7 @@ public class BattleGUI extends JPanel {
         heroInGameImage.setIcon(hero.getMyInGameSprite());
         monsterImage.setIcon(monster.getMySprite());
 
+        setBattleConsole(new StringBuilder());
 
         PlayerInventory inv = getMyBattle().myHero.getMyInventory();
         if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
