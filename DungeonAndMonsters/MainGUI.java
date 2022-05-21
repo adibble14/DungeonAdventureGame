@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ public class MainGUI extends GUI{
     // Pixel font
     private Font theCustomFont;
     // Reference to backpack frame
-    private BackpackGUI theBackpackGui;
+    private BackpackGUI myBackpackGui;
     // Reference to the hero
     private Hero theHero;
     MainGUI(){
@@ -32,7 +33,7 @@ public class MainGUI extends GUI{
         CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(theCustomFont);
         DungeonGUI dungeonGUI = new DungeonGUI(theCustomFont);
         BattleGUI battleGUI = new BattleGUI(theCustomFont);
-        theBackpackGui = new BackpackGUI(theCustomFont);
+        myBackpackGui = new BackpackGUI(theCustomFont);
         MapGUI mapGUI = new MapGUI(theCustomFont);
 
         // Add the panels to the cardPanel using string constraints
@@ -50,12 +51,12 @@ public class MainGUI extends GUI{
     }
 
     public BackpackGUI getBackpackGui(){
-        return theBackpackGui;
+        return myBackpackGui;
     }
 
     public void setTheHero(Hero myHero){
         theHero = myHero;
-        theBackpackGui.setMyHero(myHero);
+        myBackpackGui.setMyHero(myHero);
     }
 
     protected void setCurrentCard(String myCardName){
@@ -74,11 +75,16 @@ public class MainGUI extends GUI{
                 break;
             case "backpack":
                 //theCardLayout.show(theCardPanel, "backpack");
-                theBackpackGui.setVisible(true);
+                myBackpackGui.setVisible(true);
                 break;
             case "battle":
                 theCardLayout.show(theCardPanel, "battle");
                 break;
         }
     }
+
+    void closeBackPack(){
+        myBackpackGui.dispatchEvent(new WindowEvent(myBackpackGui, WindowEvent.WINDOW_CLOSING));
+    }
+
 }

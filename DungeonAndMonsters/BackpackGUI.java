@@ -135,6 +135,16 @@ public class BackpackGUI extends GUI {
         }
     }
 
+    /**
+     * when playing again need to remove all items
+     */
+    public static void removeAllItems(){
+        for(Component button: myItemPanel.getComponents()){
+            ((JButton) button).setToolTipText(null);
+            button.setEnabled(false);
+            ((JButton) button).setIcon(null);
+        }
+    }
 
     public void setMyHero(Hero theHero){
         myHero = theHero;

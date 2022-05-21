@@ -156,10 +156,13 @@ public class CharacterSelectionGUI extends JPanel{
         archerButton.setFont(pixelFont);
         this.add(archerButton, gbc);
         archerButton.addActionListener(e -> {
-            setUserName();
-            DungeonAdventure.setMyHeroChoice("a");
-            DungeonAdventure.sceneController("dungeon");
-            DungeonAdventure.setUPGame();
+            String name = setUserName();
+            if(name != null){
+                DungeonAdventure.setMyUserName(name);
+                DungeonAdventure.setMyHeroChoice("a");
+                DungeonAdventure.sceneController("dungeon");
+                DungeonAdventure.setUPGame();
+            }
         });
 
         //Mage
@@ -169,10 +172,13 @@ public class CharacterSelectionGUI extends JPanel{
         mageButton.setFont(pixelFont);
         this.add(mageButton, gbc);
         mageButton.addActionListener(e -> {
-            setUserName();
-            DungeonAdventure.setMyHeroChoice("m");
-            DungeonAdventure.sceneController("dungeon");
-            DungeonAdventure.setUPGame();
+            String name = setUserName();
+            if(name != null){
+                DungeonAdventure.setMyUserName(name);
+                DungeonAdventure.setMyHeroChoice("m");
+                DungeonAdventure.sceneController("dungeon");
+                DungeonAdventure.setUPGame();
+            }
         });
 
         //Thief
@@ -182,10 +188,13 @@ public class CharacterSelectionGUI extends JPanel{
         thiefButton.setFont(pixelFont);
         this.add(thiefButton, gbc);
         thiefButton.addActionListener(e -> {
-            setUserName();
-            DungeonAdventure.setMyHeroChoice("t");
-            DungeonAdventure.sceneController("dungeon");
-            DungeonAdventure.setUPGame();
+            String name = setUserName();
+            if(name != null){
+                DungeonAdventure.setMyUserName(name);
+                DungeonAdventure.setMyHeroChoice("t");
+                DungeonAdventure.sceneController("dungeon");
+                DungeonAdventure.setUPGame();
+            }
         });
 
         //Warrior
@@ -195,10 +204,13 @@ public class CharacterSelectionGUI extends JPanel{
         warriorButton.setFont(pixelFont);
         this.add(warriorButton, gbc);
         warriorButton.addActionListener(e -> {
-            setUserName();
-            DungeonAdventure.setMyHeroChoice("w");
-            DungeonAdventure.sceneController("dungeon");
-            DungeonAdventure.setUPGame();
+            String name = setUserName();
+            if(name != null){
+                DungeonAdventure.setMyUserName(name);
+                DungeonAdventure.setMyHeroChoice("w");
+                DungeonAdventure.sceneController("dungeon");
+                DungeonAdventure.setUPGame();
+            }
         });
 
         //Priestess
@@ -208,10 +220,14 @@ public class CharacterSelectionGUI extends JPanel{
         priestessButton.setFont(pixelFont);
         this.add(priestessButton, gbc);
         priestessButton.addActionListener(e -> {
-            setUserName();
-            DungeonAdventure.setMyHeroChoice("p");
-            DungeonAdventure.sceneController("dungeon");
-            DungeonAdventure.setUPGame();
+            String name = setUserName();
+            if(name != null){
+                DungeonAdventure.setMyUserName(name);
+                DungeonAdventure.setMyHeroChoice("p");
+                DungeonAdventure.sceneController("dungeon");
+                DungeonAdventure.setUPGame();
+            }
+
         });
 
         // button placement end -----------------------------------------------
@@ -249,8 +265,8 @@ public class CharacterSelectionGUI extends JPanel{
 
     }
 
-    private void setUserName() {
-        DungeonAdventure.setMyUserName(JOptionPane.showInputDialog(this, "Provide User Name:"));
+    private String setUserName() {
+        return JOptionPane.showInputDialog(this, "Provide User Name:");
     }
 
     /**

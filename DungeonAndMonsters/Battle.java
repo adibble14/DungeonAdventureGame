@@ -32,25 +32,30 @@ public class Battle {
 	 * the DungeonCharacter with the highest speed stat goes first
 	 */
 	protected void attackPhase(final boolean theSpecialCase) {
-		if(this.myHero.getSpeed() > this.myMonster.getSpeed()) {
+		if(this.myHero.getSpeed() < this.myMonster.getSpeed()) {
+			this.myMonster.attack(this.myHero);
+			checkWinner();
 			if(theSpecialCase) {
 				this.myHero.special(this.myMonster);
-				this.myMonster.attack(this.myHero);
 			} else {
 				this.myHero.attack(this.myMonster);
-				this.myMonster.attack(this.myHero);
 			}
-
+			checkWinner();
 		} else {
 			if(theSpecialCase) {
-				this.myMonster.attack(this.myHero);
 				this.myHero.special(this.myMonster);
 			} else {
-				this.myMonster.attack(this.myHero);
 				this.myHero.attack(this.myMonster);
 			}
+			checkWinner();
+			this.myMonster.attack(this.myHero);
+			checkWinner();
 		}
 
+
+	}
+
+	protected void checkWinner(){
 		if(myHero.getHealth() <= 0){
 			BattleGUI.updateBattle();
 			DungeonAdventure.gameOver();

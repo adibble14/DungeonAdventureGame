@@ -43,6 +43,7 @@ public class DungeonAdventure implements Serializable {
 	 * @param theMenuChoice choice for which scene you want
 	 */
 	protected static void sceneController(String theMenuChoice){
+		MAIN_GUI.closeBackPack();			//so the backpack doesn't stay open when switching screens
 		MAIN_GUI.setCurrentCard(theMenuChoice);
 	}
 
@@ -199,6 +200,7 @@ public class DungeonAdventure implements Serializable {
 	}
 	public static void playAgain(){
 		sceneController("menu");
+		BackpackGUI.removeAllItems();
 	}
 
 	public static void battleWin(){

@@ -258,7 +258,7 @@ public class BattleGUI extends JPanel {
     static StringBuilder getBattleConsole(){return new StringBuilder(myBattleConsole.getText());}
 
     private static String getAttackInfo(){
-        return "BATTLE FORMAT:\nWhoever has the fastest attack speed goes first.\nOnce a character attacks, its opponent attacks afterwards.\nYou can choose to use a special attack and " +
+        return "BATTLE FORMAT:\nWhoever has the fastest attack speed goes first (tie goes to Hero).\nOnce a character attacks, its opponent attacks afterwards.\nYou can choose to use a special attack and " +
                 "any items in your inventory at any time.\nThe monsters also have a special attack that is activated randomly.\nThe battle is to the death!\n" +
                 "May the odds be ever in your favor!\n" + specialInfo();
     }
