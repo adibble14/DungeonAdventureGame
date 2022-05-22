@@ -37,6 +37,12 @@ public class Room implements Serializable {
 	 * Boolean, whether a monster is in this room
 	 */
 	private boolean myContainsMonster;
+
+	/**
+	 * Whether or not we have discovered the room - for mini map
+	 */
+	private boolean myDiscovery;
+
 	/**
 	 * Room constructor, initializes fields. Takes coords from Dungeon class
 	 * Coords are index values.
@@ -50,6 +56,7 @@ public class Room implements Serializable {
 		this.myYCoord = theYCoord;
 		this.myChest = null;
 		this.myContainsMonster = false;
+		this.myDiscovery = false;
 		this.myType = theType;
 		if(theType == RoomType.ITEM_ROOM)
 			this.myChest = new Chest();
@@ -72,6 +79,9 @@ public class Room implements Serializable {
 		return this.myYCoord;
 	}
 
+	final protected boolean getMyDiscovery(){
+		return myDiscovery;
+	}
 	
 	/**
 	 * Sets the object of this room to empty, to null? Change this later possibly
@@ -104,6 +114,11 @@ public class Room implements Serializable {
 	final protected void setMonster() {
 		this.myContainsMonster = true;
 	}
+
+	/**
+	 * Sets the room to discovered
+	 */
+	final protected void setMyDiscovery(){this.myDiscovery = true;}
 	/**
 	 * Removes monster from this room by setting boolean field to false
 	 */

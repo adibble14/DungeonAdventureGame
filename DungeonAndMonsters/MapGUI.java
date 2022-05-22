@@ -26,40 +26,63 @@ public class MapGUI extends JFrame {
         @Override
         public void paintComponent(Graphics g){
             super.paintComponent(g);
-            // Retrieve the graphics context; this object is used to paint shapes
-
+            // Graphics object used to paint objects
             Graphics2D g2d = (Graphics2D) g;
 
-
+            // Setting size of map rooms based on how large our dungeon is
             int mapRoomWidth = getSize().width / 10; // How many room columns we have
-
-
             int mapRoomHeight = getSize().height / 10;
-
-            System.out.println(mapRoomWidth +" " + mapRoomHeight);
-            g2d.setColor(Color.RED);
-           //g2d.fillRect(x,y, mapRoomWidth, mapRoomHeight);
 
             for(int i = 0; i < DungeonAdventure.getMyDungeon().getDungeon().length; i++){
                 for(int j = 0; j < DungeonAdventure.getMyDungeon().getDungeon()[0].length; j++){
-                    if(DungeonAdventure.getMyDungeon().getRoom(i,j) == null){
+                    Room currentRoom = DungeonAdventure.getMyDungeon().getRoom(j,i);
+                    if( currentRoom== null){
                         g2d.setColor(Color.BLACK);
-                    }else{
-                        if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.ENTRANCE){
-                            g2d.setColor(Color.BLUE);
-                        }else if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.EMPTY){
-                            g2d.setColor(Color.GRAY);
-                        }else if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.ITEM_ROOM){
-                            g2d.setColor(Color.GREEN);
-                        }else if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.EXIT){
-                            g2d.setColor(Color.YELLOW);
-                        }else if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.BOSS_ROOM){
-                            g2d.setColor(Color.RED);
-                        }else if(DungeonAdventure.getMyDungeon().getRoom(i,j).getMyType() == RoomType.PIT){
-                            g2d.setColor(Color.MAGENTA);
+                    }
+                    else if((currentRoom == DungeonAdventure.getMyDungeon().getCurrentRoom())){
+                        g2d.setColor(Color.WHITE);
+                    }
+                    else{
+                        switch (currentRoom.getMyType()){
+                            case ENTRANCE -> g2d.setColor(Color.BLUE);
+                            case EMPTY -> {
+                                // When we have discovered the room we turn its color
+                                if(currentRoom.getMyDiscovery())
+                                    g2d.setColor(Color.LIGHT_GRAY);
+                                else
+                                    g2d.setColor(Color.DARK_GRAY);
+                            }
+                            case ITEM_ROOM ->{
+                                if(currentRoom.getMyDiscovery())
+                                    g2d.setColor(Color.GREEN);
+                                else
+                                    g2d.setColor(Color.DARK_GRAY);
+                            }
+                            case EXIT ->{
+                                if(currentRoom.getMyDiscovery())
+                                    g2d.setColor(Color.YELLOW);
+                                else
+                                    g2d.setColor(Color.DARK_GRAY);
+                            }
+                            case BOSS_ROOM ->{
+                                if(currentRoom.getMyDiscovery())
+                                    g2d.setColor(Color.RED);
+                                else
+                                    g2d.setColor(Color.DARK_GRAY);
+                            }
+                            case PIT -> {
+                                if(currentRoom.getMyDiscovery())
+                                    g2d.setColor(Color.MAGENTA);
+                                else
+                                    g2d.setColor(Color.DARK_GRAY);
+                            }
+                            default -> g2d.setColor(Color.black);
                         }
                     }
 
+
+                    g2d.fillRect(i * mapRoomWidth, j * mapRoomHeight, mapRoomWidth, mapRoomHeight);
+                    g2d.setColor(Color.black);
                     g2d.drawRect(i * mapRoomWidth, j * mapRoomHeight, mapRoomWidth, mapRoomHeight);
                 }
 
