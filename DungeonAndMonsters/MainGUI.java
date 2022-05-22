@@ -6,46 +6,47 @@ import java.io.IOException;
 
 public class MainGUI extends GUI{
     // Layout that will control when cards are shown
-    CardLayout theCardLayout = new CardLayout();
+    CardLayout myCardLayout = new CardLayout();
     // Panel to hold the cardlayout
-    JPanel theCardPanel = new JPanel(theCardLayout);
+    JPanel myCardPanel = new JPanel(myCardLayout);
     // Pixel font
-    private Font theCustomFont;
+    private Font myCustomFont;
     // Reference to backpack frame
     private BackpackGUI myBackpackGui;
-    // Reference to the hero
-    private Hero theHero;
+    // Reference to Map Frame
+    private MapGUI myMapGui;
+    // Reference to the hero and dungeon
+    //private Hero theHero;
+    private static Dungeon myDungeon;
     MainGUI(){
         try {
             //create the font to use. Specify the size!
-            theCustomFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(25f);
+            myCustomFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(25f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
-            ge.registerFont(theCustomFont);
+            ge.registerFont(myCustomFont);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
         // Adding the cardPanel to the Frame
-        this.add(theCardPanel);
+        this.add(myCardPanel);
 
         // Create all our content panels
-        MenuGUI menuGUI = new MenuGUI(theCustomFont);
-        CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(theCustomFont);
-        DungeonGUI dungeonGUI = new DungeonGUI(theCustomFont);
-        BattleGUI battleGUI = new BattleGUI(theCustomFont);
-        myBackpackGui = new BackpackGUI(theCustomFont);
-        MapGUI mapGUI = new MapGUI(theCustomFont);
+        MenuGUI menuGUI = new MenuGUI(myCustomFont);
+        CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(myCustomFont);
+        DungeonGUI dungeonGUI = new DungeonGUI(myCustomFont);
+        BattleGUI battleGUI = new BattleGUI(myCustomFont);
+        myBackpackGui = new BackpackGUI(myCustomFont);
+        myMapGui = new MapGUI(myCustomFont);
 
         // Add the panels to the cardPanel using string constraints
-        theCardPanel.add(menuGUI, "menu");
-        theCardPanel.add(characterSelectionGUI, "character");
-        theCardPanel.add(dungeonGUI, "dungeon");
-        theCardPanel.add(battleGUI, "battle");
-        //theCardPanel.add(backpackGUI, "backpack");
-        theCardPanel.add(mapGUI, "map");
+        myCardPanel.add(menuGUI, "menu");
+        myCardPanel.add(characterSelectionGUI, "character");
+        myCardPanel.add(dungeonGUI, "dungeon");
+        myCardPanel.add(battleGUI, "battle");
 
         // Start by showing menuGUI
-        theCardLayout.show(theCardPanel, "menu");
+        myCardLayout.show(myCardPanel, "menu");
         Music player = new Music();
         player.playMusic("DungeonAndMonsters/clip_1.wav");
     }
@@ -55,30 +56,38 @@ public class MainGUI extends GUI{
     }
 
     public void setTheHero(Hero myHero){
-        theHero = myHero;
+        //theHero = myHero;
         myBackpackGui.setMyHero(myHero);
+    }
+
+    protected void setMyDungeon(Dungeon theDungeon){
+        myDungeon = theDungeon;
+    }
+
+    protected static Dungeon getMyDungeon(){
+        return myDungeon;
     }
 
     protected void setCurrentCard(String myCardName){
         switch (myCardName){
             case "menu":
-                theCardLayout.show(theCardPanel,"menu");
+                myCardLayout.show(myCardPanel,"menu");
                 break;
             case "character":
-                theCardLayout.show(theCardPanel, "character");
+                myCardLayout.show(myCardPanel, "character");
                 break;
             case "dungeon":
-                theCardLayout.show(theCardPanel, "dungeon");
+                myCardLayout.show(myCardPanel, "dungeon");
                 break;
             case "map":
-                theCardLayout.show(theCardPanel, "map");
+                myMapGui.setVisible(true);
                 break;
             case "backpack":
                 //theCardLayout.show(theCardPanel, "backpack");
                 myBackpackGui.setVisible(true);
                 break;
             case "battle":
-                theCardLayout.show(theCardPanel, "battle");
+                myCardLayout.show(myCardPanel, "battle");
                 break;
         }
     }
@@ -88,7 +97,7 @@ public class MainGUI extends GUI{
      * @return
      */
     JPanel getCurrentCard(){
-        for(Component comp : theCardPanel.getComponents()) {
+        for(Component comp : myCardPanel.getComponents()) {
             if (comp.isVisible()) {
                 return (JPanel)comp;
             }

@@ -31,6 +31,7 @@ public class DungeonAdventure implements Serializable {
 		numDungeonsPassed = 0;
 		createHero();
 		MAIN_GUI.setTheHero(myHero);
+		MAIN_GUI.setMyDungeon(myDungeon);
 		createDungeon();
 		// First run through updating the dungeonGUI scene
 		//DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());

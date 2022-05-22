@@ -5,7 +5,7 @@ import java.awt.*;
  * We want the backpack menu to popout, so we
  * implement our GUI frame
  */
-public class BackpackGUI extends GUI {
+public class BackpackGUI extends JFrame {
     // How many objects we can hold on the x axis
     private final int myBackpackWidth = 5;
     // How many objects we can hold on the y axis
@@ -28,7 +28,7 @@ public class BackpackGUI extends GUI {
     private JLabel playerGoldCount = new JLabel();
     BackpackGUI(Font pixelFont){
         // Change the name of the frame
-        this.setTitle("Backpack!");
+        this.setTitle("Backpack");
         // Size this frame to be slightly smaller
         this.setSize(450, 400);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -140,9 +140,11 @@ public class BackpackGUI extends GUI {
      */
     public static void removeAllItems(){
         for(Component button: myItemPanel.getComponents()){
-            ((JButton) button).setToolTipText(null);
-            button.setEnabled(false);
-            ((JButton) button).setIcon(null);
+            if(button instanceof JButton) {
+                ((JButton) button).setToolTipText(null);
+                button.setEnabled(false);
+                ((JButton) button).setIcon(null);
+            }
         }
     }
 
