@@ -392,6 +392,11 @@ public class DungeonGUI extends JPanel {
         myLeftMoveButton.setEnabled(true);
     }
 
+    static void setSaveLoad() {
+        GUI.saveGame.setEnabled(true);
+        GUI.loadGame.setEnabled(false);
+    }
+
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

@@ -45,6 +45,25 @@ public class DungeonAdventure implements Serializable {
 	protected static void sceneController(String theMenuChoice){
 		MAIN_GUI.closeBackPack();			//so the backpack doesn't stay open when switching screens
 		MAIN_GUI.setCurrentCard(theMenuChoice);
+		//setSaveLoad();
+	}
+
+	static void setSaveLoad(){
+		JPanel panel = MAIN_GUI.getCurrentCard();
+
+		if(panel.toString().startsWith("MenuGUI")){
+			MenuGUI.setSaveLoad();
+		}else if(panel.toString().startsWith("Char")){
+			CharacterSelectionGUI.setSaveLoad();
+		}else if(panel.toString().startsWith("Dun")){
+			DungeonGUI.setSaveLoad();
+		}else if(panel.toString().startsWith("Batt")){
+			BattleGUI.setSaveLoad();
+		}else if(panel.toString().startsWith("Back")){
+			BackpackGUI.setSaveLoad();
+		}else if(panel.toString().startsWith("Map")){
+			MapGUI.setSaveLoad();
+		}
 	}
 
 

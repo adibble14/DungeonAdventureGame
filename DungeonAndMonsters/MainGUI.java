@@ -83,6 +83,20 @@ public class MainGUI extends GUI{
         }
     }
 
+    /**
+     * returns the current panel visible
+     * @return
+     */
+    JPanel getCurrentCard(){
+        for(Component comp : theCardPanel.getComponents()) {
+            if (comp.isVisible()) {
+                return (JPanel)comp;
+            }
+        }
+        return null;
+    }
+
+
     void closeBackPack(){
         myBackpackGui.dispatchEvent(new WindowEvent(myBackpackGui, WindowEvent.WINDOW_CLOSING));
     }

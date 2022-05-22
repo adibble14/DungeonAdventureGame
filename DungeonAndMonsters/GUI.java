@@ -1,9 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class GUI extends JFrame {
     protected static final int MY_WINDOW_WIDTH = 950;
     protected static final int MY_WINDOW_HEIGHT = 650;
+    protected static JMenuItem saveGame;
+    protected static JMenuItem loadGame;
     GUI(){
         Icon swordIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png", "Sword");
         ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png");
@@ -52,8 +56,8 @@ public abstract class GUI extends JFrame {
         // Add menu items to help menu
         help.add(instr); help.add(about); help.add(quit);
 
-        JMenuItem saveGame = new JMenuItem("Save Game");
-        saveGame.setEnabled(true);
+        saveGame = new JMenuItem("Save Game");
+        //saveGame.setEnabled(false);
         saveGame.addActionListener( e -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Save Game");
@@ -66,7 +70,8 @@ public abstract class GUI extends JFrame {
 
         });
 
-        JMenuItem loadGame = new JMenuItem("Load Game");
+        loadGame = new JMenuItem("Load Game");
+        //loadGame.setEnabled(true);
         loadGame.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Load");
@@ -80,6 +85,7 @@ public abstract class GUI extends JFrame {
         save.add(saveGame); save.add(loadGame);
 
     }
+
 
     /**
      * Can be moved to wherever we want to store large text data
@@ -112,5 +118,14 @@ public abstract class GUI extends JFrame {
         return generalInfo;
 
     }
+
+    public static void setSaveGame(boolean bool){
+        saveGame.setEnabled(bool);
+    }
+    public static void setLoadGame(boolean bool){
+        loadGame.setEnabled(bool);
+    }
+
+
 
 }

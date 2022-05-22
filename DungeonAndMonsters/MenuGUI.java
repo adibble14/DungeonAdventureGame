@@ -58,6 +58,16 @@ public class MenuGUI extends JPanel{
         JButton loadGame = new JButton("LOAD GAME");
         loadGame.setFont(new Font("Serif", Font.BOLD, 20));
         loadGame.setPreferredSize(new Dimension(200,50));
+        loadGame.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Load");
+            int selection = chooser.showOpenDialog(null);
+            if(selection == JFileChooser.APPROVE_OPTION) {
+                String s = chooser.getSelectedFile().toString();
+                SaveGame.load(s);
+                System.out.println(s);
+            }
+        });
 
         JButton instr = new JButton("HOW TO PLAY");
         instr.setFont(new Font("Serif", Font.BOLD, 20));
@@ -98,5 +108,10 @@ public class MenuGUI extends JPanel{
         gbc.insets = new Insets(0,0,20,0);
         this.add(buttonPanel, gbc);
 
+    }
+
+    static void setSaveLoad() {
+            GUI.saveGame.setEnabled(false);
+            GUI.loadGame.setEnabled(true);
     }
 }

@@ -275,6 +275,10 @@ public class BattleGUI extends JPanel {
     static void disableHealthButton(){healthPotion.setEnabled(false);}
 
 
+    static void setSaveLoad() {
+        GUI.saveGame.setEnabled(false);
+        GUI.loadGame.setEnabled(false);
+    }
 
     /**
      * Inner class drawWindow that works as the display panel showing off the
