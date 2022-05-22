@@ -110,4 +110,8 @@ public class MainGUI extends GUI{
         myBackpackGui.dispatchEvent(new WindowEvent(myBackpackGui, WindowEvent.WINDOW_CLOSING));
     }
 
+    void closeMap(){
+        myMapGui.dispatchEvent(new WindowEvent(myMapGui, WindowEvent.WINDOW_CLOSING));
+    }
+
 }

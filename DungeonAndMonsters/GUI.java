@@ -6,8 +6,6 @@ import java.io.IOException;
 public abstract class GUI extends JFrame {
     protected static final int MY_WINDOW_WIDTH = 950;
     protected static final int MY_WINDOW_HEIGHT = 650;
-    protected static JMenuItem saveGame;
-    protected static JMenuItem loadGame;
     GUI(){
         Icon swordIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png", "Sword");
         ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png");
@@ -22,9 +20,7 @@ public abstract class GUI extends JFrame {
         JMenuBar bar = new JMenuBar();
         this.setJMenuBar(bar);
         JMenu help = new JMenu("HELP");
-        JMenu save = new JMenu("SAVE");
         bar.add(help);
-        bar.add(save);
 
         // Instruction submenu
         JMenuItem instr = new JMenuItem("Instructions");
@@ -55,34 +51,6 @@ public abstract class GUI extends JFrame {
 
         // Add menu items to help menu
         help.add(instr); help.add(about); help.add(quit);
-
-        saveGame = new JMenuItem("Save Game");
-        //saveGame.setEnabled(false);
-        saveGame.addActionListener( e -> {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setDialogTitle("Save Game");
-            int selection = chooser.showSaveDialog(null);
-            if(selection == JFileChooser.APPROVE_OPTION) {
-                String s = chooser.getSelectedFile().toString();
-                SaveGame.save(s);
-                System.out.println(s);
-            }
-
-        });
-
-        loadGame = new JMenuItem("Load Game");
-        //loadGame.setEnabled(true);
-        loadGame.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setDialogTitle("Load");
-            int selection = chooser.showOpenDialog(null);
-            if(selection == JFileChooser.APPROVE_OPTION) {
-                String s = chooser.getSelectedFile().toString();
-                SaveGame.load(s);
-                System.out.println(s);
-            }
-        });
-        save.add(saveGame); save.add(loadGame);
 
     }
 
@@ -117,13 +85,6 @@ public abstract class GUI extends JFrame {
         generalInfo.append("- Traps and various monsters await in the Dungeon.\n");
         return generalInfo;
 
-    }
-
-    public static void setSaveGame(boolean bool){
-        saveGame.setEnabled(bool);
-    }
-    public static void setLoadGame(boolean bool){
-        loadGame.setEnabled(bool);
     }
 
 

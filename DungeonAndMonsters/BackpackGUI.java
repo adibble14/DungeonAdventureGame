@@ -167,8 +167,4 @@ public class BackpackGUI extends JFrame {
         playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
     }
 
-    static void setSaveLoad() {
-        GUI.saveGame.setEnabled(false);
-        GUI.loadGame.setEnabled(false);
-    }
 }

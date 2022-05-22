@@ -321,10 +321,4 @@ public class CharacterSelectionGUI extends JPanel{
         return statInfo;
     }
 
-    static void setSaveLoad() {
-        //GUI.saveGame.setEnabled(false);
-        //GUI.loadGame.setEnabled(false);
-        GUI.setLoadGame(false);
-        GUI.setSaveGame(false);
-    }
 }

@@ -110,8 +110,4 @@ public class MenuGUI extends JPanel{
 
     }
 
-    static void setSaveLoad() {
-            GUI.saveGame.setEnabled(false);
-            GUI.loadGame.setEnabled(true);
-    }
 }

@@ -208,11 +208,18 @@ public class DungeonGUI extends JPanel {
         // Quit button
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JButton quit = new JButton("Quit");
-        quit.setFont(thePixelFont);
-        buttonArea.add(quit,gbc);
-        quit.addActionListener(e -> {
-            System.exit(0);
+        JButton save = new JButton("Save Game");
+        save.setFont(thePixelFont);
+        buttonArea.add(save,gbc);
+        save.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Save Game");
+            int selection = chooser.showSaveDialog(null);
+            if(selection == JFileChooser.APPROVE_OPTION) {
+                String s = chooser.getSelectedFile().toString();
+                SaveGame.save(s);
+                System.out.println(s);
+            }
         });
 
         // Left button
@@ -391,12 +398,6 @@ public class DungeonGUI extends JPanel {
         myRightMoveButton.setEnabled(true);
         myLeftMoveButton.setEnabled(true);
     }
-
-    static void setSaveLoad() {
-        GUI.saveGame.setEnabled(true);
-        GUI.loadGame.setEnabled(false);
-    }
-
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

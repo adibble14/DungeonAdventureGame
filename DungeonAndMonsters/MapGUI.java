@@ -15,12 +15,8 @@ public class MapGUI extends JFrame {
         this.setVisible(false);
         this.add(new DrawWindow());
     }
+    
 
-
-    static void setSaveLoad() {
-        GUI.saveGame.setEnabled(false);
-        GUI.loadGame.setEnabled(false);
-    }
     protected static class DrawWindow extends JPanel{
 
         DrawWindow(){
