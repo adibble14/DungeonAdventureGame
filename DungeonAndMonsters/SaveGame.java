@@ -42,6 +42,8 @@ public class SaveGame {
             // setting read objects to class fields
             DungeonAdventure.setMyHero(hero);
             DungeonAdventure.setMyDungeon(dungeon);
+            DungeonAdventure.sceneController("dungeon");
+            DungeonAdventure.loadUpGame();
             // post operation clean up
             inputFile.close();
             in.close();

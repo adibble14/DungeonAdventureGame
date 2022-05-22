@@ -36,6 +36,12 @@ public class DungeonAdventure implements Serializable {
 		// First run through updating the dungeonGUI scene
 		//DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
+	public static void loadUpGame() {
+		numDungeonsPassed = 0;
+		MAIN_GUI.setTheHero(myHero);
+		MAIN_GUI.setMyDungeon(myDungeon);
+		DungeonGUI.setUpVisualDungeon(myHero,myDungeon);
+	}
 
 
 	/**
@@ -253,11 +259,9 @@ public class DungeonAdventure implements Serializable {
 			default:return "Polymorphism";
 		}
 	}
-
-
-
-
-
+	public static MainGUI getMainGui() {
+		return MAIN_GUI;
+	}
 
 
 }
