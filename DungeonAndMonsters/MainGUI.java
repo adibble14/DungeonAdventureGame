@@ -68,6 +68,10 @@ public class MainGUI extends GUI{
         return myDungeon;
     }
 
+    protected MapGUI getMapGui(){
+        return myMapGui;
+    }
+
     protected void setCurrentCard(String myCardName){
         switch (myCardName){
             case "menu":

@@ -110,7 +110,9 @@ public class DungeonAdventure implements Serializable {
 	public static Image changeRooms(Dungeon theDungeon, Image theCurrentImage, int theX, int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		if(newCurrent != null){
+			newCurrent.setMyDiscovery();
 			theDungeon.setCurrentRoom(newCurrent);
+			MAIN_GUI.getMapGui().repaint();
 			DungeonGUI.getMyRoomLabel().setText(getRoomLabel(theDungeon));
 			return Dungeon.setMyDungeonRoom(theDungeon);
 		}else{
