@@ -19,6 +19,7 @@ public class MapGUI extends JFrame {
 
     protected static class DrawWindow extends JPanel{
 
+        Image currentRoomImage;
         DrawWindow(){
             this.setBackground(Color.BLACK);
             this.setVisible(true);
@@ -36,15 +37,17 @@ public class MapGUI extends JFrame {
             for(int i = 0; i < DungeonAdventure.getMyDungeon().getDungeon().length; i++){
                 for(int j = 0; j < DungeonAdventure.getMyDungeon().getDungeon()[0].length; j++){
                     Room currentRoom = DungeonAdventure.getMyDungeon().getRoom(j,i);
+                    currentRoomImage = null;
                     if( currentRoom== null){
                         g2d.setColor(Color.BLACK);
                     }
                     else if((currentRoom == DungeonAdventure.getMyDungeon().getCurrentRoom())){
                         g2d.setColor(Color.WHITE);
+                        currentRoomImage = DungeonAdventure.getMyHero().getMyInGameSprite().getImage();
                     }
                     else{
                         switch (currentRoom.getMyType()){
-                            case ENTRANCE -> g2d.setColor(Color.BLUE);
+                            case ENTRANCE ->g2d.setColor(Color.BLUE);
                             case EMPTY -> {
                                 // When we have discovered the room we turn its color
                                 if(currentRoom.getMyDiscovery())
@@ -84,6 +87,7 @@ public class MapGUI extends JFrame {
                     g2d.fillRect(i * mapRoomWidth, j * mapRoomHeight, mapRoomWidth, mapRoomHeight);
                     g2d.setColor(Color.black);
                     g2d.drawRect(i * mapRoomWidth, j * mapRoomHeight, mapRoomWidth, mapRoomHeight);
+                    g2d.drawImage(currentRoomImage,i * mapRoomWidth, j * mapRoomHeight,mapRoomWidth, mapRoomHeight, this);
                 }
 
             }
