@@ -62,7 +62,7 @@ public class DungeonTest {
     @Test
     public void testRandomGeneration() {
 
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < 20; i++) {
             Dungeon dung = new Dungeon(10, .7);
         }
     }
