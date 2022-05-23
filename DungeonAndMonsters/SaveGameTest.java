@@ -64,4 +64,19 @@ public class SaveGameTest {
         System.out.println(DungeonAdventure.getMyDungeon().toString());
 
     }
+
+//    @Test
+//    public void testSaveLoad4() {
+//        Dungeon dungeon = new Dungeon(10,.4);
+//
+//        DungeonAdventure.setMyDungeon(dungeon);
+//
+//        SaveGame.save("DungeonAndMonsters/game.ser");
+//        System.out.println("Saved Object.");
+//        SaveGame.load("DungeonAndMonsters/game.ser");
+//        System.out.println("Loaded Objects");
+//
+//        assertEquals(dungeon, DungeonAdventure.getMyDungeon().toString());
+//
+//    }
 }
