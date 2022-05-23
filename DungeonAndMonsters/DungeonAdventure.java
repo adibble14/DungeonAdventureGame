@@ -54,8 +54,8 @@ public class DungeonAdventure implements Serializable {
 	 * @param theMenuChoice choice for which scene you want
 	 */
 	protected static void sceneController(String theMenuChoice){
-		MAIN_GUI.closeBackPack();			//so the backpack and map doesn't stay open when switching screens
-		MAIN_GUI.closeMap();
+		//MAIN_GUI.closeBackPack();			//so the backpack and map doesn't stay open when switching screens
+		//MAIN_GUI.closeMap();
 		MAIN_GUI.setCurrentCard(theMenuChoice);
 		//setSaveLoad();
 	}
