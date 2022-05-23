@@ -109,7 +109,7 @@ public class DungeonAdventure implements Serializable {
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	public static void createDungeon(){
-		myDungeon = new Dungeon( 10, .15);
+		myDungeon = new Dungeon( 10, .23);
 		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
