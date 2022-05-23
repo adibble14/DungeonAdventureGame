@@ -14,7 +14,7 @@ public class DungeonAdventure implements Serializable {
 	private static String myHeroChoice;
 	private static Hero myHero;
 	private static Dungeon myDungeon;
-	private static double myItemRoomChance = .7;
+	private static double myItemRoomChance = .8;
 	private static int numDungeonsPassed;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.

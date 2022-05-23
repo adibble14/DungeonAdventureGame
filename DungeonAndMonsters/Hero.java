@@ -32,6 +32,8 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     private final ArrayList<HealthPotion> myHealthPotions;
 
+    private final ArrayList<VisionPotion> myVisionPotions;
+
     /**
      * Child constructor of Hero class. Calls super class constructor to init fields.
      * Inits Hero class exclusive fields.
@@ -51,6 +53,7 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
         this.myKeyCount = 0;
         this.myInventory = new PlayerInventory();
         this.myHealthPotions = new ArrayList<>();
+        this.myVisionPotions = new ArrayList<>();
     }
 
     /**
@@ -142,6 +145,7 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
             this.myHealthPotions.add((HealthPotion) theItem);
         } else if(theItem.getClass() == VisionPotion.class) {
             this.myInventory.addItem(ItemType.VISION_POTION, theAmount);
+            this.myVisionPotions.add((VisionPotion) theItem);
         } else if (theItem.getClass() == Pillar.class) {
             this.myInventory.addPillar((Pillar) theItem);
         }
@@ -207,7 +211,11 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      * @param theDung the dungeon
      */
     final protected void useVisionPotion(final Dungeon theDung) {
-
+        if(this.myInventory.getItemCount(ItemType.VISION_POTION) > 0) {
+            this.myVisionPotions.get(0).use(theDung);
+            this.myVisionPotions.remove(0);
+            this.myInventory.removeItem(ItemType.VISION_POTION);
+        }
     }
 
     /**

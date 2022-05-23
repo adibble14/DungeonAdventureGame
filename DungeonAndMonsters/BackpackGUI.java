@@ -104,8 +104,8 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(potionIcon);
                         ((JButton) button).setToolTipText("Vision Potion");
                         ((JButton) button).addActionListener(e -> {
-                            System.out.println("vision");
-                            //TODO use potion functionality
+                            myHero.useVisionPotion(DungeonAdventure.getMyDungeon());
+                            DungeonGUI.setPlayerConsole(new StringBuilder(myHero.getName() + " used a vision potion."));
                         });
                         break;
                     default:
