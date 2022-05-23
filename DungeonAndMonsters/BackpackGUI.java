@@ -167,4 +167,18 @@ public class BackpackGUI extends JFrame {
         playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
     }
 
+    /**
+     * called when loading a saved file
+     */
+    public void loadPlayerInventory() {
+        PlayerInventory inv = myHero.getMyInventory();
+        while(this.getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {
+            this.addItemToBackpack(ItemType.HEALTH_POTION.toString());
+        }
+        while(this.getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
+            this.addItemToBackpack(ItemType.VISION_POTION.toString());
+        }
+        this.refreshGoldValue();
+    }
+
 }

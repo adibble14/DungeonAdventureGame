@@ -37,10 +37,14 @@ public class DungeonAdventure implements Serializable {
 		//DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
 	public static void loadUpGame() {
+		//TODO: Just for testing purposes. Should load images from database later on.
+		myHero.setMyInGameSprite(new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png"));
+		myHero.setSprite(new ImageIcon("DungeonAndMonsters/character pics/archer.jpeg"));
 		numDungeonsPassed = 0;
 		MAIN_GUI.setTheHero(myHero);
 		MAIN_GUI.setMyDungeon(myDungeon);
 		DungeonGUI.setUpVisualDungeon(myHero,myDungeon);
+		MAIN_GUI.getBackpackGui().loadPlayerInventory();
 	}
 
 
