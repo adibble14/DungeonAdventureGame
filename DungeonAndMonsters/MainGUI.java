@@ -48,7 +48,7 @@ public class MainGUI extends GUI{
         // Start by showing menuGUI
         myCardLayout.show(myCardPanel, "menu");
         Music player = new Music();
-        player.playMusic("DungeonAndMonsters/BGM12dungeon1.wav");
+       // player.playMusic("DungeonAndMonsters/BGM12dungeon1.wav");
     }
 
     public BackpackGUI getBackpackGui(){

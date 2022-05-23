@@ -34,35 +34,54 @@ public class Battle {
 	protected void attackPhase(final boolean theSpecialCase) {
 		if(this.myHero.getSpeed() < this.myMonster.getSpeed()) {
 			this.myMonster.attack(this.myHero);
-			checkWinner();
+			if(checkWinner()){
+				BattleGUI.updateBattle();
+				DungeonAdventure.gameOver();
+				return;
+			}
 			if(theSpecialCase) {
 				this.myHero.special(this.myMonster);
 			} else {
 				this.myHero.attack(this.myMonster);
 			}
-			checkWinner();
+			if(checkWinner()){
+				BattleGUI.updateBattle();
+				DungeonAdventure.battleWin();
+			}
 		} else {
 			if(theSpecialCase) {
 				this.myHero.special(this.myMonster);
 			} else {
 				this.myHero.attack(this.myMonster);
 			}
-			checkWinner();
+			if(checkWinner()){
+				BattleGUI.updateBattle();
+				DungeonAdventure.battleWin();
+				return;
+			}
 			this.myMonster.attack(this.myHero);
-			checkWinner();
+			if(checkWinner()){
+				BattleGUI.updateBattle();
+				DungeonAdventure.gameOver();
+			}
 		}
 
 
 	}
 
-	protected void checkWinner(){
-		if(myHero.getHealth() <= 0){
+	protected boolean checkWinner(){
+		if(myHero.getHealth() <= 0 || myMonster.getHealth() <= 0){
+			return true;
+		}else{
+			return false;
+		}
+		/*if(myHero.getHealth() <= 0){
 			BattleGUI.updateBattle();
 			DungeonAdventure.gameOver();
 		}else if(myMonster.getHealth() <= 0){
 			BattleGUI.updateBattle();
 			DungeonAdventure.battleWin();
-		}
+		}*/
 	}
 
 	/**

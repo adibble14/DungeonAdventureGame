@@ -216,6 +216,8 @@ public class DungeonAdventure implements Serializable {
 	public static void playAgain(){
 		sceneController("menu");
 		BackpackGUI.removeAllItems();
+		MAIN_GUI.closeMap();
+		MAIN_GUI.closeBackPack();
 	}
 
 	public static void battleWin(){
@@ -240,13 +242,15 @@ public class DungeonAdventure implements Serializable {
 				}
 			}
 		}else{
-			JOptionPane.showMessageDialog(null,"Congrats! You won the battle!");
+			JOptionPane.showMessageDialog(null, "Congrats! You won the battle!");
 			DungeonAdventure.sceneController("dungeon");
 			DungeonGUI.setHealthLabel(myHero);
 		}
 	}
 
 	public static void nextDungeon(){
+		MAIN_GUI.closeMap();
+		MAIN_GUI.closeBackPack();
 		createDungeon();	//creating new dungeon
 		myHero.setHealth(myHero.getMaxHealth()); //setting health back to full  //TODO should we set the health back to full???
 		sceneController("dungeon");
