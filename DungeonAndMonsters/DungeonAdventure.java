@@ -15,7 +15,7 @@ public class DungeonAdventure implements Serializable {
 	private static Hero myHero;
 	private static Dungeon myDungeon;
 	private static double myItemRoomChance = .8;
-	private static int numDungeonsPassed;
+	private static int numDungeonsPassed; //TODO: Could we possible move this to Dungeon so it can be saved?
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -265,6 +265,16 @@ public class DungeonAdventure implements Serializable {
 	}
 	public static MainGUI getMainGui() {
 		return MAIN_GUI;
+	}
+
+	/**
+	 * Methods to use for loading in a save file
+	 */
+	public static void setNumDungeonsPassed(final int theVal) {
+		numDungeonsPassed = theVal;
+	}
+	public static int getNumDungeonsPassed() {
+		return numDungeonsPassed;
 	}
 
 
