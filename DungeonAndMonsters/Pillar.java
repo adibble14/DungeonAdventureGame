@@ -12,4 +12,12 @@ public abstract class Pillar extends Item{
         super(theImage);
         this.MY_TYPE = theType;
     }
+
+    /**
+     * Get method for MY_TYPE field
+     * @return
+     */
+    protected final PillarType getMY_TYPE() {
+        return this.MY_TYPE;
+    }
 }

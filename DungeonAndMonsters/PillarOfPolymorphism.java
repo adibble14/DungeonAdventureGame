@@ -14,6 +14,12 @@ public class PillarOfPolymorphism extends Pillar{
     @Override
     public void use(Object theObj) {
         Hero hero = (Hero) theObj;
+        //TODO: Steps to take
+        // save the current hero state using CareTaker class
+        // randomly choose a Monster maybe?
+        // set that monster to DungeonAdventure hero object
+        // other classes may need to be adjusted
+        // How to revert back to original hero object?
 
     }
 }
