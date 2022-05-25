@@ -37,7 +37,7 @@ public class Dungeon implements Serializable {
 	/**
 	 * Current dungeon that the player is on. Must clear 4 to beat the game
 	 */
-	//private final int myCurrentDungeonNumber;
+	private final int myCurrentDungeonNumber;
 
 	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
@@ -45,12 +45,12 @@ public class Dungeon implements Serializable {
 	 * Randomly places keys in rooms.
 	 *
 	 */
-	protected Dungeon(final int theSize, final double theItemRoomChance) {
+	protected Dungeon(final int theSize, final double theItemRoomChance, final int theCurrentDungeon) {
 
 		this.myItemRoomChance = theItemRoomChance;
 		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
 		this.myDungeon = this.generateDungeon(theSize);
-		//this.myCurrentDungeonNumber = theCurrentDungeon; //TODO: Will have to fix every constructor call when this is implemented
+		this.myCurrentDungeonNumber = theCurrentDungeon;
 		System.out.println(this);
 	}
 	
@@ -311,6 +311,8 @@ public class Dungeon implements Serializable {
 	/**
 	 * Getter for the myDungeonNumber field
 	 */
-	//TODO: Fix the constructor calls first.
+	public int getMyCurrentDungeonNumber() {
+		return this.myCurrentDungeonNumber;
+	}
 }
 

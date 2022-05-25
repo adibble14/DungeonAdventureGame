@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Pillar extends Item{
+public abstract class Pillar extends Item{
 
     private final PillarType MY_TYPE;
     /**
@@ -11,17 +11,5 @@ public class Pillar extends Item{
     protected Pillar(final ImageIcon theImage, final PillarType theType) {
         super(theImage);
         this.MY_TYPE = theType;
-    }
-
-    /**
-     * Not sure how to use yet. Stat boosts maybe?
-     * Ideas so far: Encapsulation you are able to see more rooms,
-     * Polymorphism you can shape shift into a monster once in a battle,
-     *
-     * @param obj
-     */
-    @Override
-    public void use(Object obj) {
-
     }
 }

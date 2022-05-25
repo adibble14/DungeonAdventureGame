@@ -12,7 +12,7 @@ public class SaveGameTest {
     // So far, the Hero Object is to be saved.
     @Test
     public void testSaveLoad1() {
-        Dungeon dungeon = new Dungeon(10,.4);
+        Dungeon dungeon = new Dungeon(10,.4, 0);
 
         DungeonAdventure.setMyDungeon(dungeon);
 
@@ -43,7 +43,7 @@ public class SaveGameTest {
     @Test
     public void testSaveLoad3() {
         Hero hero = new Archer("Mario");
-        Dungeon dungeon = new Dungeon(10,.4);
+        Dungeon dungeon = new Dungeon(10,.4, 0);
 
         DungeonAdventure.setMyHero(hero);
         DungeonAdventure.setMyDungeon(dungeon);

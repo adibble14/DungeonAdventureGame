@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DungeonTest {
 
-    static Dungeon dungeon = new Dungeon(10,.2);
+    static Dungeon dungeon = new Dungeon(10,.2, 0);
 
     /**
      * One error that can occur,we pass in a room and then set
@@ -63,7 +63,7 @@ public class DungeonTest {
     public void testRandomGeneration() {
 
         for(int i = 0; i < 20; i++) {
-            Dungeon dung = new Dungeon(10, .7);
+            Dungeon dung = new Dungeon(10, .7, 0);
         }
     }
 }
