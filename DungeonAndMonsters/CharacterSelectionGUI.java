@@ -157,7 +157,7 @@ public class CharacterSelectionGUI extends JPanel{
         this.add(archerButton, gbc);
         archerButton.addActionListener(e -> {
             String name = setUserName();
-            if(name != null){
+            if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("a");
                 DungeonAdventure.sceneController("dungeon");
@@ -173,7 +173,7 @@ public class CharacterSelectionGUI extends JPanel{
         this.add(mageButton, gbc);
         mageButton.addActionListener(e -> {
             String name = setUserName();
-            if(name != null){
+            if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("m");
                 DungeonAdventure.sceneController("dungeon");
@@ -189,7 +189,7 @@ public class CharacterSelectionGUI extends JPanel{
         this.add(thiefButton, gbc);
         thiefButton.addActionListener(e -> {
             String name = setUserName();
-            if(name != null){
+            if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("t");
                 DungeonAdventure.sceneController("dungeon");
@@ -205,7 +205,7 @@ public class CharacterSelectionGUI extends JPanel{
         this.add(warriorButton, gbc);
         warriorButton.addActionListener(e -> {
             String name = setUserName();
-            if(name != null){
+            if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("w");
                 DungeonAdventure.sceneController("dungeon");
@@ -221,7 +221,7 @@ public class CharacterSelectionGUI extends JPanel{
         this.add(priestessButton, gbc);
         priestessButton.addActionListener(e -> {
             String name = setUserName();
-            if(name != null){
+            if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("p");
                 DungeonAdventure.sceneController("dungeon");

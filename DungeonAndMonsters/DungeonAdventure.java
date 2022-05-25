@@ -107,7 +107,9 @@ public class DungeonAdventure implements Serializable {
 	}
 
 	public static String getUserName(){return myUserName;}
-	public static void setMyUserName(final String theName){ myUserName = theName;}
+	public static void setMyUserName(final String theName){
+		myUserName = theName;
+	}
 
 	public static String getMyHeroChoice(){return myHeroChoice;}
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
