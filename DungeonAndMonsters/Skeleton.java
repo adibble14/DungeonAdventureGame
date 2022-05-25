@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * This class inherits from Monster super class. Has fields associated with special attack method.
@@ -15,27 +18,29 @@ public class Skeleton extends Monster {
     /**
      * Initializes array of names. To be randomly chosen for Skeleton object.
      */
-    private final String[] MY_NAMES = {"Jack Skellington", "Skeletor", "Funny Bones", "Rattles", "Bone Thug"};
+    //private final String[] MY_NAMES = {"Jack Skellington", "Skeletor", "Funny Bones", "Rattles", "Bone Thug"};
 
     /**
      * Constructor that has set values for Skeleton object. Calls on super constructor
      * to init fields.
      */
     protected Skeleton() {
+        super(SQLiteDB.getMonsterName("Skeleton"), SQLiteDB.getMonsterHealth("Skeleton"),SQLiteDB.getMonsterSpeed("Skeleton"),
+                SQLiteDB.getMonsterMaxDamage("Skeleton"),SQLiteDB.getMonsterMinDamage("Skeleton"),SQLiteDB.getMonsterAccuracy("Skeleton"),
+                SQLiteDB.getMonsterHealChance("Skeleton"),SQLiteDB.getMonsterMinHeal("Skeleton"), SQLiteDB.getMonsterMaxHeal("Skeleton"));
 
-        super("", 100, 3, 50, 30, .8, .3, 40, 80);
-
-        this.setRandomName();
+        //this.setRandomName();
         this.setSpecialActive(false);
     }
+
 
     /**
      * Sets random name for Skeleton object.
      */
-    private void setRandomName() {
+   /* private void setRandomName() {
 
         this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }
+    }*/
 
     /**
      * Sets special active field
