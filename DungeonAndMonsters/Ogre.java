@@ -9,7 +9,7 @@ public class Ogre extends Monster {
     /**
      * Initializes array of names. To be randomly chosen for ogre object.
      */
-    private final String[] MY_NAMES = {"Green Ogre", "Huge Ogre", "Passive Ogre", "Mysterious Ogre", "Strong Ogre"};
+   // private final String[] MY_NAMES = {"Green Ogre", "Huge Ogre", "Passive Ogre", "Mysterious Ogre", "Strong Ogre"};
 
 
     /**
@@ -17,17 +17,19 @@ public class Ogre extends Monster {
      */
     protected Ogre() {
 
-        super("", 200, 2, 60, 30, .6, .1, 30, 60);
-        this.setRandomName();
+        super(SQLiteDB.getMonsterName("Ogre"), SQLiteDB.getMonsterHealth("Ogre"),SQLiteDB.getMonsterSpeed("Ogre"),
+                SQLiteDB.getMonsterMaxDamage("Ogre"),SQLiteDB.getMonsterMinDamage("Ogre"),SQLiteDB.getMonsterAccuracy("Ogre"),
+                SQLiteDB.getMonsterHealChance("Ogre"),SQLiteDB.getMonsterMinHeal("Ogre"), SQLiteDB.getMonsterMaxHeal("Ogre"));
+       // this.setRandomName();
     }
 
     /**
      * Sets random name for Ogre class
      */
-    private void setRandomName() {
+   /* private void setRandomName() {
 
         this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }
+    }*/
 
     /**
      * Devastating Blow special method for Ogre object. This special has a guaranteed min value

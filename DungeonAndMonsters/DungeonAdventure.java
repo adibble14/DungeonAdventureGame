@@ -28,6 +28,8 @@ public class DungeonAdventure implements Serializable {
 
 	// START METHOD
 	public static void setUPGame(){
+		SQLiteDB.createMonstersTable(); //creating the monsters table
+		//SQLiteDB.createHeroesTable(); //creating the heroes table
 		numDungeonsPassed = 0;
 		createHero();
 		MAIN_GUI.setTheHero(myHero);

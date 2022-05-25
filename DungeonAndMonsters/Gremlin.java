@@ -9,25 +9,27 @@ public class Gremlin extends Monster {
     /**
      * Initializes array of names. To be randomly chosen for Gremlin object.
      */
-    private final String[] MY_NAMES = {"Mogwai", "Gizmo", "Stripe", "Greta", "Daffy"};
+   // private final String[] MY_NAMES = {"Mogwai", "Gizmo", "Stripe", "Greta", "Daffy"};
 
     /**
      * Constructor that has set values for Gremlin object. Calls on super constructor to init fields.
      */
     protected Gremlin() {
 
-        super("", 70, 5, 30, 15, .8, .4, 20, 40);
+        super(SQLiteDB.getMonsterName("Gremlin"), SQLiteDB.getMonsterHealth("Gremlin"),SQLiteDB.getMonsterSpeed("Gremlin"),
+                SQLiteDB.getMonsterMaxDamage("Gremlin"),SQLiteDB.getMonsterMinDamage("Gremlin"),SQLiteDB.getMonsterAccuracy("Gremlin"),
+                SQLiteDB.getMonsterHealChance("Gremlin"),SQLiteDB.getMonsterMinHeal("Gremlin"), SQLiteDB.getMonsterMaxHeal("Gremlin"));
 
-        this.setRandomName();
+        //this.setRandomName();
     }
 
     /**
      * Set random name for Gremlin object.
      */
-    private void setRandomName() {
+    /*private void setRandomName() {
 
         this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }
+    }*/
 
     /**
      * Gremlin Frenzy special attack. This method generates a random value influenced by
