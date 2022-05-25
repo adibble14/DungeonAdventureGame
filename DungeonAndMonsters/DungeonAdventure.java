@@ -40,8 +40,10 @@ public class DungeonAdventure implements Serializable {
 	}
 	public static void loadUpGame() {
 		//TODO: Just for testing purposes. Should load images from database later on.
+
+		//TODO why are these coded in????
 		myHero.setMyInGameSprite(new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png"));
-		myHero.setSprite(new ImageIcon("DungeonAndMonsters/character pics/archer.jpeg"));
+		myHero.setSprite(new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png"));
 		numDungeonsPassed = myDungeon.getMyCurrentDungeonNumber();
 		MAIN_GUI.setTheHero(myHero);
 		MAIN_GUI.setMyDungeon(myDungeon);
@@ -105,7 +107,13 @@ public class DungeonAdventure implements Serializable {
 	}
 
 	public static String getUserName(){return myUserName;}
-	public static void setMyUserName(final String theName){myUserName = theName;}
+	public static void setMyUserName(final String theName){
+		if(myUserName == null){
+			myUserName = "Hero";
+		}else{
+			myUserName = theName;
+		}
+	}
 
 	public static String getMyHeroChoice(){return myHeroChoice;}
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
