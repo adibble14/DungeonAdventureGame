@@ -40,8 +40,8 @@ public class Ogre extends Monster {
         //TODO delete this output once GUI is made, since this is VIEW
         int specialMaxDamage = 100;
         int specialMinDamage = 60;
-        int damage = MY_RAND.nextInt(specialMaxDamage) + specialMinDamage;
-        double randAccuracy = MY_RAND.nextDouble();
+        int damage = Tools.RANDOM.nextInt(specialMaxDamage) + specialMinDamage;
+        double randAccuracy = Tools.RANDOM.nextDouble();
 
         //System.out.println(this.getName() + " throws a Devastating Blow!\n\n");
 

@@ -129,7 +129,7 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      */
     final protected boolean block() {
 
-        return this.getBlockChance() > MY_RAND.nextDouble();
+        return this.getBlockChance() > Tools.RANDOM.nextDouble();
     }
 
     /**

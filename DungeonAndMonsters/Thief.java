@@ -28,8 +28,8 @@ public class Thief extends Hero {
     final protected void special(final DungeonCharacter theChar) {
         //TODO delete this output once GUI is made, since this is VIEW
         int specialMaxDamage = 20;
-        int damage = MY_RAND.nextInt(specialMaxDamage * 2) + this.getMaxDamage();
-        double randAccuracy = MY_RAND.nextDouble();
+        int damage = Tools.RANDOM.nextInt(specialMaxDamage * 2) + this.getMaxDamage();
+        double randAccuracy = Tools.RANDOM.nextDouble();
 
         //System.out.println(this.getName() + " goes for a surprise attack!\n\n");
 

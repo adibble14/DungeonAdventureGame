@@ -59,7 +59,7 @@ public class MenuGUI extends JPanel{
         loadGame.setFont(new Font("Serif", Font.BOLD, 20));
         loadGame.setPreferredSize(new Dimension(200,50));
         loadGame.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setDialogTitle("Load");
             int selection = chooser.showOpenDialog(null);
             if(selection == JFileChooser.APPROVE_OPTION) {

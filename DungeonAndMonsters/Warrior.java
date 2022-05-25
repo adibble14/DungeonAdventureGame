@@ -8,6 +8,8 @@ public class Warrior extends Hero {
 
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/WarriorPixel.png");
     private static final ImageIcon CharacterSelectWarrior = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectWarrior.png");
+    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/WarriorInGame.png");
+    /**
     /**
      * Class constructor with set values. Calls on super constructor to init fields.
      * Initializes class specific fields.
@@ -16,7 +18,7 @@ public class Warrior extends Hero {
      */
     protected Warrior(final String theName) {
 
-        super(theName, 125, 3, 50, 30, .8, .6, image, image);
+        super(theName, 125, 3, 50, 30, .8, .6, image, inGameImage);
     }
 
 
@@ -29,8 +31,8 @@ public class Warrior extends Hero {
         //TODO delete this output once GUI is made, since this is VIEW
         int specialMinDamage = 75;
         int specialMaxDamage = 175;
-        int damage = MY_RAND.nextInt(specialMaxDamage - specialMinDamage) + specialMinDamage;
-        double randAccuracy = MY_RAND.nextDouble();
+        int damage = Tools.RANDOM.nextInt(specialMaxDamage - specialMinDamage) + specialMinDamage;
+        double randAccuracy = Tools.RANDOM.nextDouble();
 
         //System.out.println(this.getName() + " activates Crushing Blow!\n\n");
 

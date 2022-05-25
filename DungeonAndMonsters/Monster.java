@@ -100,9 +100,9 @@ public abstract class Monster extends DungeonCharacter {
 
         int healPoints = 0;
 
-        if (isHealable() && this.getHealChance() > MY_RAND.nextDouble()) {
+        if (isHealable() && this.getHealChance() > Tools.RANDOM.nextDouble()) {
 
-            healPoints = MY_RAND.nextInt(this.myMaxHeal - this.myMinHeal) + this.myMinHeal;
+            healPoints = Tools.RANDOM.nextInt(this.myMaxHeal - this.myMinHeal) + this.myMinHeal;
         }
 
         this.setHealth(Math.min((this.getHealth() + healPoints), this.getMaxHealth()));
@@ -146,7 +146,7 @@ public abstract class Monster extends DungeonCharacter {
     private boolean isSpecialActive() {
 
         double specialAccuracy = .3;
-        return specialAccuracy > this.MY_RAND.nextDouble();
+        return specialAccuracy > Tools.RANDOM.nextDouble();
     }
 
     /**

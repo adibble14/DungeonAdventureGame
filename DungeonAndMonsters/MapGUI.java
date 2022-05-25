@@ -43,7 +43,7 @@ public class MapGUI extends JFrame {
                     }
                     else if((currentRoom == DungeonAdventure.getMyDungeon().getCurrentRoom())){
                         g2d.setColor(Color.WHITE);
-                        currentRoomImage = DungeonAdventure.getMyHero().getMyInGameSprite().getImage();
+                        //currentRoomImage = DungeonAdventure.getMyHero().getMyInGameSprite().getImage();
                     }
                     else{
                         switch (currentRoom.getMyType()){

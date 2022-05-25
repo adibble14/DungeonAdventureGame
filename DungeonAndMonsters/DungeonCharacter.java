@@ -12,7 +12,7 @@ public abstract class DungeonCharacter implements Serializable {
     /**
      * Random object that will generate random values throughout the program
      */
-    protected transient final Random MY_RAND;
+    //protected transient final Random MY_RAND;
     /**
      * stores the object's character name
      */
@@ -71,7 +71,6 @@ public abstract class DungeonCharacter implements Serializable {
         this.setAccuracy(theAccuracy);
         this.setSprite(theSprite);
         this.setMyInGameSprite(theInGameSprite);
-        this.MY_RAND = new Random();
     }
 
     /**
@@ -218,7 +217,6 @@ public abstract class DungeonCharacter implements Serializable {
     final protected void setSprite(final ImageIcon theSprite){
         this.mySprite = theSprite;
     }
-    final protected ImageIcon getSprite(){return this.mySprite;}
 
     final protected ImageIcon getMyInGameSprite(){return this.myInGameSprite;}
     final protected void setMyInGameSprite(final ImageIcon theSprite){this.myInGameSprite = theSprite;}
@@ -237,7 +235,7 @@ public abstract class DungeonCharacter implements Serializable {
         //TODO delete this output once GUI is made, since this is VIEW
         if (this.isAttack()) {
 
-            int damage = MY_RAND.nextInt(this.myMaxDamage - this.myMinDamage) + this.myMinDamage;
+            int damage = Tools.RANDOM.nextInt(this.myMaxDamage - this.myMinDamage) + this.myMinDamage;
             int result = theChar.getHealth() - damage;
 
             if (result < 0) {
@@ -269,7 +267,7 @@ public abstract class DungeonCharacter implements Serializable {
 
         for (int i = 0; i < 3; i++) {
 
-            if (this.myAccuracy > MY_RAND.nextDouble()) {
+            if (this.myAccuracy > Tools.RANDOM.nextDouble()) {
 
                 chance++;
             }

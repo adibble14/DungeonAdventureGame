@@ -212,7 +212,7 @@ public class DungeonGUI extends JPanel {
         save.setFont(thePixelFont);
         buttonArea.add(save,gbc);
         save.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setDialogTitle("Save Game");
             int selection = chooser.showSaveDialog(null);
             if(selection == JFileChooser.APPROVE_OPTION) {

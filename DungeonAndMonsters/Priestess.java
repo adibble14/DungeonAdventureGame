@@ -15,9 +15,9 @@ public class Priestess extends Hero{
      */
     @Override
     protected void special(DungeonCharacter theChar) {
-        double randAccuracy = MY_RAND.nextDouble();
+        double randAccuracy = Tools.RANDOM.nextDouble();
         int specialMaxDamage = 45;
-        int damage = MY_RAND.nextInt(specialMaxDamage) + this.getMaxDamage();
+        int damage = Tools.RANDOM.nextInt(specialMaxDamage) + this.getMaxDamage();
 
         //System.out.println(this.getName() + " goes for a special healing attack!\n\n");
 

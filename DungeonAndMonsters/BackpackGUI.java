@@ -16,12 +16,15 @@ public class BackpackGUI extends JFrame {
 
     // Panel to store things
     private static final JPanel myItemPanel = new JPanel();
-    private static final JPanel myGoldPanel = new JPanel();
 
     // Image Icon Creation ---------------------------------------
-    private static ImageIcon potionIcon = new ImageIcon("DungeonAndMonsters/random images/potion.png");
-    Image potionImage = potionIcon.getImage();
-    Image newPotionImage = potionImage.getScaledInstance(48,48, Image.SCALE_SMOOTH);
+    private static ImageIcon myHealthPotionImage = new ImageIcon("DungeonAndMonsters/random images/ResizedPotion.png");
+    Image actualHealthPotionImage = myHealthPotionImage.getImage();
+    Image resizedHealthPotionImage = actualHealthPotionImage.getScaledInstance(48,48, Image.SCALE_SMOOTH);
+
+    private static ImageIcon myVisionPotionImage = new ImageIcon("DungeonAndMonsters/random images/VisionPotion.png");
+    Image actualVisionPotionImage = myVisionPotionImage.getImage();
+    Image resizedVisionPotionImage = actualVisionPotionImage.getScaledInstance(48,48, Image.SCALE_SMOOTH);
     // Image Icon Creation End------------------------------------
 
     private static Hero myHero;
@@ -39,7 +42,8 @@ public class BackpackGUI extends JFrame {
         myItemPanel.setLayout(new GridBagLayout());
         myItemPanel.setBackground(Color.BLACK);
         this.add(myItemPanel);
-        potionIcon = new ImageIcon(newPotionImage);
+        myHealthPotionImage = new ImageIcon(resizedHealthPotionImage);
+        myVisionPotionImage = new ImageIcon(resizedVisionPotionImage);
 
         GridBagConstraints gbc = new GridBagConstraints();
         setSlotLayout(gbc, myBackpackWidth, myBackpackHeight);
@@ -87,25 +91,31 @@ public class BackpackGUI extends JFrame {
                 switch(theItem){
                     case "HEALTH_POTION":
                         this.myActiveHealthPotions++;
-                        ((JButton) button).setIcon(potionIcon);
+                        ((JButton) button).setIcon(myHealthPotionImage);
                         ((JButton) button).setToolTipText("Health Potion");
                         ((JButton) button).addActionListener(e -> {
                                 int healthAmount = myHero.useHealthPotion();
                                 DungeonGUI.setHealthLabel(myHero);
                                 DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
-                                BattleGUI.updateBattle();
-                                BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
+                                if(BattleGUI.getMyBattle() != null){
+                                    BattleGUI.updateBattle();
+                                    BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
+                                }
                                 button.setEnabled(false);
                                 ((JButton) button).setIcon(null);
+                                repaint();
                         });
                         break;
                     case "VISION_POTION":
                         this.myActiveVisionPotions++;
-                        ((JButton) button).setIcon(potionIcon);
+                        ((JButton) button).setIcon(myVisionPotionImage);
                         ((JButton) button).setToolTipText("Vision Potion");
                         ((JButton) button).addActionListener(e -> {
                             myHero.useVisionPotion(DungeonAdventure.getMyDungeon());
                             DungeonGUI.setPlayerConsole(new StringBuilder(myHero.getName() + " used a vision potion."));
+                            DungeonAdventure.refreshMap();
+                            button.setEnabled(false);
+                            ((JButton)button).setIcon(null);
                         });
                         break;
                     default:

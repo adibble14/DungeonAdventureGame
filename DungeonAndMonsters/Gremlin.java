@@ -43,7 +43,7 @@ public class Gremlin extends Monster {
         //System.out.println(this.getName() + " summons a Gremlin Frenzy!");
 
         int specialMaxTurns = 3;
-        int count = MY_RAND.nextInt(specialMaxTurns);
+        int count = Tools.RANDOM.nextInt(specialMaxTurns);
 
         if (count == 0) {
 
@@ -53,7 +53,7 @@ public class Gremlin extends Monster {
         while (count > 0 && theChar.isAlive()) {
 
             int specialMaxDamage = 30;
-            int damage = MY_RAND.nextInt(specialMaxDamage / 2) + specialMaxDamage;
+            int damage = Tools.RANDOM.nextInt(specialMaxDamage / 2) + specialMaxDamage;
             totalDamage+=damage;
             int result = theChar.getHealth() - damage;
             if (result < 0) {

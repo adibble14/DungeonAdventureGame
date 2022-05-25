@@ -32,7 +32,7 @@ public class Archer extends Hero {
         //System.out.println(this.getName() + " shoots a volley of arrows!\n");
 
         int specialMaxTurns = 5;
-        int count = MY_RAND.nextInt(specialMaxTurns);
+        int count = Tools.RANDOM.nextInt(specialMaxTurns);
         int totalArrows = count;
 
         if (count == 0) {
@@ -44,7 +44,7 @@ public class Archer extends Hero {
         while (count > 0 && theChar.isAlive()) {
 
             int specialMaxDamage = 20;
-            int damage = MY_RAND.nextInt(specialMaxDamage) + this.getMaxDamage();
+            int damage = Tools.RANDOM.nextInt(specialMaxDamage) + this.getMaxDamage();
             totalDamage += damage;
             int result = theChar.getHealth() - damage;
             if (result < 0) {

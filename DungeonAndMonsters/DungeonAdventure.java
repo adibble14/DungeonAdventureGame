@@ -42,8 +42,8 @@ public class DungeonAdventure implements Serializable {
 		//TODO: Just for testing purposes. Should load images from database later on.
 
 		//TODO why are these coded in????
-		myHero.setMyInGameSprite(new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png"));
-		myHero.setSprite(new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png"));
+		myHero.setMyInGameSprite(myHero.getMyInGameSprite());
+		myHero.setSprite(myHero.getMySprite());
 		numDungeonsPassed = myDungeon.getMyCurrentDungeonNumber();
 		MAIN_GUI.setTheHero(myHero);
 		MAIN_GUI.setMyDungeon(myDungeon);
@@ -107,13 +107,7 @@ public class DungeonAdventure implements Serializable {
 	}
 
 	public static String getUserName(){return myUserName;}
-	public static void setMyUserName(final String theName){
-		if(myUserName == null){
-			myUserName = "Hero";
-		}else{
-			myUserName = theName;
-		}
-	}
+	public static void setMyUserName(final String theName){ myUserName = theName;}
 
 	public static String getMyHeroChoice(){return myHeroChoice;}
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
@@ -141,6 +135,9 @@ public class DungeonAdventure implements Serializable {
 
 	}
 
+	protected static void refreshMap(){
+		MAIN_GUI.getMapGui().repaint();
+	}
 	public static Image setRoomWindow(Dungeon theDungeon, int theX, int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		theDungeon.setCurrentRoom(newCurrent);
