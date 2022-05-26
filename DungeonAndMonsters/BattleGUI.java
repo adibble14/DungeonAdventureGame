@@ -144,7 +144,7 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JButton attack = new JButton("  Attack  ");
+        JButton attack = new JButton("Attack");
         attack.setFont(thePixelFont);
         buttonArea.add(attack, gbc);
         attack.addActionListener(e->{
@@ -209,6 +209,7 @@ public class BattleGUI extends JPanel {
         surrender.setFont(thePixelFont);
         buttonArea.add(surrender,gbc);
         surrender.addActionListener(e->{
+            //TODO lose all gold when surrendering????
             int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away?");
             if(result == 0)
                 DungeonAdventure.sceneController("dungeon");
