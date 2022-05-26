@@ -15,10 +15,11 @@ public class Gremlin extends Monster {
      * Constructor that has set values for Gremlin object. Calls on super constructor to init fields.
      */
     protected Gremlin() {
-
-        super(SQLiteDB.getMonsterName("Gremlin"), SQLiteDB.getMonsterHealth("Gremlin"),SQLiteDB.getMonsterSpeed("Gremlin"),
-                SQLiteDB.getMonsterMaxDamage("Gremlin"),SQLiteDB.getMonsterMinDamage("Gremlin"),SQLiteDB.getMonsterAccuracy("Gremlin"),
-                SQLiteDB.getMonsterHealChance("Gremlin"),SQLiteDB.getMonsterMinHeal("Gremlin"), SQLiteDB.getMonsterMaxHeal("Gremlin"));
+        
+        super(SQLiteDB.getCharacterName("Gremlin"), SQLiteDB.getCharacterHealth("Gremlin","monsters"),
+                SQLiteDB.getCharacterSpeed("Gremlin","monsters"), SQLiteDB.getCharacterMaxDamage("Gremlin","monsters"),
+                SQLiteDB.getCharacterMinDamage("Gremlin","monsters"), SQLiteDB.getCharacterAccuracy("Gremlin","monsters"), 
+                SQLiteDB.getCharacterHealChance("Gremlin"), SQLiteDB.getCharacterMinHeal("Gremlin"), SQLiteDB.getCharacterMaxHeal("Gremlin"));
 
         //this.setRandomName();
     }

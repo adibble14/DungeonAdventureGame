@@ -18,7 +18,10 @@ public class Warrior extends Hero {
      */
     protected Warrior(final String theName) {
 
-        super(theName, 125, 3, 50, 30, .8, .6, image, inGameImage);
+        super(theName, SQLiteDB.getCharacterHealth("Warrior", "heroes"), SQLiteDB.getCharacterSpeed("Warrior", "heroes"),
+                SQLiteDB.getCharacterMaxDamage("Warrior", "heroes"), SQLiteDB.getCharacterMinDamage("Warrior", "heroes"),
+                SQLiteDB.getCharacterAccuracy("Warrior", "heroes"), SQLiteDB.getCharacterBlockChange("Warrior"),
+                image, inGameImage);
     }
 
 

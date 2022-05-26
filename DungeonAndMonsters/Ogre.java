@@ -17,9 +17,10 @@ public class Ogre extends Monster {
      */
     protected Ogre() {
 
-        super(SQLiteDB.getMonsterName("Ogre"), SQLiteDB.getMonsterHealth("Ogre"),SQLiteDB.getMonsterSpeed("Ogre"),
-                SQLiteDB.getMonsterMaxDamage("Ogre"),SQLiteDB.getMonsterMinDamage("Ogre"),SQLiteDB.getMonsterAccuracy("Ogre"),
-                SQLiteDB.getMonsterHealChance("Ogre"),SQLiteDB.getMonsterMinHeal("Ogre"), SQLiteDB.getMonsterMaxHeal("Ogre"));
+        super(SQLiteDB.getCharacterName("Ogre"), SQLiteDB.getCharacterHealth("Ogre","monsters"),
+                SQLiteDB.getCharacterSpeed("Ogre","monsters"), SQLiteDB.getCharacterMaxDamage("Ogre","monsters"),
+                SQLiteDB.getCharacterMinDamage("Ogre","monsters"), SQLiteDB.getCharacterAccuracy("Ogre","monsters"),
+                SQLiteDB.getCharacterHealChance("Ogre"), SQLiteDB.getCharacterMinHeal("Ogre"), SQLiteDB.getCharacterMaxHeal("Ogre"));
        // this.setRandomName();
     }
 

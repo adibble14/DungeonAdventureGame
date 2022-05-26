@@ -15,7 +15,10 @@ public class Mage extends Hero {
      */
     protected Mage(final String theName) {
 
-        super(theName, 75, 4, 80, 50, .7, .3, image, inGameImage);
+        super(theName, SQLiteDB.getCharacterHealth("Mage", "heroes"), SQLiteDB.getCharacterSpeed("Mage", "heroes"),
+                SQLiteDB.getCharacterMaxDamage("Mage", "heroes"), SQLiteDB.getCharacterMinDamage("Mage", "heroes"),
+                SQLiteDB.getCharacterAccuracy("Mage", "heroes"), SQLiteDB.getCharacterBlockChange("Mage"),
+                image, inGameImage);
     }
 
     /**

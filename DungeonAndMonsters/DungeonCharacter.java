@@ -199,9 +199,9 @@ public abstract class DungeonCharacter implements Serializable {
      */
     final protected void setAccuracy(final double theAccuracy) {
 
-        if (!(theAccuracy > 0)) {
+/*        if (!(theAccuracy > 0)) {
             throw new IllegalArgumentException("Accuracy value must be greater than zero.");
-        }
+        }*/
         this.myAccuracy = theAccuracy;
     }
 

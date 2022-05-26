@@ -5,7 +5,10 @@ public class Priestess extends Hero{
     private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/priestess.jpeg");
     protected Priestess(final String theName) {
 
-        super(theName, 75, 5, 45, 25, .7, .3, image, image);
+        super(theName, SQLiteDB.getCharacterHealth("Priestess", "heroes"), SQLiteDB.getCharacterSpeed("Priestess", "heroes"),
+                SQLiteDB.getCharacterMaxDamage("Priestess", "heroes"), SQLiteDB.getCharacterMinDamage("Priestess", "heroes"),
+                SQLiteDB.getCharacterAccuracy("Priestess", "heroes"), SQLiteDB.getCharacterBlockChange("Priestess"),
+                image, null);
     }
 
 

@@ -16,9 +16,10 @@ public class Beast extends Monster {
      */
     protected Beast() {
 
-        super(SQLiteDB.getMonsterName("Beast"), SQLiteDB.getMonsterHealth("Beast"),SQLiteDB.getMonsterSpeed("Beast"),
-                SQLiteDB.getMonsterMaxDamage("Beast"),SQLiteDB.getMonsterMinDamage("Beast"),SQLiteDB.getMonsterAccuracy("Beast"),
-                SQLiteDB.getMonsterHealChance("Beast"),SQLiteDB.getMonsterMinHeal("Beast"), SQLiteDB.getMonsterMaxHeal("Beast"));
+        super(SQLiteDB.getCharacterName("Beast"), SQLiteDB.getCharacterHealth("Beast","monsters"),SQLiteDB.getCharacterSpeed("Beast","monsters"),
+                SQLiteDB.getCharacterMaxDamage("Beast","monsters"),SQLiteDB.getCharacterMinDamage("Beast","monsters"),
+                SQLiteDB.getCharacterAccuracy("Beast","monsters"), SQLiteDB.getCharacterHealChance("Beast"),
+                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"));
 
         //this.setRandomName();
     }

@@ -17,7 +17,10 @@ public class Thief extends Hero {
      */
     protected Thief(final String theName) {
 
-        super(theName, 95, 6, 20, 10, .9, .4, image, inGameImage);
+        super(theName, SQLiteDB.getCharacterHealth("Thief", "heroes"), SQLiteDB.getCharacterSpeed("Thief", "heroes"),
+                SQLiteDB.getCharacterMaxDamage("Thief", "heroes"), SQLiteDB.getCharacterMinDamage("Thief", "heroes"),
+                SQLiteDB.getCharacterAccuracy("Thief", "heroes"), SQLiteDB.getCharacterBlockChange("Thief"),
+                image, inGameImage);
     }
 
     /**

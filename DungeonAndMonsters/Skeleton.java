@@ -25,9 +25,10 @@ public class Skeleton extends Monster {
      * to init fields.
      */
     protected Skeleton() {
-        super(SQLiteDB.getMonsterName("Skeleton"), SQLiteDB.getMonsterHealth("Skeleton"),SQLiteDB.getMonsterSpeed("Skeleton"),
-                SQLiteDB.getMonsterMaxDamage("Skeleton"),SQLiteDB.getMonsterMinDamage("Skeleton"),SQLiteDB.getMonsterAccuracy("Skeleton"),
-                SQLiteDB.getMonsterHealChance("Skeleton"),SQLiteDB.getMonsterMinHeal("Skeleton"), SQLiteDB.getMonsterMaxHeal("Skeleton"));
+        super(SQLiteDB.getCharacterName("Skeleton"), SQLiteDB.getCharacterHealth("Skeleton","monsters"),
+                SQLiteDB.getCharacterSpeed("Skeleton","monsters"), SQLiteDB.getCharacterMaxDamage("Skeleton","monsters"),
+                SQLiteDB.getCharacterMinDamage("Skeleton","monsters"), SQLiteDB.getCharacterAccuracy("Skeleton","monsters"),
+                SQLiteDB.getCharacterHealChance("Skeleton"), SQLiteDB.getCharacterMinHeal("Skeleton"), SQLiteDB.getCharacterMaxHeal("Skeleton"));
 
         //this.setRandomName();
         this.setSpecialActive(false);
