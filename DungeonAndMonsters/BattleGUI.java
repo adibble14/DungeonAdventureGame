@@ -158,7 +158,7 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        JButton special = new JButton("Special Attack");
+        JButton special = new JButton("Special");
         special.setFont(thePixelFont);
         buttonArea.add(special, gbc);
         special.addActionListener(e->{
@@ -171,7 +171,7 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 3;
         gbc.gridy = 1;
-        JButton attackInfo = new JButton("Attack Info");
+        JButton attackInfo = new JButton("Info");
         attackInfo.setFont(thePixelFont);
         buttonArea.add(attackInfo, gbc);
         attackInfo.addActionListener(e->{
@@ -181,7 +181,7 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 4;
         gbc.gridy = 1;
-        healthPotion = new JButton("Use Health Potion");
+        healthPotion = new JButton("Heal");
         healthPotion.setFont(thePixelFont);
         buttonArea.add(healthPotion, gbc);
         healthPotion.addActionListener(e->{
@@ -196,13 +196,23 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 5;
         gbc.gridy = 1;
-        JButton backpack = new JButton("  Backpack  ");
+        JButton backpack = new JButton("Backpack");
         backpack.setFont(thePixelFont);
         buttonArea.add(backpack, gbc);
         backpack.addActionListener(e->{
             DungeonAdventure.sceneController("backpack");
         });
 
+        gbc.gridx = 6;
+        gbc.gridy = 1;
+        JButton surrender = new JButton("Run");
+        surrender.setFont(thePixelFont);
+        buttonArea.add(surrender,gbc);
+        surrender.addActionListener(e->{
+            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away?");
+            if(result == 0)
+                DungeonAdventure.sceneController("dungeon");
+        });
 
     }
 
