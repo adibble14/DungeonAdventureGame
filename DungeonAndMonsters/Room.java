@@ -148,7 +148,9 @@ public class Room implements Serializable {
 	 */
 	@Override
 	final public String toString() {
-		
+		if(this.myContainsMonster) {
+			return "M";
+		}
 		switch(this.myType) {
 			case EXIT: return "O";
 			case ENTRANCE: return "N";

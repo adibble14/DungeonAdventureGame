@@ -51,6 +51,7 @@ public class Dungeon implements Serializable {
 		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
 		this.myDungeon = this.generateDungeon(theSize);
 		this.myCurrentDungeonNumber = theCurrentDungeon;
+		this.placeMonsters();
 		System.out.println(this);
 	}
 	
@@ -164,7 +165,6 @@ public class Dungeon implements Serializable {
 				break;
 			}
 		}
-		this.placeMonsters();
 		return dung;
 	}
 
@@ -305,7 +305,7 @@ public class Dungeon implements Serializable {
 					continue;
 				}
 				RoomType type = room.getMyType();
-				if(Tools.RANDOM.nextDouble() < .2 && type != RoomType.EXIT && type != RoomType.ENTRANCE
+				if(Tools.RANDOM.nextDouble() < .5 && type != RoomType.EXIT && type != RoomType.ENTRANCE
 						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
 					room.setMonster();
 				}
