@@ -135,29 +135,35 @@ public class Dungeon implements Serializable {
 		int entranceYCoord = Tools.RANDOM.nextInt(0, theSize-1);
 		int exitXCoord = Tools.RANDOM.nextInt(theSize/2, theSize-1);
 		int exitYCoord = Tools.RANDOM.nextInt(0, theSize-1);
-		int bossX = theSize-1;
+		int bossX = Tools.RANDOM.nextInt(0, theSize-1);
 		int bossY = Tools.RANDOM.nextInt(0, theSize-1);
-		int uniqueX = 0;
-		int uniqueY = Tools.RANDOM.nextInt(0,theSize-1);
 
 		Room entrance = new Room(entranceXCoord,entranceYCoord, RoomType.ENTRANCE);
 		Room exit = new Room(exitXCoord,exitYCoord, RoomType.EXIT);
 		Room bossRoom = new Room(bossX,bossY,RoomType.BOSS_ROOM);
-		Room unique = new Room(uniqueX,uniqueY,RoomType.UNIQUE);
 
 		setCurrentRoom(entrance);
 
 		dung[entranceXCoord][entranceYCoord] = entrance;
 		dung[exitXCoord][exitYCoord] = exit;
-		dung[bossX][bossY] = bossRoom;
-		dung[uniqueX][uniqueY] = unique;
+		//dung[bossX][bossY] = bossRoom;
 
 		System.out.println("Entrance Coords: " + entranceXCoord + " " + entranceYCoord);
 		System.out.println("Exit Coords: " + exitXCoord + " " + exitYCoord);
 
 		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
-		this.DFSGenerateRooms(dung, bossRoom, RoomType.UNIQUE);
-		dung[uniqueX][uniqueY].setEmpty();
+		//this.DFSGenerateRooms(dung, bossRoom, RoomType.ENTRANCE);
+		while(true) {
+			if(dung[bossX][bossY] == null) {
+				bossX = Tools.RANDOM.nextInt(0,theSize-1);
+				bossY = Tools.RANDOM.nextInt(0,theSize-1);
+			}
+			else if(dung[bossX][bossY].getMyType() != RoomType.ENTRANCE &&
+					dung[bossX][bossY].getMyType() != RoomType.EXIT) {
+				dung[bossX][bossY] = bossRoom;
+				break;
+			}
+		}
 		this.placeMonsters();
 		return dung;
 	}
