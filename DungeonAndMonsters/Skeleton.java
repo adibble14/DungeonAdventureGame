@@ -14,11 +14,8 @@ public class Skeleton extends Monster {
      * Stores boolean value for Skeleton object's special.
      */
     private boolean specialActive;
+    private static final ImageIcon skeletonImage = new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png");
 
-    /**
-     * Initializes array of names. To be randomly chosen for Skeleton object.
-     */
-    //private final String[] MY_NAMES = {"Jack Skellington", "Skeletor", "Funny Bones", "Rattles", "Bone Thug"};
 
     /**
      * Constructor that has set values for Skeleton object. Calls on super constructor
@@ -28,20 +25,12 @@ public class Skeleton extends Monster {
         super(SQLiteDB.getCharacterName("Skeleton"), SQLiteDB.getCharacterHealth("Skeleton","monsters"),
                 SQLiteDB.getCharacterSpeed("Skeleton","monsters"), SQLiteDB.getCharacterMaxDamage("Skeleton","monsters"),
                 SQLiteDB.getCharacterMinDamage("Skeleton","monsters"), SQLiteDB.getCharacterAccuracy("Skeleton","monsters"),
-                SQLiteDB.getCharacterHealChance("Skeleton"), SQLiteDB.getCharacterMinHeal("Skeleton"), SQLiteDB.getCharacterMaxHeal("Skeleton"));
+                SQLiteDB.getCharacterHealChance("Skeleton"), SQLiteDB.getCharacterMinHeal("Skeleton"), SQLiteDB.getCharacterMaxHeal("Skeleton"),
+                null,skeletonImage);
 
-        //this.setRandomName();
         this.setSpecialActive(false);
     }
 
-
-    /**
-     * Sets random name for Skeleton object.
-     */
-   /* private void setRandomName() {
-
-        this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }*/
 
     /**
      * Sets special active field

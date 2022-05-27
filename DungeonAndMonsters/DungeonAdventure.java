@@ -15,7 +15,8 @@ public class DungeonAdventure implements Serializable {
 	private static Hero myHero;
 	private static Dungeon myDungeon;
 	private static double myItemRoomChance = .8;
-	private static int numDungeonsPassed; //TODO: Could we possible move this to Dungeon so it can be saved?
+	private static int numDungeonsPassed;
+	private static int currentDungeonNum;
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
 	 * Prints useful information for the player.
@@ -31,6 +32,7 @@ public class DungeonAdventure implements Serializable {
 		SQLiteDB.createMonstersTable(); //creating the monsters table
 		SQLiteDB.createHeroesTable(); //creating the heroes table
 		numDungeonsPassed = 0;
+		currentDungeonNum = 1;
 		createHero();
 		MAIN_GUI.setTheHero(myHero);
 		MAIN_GUI.setMyDungeon(myDungeon);
@@ -115,7 +117,7 @@ public class DungeonAdventure implements Serializable {
 	public static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
 	public static void createDungeon(){
-		myDungeon = new Dungeon( 10, .23, getNumDungeonsPassed());
+		myDungeon = new Dungeon( 10, .23, getNumDungeonsPassed(), getCurrentDungeonNum());
 		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
 	public static Dungeon getMyDungeon(){return  myDungeon;}
@@ -128,6 +130,9 @@ public class DungeonAdventure implements Serializable {
 		if(newCurrent != null){
 			newCurrent.setMyDiscovery();
 			theDungeon.setCurrentRoom(newCurrent);
+			System.out.print(theDungeon.getCurrentRoom().getXCoord());
+			System.out.print(" ");
+			System.out.println(theDungeon.getCurrentRoom().getYCoord());
 			MAIN_GUI.getMapGui().repaint();
 			DungeonGUI.getMyRoomLabel().setText(getRoomLabel(theDungeon));
 			return Dungeon.setMyDungeonRoom(theDungeon);
@@ -173,14 +178,14 @@ public class DungeonAdventure implements Serializable {
 	/**
 	 * Check rooms for monsters, boss, pits, and items and acts accordingly
 	 */
-	public static char checkRoom(){
+	public static void checkRoom(){
 		StringBuilder playerConsole = new StringBuilder();
 		Room currentRoom = myDungeon.getCurrentRoom();
 
 		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
-			DungeonAdventure.createBattle();
-			return 'b';
+			//DungeonAdventure.createBattle();
 		}else if(currentRoom.getMyType() == RoomType.PIT){
+			DungeonGUI.addPit(new GridBagConstraints());
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
 			playerConsole.append(myUserName + " has taken 10 damage from a pit trap!");
@@ -188,7 +193,6 @@ public class DungeonAdventure implements Serializable {
 			if(myHero.getHealth() <= 0){		//because the player died
 				gameOver();
 			}
-			return 'p';
 		} else if(currentRoom.getMyType() == RoomType.ITEM_ROOM) {
 			currentRoom.addItemsToPlayerInventory(myHero);
 			PlayerInventory inv = myHero.getMyInventory();
@@ -204,10 +208,14 @@ public class DungeonAdventure implements Serializable {
 			MAIN_GUI.getBackpackGui().refreshGoldValue();
 			currentRoom.setEmpty();
 			DungeonGUI.setPlayerConsole(playerConsole);
-			return 'I';
+		}else if(currentRoom.getMyType() == RoomType.EXIT) {
+			if(numDungeonsPassed == currentDungeonNum){
+				JOptionPane.showMessageDialog(null,"Oh No! Looks like the exit leads to another Dungeon....");
+				currentDungeonNum++;
+				nextDungeon();
+			}
 		} else{
 			DungeonGUI.setPlayerConsole(playerConsole);
-			return '0';
 		}
 
 	}
@@ -232,22 +240,45 @@ public class DungeonAdventure implements Serializable {
 	public static void battleWin(){
 		if(myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){		//if the user defeated a boss monster, then advance to next dungeon
 			numDungeonsPassed++;
-			if(numDungeonsPassed == 1){		//TODO add corresponding pillar into backpack and also show image in the message dialog
-				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Inheritance!\nYou have been awarded the Pillar of Inheritance!");
-				nextDungeon();
-			}else if(numDungeonsPassed == 2){
-				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Encapsulation!\nYou have been awarded the Pillar of Encapsulation!");
-				nextDungeon();
-			}else if(numDungeonsPassed == 3){
-				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Abstraction!\nYou have been awarded the Pillar of Abstraction!");
-				nextDungeon();
-			} else{	//beat all 4 dungeons
-				JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of Polymorphism!\nYou have been awarded the Pillar of Polymorphism!");
+			if(numDungeonsPassed == 4){		//beat all 4 dungeons
 				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
 				if(input == 0){		//play again
 					playAgain();
 				}else{		//close the game
 					System.exit(0);
+				}
+			}else{			//adding a pillar to the heroes inventory
+				PlayerInventory inv = myHero.getMyInventory();
+				Pillar[] pillars = inv.getPillars();
+				boolean addedPillar = false;
+				while(!addedPillar){
+					PillarType pillarType = Pillar.getRandomPillar();
+					boolean duplicate = false;
+					for(int i = 0; i<pillars.length; i++){
+						if(pillars[i].getMY_TYPE() == pillarType){
+							duplicate = true;
+						}
+					}
+					if(!duplicate) {
+						Pillar pillar = null;
+						if (pillarType == PillarType.ABSTRACTION) {
+							pillar = new PillarOfAbstraction(null, pillarType);
+						} else if (pillarType == PillarType.ENCAPSULATION) {
+							pillar = new PillarOfEncapsulation(null, pillarType);
+						} else if (pillarType == PillarType.INHERITANCE) {
+							pillar = new PillarOfInheritance(null, pillarType);
+						} else {
+							pillar = new PillarOfPolymorphism(null, pillarType);
+						}
+						inv.addPillar(pillar);		//TODO add image to backpack
+						addedPillar = true;
+						JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of "+pillarType+"!\nYou have been awarded the Pillar of "+pillarType+"!\n" +
+								"Find the exit to escape!");
+						DungeonGUI.resetDungeonImage();
+						DungeonGUI.enableButtons();
+						DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
+						DungeonAdventure.sceneController("dungeon");
+					}
 				}
 			}
 		}else{
@@ -268,14 +299,6 @@ public class DungeonAdventure implements Serializable {
 		checkRoom();
 	}
 
-	public static String getNameOfDungeon(){
-		switch(numDungeonsPassed){
-			case 1: return "Inheritance";
-			case 2: return "Encapsulation";
-			case 3: return "Abstraction";
-			default:return "Polymorphism";
-		}
-	}
 	public static MainGUI getMainGui() {
 		return MAIN_GUI;
 	}
@@ -289,6 +312,10 @@ public class DungeonAdventure implements Serializable {
 	public static int getNumDungeonsPassed() {
 		return numDungeonsPassed;
 	}
+	public static int getCurrentDungeonNum(){
+		return currentDungeonNum;
+	}
+
 
 
 }

@@ -40,16 +40,22 @@ public class Dungeon implements Serializable {
 	private final int myCurrentDungeonNumber;
 
 	/**
+	 * number of dungeons completed
+	 */
+	private final int myDungeonsPassed;
+
+	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
 	 *
 	 */
-	protected Dungeon(final int theSize, final double theItemRoomChance, final int theCurrentDungeon) {
+	protected Dungeon(final int theSize, final double theItemRoomChance, final int numDungeonsPassed, final int theCurrentDungeon) {
 
 		this.myItemRoomChance = theItemRoomChance;
 		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
 		this.myDungeon = this.generateDungeon(theSize);
+		this.myDungeonsPassed = numDungeonsPassed;
 		this.myCurrentDungeonNumber = theCurrentDungeon;
 		this.placeMonsters();
 		System.out.println(this);

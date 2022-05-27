@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used
@@ -34,10 +36,10 @@ public abstract class Monster extends DungeonCharacter {
      * @param theMaxHeal    value given by child class
      */
     protected Monster(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage,
-                      final double theAccuracy, final double theHealChance, final int theMinHeal, final int theMaxHeal) {
+                      final double theAccuracy, final double theHealChance, final int theMinHeal, final int theMaxHeal, final ImageIcon theSprite, final ImageIcon theInGameSprite) {
 
         // TODO fix, give sprites to every monster
-        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, null, null);
+        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite, theInGameSprite);
         this.setHealChance(theHealChance);
         this.setMinHeal(theMinHeal);
         this.setMaxHeal(theMaxHeal);

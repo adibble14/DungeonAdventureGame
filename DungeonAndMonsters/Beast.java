@@ -6,10 +6,6 @@
 
 public class Beast extends Monster {
 
-    /**
-     * Initializes array of names. To be randomly chosen for Beast object.
-     */
-    //private final String[] MY_NAMES = {"Owl Bear", "Ravager", "Beholder", "plankTON", "Man Beast"};
 
     /**
      * Constructor that has set values for Beast object. Calls on super constructor to init fields.
@@ -19,18 +15,11 @@ public class Beast extends Monster {
         super(SQLiteDB.getCharacterName("Beast"), SQLiteDB.getCharacterHealth("Beast","monsters"),SQLiteDB.getCharacterSpeed("Beast","monsters"),
                 SQLiteDB.getCharacterMaxDamage("Beast","monsters"),SQLiteDB.getCharacterMinDamage("Beast","monsters"),
                 SQLiteDB.getCharacterAccuracy("Beast","monsters"), SQLiteDB.getCharacterHealChance("Beast"),
-                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"));
+                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"), null,null);
 
-        //this.setRandomName();
     }
 
-    /**
-     * Sets random name for Beast object.
-     */
-    /*private void setRandomName() {
 
-        this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }*/
 
     /**
      * Feral Swipe special attack. This special always deals half the enemies' health value.

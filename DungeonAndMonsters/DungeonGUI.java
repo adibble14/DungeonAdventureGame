@@ -233,10 +233,8 @@ public class DungeonGUI extends JPanel {
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
-            char init = DungeonAdventure.checkRoom();
-            if(init == 'p'){
-                addPit(gbc);
-            }
+            DungeonAdventure.checkRoom();
+
             repaint();
         });
 
@@ -252,10 +250,7 @@ public class DungeonGUI extends JPanel {
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
-            char init = DungeonAdventure.checkRoom();
-            if(init == 'p'){
-                addPit(gbc);
-            }
+            DungeonAdventure.checkRoom();
             repaint();
         });
 
@@ -270,10 +265,7 @@ public class DungeonGUI extends JPanel {
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
-            char init = DungeonAdventure.checkRoom();
-            if(init == 'p'){
-                addPit(gbc);
-            }
+            DungeonAdventure.checkRoom();
             repaint();
         });
 
@@ -288,10 +280,7 @@ public class DungeonGUI extends JPanel {
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
             myDungeonWindow.remove(myInGamePit);
-            char init = DungeonAdventure.checkRoom();
-            if(init == 'p'){
-                addPit(gbc);
-            }
+            DungeonAdventure.checkRoom();
             repaint();
         });
     }
@@ -367,7 +356,7 @@ public class DungeonGUI extends JPanel {
      * adds the pit image to the dungeon
      * @param gbc
      */
-    private static void addPit(GridBagConstraints gbc){
+    public static void addPit(GridBagConstraints gbc){
         gbc.gridx = 0;
         gbc.gridy = 0;
         //gbc.weighty = 0.5;
@@ -377,7 +366,7 @@ public class DungeonGUI extends JPanel {
         myDungeonWindow.add(myInGamePit, gbc);
     }
 
-    private static void disableButtons(ArrayList theRooms){
+    static void disableButtons(ArrayList theRooms){
         if(!theRooms.contains("south")){
             myDownMoveButton.setEnabled(false);
         }
@@ -398,6 +387,11 @@ public class DungeonGUI extends JPanel {
         myRightMoveButton.setEnabled(true);
         myLeftMoveButton.setEnabled(true);
     }
+
+    static void resetDungeonImage(){
+        myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(getDungeon(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord()));
+    }
+
 
     /**
      * Inner class drawWindow that works as the display panel showing off the

@@ -13,6 +13,7 @@ public class BattleGUI extends JPanel {
     private static JLabel heroInGameImage;
     // Monster image
     private static JLabel monsterImage;
+    private static JLabel monsterInGameImage;
     // Battle variable we set later
     private static Battle myBattle;
     private static JButton healthPotion;
@@ -105,6 +106,8 @@ public class BattleGUI extends JPanel {
         gbc.gridy = 0;
         monsterImage = new JLabel();
         monsterImage.setBorder(OUTLINE_BORDER);
+        monsterImage.setOpaque(true);
+        monsterImage.setBackground(Color.BLACK);
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.009;
@@ -116,6 +119,12 @@ public class BattleGUI extends JPanel {
         displayPanel.add(character2, gbc);
 
         character2.add(monsterImage, gbc);
+
+        monsterInGameImage = new JLabel();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(150,20,0,0);
+        character1.add(monsterInGameImage, gbc);
 
 
         myBattleConsole = new JTextArea();
@@ -214,6 +223,9 @@ public class BattleGUI extends JPanel {
             if(result == 0)
                 DungeonAdventure.getMyHero().setGoldAmount(DungeonAdventure.getMyHero().getGoldCount() - 10);
                 DungeonAdventure.refreshBackPackGoldValue();
+                DungeonGUI.resetDungeonImage();
+                DungeonGUI.enableButtons();
+                DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
                 DungeonAdventure.sceneController("dungeon");
         });
 
@@ -226,7 +238,8 @@ public class BattleGUI extends JPanel {
 
         heroFaceImage.setIcon(hero.getMySprite());
         heroInGameImage.setIcon(hero.getMyInGameSprite());
-        monsterImage.setIcon(monster.getMySprite());
+        //monsterImage.setIcon(monster.getMySprite());
+        monsterInGameImage.setIcon(monster.getMyInGameSprite());
 
         setBattleConsole(new StringBuilder());
 

@@ -114,7 +114,7 @@ public class Battle {
 		
 		int numb = Tools.RANDOM.nextInt(256);
 		
-		if((numb % 2) == 0 && numb > 50) {
+		/*if((numb % 2) == 0 && numb > 50) {
 			return new Ogre();
 		}
 		else if( (numb % 3) == 0 && numb < 50 ) {
@@ -122,7 +122,7 @@ public class Battle {
 		}
 		else if( (numb % 2) == 0 && numb < 50) {
 			return new Beast();
-		}
+		}*/
 		return new Skeleton();
 	}
 

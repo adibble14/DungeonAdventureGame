@@ -14,10 +14,10 @@ public class Mimic extends Monster{
      * @param theMaxHeal    value given by child class
      */
     protected Mimic(String theName, int theHealth, int theSpeed, int theMaxDamage, int theMinDamage, double theAccuracy, double theHealChance, int theMinHeal, int theMaxHeal) {
-        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal);
+        super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal, null,null);
     }
     protected Mimic() {
-        super("Mimic",140,5,15,5,.5,0,0,0);
+        super("Mimic",140,5,15,5,.5,0,0,0,null,null);
     }
 
     /**

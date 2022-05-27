@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Random;
 
 public abstract class Pillar extends Item{
 
@@ -20,4 +21,14 @@ public abstract class Pillar extends Item{
     protected final PillarType getMY_TYPE() {
         return this.MY_TYPE;
     }
+
+    public static PillarType getRandomPillar(){
+        Random random = new Random();
+        int num = random.nextInt(1,5);
+        if(num == 1) return PillarType.ABSTRACTION;
+        else if(num == 2) return PillarType.ENCAPSULATION;
+        else if(num == 3) return PillarType.INHERITANCE;
+        else return PillarType.POLYMORPHISM;
+    }
+
 }

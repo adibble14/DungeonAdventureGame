@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This class inherits from Monster super class. Has fields associated with special attack method.
@@ -6,11 +7,8 @@
 
 public class Ogre extends Monster {
 
-    /**
-     * Initializes array of names. To be randomly chosen for ogre object.
-     */
-   // private final String[] MY_NAMES = {"Green Ogre", "Huge Ogre", "Passive Ogre", "Mysterious Ogre", "Strong Ogre"};
 
+    private static final ImageIcon ogreImage = new ImageIcon("DungeonAndMonsters/monster pics/Ogre.png");
 
     /**
      * Constructor that has set values for Ogre object. Calls on super constructor to init fields.
@@ -20,17 +18,9 @@ public class Ogre extends Monster {
         super(SQLiteDB.getCharacterName("Ogre"), SQLiteDB.getCharacterHealth("Ogre","monsters"),
                 SQLiteDB.getCharacterSpeed("Ogre","monsters"), SQLiteDB.getCharacterMaxDamage("Ogre","monsters"),
                 SQLiteDB.getCharacterMinDamage("Ogre","monsters"), SQLiteDB.getCharacterAccuracy("Ogre","monsters"),
-                SQLiteDB.getCharacterHealChance("Ogre"), SQLiteDB.getCharacterMinHeal("Ogre"), SQLiteDB.getCharacterMaxHeal("Ogre"));
-       // this.setRandomName();
+                SQLiteDB.getCharacterHealChance("Ogre"), SQLiteDB.getCharacterMinHeal("Ogre"), SQLiteDB.getCharacterMaxHeal("Ogre"),
+                null,ogreImage);
     }
-
-    /**
-     * Sets random name for Ogre class
-     */
-   /* private void setRandomName() {
-
-        this.setName(MY_NAMES[MY_RAND.nextInt(MY_NAMES.length - 1)]);
-    }*/
 
     /**
      * Devastating Blow special method for Ogre object. This special has a guaranteed min value
