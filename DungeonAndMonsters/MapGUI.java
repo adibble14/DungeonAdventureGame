@@ -43,7 +43,12 @@ public class MapGUI extends JFrame {
                     }
                     else if((currentRoom == DungeonAdventure.getMyDungeon().getCurrentRoom())){
                         g2d.setColor(Color.WHITE);
+                        currentRoomImage = DungeonAdventure.getMyHero().getMySprite().getImage();
                         //currentRoomImage = DungeonAdventure.getMyHero().getMyInGameSprite().getImage();
+                    }
+                    else if(currentRoom.containsMonster() && currentRoom.getMyDiscovery()){
+                        g2d.setColor(Color.CYAN);
+                        currentRoomImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/MonsterIcon.png");
                     }
                     else{
                         switch (currentRoom.getMyType()){
@@ -56,8 +61,10 @@ public class MapGUI extends JFrame {
                                     g2d.setColor(Color.DARK_GRAY);
                             }
                             case ITEM_ROOM ->{
-                                if(currentRoom.getMyDiscovery())
+                                if(currentRoom.getMyDiscovery()){
                                     g2d.setColor(Color.GREEN);
+                                    currentRoomImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/gold.png");
+                                }
                                 else
                                     g2d.setColor(Color.DARK_GRAY);
                             }
@@ -68,14 +75,18 @@ public class MapGUI extends JFrame {
                                     g2d.setColor(Color.DARK_GRAY);
                             }
                             case BOSS_ROOM ->{
-                                if(currentRoom.getMyDiscovery())
+                                if(currentRoom.getMyDiscovery()){
                                     g2d.setColor(Color.RED);
+                                    currentRoomImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/BossMonsterIcon.png");
+                                }
                                 else
                                     g2d.setColor(Color.DARK_GRAY);
                             }
                             case PIT -> {
-                                if(currentRoom.getMyDiscovery())
+                                if(currentRoom.getMyDiscovery()) {
                                     g2d.setColor(Color.MAGENTA);
+                                    currentRoomImage =Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/SpikeIcon.png");
+                                }
                                 else
                                     g2d.setColor(Color.DARK_GRAY);
                             }

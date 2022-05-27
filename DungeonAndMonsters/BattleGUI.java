@@ -210,8 +210,10 @@ public class BattleGUI extends JPanel {
         buttonArea.add(surrender,gbc);
         surrender.addActionListener(e->{
             //TODO lose all gold when surrendering????
-            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away?");
+            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose %10 of Gold)");
             if(result == 0)
+                DungeonAdventure.getMyHero().setGoldAmount(DungeonAdventure.getMyHero().getGoldCount() - 10);
+                DungeonAdventure.refreshBackPackGoldValue();
                 DungeonAdventure.sceneController("dungeon");
         });
 

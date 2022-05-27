@@ -305,7 +305,7 @@ public class Dungeon implements Serializable {
 					continue;
 				}
 				RoomType type = room.getMyType();
-				if(Tools.RANDOM.nextDouble() < .5 && type != RoomType.EXIT && type != RoomType.ENTRANCE
+				if(Tools.RANDOM.nextDouble() < .05 && type != RoomType.EXIT && type != RoomType.ENTRANCE
 						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
 					room.setMonster();
 				}

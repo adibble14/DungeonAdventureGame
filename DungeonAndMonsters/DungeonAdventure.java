@@ -136,7 +136,7 @@ public class DungeonAdventure implements Serializable {
 		}
 
 	}
-
+	protected static void refreshBackPackGoldValue(){MAIN_GUI.getBackpackGui().refreshGoldValue();}
 	protected static void refreshMap(){
 		MAIN_GUI.getMapGui().repaint();
 	}
