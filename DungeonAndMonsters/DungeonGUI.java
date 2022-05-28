@@ -336,7 +336,7 @@ public class DungeonGUI extends JPanel {
      * Sets the GUI hero image
      * @param theHero user selected hero
      */
-    private static void setMyHeroImage(final Hero theHero){
+    static void setMyHeroImage(final Hero theHero){
         myHeroImage.setIcon(theHero.getMySprite());
     }
 

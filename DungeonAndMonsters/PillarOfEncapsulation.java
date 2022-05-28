@@ -13,6 +13,7 @@ public class PillarOfEncapsulation extends Pillar{
 
     @Override
     public void use(Object theObj) {
+        Dungeon dungeon = (Dungeon) theObj;
 
 
     }

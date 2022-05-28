@@ -209,17 +209,17 @@ public abstract class DungeonCharacter implements Serializable {
      * Getter for the object's image Sprite
      * @return access to image Sprite
      */
-    final protected ImageIcon getMySprite(){return this.mySprite;}
+    protected ImageIcon getMySprite(){return this.mySprite;}
     /**
      * Setter for the object's image Sprite
      * @param theSprite takes an ImageIcon to set as the image for the object
      */
-    final protected void setSprite(final ImageIcon theSprite){
+    protected void setSprite(final ImageIcon theSprite){
         this.mySprite = theSprite;
     }
 
-    final protected ImageIcon getMyInGameSprite(){return this.myInGameSprite;}
-    final protected void setMyInGameSprite(final ImageIcon theSprite){this.myInGameSprite = theSprite;}
+    protected ImageIcon getMyInGameSprite(){return this.myInGameSprite;}
+    protected void setMyInGameSprite(final ImageIcon theSprite){this.myInGameSprite = theSprite;}
 
 
 

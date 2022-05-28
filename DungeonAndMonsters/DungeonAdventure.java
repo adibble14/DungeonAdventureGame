@@ -51,6 +51,7 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.setMyDungeon(myDungeon);
 		DungeonGUI.setUpVisualDungeon(myHero,myDungeon);
 		MAIN_GUI.getBackpackGui().loadPlayerInventory();
+		DungeonGUI.setMyHeroImage(myHero);
 	}
 
 

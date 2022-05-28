@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class Archer extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png");
+    private static ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/archerpixel.png");
     private static final ImageIcon characterSelectArcher = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectArcher.png");
-    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png");
+    private static ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/archerInGame.png");
 
     /**
      * Constructor with set values. Calls on super constructor to init fields
@@ -69,6 +69,22 @@ public class Archer extends Hero {
     public String getSpecialInfo(){
         return "Volley special attack. Shoots a random number of arrows with a maximum of 5.";
     }
+
+    @Override
+    final protected ImageIcon getMySprite(){return image;}
+    /**
+     * Setter for the object's image Sprite
+     * @param theSprite takes an ImageIcon to set as the image for the object
+     */
+    @Override
+    final protected void setSprite(final ImageIcon theSprite){
+        image = theSprite;
+    }
+
+    @Override
+    final protected ImageIcon getMyInGameSprite(){return inGameImage;}
+    @Override
+    final protected void setMyInGameSprite(final ImageIcon theSprite){inGameImage = theSprite;}
 
 
 }
