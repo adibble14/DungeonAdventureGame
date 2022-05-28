@@ -107,8 +107,6 @@ public class Battle {
 	 * 
 	 * @return returns a Monster object.
 	 */
-	//TODO: New monster type, Swarm_Of_*Someothermonster
-	// pretty much a group of a monster we already have.
 
 	final private Monster createMonster() {
 		

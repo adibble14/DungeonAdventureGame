@@ -1,5 +1,6 @@
 import org.sqlite.SQLiteDataSource;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +14,9 @@ public class SQLiteDB {
     static Random random = new Random();
     static int num = 0;
 
-    public static void main(String[] args){
+    public static void main(String[] args){   //TODO delete
         createMonstersTable();
-        createHeroesTable();
+        //createHeroesTable();
     }
 
     public static void createMonstersTable(){
@@ -34,6 +35,7 @@ public class SQLiteDB {
                             "HEAL_CHANCE DECIMAL NOT NULL,"+
                             "MIN_HEAL INT NOT NULL,"+
                             "MAX_HEAL INT NOT NULL)";
+
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {              //these variables will be forgotten after the try block, consider making them instance variables or local
               stmt.executeUpdate( createQuery );
@@ -109,7 +111,11 @@ public class SQLiteDB {
             e.printStackTrace();
             System.exit( 0 );
         }
+
     }
+
+
+
     public static void createHeroesTable(){
         ds.setUrl("jdbc:sqlite:characters.db");
 

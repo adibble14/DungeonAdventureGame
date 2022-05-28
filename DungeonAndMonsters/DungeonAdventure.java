@@ -237,6 +237,8 @@ public class DungeonAdventure implements Serializable {
 	public static void battleWin(){
 		if(myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){		//if the user defeated a boss monster, then advance to next dungeon
 			numDungeonsPassed++;
+			myDungeon.getCurrentRoom().setEmpty();
+			myDungeon.getCurrentRoom().removeMonster();
 			if(numDungeonsPassed == 4){		//beat all 4 dungeons
 				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
 				if(input == 0){		//play again
@@ -279,6 +281,8 @@ public class DungeonAdventure implements Serializable {
 				}
 			}
 		}else{
+			myDungeon.getCurrentRoom().setEmpty();
+			myDungeon.getCurrentRoom().removeMonster();
 			JOptionPane.showMessageDialog(null, "Congrats! You won the battle!");
 			DungeonAdventure.sceneController("dungeon");
 			DungeonGUI.setHealthLabel(myHero);
