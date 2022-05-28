@@ -78,7 +78,12 @@ public class Dungeon implements Serializable {
 	 */
 	final protected Room getRoom(final int theRow, final int theColumn) {
 		if(theRow < this.myDungeon.length && theColumn < this.myDungeon.length && theRow >= 0 && theColumn >= 0) {
-			return this.myDungeon[theRow][theColumn];
+			Room room = this.myDungeon[theRow][theColumn];
+			if(room != null){
+				room.setXCoord(theRow);
+				room.setYCoord(theColumn);
+			}
+			return room;
 		}
 
 		return null;

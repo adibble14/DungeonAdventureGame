@@ -79,6 +79,14 @@ public class Room implements Serializable {
 		return this.myYCoord;
 	}
 
+	final protected void setXCoord(int theXCoord){
+		this.myXCoord = theXCoord;
+	}
+	final protected void setYCoord(int theYCoord){
+		this.myYCoord = theYCoord;
+	}
+
+
 	final protected boolean getMyDiscovery(){
 		return myDiscovery;
 	}

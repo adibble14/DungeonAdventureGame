@@ -130,9 +130,6 @@ public class DungeonAdventure implements Serializable {
 		if(newCurrent != null){
 			newCurrent.setMyDiscovery();
 			theDungeon.setCurrentRoom(newCurrent);
-			System.out.print(theDungeon.getCurrentRoom().getXCoord());
-			System.out.print(" ");
-			System.out.println(theDungeon.getCurrentRoom().getYCoord());
 			MAIN_GUI.getMapGui().repaint();
 			DungeonGUI.getMyRoomLabel().setText(getRoomLabel(theDungeon));
 			return Dungeon.setMyDungeonRoom(theDungeon);
@@ -183,7 +180,7 @@ public class DungeonAdventure implements Serializable {
 		Room currentRoom = myDungeon.getCurrentRoom();
 
 		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
-			//DungeonAdventure.createBattle();
+			DungeonAdventure.createBattle();
 		}else if(currentRoom.getMyType() == RoomType.PIT){
 			DungeonGUI.addPit(new GridBagConstraints());
 			myHero.takeDamage(10);
