@@ -1,7 +1,11 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class PillarOfAbstraction extends Pillar{
-    private static final ImageIcon myImage = new ImageIcon("DungeonAndMonsters/random images/Abstraction.png");
+    private static final Image myPillarImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/Abstraction.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
+
+
+    private static final ImageIcon myImage = new ImageIcon(myPillarImage);
 
     /**
      * Constructor for this class. Simply initializes fields.
@@ -12,6 +16,7 @@ public class PillarOfAbstraction extends Pillar{
         super(myImage, theType);
     }
 
+    // Set player to invincible for a few rounds
     @Override
     public void use(Object theObj) {
 

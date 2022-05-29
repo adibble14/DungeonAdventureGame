@@ -19,6 +19,11 @@ public class BattleGUI extends JPanel {
     private static JButton healthPotion;
 
     private static JTextArea myBattleConsole;
+
+    // Images for the monster icons
+    private static final Image myBossMonsterImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/BossMonsterIcon.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
+    private static final Image myMonsterImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/MonsterIcon.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
+    private static final ImageIcon myMonsterIcon = new ImageIcon();
     BattleGUI(Font thePixelFont) {
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -83,7 +88,7 @@ public class BattleGUI extends JPanel {
         displayPanel.add(heroFaceImage, gbc);
 
 
-
+        gbc.weightx = 1;
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.NORTH;
@@ -92,6 +97,7 @@ public class BattleGUI extends JPanel {
         myStatsLabel.setForeground(Color.WHITE);
         displayPanel.add(myStatsLabel, gbc);
 
+        gbc.weightx = 0;
         gbc.gridx = 2;
         gbc.gridy = 0;
         monsterImage = new JLabel(new ImageIcon(), JLabel.CENTER);
@@ -104,20 +110,23 @@ public class BattleGUI extends JPanel {
         gbc.weighty = 0.5;
         displayPanel.add(monsterImage, gbc);
 
+
+
+        monsterInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
         gbc.weightx = 0;
-        heroInGameImage = new JLabel();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(100,40,0,25);
-        displayPanel.add(heroInGameImage, gbc);
-
-        monsterInGameImage = new JLabel();
-
         gbc.gridx = 2;
         gbc.gridy = 1;
-        gbc.insets = new Insets(100,45,0,25);
+        gbc.gridheight = 2;
+
         displayPanel.add(monsterInGameImage, gbc);
 
+
+        heroInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
+        gbc.gridheight = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(100,0,0,0);
+        displayPanel.add(heroInGameImage, gbc);
         // children of display panel end -----------------------------------
 
         // battle console set up
@@ -218,9 +227,10 @@ public class BattleGUI extends JPanel {
             //TODO lose all gold when surrendering????
             int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
             if(result == 0)
-                DungeonAdventure.getMyHero().setGoldAmount(DungeonAdventure.getMyHero().getGoldCount() - 10);
-                DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - 10);
+                DungeonAdventure.getMyHero().setGoldAmount(- Tools.RANDOM.nextInt(10, 50));
+                DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - Tools.RANDOM.nextInt(5, 25));
                 DungeonAdventure.refreshBackPackGoldValue();
+                DungeonAdventure.refreshDungeonHealthValue();
                 DungeonGUI.resetDungeonImage();
                 DungeonGUI.enableButtons();
                 DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
@@ -236,7 +246,12 @@ public class BattleGUI extends JPanel {
 
         heroFaceImage.setIcon(hero.getMySprite());
         heroInGameImage.setIcon(hero.getMyInGameSprite());
-        monsterImage.setIcon(new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png"));
+        if(DungeonAdventure.getMyDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM)
+            myMonsterIcon.setImage(myBossMonsterImg);
+        else
+            myMonsterIcon.setImage(myMonsterImg);
+
+        monsterImage.setIcon(myMonsterIcon);
         monsterInGameImage.setIcon(monster.getMyInGameSprite());
 
         setBattleConsole(new StringBuilder());

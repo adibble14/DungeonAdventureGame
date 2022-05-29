@@ -1,7 +1,11 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class PillarOfPolymorphism extends Pillar{
-    private static final ImageIcon myImage = new ImageIcon("DungeonAndMonsters/random images/Polymorphism.png");
+    private static final Image myPillarImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/Polymorphism.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
+
+
+    private static final ImageIcon myImage = new ImageIcon(myPillarImage);
     /**
      * Constructor for this class. Simply initializes fields.
      *

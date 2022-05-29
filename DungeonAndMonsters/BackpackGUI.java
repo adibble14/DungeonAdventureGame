@@ -163,7 +163,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Inheritance");
                         ((JButton) button).addActionListener(e -> {
-                            //pillar.use();
+                            pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);
                             repaint();

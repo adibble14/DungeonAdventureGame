@@ -141,6 +141,7 @@ public class DungeonAdventure implements Serializable {
 
 	}
 	protected static void refreshBackPackGoldValue(){MAIN_GUI.getBackpackGui().refreshGoldValue();}
+	protected static void refreshDungeonHealthValue(){DungeonGUI.setHealthLabel(myHero);}
 	protected static void refreshMap(){
 		MAIN_GUI.getMapGui().repaint();
 	}
@@ -290,6 +291,7 @@ public class DungeonAdventure implements Serializable {
 		}else{
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
+			myHero.setGoldAmount(Tools.RANDOM.nextInt(25, 75));
 			JOptionPane.showMessageDialog(null, "Congrats! You won the battle!");
 			DungeonAdventure.sceneController("dungeon");
 			DungeonGUI.setHealthLabel(myHero);
