@@ -41,6 +41,7 @@ public class SaveGame {
             Hero hero = (Hero) in.readObject();
             Dungeon dungeon = (Dungeon) in.readObject();
             // setting read objects to class fields
+            hero.setSprite(new ImageIcon());
             DungeonAdventure.setMyHero(hero);
             DungeonAdventure.setMyDungeon(dungeon);
             DungeonAdventure.sceneController("dungeon");

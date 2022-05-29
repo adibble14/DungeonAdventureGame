@@ -85,6 +85,4 @@ public class Archer extends Hero {
     final protected ImageIcon getMyInGameSprite(){return inGameImage;}
     @Override
     final protected void setMyInGameSprite(final ImageIcon theSprite){inGameImage = theSprite;}
-
-
 }
