@@ -128,6 +128,67 @@ public class BackpackGUI extends JFrame {
     }
 
     /**
+     * Specifically for adding pillars
+     * @param theItem
+     * @param itemImage
+     * @param pillar
+     */
+    protected void addItemToBackpack(final String theItem, final ImageIcon itemImage, Pillar pillar){
+        for (Component button:
+                myItemPanel.getComponents()) {
+            if(button instanceof JButton && ((JButton) button).getIcon() == null){
+                button.setEnabled(true);
+                switch(theItem){
+                    case "abstract":
+                        ((JButton) button).setIcon(itemImage);
+                        ((JButton) button).setToolTipText("Pillar of Abstraction");
+                        ((JButton) button).addActionListener(e -> {
+                            //pillar.use();
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
+                            repaint();
+                        });
+                        break;
+                    case "encap":
+                        ((JButton) button).setIcon(itemImage);
+                        ((JButton) button).setToolTipText("Pillar of Encapsulation");
+                        ((JButton) button).addActionListener(e -> {
+                            //pillar.use();
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
+                            repaint();
+                        });
+                        break;
+                    case "inher":
+                        ((JButton) button).setIcon(itemImage);
+                        ((JButton) button).setToolTipText("Pillar of Inheritance");
+                        ((JButton) button).addActionListener(e -> {
+                            //pillar.use();
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
+                            repaint();
+                        });
+                        break;
+                    case "poly":
+                        ((JButton) button).setIcon(itemImage);
+                        ((JButton) button).setToolTipText("Pillar of Polymorphism");
+                        ((JButton) button).addActionListener(e -> {
+                            //pillar.use();
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
+                            repaint();
+                        });
+                        break;
+                    default:
+                        System.out.println("Null item");
+                        break;
+                }
+                break;
+            }
+        }
+    }
+
+    /**
      * removes a component from the item Panel. Right now only used for removing health potions when pushing button in battle GUI
      * @param theItem
      */

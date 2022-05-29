@@ -68,7 +68,7 @@ public class CharacterSelectionGUI extends JPanel{
         String finalArcherFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + archerFormat + "</h1></font></html>";
-        JLabel archerDesc = new JLabel(finalArcherFormat);
+        JLabel archerDesc = new JLabel(finalArcherFormat, SwingConstants.CENTER);
         archerDesc.setFont(pixelFont);
         // Color of text
         archerDesc.setForeground(Color.white);
@@ -86,7 +86,7 @@ public class CharacterSelectionGUI extends JPanel{
         String finalMageFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + mageFormat + "</h1></font></html>";
-        JLabel mageDesc = new JLabel(finalMageFormat);
+        JLabel mageDesc = new JLabel(finalMageFormat, SwingConstants.CENTER);
         mageDesc.setFont(pixelFont);
         mageDesc.setForeground(Color.white);
 
@@ -102,7 +102,7 @@ public class CharacterSelectionGUI extends JPanel{
         String finalThiefFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + thiefFormat + "</h1></font></html>";
-        JLabel thiefDesc = new JLabel(finalThiefFormat);
+        JLabel thiefDesc = new JLabel(finalThiefFormat, SwingConstants.CENTER);
         thiefDesc.setFont(pixelFont);
         thiefDesc.setForeground(Color.white);
 
@@ -118,7 +118,7 @@ public class CharacterSelectionGUI extends JPanel{
         String finalWarriorFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + warriorFormat + "</h1></font></html>";
-        JLabel warriorDesc = new JLabel(finalWarriorFormat);
+        JLabel warriorDesc = new JLabel(finalWarriorFormat, SwingConstants.CENTER);
         warriorDesc.setFont(pixelFont);
         warriorDesc.setForeground(Color.white);
 
@@ -134,7 +134,7 @@ public class CharacterSelectionGUI extends JPanel{
         String finalPriestessFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + priestessFormat + "</h1></font></html>";
-        JLabel priestessDesc = new JLabel(finalPriestessFormat);
+        JLabel priestessDesc = new JLabel(finalPriestessFormat, SwingConstants.CENTER);
         priestessDesc.setFont(pixelFont);
         priestessDesc.setForeground(Color.white);
 

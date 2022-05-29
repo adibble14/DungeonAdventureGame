@@ -67,66 +67,63 @@ public class BattleGUI extends JPanel {
         buttonPanel.setBorder(OUTLINE_BORDER);
         this.add(buttonPanel, gbc);
 
-        // Children panel setup ------------------------------------
+        // Children of display panel setup ------------------------------------
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.weightx = 0.009;
+        gbc.weightx = 0;
         gbc.weighty = 0.5;
-        JPanel character1 = new JPanel(new GridBagLayout());
-        character1.setOpaque(false);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        displayPanel.add(character1, gbc);
-
-        heroFaceImage = new JLabel();
+        gbc.insets = new Insets(5, 50,5,50);
+        heroFaceImage = new JLabel(new ImageIcon(), JLabel.CENTER);
         heroFaceImage.setOpaque(true);
         heroFaceImage.setBackground(Color.BLACK);
         heroFaceImage.setBorder(OUTLINE_BORDER);
-        character1.add(heroFaceImage, gbc);
+        displayPanel.add(heroFaceImage, gbc);
 
-        heroInGameImage = new JLabel();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(150,20,0,0);
-        character1.add(heroInGameImage, gbc);
 
-        gbc.insets = new Insets(0,0,0,0);
-        JPanel stats = new JPanel(new GridBagLayout());
-        stats.setOpaque(false);
+
         gbc.gridx = 1;
         gbc.gridy = 0;
-        displayPanel.add(stats, gbc);
-        myStatsLabel = new JLabel("STATS");
+        gbc.anchor = GridBagConstraints.NORTH;
+        myStatsLabel = new JLabel("STATS", SwingConstants.CENTER);
         myStatsLabel.setFont(thePixelFont);
         myStatsLabel.setForeground(Color.WHITE);
-        stats.add(myStatsLabel, gbc);
+        displayPanel.add(myStatsLabel, gbc);
 
-        gbc.gridx = 1;
+        gbc.gridx = 2;
         gbc.gridy = 0;
-        monsterImage = new JLabel();
+        monsterImage = new JLabel(new ImageIcon(), JLabel.CENTER);
         monsterImage.setBorder(OUTLINE_BORDER);
         monsterImage.setOpaque(true);
         monsterImage.setBackground(Color.BLACK);
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weightx = 0.009;
+        gbc.weightx = 0;
         gbc.weighty = 0.5;
-        JPanel character2 = new JPanel(new GridBagLayout());
-        character2.setOpaque(false);
-        gbc.gridx = 2;
-        gbc.gridy = 0;
-        displayPanel.add(character2, gbc);
+        displayPanel.add(monsterImage, gbc);
 
-        character2.add(monsterImage, gbc);
+        gbc.weightx = 0;
+        heroInGameImage = new JLabel();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(100,40,0,25);
+        displayPanel.add(heroInGameImage, gbc);
 
         monsterInGameImage = new JLabel();
-        gbc.gridx = 1;
+
+        gbc.gridx = 2;
         gbc.gridy = 1;
-        gbc.insets = new Insets(150,20,0,0);
-        character1.add(monsterInGameImage, gbc);
+        gbc.insets = new Insets(100,45,0,25);
+        displayPanel.add(monsterInGameImage, gbc);
 
+        // children of display panel end -----------------------------------
 
+        // battle console set up
+        gbc.insets = new Insets(0,0,0,0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         myBattleConsole = new JTextArea();
         myBattleConsole.setBackground(Color.BLACK);
         myBattleConsole.setFont(thePixelFont);
@@ -219,9 +216,10 @@ public class BattleGUI extends JPanel {
         buttonArea.add(surrender,gbc);
         surrender.addActionListener(e->{
             //TODO lose all gold when surrendering????
-            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose %10 of Gold)");
+            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
             if(result == 0)
                 DungeonAdventure.getMyHero().setGoldAmount(DungeonAdventure.getMyHero().getGoldCount() - 10);
+                DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - 10);
                 DungeonAdventure.refreshBackPackGoldValue();
                 DungeonGUI.resetDungeonImage();
                 DungeonGUI.enableButtons();
@@ -238,7 +236,7 @@ public class BattleGUI extends JPanel {
 
         heroFaceImage.setIcon(hero.getMySprite());
         heroInGameImage.setIcon(hero.getMyInGameSprite());
-        //monsterImage.setIcon(monster.getMySprite());
+        monsterImage.setIcon(new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png"));
         monsterInGameImage.setIcon(monster.getMyInGameSprite());
 
         setBattleConsole(new StringBuilder());

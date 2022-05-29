@@ -31,4 +31,6 @@ public abstract class Pillar extends Item{
         else return PillarType.POLYMORPHISM;
     }
 
+
+
 }

@@ -34,6 +34,7 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     private final ArrayList<VisionPotion> myVisionPotions;
 
+
     /**
      * Child constructor of Hero class. Calls super class constructor to init fields.
      * Inits Hero class exclusive fields.
