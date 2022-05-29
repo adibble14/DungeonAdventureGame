@@ -308,6 +308,7 @@ public class DungeonGUI extends JPanel {
 
         myRoomLabel.setText(DungeonAdventure.getRoomLabel(theDungeon));
 
+        enableButtons();
         ArrayList theRooms = Dungeon.availableRooms(theDungeon);
         disableButtons(theRooms);
 
