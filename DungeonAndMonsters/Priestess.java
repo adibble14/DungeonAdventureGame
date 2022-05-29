@@ -2,14 +2,13 @@ import javax.swing.*;
 
 public class Priestess extends Hero{
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/PriestessFace.png");
     private static final ImageIcon characterSelectImage = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectPriestess.png");
     protected Priestess(final String theName) {
 
         super(theName, SQLiteDB.getCharacterHealth("Priestess", "heroes"), SQLiteDB.getCharacterSpeed("Priestess", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Priestess", "heroes"), SQLiteDB.getCharacterMinDamage("Priestess", "heroes"),
                 SQLiteDB.getCharacterAccuracy("Priestess", "heroes"), SQLiteDB.getCharacterBlockChange("Priestess"),
-                image, null);
+                new ImageIcon(SQLiteDB.getCharacterImage("Priestess", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Priestess")));
     }
 
 

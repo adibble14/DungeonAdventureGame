@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This class inherits from Monster super class. Has fields associated with special attack method.
@@ -16,7 +17,7 @@ public class Gremlin extends Monster {
                 SQLiteDB.getCharacterSpeed("Gremlin","monsters"), SQLiteDB.getCharacterMaxDamage("Gremlin","monsters"),
                 SQLiteDB.getCharacterMinDamage("Gremlin","monsters"), SQLiteDB.getCharacterAccuracy("Gremlin","monsters"), 
                 SQLiteDB.getCharacterHealChance("Gremlin"), SQLiteDB.getCharacterMinHeal("Gremlin"), SQLiteDB.getCharacterMaxHeal("Gremlin"),
-                null,null);
+                new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")));
     }
 
 

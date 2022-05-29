@@ -19,7 +19,7 @@ public class Ogre extends Monster {
                 SQLiteDB.getCharacterSpeed("Ogre","monsters"), SQLiteDB.getCharacterMaxDamage("Ogre","monsters"),
                 SQLiteDB.getCharacterMinDamage("Ogre","monsters"), SQLiteDB.getCharacterAccuracy("Ogre","monsters"),
                 SQLiteDB.getCharacterHealChance("Ogre"), SQLiteDB.getCharacterMinHeal("Ogre"), SQLiteDB.getCharacterMaxHeal("Ogre"),
-                null,ogreImage);
+                new ImageIcon(SQLiteDB.getCharacterImage("Ogre", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Ogre", "monsters")));
     }
 
     /**

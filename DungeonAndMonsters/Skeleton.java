@@ -26,7 +26,7 @@ public class Skeleton extends Monster {
                 SQLiteDB.getCharacterSpeed("Skeleton","monsters"), SQLiteDB.getCharacterMaxDamage("Skeleton","monsters"),
                 SQLiteDB.getCharacterMinDamage("Skeleton","monsters"), SQLiteDB.getCharacterAccuracy("Skeleton","monsters"),
                 SQLiteDB.getCharacterHealChance("Skeleton"), SQLiteDB.getCharacterMinHeal("Skeleton"), SQLiteDB.getCharacterMaxHeal("Skeleton"),
-                null,skeletonImage);
+                new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")));
 
         this.setSpecialActive(false);
     }

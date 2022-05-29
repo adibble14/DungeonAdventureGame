@@ -33,7 +33,8 @@ public class SQLiteDB {
                             "ACCURACY DECIMAL NOT NULL,"+
                             "HEAL_CHANCE DECIMAL NOT NULL,"+
                             "MIN_HEAL INT NOT NULL,"+
-                            "MAX_HEAL INT NOT NULL)";
+                            "MAX_HEAL INT NOT NULL," +
+                            "IMAGE TEXT)";
 
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {              //these variables will be forgotten after the try block, consider making them instance variables or local
@@ -46,52 +47,52 @@ public class SQLiteDB {
         int count = getRowCount("monsters");  //checks to see if the rows have already been created
 
         if(count < 20) {
-            String gremlinQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Gremlin','Gizmo', 1,70, 5, 30, 15, .8, .4, 20, 40)";
-            String gremlinQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Gremlin','Mogwai',2, 70, 5, 30, 15, .8, .4, 20, 40)";
-            String gremlinQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Gremlin','Stripe',3, 70, 5, 30, 15, .8, .4, 20, 40)";
-            String gremlinQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Gremlin','Greta', 4,70, 5, 30, 15, .8, .4, 20, 40)";
-            String gremlinQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Gremlin','Daffy', 5,70, 5, 30, 15, .8, .4, 20, 40)";
+            String gremlinQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Gremlin','Gizmo', 1,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+            String gremlinQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Gremlin','Mogwai',2, 70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+            String gremlinQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Gremlin','Stripe',3, 70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+            String gremlinQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Gremlin','Greta', 4,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+            String gremlinQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Gremlin','Daffy', 5,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
 
 
-            String beastQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Beast','Ravager', 1,500, 1, 50, 30, .3, .2, 50, 100)";
-            String beastQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Beast','Owl Bear', 2,500, 1, 50, 30, .3, .2, 50, 100)";
-            String beastQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Beast','Beholder', 3,500, 1, 50, 30, .3, .2, 50, 100)";
-            String beastQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Beast','plankTon', 4,500, 1, 50, 30, .3, .2, 50, 100)";
-            String beastQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Beast','Man Beast', 5,500, 1, 50, 30, .3, .2, 50, 100)";
+            String beastQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Beast','Ravager', 1,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+            String beastQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Beast','Owl Bear', 2,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+            String beastQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Beast','Beholder', 3,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+            String beastQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Beast','plankTon', 4,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+            String beastQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Beast','Man Beast', 5,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
 
 
-            String ogreQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Ogre','Huge Ogre',1, 200, 2, 60, 30, .6, .1, 30, 60)";
-            String ogreQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Ogre','Green Ogre',2, 200, 2, 60, 30, .6, .1, 30, 60)";
-            String ogreQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Ogre','Passive Ogre',3, 200, 2, 60, 30, .6, .1, 30, 60)";
-            String ogreQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Ogre','Strong Ogre', 4,200, 2, 60, 30, .6, .1, 30, 60)";
-            String ogreQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Ogre','Mysterious Ogre',5, 200, 2, 60, 30, .6, .1, 30, 60)";
+            String ogreQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Ogre','Huge Ogre',1, 200, 2, 60, 30, .6, .1, 30, 60,'DungeonAndMonsters/monster pics/Ogre.png')";
+            String ogreQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Ogre','Green Ogre',2, 200, 2, 60, 30, .6, .1, 30, 60,'DungeonAndMonsters/monster pics/Ogre.png')";
+            String ogreQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Ogre','Passive Ogre',3, 200, 2, 60, 30, .6, .1, 30, 60,'DungeonAndMonsters/monster pics/Ogre.png')";
+            String ogreQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Ogre','Strong Ogre', 4,200, 2, 60, 30, .6, .1, 30, 60,'DungeonAndMonsters/monster pics/Ogre.png')";
+            String ogreQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Ogre','Mysterious Ogre',5, 200, 2, 60, 30, .6, .1, 30, 60,'DungeonAndMonsters/monster pics/Ogre.png')";
 
 
-            String skeletonQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Skeleton','Skeletor',1, 100, 3, 50, 30, .8, .3, 40, 80)";
-            String skeletonQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Skeleton','Funny Bones',2, 100, 3, 50, 30, .8, .3, 40, 80)";
-            String skeletonQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Skeleton','Jack Skellington',3, 100, 3, 50, 30, .8, .3, 40, 80)";
-            String skeletonQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Skeleton','Rattles', 4,100, 3, 50, 30, .8, .3, 40, 80)";
-            String skeletonQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL)" +
-                    "VALUES ('Skeleton','Bone Thug',5, 100, 3, 50, 30, .8, .3, 40, 80)";
+            String skeletonQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Skeleton','Skeletor',1, 100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
+            String skeletonQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Skeleton','Funny Bones',2, 100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
+            String skeletonQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Skeleton','Jack Skellington',3, 100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
+            String skeletonQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Skeleton','Rattles', 4,100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
+            String skeletonQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Skeleton','Bone Thug',5, 100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
 
 
             try (Connection conn = ds.getConnection();
@@ -120,7 +121,9 @@ public class SQLiteDB {
                 "MAX_DAMAGE INT NOT NULL,"+
                 "MIN_DAMAGE INT NOT NULL,"+
                 "ACCURACY DECIMAL NOT NULL,"+
-                "BLOCK_CHANCE DECIMAL NOT NULL)";
+                "BLOCK_CHANCE DECIMAL NOT NULL," +
+                "IMAGE TEXT NOT NULL,"+
+                "IN_GAME_IMAGE TEXT)";
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {              //these variables will be forgotten after the try block, consider making them instance variables or local
             stmt.executeUpdate( createQuery );
@@ -132,16 +135,16 @@ public class SQLiteDB {
         int count = getRowCount("heroes"); //checks to see if the rows have already been created
 
         if(count < 5) {
-            String archerQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE)" +
-                    "VALUES ('Archer', 500, 4, 30, 25, .7, .5)";
-            String mageQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE)" +
-                    "VALUES ('Mage', 75, 4, 80, 50, .7, .3)";
-            String warriorQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE)" +
-                    "VALUES ('Warrior', 125, 3, 50, 30, .8, .6)";
-            String priestessQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE)" +
-                    "VALUES ('Priestess', 75, 5, 45, 25, .7, .3)";
-            String thiefQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE)" +
-                    "VALUES ('Thief', 95, 6, 20, 10, .9, .4)";
+            String archerQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
+                    "VALUES ('Archer', 500, 4, 30, 25, .7, .5, 'DungeonAndMonsters/character pics/archerpixel.png','DungeonAndMonsters/character pics/archerInGame.png')";
+            String mageQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
+                    "VALUES ('Mage', 75, 4, 80, 50, .7, .3, 'DungeonAndMonsters/character pics/MageFaceSprite.png', 'DungeonAndMonsters/character pics/MageInGameSprite.png')";
+            String warriorQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
+                    "VALUES ('Warrior', 125, 3, 50, 30, .8, .6,'DungeonAndMonsters/character pics/WarriorPixel.png','DungeonAndMonsters/character pics/WarriorInGame.png')";
+            String priestessQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
+                    "VALUES ('Priestess', 75, 5, 45, 25, .7, .3,'DungeonAndMonsters/character pics/PriestessFace.png', NULL)";
+            String thiefQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
+                    "VALUES ('Thief', 95, 6, 20, 10, .9, .4,'DungeonAndMonsters/character pics/thiefpixel.png','DungeonAndMonsters/character pics/goblinthief.png')";
 
 
             try (Connection conn = ds.getConnection();
@@ -366,6 +369,44 @@ public class SQLiteDB {
             System.exit(0);
         }
         return 0;
+    }
+
+    public static String getCharacterImage(String theCharacterType, String theTable){
+        ds.setUrl("jdbc:sqlite:characters.db");
+        String getQuery = "";
+        if(theTable == "monsters"){
+            getQuery = "SELECT IMAGE" +
+                    " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
+        }else{
+            getQuery = "SELECT IMAGE" +
+                    " FROM "+theTable+ " WHERE HERO_TYPE = '" + theCharacterType+"'";
+        }
+        try ( Connection conn = ds.getConnection();
+              Statement stmt = conn.createStatement(); ) {
+            ResultSet rs = stmt.executeQuery(getQuery);
+            return rs.getString("IMAGE");
+
+        } catch ( SQLException e ) {
+            e.printStackTrace();
+            System.exit( 0 );
+        }
+        return null;
+    }
+
+    public static String getCharacterInGameImage(String theCharacterType){
+        ds.setUrl("jdbc:sqlite:characters.db");
+        String getQuery = "SELECT IN_GAME_IMAGE" +
+                " FROM heroes WHERE HERO_TYPE = '" + theCharacterType+"'";
+        try ( Connection conn = ds.getConnection();
+              Statement stmt = conn.createStatement(); ) {
+            ResultSet rs = stmt.executeQuery(getQuery);
+            return rs.getString("IN_GAME_IMAGE");
+
+        } catch ( SQLException e ) {
+            e.printStackTrace();
+            System.exit( 0 );
+        }
+        return null;
     }
 
 

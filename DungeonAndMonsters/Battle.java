@@ -121,7 +121,8 @@ public class Battle {
 		else if( (numb % 2) == 0 && numb < 50) {
 			return new Beast();
 		}*/
-		return new Skeleton();
+		//return new Skeleton();
+		return new Ogre();
 	}
 
 

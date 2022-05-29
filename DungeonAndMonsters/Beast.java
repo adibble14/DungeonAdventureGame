@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 /**
  * This class inherits from Monster super class. Has fields associated with special attack method.
@@ -15,7 +16,8 @@ public class Beast extends Monster {
         super(SQLiteDB.getCharacterName("Beast"), SQLiteDB.getCharacterHealth("Beast","monsters"),SQLiteDB.getCharacterSpeed("Beast","monsters"),
                 SQLiteDB.getCharacterMaxDamage("Beast","monsters"),SQLiteDB.getCharacterMinDamage("Beast","monsters"),
                 SQLiteDB.getCharacterAccuracy("Beast","monsters"), SQLiteDB.getCharacterHealChance("Beast"),
-                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"), null,null);
+                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"),
+                new ImageIcon(SQLiteDB.getCharacterImage("Beast", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Beast", "monsters")));
 
     }
 

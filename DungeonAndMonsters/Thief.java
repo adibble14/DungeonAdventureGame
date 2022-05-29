@@ -6,9 +6,7 @@ import javax.swing.*;
 
 public class Thief extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/thiefpixel.png");
     private static final ImageIcon characterSelectThief = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectThief.png");
-    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png");
     /**
      * Constructor with set values. Calls on super constructor to init fields.
      * Initializes Thief class fields.
@@ -20,7 +18,7 @@ public class Thief extends Hero {
         super(theName, SQLiteDB.getCharacterHealth("Thief", "heroes"), SQLiteDB.getCharacterSpeed("Thief", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Thief", "heroes"), SQLiteDB.getCharacterMinDamage("Thief", "heroes"),
                 SQLiteDB.getCharacterAccuracy("Thief", "heroes"), SQLiteDB.getCharacterBlockChange("Thief"),
-                image, inGameImage);
+                new ImageIcon(SQLiteDB.getCharacterImage("Thief", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Thief")));
     }
 
     /**

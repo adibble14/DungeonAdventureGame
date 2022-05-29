@@ -6,9 +6,7 @@ import javax.swing.*;
 
 public class Warrior extends Hero {
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/WarriorPixel.png");
     private static final ImageIcon CharacterSelectWarrior = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectWarrior.png");
-    private static final ImageIcon inGameImage = new ImageIcon("DungeonAndMonsters/character pics/WarriorInGame.png");
     /**
     /**
      * Class constructor with set values. Calls on super constructor to init fields.
@@ -21,7 +19,7 @@ public class Warrior extends Hero {
         super(theName, SQLiteDB.getCharacterHealth("Warrior", "heroes"), SQLiteDB.getCharacterSpeed("Warrior", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Warrior", "heroes"), SQLiteDB.getCharacterMinDamage("Warrior", "heroes"),
                 SQLiteDB.getCharacterAccuracy("Warrior", "heroes"), SQLiteDB.getCharacterBlockChange("Warrior"),
-                image, inGameImage);
+                new ImageIcon(SQLiteDB.getCharacterImage("Warrior", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Warrior")));
     }
 
 
