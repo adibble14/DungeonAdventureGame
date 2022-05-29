@@ -2,7 +2,8 @@ import javax.swing.*;
 
 public class Priestess extends Hero{
 
-    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/priestess.jpeg");
+    private static final ImageIcon image = new ImageIcon("DungeonAndMonsters/character pics/PriestessFace.png");
+    private static final ImageIcon characterSelectImage = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectPriestess.png");
     protected Priestess(final String theName) {
 
         super(theName, SQLiteDB.getCharacterHealth("Priestess", "heroes"), SQLiteDB.getCharacterSpeed("Priestess", "heroes"),
@@ -45,7 +46,7 @@ public class Priestess extends Hero{
 
     }
     public static ImageIcon getImage(){
-        return image;
+        return characterSelectImage;
     }
 
     @Override

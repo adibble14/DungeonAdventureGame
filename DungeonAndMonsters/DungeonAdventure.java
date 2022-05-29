@@ -263,15 +263,20 @@ public class DungeonAdventure implements Serializable {
 					if(!duplicate) {
 						Pillar pillar = null;
 						if (pillarType == PillarType.ABSTRACTION) {
-							pillar = new PillarOfAbstraction(null, pillarType);
+							pillar = new PillarOfAbstraction(pillarType);
+							MAIN_GUI.getBackpackGui().addItemToBackpack("abstract", pillar.getMyImage(), pillar);
 						} else if (pillarType == PillarType.ENCAPSULATION) {
-							pillar = new PillarOfEncapsulation(null, pillarType);
+							pillar = new PillarOfEncapsulation(pillarType);
+							MAIN_GUI.getBackpackGui().addItemToBackpack("encap",pillar.getMyImage(), pillar);
 						} else if (pillarType == PillarType.INHERITANCE) {
-							pillar = new PillarOfInheritance(null, pillarType);
+							pillar = new PillarOfInheritance(pillarType);
+							MAIN_GUI.getBackpackGui().addItemToBackpack("inher",pillar.getMyImage(), pillar);
 						} else {
-							pillar = new PillarOfPolymorphism(null, pillarType);
+							pillar = new PillarOfPolymorphism(pillarType);
+							MAIN_GUI.getBackpackGui().addItemToBackpack("poly",pillar.getMyImage(), pillar);
 						}
 						inv.addPillar(pillar);		//TODO add image to backpack
+
 						addedPillar = true;
 						JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of "+pillarType+"!\nYou have been awarded the Pillar of "+pillarType+"!\n" +
 								"Find the exit to escape!");
