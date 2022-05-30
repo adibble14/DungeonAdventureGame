@@ -156,6 +156,7 @@ public class CharacterSelectionGUI extends JPanel{
         archerButton.setFont(pixelFont);
         this.add(archerButton, gbc);
         archerButton.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             String name = setUserName();
             if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
@@ -172,6 +173,7 @@ public class CharacterSelectionGUI extends JPanel{
         mageButton.setFont(pixelFont);
         this.add(mageButton, gbc);
         mageButton.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             String name = setUserName();
             if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
@@ -188,6 +190,7 @@ public class CharacterSelectionGUI extends JPanel{
         thiefButton.setFont(pixelFont);
         this.add(thiefButton, gbc);
         thiefButton.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             String name = setUserName();
             if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
@@ -204,6 +207,7 @@ public class CharacterSelectionGUI extends JPanel{
         warriorButton.setFont(pixelFont);
         this.add(warriorButton, gbc);
         warriorButton.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             String name = setUserName();
             if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
@@ -220,6 +224,7 @@ public class CharacterSelectionGUI extends JPanel{
         priestessButton.setFont(pixelFont);
         this.add(priestessButton, gbc);
         priestessButton.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             String name = setUserName();
             if(name != null && !name.equals("")){
                 DungeonAdventure.setMyUserName(name);
@@ -240,7 +245,10 @@ public class CharacterSelectionGUI extends JPanel{
         JButton mainMenu = new JButton("MAIN MENU");
         mainMenu.setFont(pixelFont);
         mainMenu.setPreferredSize(new Dimension(200,50));
-        mainMenu.addActionListener(e ->  DungeonAdventure.sceneController("menu"));
+        mainMenu.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
+            DungeonAdventure.sceneController("menu");
+        });
         this.add(mainMenu, gbc);
 
         gbc.gridx = 2;
@@ -252,7 +260,11 @@ public class CharacterSelectionGUI extends JPanel{
         StringBuilder statText = statInfo();
         String statFormat = statText.toString().replace("\n", "<br>");
         String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></htmt>";
-        stats.addActionListener(e ->  JOptionPane.showMessageDialog(this, finalStatFormat));
+
+        stats.addActionListener(e ->  {
+            Music.playSFX("buttonClicked");
+            JOptionPane.showMessageDialog(this, finalStatFormat);
+        });
         this.add(stats, gbc);
 
         gbc.gridx = 3;

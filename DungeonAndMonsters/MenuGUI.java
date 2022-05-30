@@ -52,6 +52,7 @@ public class MenuGUI extends JPanel{
         newGame.setFont(new Font("Serif", Font.BOLD, 20));
         newGame.setPreferredSize(new Dimension(200,50));
         newGame.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             DungeonAdventure.sceneController("character");
         });
 
@@ -59,6 +60,7 @@ public class MenuGUI extends JPanel{
         loadGame.setFont(new Font("Serif", Font.BOLD, 20));
         loadGame.setPreferredSize(new Dimension(200,50));
         loadGame.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setDialogTitle("Load");
             int selection = chooser.showOpenDialog(null);
@@ -73,6 +75,7 @@ public class MenuGUI extends JPanel{
         instr.setFont(new Font("Serif", Font.BOLD, 20));
         instr.setPreferredSize(new Dimension(200,50));
         instr.addActionListener(e -> {
+            Music.playSFX("buttonClicked");
             StringBuilder instructionText = GUI.gamePlay();
             // Formatting using built in Java to HTML
             String instFormat = instructionText.toString().replace("\n", "<br>");
