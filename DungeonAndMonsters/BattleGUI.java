@@ -166,6 +166,7 @@ public class BattleGUI extends JPanel {
         buttonArea.add(attack, gbc);
         attack.addActionListener(e->{
             if(myBattle.getMyHero().getHealth() > 0){
+                Music.playSFX("attack");
                 setBattleConsole(new StringBuilder());
                 getMyBattle().attackPhase(false);
                 updateBattle();

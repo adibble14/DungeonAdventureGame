@@ -181,6 +181,7 @@ public class DungeonAdventure implements Serializable {
 		Room currentRoom = myDungeon.getCurrentRoom();
 
 		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
+			Music.playMusic("battle");
 			DungeonAdventure.createBattle();
 		}else if(currentRoom.getMyType() == RoomType.PIT){
 			DungeonGUI.addPit(new GridBagConstraints());
@@ -192,6 +193,7 @@ public class DungeonAdventure implements Serializable {
 				gameOver();
 			}
 		} else if(currentRoom.getMyType() == RoomType.ITEM_ROOM) {
+			Music.playSFX("itemPickup");
 			currentRoom.addItemsToPlayerInventory(myHero);
 			PlayerInventory inv = myHero.getMyInventory();
 			while(MAIN_GUI.getBackpackGui().getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {

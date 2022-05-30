@@ -202,6 +202,7 @@ public class DungeonGUI extends JPanel {
         map.setFont(thePixelFont);
         buttonArea.add(map, gbc);
         map.addActionListener(e -> {
+            Music.playSFX("openMap");
             DungeonAdventure.sceneController("map");
         });
 
@@ -229,6 +230,7 @@ public class DungeonGUI extends JPanel {
         myLeftMoveButton.setFont(thePixelFont);
         buttonArea.add(myLeftMoveButton, gbc);
         myLeftMoveButton.addActionListener(e->{
+            Music.playSFX("changeRoom");
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() - 1));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -246,6 +248,7 @@ public class DungeonGUI extends JPanel {
         myUpMoveButton.setFont(thePixelFont);
         buttonArea.add(myUpMoveButton, gbc);
         myUpMoveButton.addActionListener(e->{
+            Music.playSFX("changeRoom");
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord() - 1, getDungeon().getCurrentRoom().getYCoord()));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -261,6 +264,7 @@ public class DungeonGUI extends JPanel {
         myDownMoveButton.setFont(thePixelFont);
         buttonArea.add(myDownMoveButton, gbc);
         myDownMoveButton.addActionListener(e->{
+            Music.playSFX("changeRoom");
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(),getDungeon().getCurrentRoom().getXCoord() + 1, getDungeon().getCurrentRoom().getYCoord()));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));
@@ -276,6 +280,7 @@ public class DungeonGUI extends JPanel {
         myRightMoveButton.setFont(thePixelFont);
         buttonArea.add(myRightMoveButton, gbc);
         myRightMoveButton.addActionListener(e->{
+            Music.playSFX("changeRoom");
             myDungeonWindow.setWindowImg(DungeonAdventure.changeRooms(myDungeon, myDungeonWindow.getMyWindowImg(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord() + 1));
             enableButtons();
             disableButtons(Dungeon.availableRooms(getDungeon()));

@@ -47,7 +47,7 @@ public class MainGUI extends GUI{
 
         // Start by showing menuGUI
         myCardLayout.show(myCardPanel, "menu");
-        Music.playMusic("DungeonAndMonsters/BGM12dungeon1.wav");
+        Music.playMusic("mainMenu");
     }
 
     public BackpackGUI getBackpackGui(){
@@ -81,6 +81,7 @@ public class MainGUI extends GUI{
                 break;
             case "dungeon":
                 myCardLayout.show(myCardPanel, "dungeon");
+                Music.playMusic("dungeon");
                 break;
             case "map":
                 myMapGui.setVisible(true);
