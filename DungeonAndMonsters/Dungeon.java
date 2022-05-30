@@ -27,12 +27,12 @@ public class Dungeon implements Serializable {
 	/**
 	 * Chance of an Item_Room to appear
 	 */
-	private transient double myItemRoomChance;
+	private final transient double myItemRoomChance;
 
 	/**
 	 * Chance of spawning a pit in room
 	 */
-	private transient double myPitSpawnChance;
+	private final transient double myPitSpawnChance;
 	//TODO: Remove the numDungeonsPassed from DungeonAdventure
 	/**
 	 * Current dungeon that the player is on. Must clear 4 to beat the game
@@ -140,7 +140,7 @@ public class Dungeon implements Serializable {
 	 * @param theSize
 	 * @return
 	 */
-	private  Room[][] generateDungeon(final int theSize) {
+	private Room[][] generateDungeon(final int theSize) {
 		Room[][] dung = new Room[theSize][theSize];
 
 		int entranceXCoord = Tools.RANDOM.nextInt(0, theSize/3-1);
@@ -187,7 +187,7 @@ public class Dungeon implements Serializable {
 	 * @param theRooms matrix to recurse
 	 * @param theStart starting point of the recursion
 	 */
-	private boolean DFSGenerateRooms(Room[][] theRooms, Room theStart, RoomType theEnd) {
+	private boolean DFSGenerateRooms(final Room[][] theRooms, final Room theStart, final RoomType theEnd) {
 		HashMap<int[], Room> neighbors = Tools.GET_NEIGHBORS(theRooms, theStart);
 		ArrayList<int[]> keys = new ArrayList<>(neighbors.keySet());
 

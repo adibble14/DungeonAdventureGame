@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class Battle {
 
 
-	Hero myHero;
-	Monster myMonster;
+	private Hero myHero;
+	private Monster myMonster;
 
 	protected Battle(final Hero theHero) {
 		this.myHero = theHero;
@@ -27,6 +27,9 @@ public class Battle {
 		this.myHero = theHero;
 		this.myMonster = theMonster;
 	}
+	// Getter for our private fields - Hero and Monster
+	protected Hero getMyHero(){ return myHero;}
+	protected Monster getMyMonster(){return myMonster;}
 
 	/**
 	 * the DungeonCharacter with the highest speed stat goes first
@@ -112,17 +115,17 @@ public class Battle {
 		
 		int numb = Tools.RANDOM.nextInt(256);
 		
-		/*if((numb % 2) == 0 && numb > 50) {
+		if((numb % 2) == 0 && numb > 50) {
 			return new Ogre();
 		}
-		else if( (numb % 3) == 0 && numb < 50 ) {
+		/*else if( (numb % 3) == 0 && numb < 50 ) {
 			return new Gremlin();
-		}
+		}*/
 		else if( (numb % 2) == 0 && numb < 50) {
 			return new Beast();
-		}*/
-		//return new Skeleton();
-		return new Ogre();
+		}
+		return new Skeleton();
+		//return new Ogre();
 	}
 
 

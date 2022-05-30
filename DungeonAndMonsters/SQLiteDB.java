@@ -60,15 +60,15 @@ public class SQLiteDB {
 
 
             String beastQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Ravager', 1,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+                    "VALUES ('Beast','Ravager', 1,500, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
             String beastQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Owl Bear', 2,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+                    "VALUES ('Beast','Owl Bear', 2,500, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
             String beastQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Beholder', 3,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+                    "VALUES ('Beast','Beholder', 3,500, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
             String beastQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','plankTon', 4,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+                    "VALUES ('Beast','plankTon', 4,500, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
             String beastQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Man Beast', 5,500, 1, 50, 30, .3, .2, 50, 100, NULL)";
+                    "VALUES ('Beast','Man Beast', 5,500, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
 
 
             String ogreQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
@@ -142,7 +142,7 @@ public class SQLiteDB {
             String warriorQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
                     "VALUES ('Warrior', 125, 3, 50, 30, .8, .6,'DungeonAndMonsters/character pics/WarriorPixel.png','DungeonAndMonsters/character pics/WarriorInGame.png')";
             String priestessQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
-                    "VALUES ('Priestess', 75, 5, 45, 25, .7, .3,'DungeonAndMonsters/character pics/PriestessFace.png', NULL)";
+                    "VALUES ('Priestess', 75, 5, 45, 25, .7, .3,'DungeonAndMonsters/character pics/PriestessFace.png', 'DungeonAndMonsters/character pics/PriestessInGame.png')";
             String thiefQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
                     "VALUES ('Thief', 95, 6, 20, 10, .9, .4,'DungeonAndMonsters/character pics/thiefpixel.png','DungeonAndMonsters/character pics/goblinthief.png')";
 

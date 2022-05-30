@@ -10,10 +10,6 @@ import java.util.Random;
 public abstract class DungeonCharacter implements Serializable {
 
     /**
-     * Random object that will generate random values throughout the program
-     */
-    //protected transient final Random MY_RAND;
-    /**
      * stores the object's character name
      */
     private String myCharName;

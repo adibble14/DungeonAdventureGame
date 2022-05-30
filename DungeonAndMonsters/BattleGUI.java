@@ -8,19 +8,21 @@ public class BattleGUI extends JPanel {
     // Stats for player and monster
     private static JLabel myStatsLabel;
     // Hero face image
-    private static JLabel heroFaceImage;
+    private static JLabel myHeroFaceImage;
     // Hero in game image
-    private static JLabel heroInGameImage;
-    // Monster image
-    private static JLabel monsterImage;
-    private static JLabel monsterInGameImage;
+    private static JLabel myHeroInGameImage;
+    // Monster face image
+    private static JLabel myMonsterFaceImage;
+    // Monster in game image
+    private static JLabel myMonsterInGameImage;
     // Battle variable we set later
     private static Battle myBattle;
-    private static JButton healthPotion;
-
+    // Button representing healing in battle
+    private static JButton myHealthPotion;
+    // Console to print what's going on
     private static JTextArea myBattleConsole;
 
-    // Images for the monster icons
+    // Images for myMonsterFaceImage
     private static final Image myBossMonsterImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/BossMonsterIcon.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
     private static final Image myMonsterImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/MonsterIcon.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
     private static final ImageIcon myMonsterIcon = new ImageIcon();
@@ -81,11 +83,11 @@ public class BattleGUI extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 50,5,50);
-        heroFaceImage = new JLabel(new ImageIcon(), JLabel.CENTER);
-        heroFaceImage.setOpaque(true);
-        heroFaceImage.setBackground(Color.BLACK);
-        heroFaceImage.setBorder(OUTLINE_BORDER);
-        displayPanel.add(heroFaceImage, gbc);
+        myHeroFaceImage = new JLabel(new ImageIcon(), JLabel.CENTER);
+        myHeroFaceImage.setOpaque(true);
+        myHeroFaceImage.setBackground(Color.BLACK);
+        myHeroFaceImage.setBorder(OUTLINE_BORDER);
+        displayPanel.add(myHeroFaceImage, gbc);
 
 
         gbc.weightx = 1;
@@ -100,33 +102,33 @@ public class BattleGUI extends JPanel {
         gbc.weightx = 0;
         gbc.gridx = 2;
         gbc.gridy = 0;
-        monsterImage = new JLabel(new ImageIcon(), JLabel.CENTER);
-        monsterImage.setBorder(OUTLINE_BORDER);
-        monsterImage.setOpaque(true);
-        monsterImage.setBackground(Color.BLACK);
+        myMonsterFaceImage = new JLabel(new ImageIcon(), JLabel.CENTER);
+        myMonsterFaceImage.setBorder(OUTLINE_BORDER);
+        myMonsterFaceImage.setOpaque(true);
+        myMonsterFaceImage.setBackground(Color.BLACK);
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0;
         gbc.weighty = 0.5;
-        displayPanel.add(monsterImage, gbc);
+        displayPanel.add(myMonsterFaceImage, gbc);
 
 
 
-        monsterInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
+        myMonsterInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
         gbc.weightx = 0;
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.gridheight = 2;
 
-        displayPanel.add(monsterInGameImage, gbc);
+        displayPanel.add(myMonsterInGameImage, gbc);
 
 
-        heroInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
+        myHeroInGameImage = new JLabel(new ImageIcon(), JLabel.CENTER);
         gbc.gridheight = 1;
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(100,0,0,0);
-        displayPanel.add(heroInGameImage, gbc);
+        displayPanel.add(myHeroInGameImage, gbc);
         // children of display panel end -----------------------------------
 
         // battle console set up
@@ -163,7 +165,7 @@ public class BattleGUI extends JPanel {
         attack.setFont(thePixelFont);
         buttonArea.add(attack, gbc);
         attack.addActionListener(e->{
-            if(myBattle.myHero.getHealth() > 0){
+            if(myBattle.getMyHero().getHealth() > 0){
                 setBattleConsole(new StringBuilder());
                 getMyBattle().attackPhase(false);
                 updateBattle();
@@ -177,7 +179,7 @@ public class BattleGUI extends JPanel {
         special.setFont(thePixelFont);
         buttonArea.add(special, gbc);
         special.addActionListener(e->{
-            if(myBattle.myHero.getHealth() > 0){
+            if(myBattle.getMyHero().getHealth() > 0){
                 setBattleConsole(new StringBuilder());
                 getMyBattle().attackPhase(true);
                 updateBattle();
@@ -196,13 +198,13 @@ public class BattleGUI extends JPanel {
 
         gbc.gridx = 4;
         gbc.gridy = 1;
-        healthPotion = new JButton("Heal");
-        healthPotion.setFont(thePixelFont);
-        buttonArea.add(healthPotion, gbc);
-        healthPotion.addActionListener(e->{
-            PlayerInventory inv = getMyBattle().myHero.getMyInventory();
+        myHealthPotion = new JButton("Heal");
+        myHealthPotion.setFont(thePixelFont);
+        buttonArea.add(myHealthPotion, gbc);
+        myHealthPotion.addActionListener(e->{
+            PlayerInventory inv = getMyBattle().getMyHero().getMyInventory();
             if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
-                int heal = myBattle.myHero.useHealthPotion();
+                int heal = myBattle.getMyHero().useHealthPotion();
                 setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
                 updateBattle();
                 BackpackGUI.removeItemFromBackPack("HEALTH_POTION");
@@ -241,22 +243,22 @@ public class BattleGUI extends JPanel {
 
     public static void setBattle(Battle theBattle){
         setMyBattle(theBattle);
-        Hero hero = theBattle.myHero;
-        Monster monster = theBattle.myMonster;
+        Hero hero = theBattle.getMyHero();
+        Monster monster = theBattle.getMyMonster();
 
-        heroFaceImage.setIcon(hero.getMySprite());
-        heroInGameImage.setIcon(hero.getMyInGameSprite());
+        myHeroFaceImage.setIcon(hero.getMySprite());
+        myHeroInGameImage.setIcon(hero.getMyInGameSprite());
         if(DungeonAdventure.getMyDungeon().getCurrentRoom().getMyType() == RoomType.BOSS_ROOM)
             myMonsterIcon.setImage(myBossMonsterImg);
         else
             myMonsterIcon.setImage(myMonsterImg);
 
-        monsterImage.setIcon(myMonsterIcon);
-        monsterInGameImage.setIcon(monster.getMyInGameSprite());
+        myMonsterFaceImage.setIcon(myMonsterIcon);
+        myMonsterInGameImage.setIcon(monster.getMyInGameSprite());
 
         setBattleConsole(new StringBuilder());
 
-        PlayerInventory inv = getMyBattle().myHero.getMyInventory();
+        PlayerInventory inv = getMyBattle().getMyHero().getMyInventory();
         if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
             enableHealthButton();
         }else{
@@ -267,8 +269,8 @@ public class BattleGUI extends JPanel {
     }
 
     public static void updateBattle(){
-        Hero hero = myBattle.myHero;
-        Monster monster = myBattle.myMonster;
+        Hero hero = myBattle.getMyHero();
+        Monster monster = myBattle.getMyMonster();
 
 
         StringBuilder string = new StringBuilder("STATS" + "\n"+ hero.getHealth() + " Health "
@@ -303,15 +305,17 @@ public class BattleGUI extends JPanel {
     }
 
     private static String specialInfo(){
-        Hero hero = getMyBattle().myHero;
-        Monster monster = getMyBattle().myMonster;
+        Hero hero = getMyBattle().getMyHero();
+        Monster monster = getMyBattle().getMyMonster();
 
         return "Special Info:\n" + hero.getName() +": "+hero.getSpecialInfo() +"\n" +monster.getName() +": "+ monster.getSpecialInfo();
     }
 
 
-    static void enableHealthButton(){healthPotion.setEnabled(true);}
-    static void disableHealthButton(){healthPotion.setEnabled(false);}
+    static void enableHealthButton(){
+        myHealthPotion.setEnabled(true);}
+    static void disableHealthButton(){
+        myHealthPotion.setEnabled(false);}
 
 
     /**

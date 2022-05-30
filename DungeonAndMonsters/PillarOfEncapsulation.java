@@ -14,10 +14,19 @@ public class PillarOfEncapsulation extends Pillar{
         super(myImage, theType);
     }
 
+    /**
+     * Setting every room to visible
+     * @param theObj
+     */
     @Override
     public void use(Object theObj) {
         Dungeon dungeon = (Dungeon) theObj;
-
+        for (int i = 0; i < dungeon.getDungeon().length; i++) {
+            for (int j = 0; j < dungeon.getDungeon()[0].length; j++) {
+                if(dungeon.getRoom(i,j) != null)
+                    dungeon.getRoom(i,j).setMyDiscovery();
+            }
+        }
 
     }
     protected final ImageIcon getImage(){

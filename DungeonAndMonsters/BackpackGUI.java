@@ -28,7 +28,7 @@ public class BackpackGUI extends JFrame {
     // Image Icon Creation End------------------------------------
 
     private static Hero myHero;
-    private JLabel playerGoldCount = new JLabel();
+    private final JLabel myPlayerGoldCount = new JLabel();
     BackpackGUI(Font pixelFont){
         // Change the name of the frame
         this.setTitle("Backpack");
@@ -51,9 +51,9 @@ public class BackpackGUI extends JFrame {
 
         gbc.gridx = 2;
         gbc.gridy = 5;
-        playerGoldCount.setFont(pixelFont);
-        playerGoldCount.setForeground(Color.white);
-        myItemPanel.add(playerGoldCount, gbc);
+        myPlayerGoldCount.setFont(pixelFont);
+        myPlayerGoldCount.setForeground(Color.white);
+        myItemPanel.add(myPlayerGoldCount, gbc);
         this.myActiveHealthPotions = 0;
         this.myActiveVisionPotions = 0;
     }
@@ -141,7 +141,7 @@ public class BackpackGUI extends JFrame {
                 switch(theItem){
                     case "abstract":
                         ((JButton) button).setIcon(itemImage);
-                        ((JButton) button).setToolTipText("Pillar of Abstraction");
+                        ((JButton) button).setToolTipText("Pillar of Abstraction - Use for temporary invulnerability!");
                         ((JButton) button).addActionListener(e -> {
                             //pillar.use();
                             button.setEnabled(false);
@@ -151,9 +151,9 @@ public class BackpackGUI extends JFrame {
                         break;
                     case "encap":
                         ((JButton) button).setIcon(itemImage);
-                        ((JButton) button).setToolTipText("Pillar of Encapsulation");
+                        ((JButton) button).setToolTipText("Pillar of Encapsulation - Use to reveal the whole dungeon!");
                         ((JButton) button).addActionListener(e -> {
-                            //pillar.use();
+                            pillar.use(DungeonAdventure.getMyDungeon());
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);
                             repaint();
@@ -161,7 +161,7 @@ public class BackpackGUI extends JFrame {
                         break;
                     case "inher":
                         ((JButton) button).setIcon(itemImage);
-                        ((JButton) button).setToolTipText("Pillar of Inheritance");
+                        ((JButton) button).setToolTipText("Pillar of Inheritance - Use to inherit some wealth!");
                         ((JButton) button).addActionListener(e -> {
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
@@ -171,7 +171,7 @@ public class BackpackGUI extends JFrame {
                         break;
                     case "poly":
                         ((JButton) button).setIcon(itemImage);
-                        ((JButton) button).setToolTipText("Pillar of Polymorphism");
+                        ((JButton) button).setToolTipText("Pillar of Polymorphism - Use for a small change.");
                         ((JButton) button).addActionListener(e -> {
                             //pillar.use();
                             button.setEnabled(false);
@@ -221,7 +221,7 @@ public class BackpackGUI extends JFrame {
 
     public void setMyHero(Hero theHero){
         myHero = theHero;
-        playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
+        myPlayerGoldCount.setText("Gold: "+ myHero.getGoldCount());
     }
 
     public int getMyActiveHealthPotions() {
@@ -235,7 +235,7 @@ public class BackpackGUI extends JFrame {
      * refreshes gold label when player received more gold.
      */
     public void refreshGoldValue() {
-        playerGoldCount.setText("Gold: "+ myHero.getGoldCount());
+        myPlayerGoldCount.setText("Gold: "+ myHero.getGoldCount());
     }
 
     /**
