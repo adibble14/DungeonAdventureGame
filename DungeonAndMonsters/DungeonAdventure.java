@@ -167,6 +167,7 @@ public class DungeonAdventure implements Serializable {
 	 * @param theMonster
 	 */
 	protected static void createBattle(final Monster theMonster){
+		Music.playMusic("battle");
 		DungeonAdventure.sceneController("battle");
 		BattleGUI.setBattle(new Battle(myHero, theMonster));
 	}

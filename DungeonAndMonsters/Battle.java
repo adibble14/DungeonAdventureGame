@@ -123,17 +123,16 @@ public class Battle {
 		
 		int numb = Tools.RANDOM.nextInt(256);
 		
-		if((numb % 2) == 0 && numb > 50) {
-			return new Ogre();
+		if(numb > 200) {
+			return new Skeleton();
 		}
-		else if( (numb % 3) == 0 && numb < 50 ) {
+		else if(numb > 150 && numb < 200 ) {
 			return new Gremlin();
 		}
-		else if( (numb % 2) == 0 && numb < 50) {
+		else if( numb > 100 && numb < 150) {
 			return new Beast();
 		}
-		return new Skeleton();
-		//return new Ogre();
+		return new Ogre();
 	}
 
 
