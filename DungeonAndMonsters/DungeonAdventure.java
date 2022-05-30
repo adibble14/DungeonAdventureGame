@@ -43,10 +43,7 @@ public class DungeonAdventure implements Serializable {
 	}
 	protected static void loadUpGame() {
 		//TODO: Just for testing purposes. Should load images from database later on.
-
-		//TODO why are these coded in????
-		myHero.setMyInGameSprite(myHero.getMyInGameSprite());
-		myHero.setSprite(myHero.getMySprite());
+		
 		numDungeonsPassed = myDungeon.getMyCurrentDungeonNumber();
 		MAIN_GUI.setTheHero(myHero);
 		MAIN_GUI.setMyDungeon(myDungeon);

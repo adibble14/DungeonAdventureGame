@@ -163,7 +163,6 @@ public class SQLiteDB {
 
     public static int getRowCount(String tableName){
         ds.setUrl("jdbc:sqlite:characters.db");
-        num = random.nextInt(1,6);
         String countQuery = "SELECT COUNT(*) FROM " + tableName;
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
