@@ -48,15 +48,15 @@ public class SQLiteDB {
 
         if(count < 20) {
             String gremlinQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Gremlin','Gizmo', 1,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+                    "VALUES ('Gremlin','Gizmo', 1,70, 5, 30, 15, .8, .4, 20, 40, 'DungeonAndMonsters/monster pics/GremlinInGame.png')";
             String gremlinQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Gremlin','Mogwai',2, 70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+                    "VALUES ('Gremlin','Mogwai',2, 70, 5, 30, 15, .8, .4, 20, 40, 'DungeonAndMonsters/monster pics/GremlinInGame.png')";
             String gremlinQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Gremlin','Stripe',3, 70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+                    "VALUES ('Gremlin','Stripe',3, 70, 5, 30, 15, .8, .4, 20, 40, 'DungeonAndMonsters/monster pics/GremlinInGame.png')";
             String gremlinQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Gremlin','Greta', 4,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+                    "VALUES ('Gremlin','Greta', 4,70, 5, 30, 15, .8, .4, 20, 40, 'DungeonAndMonsters/monster pics/GremlinInGame.png')";
             String gremlinQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Gremlin','Daffy', 5,70, 5, 30, 15, .8, .4, 20, 40, NULL)";
+                    "VALUES ('Gremlin','Daffy', 5,70, 5, 30, 15, .8, .4, 20, 40, 'DungeonAndMonsters/monster pics/GremlinInGame.png')";
 
 
             String beastQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +

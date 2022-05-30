@@ -23,11 +23,12 @@ public class PillarOfEncapsulation extends Pillar{
         Dungeon dungeon = (Dungeon) theObj;
         for (int i = 0; i < dungeon.getDungeon().length; i++) {
             for (int j = 0; j < dungeon.getDungeon()[0].length; j++) {
-                if(dungeon.getRoom(i,j) != null)
+                if(dungeon.getRoom(i,j) != null){
                     dungeon.getRoom(i,j).setMyDiscovery();
+                }
             }
         }
-
+        DungeonAdventure.getMainGui().getMapGui().repaint();
     }
     protected final ImageIcon getImage(){
         return myImage;

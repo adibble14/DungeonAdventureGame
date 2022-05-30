@@ -270,7 +270,7 @@ public class Dungeon implements Serializable {
 
 
 		if(north && south && east && west){
-			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/DungeonTile_4_Exits.png");
+			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_4.png");
 		}else if(north && south && east){
 			return Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/dungeon pics/dungeon_3_right.png");
 		}else if(north && south && west){
