@@ -68,7 +68,15 @@ public class Battle {
 				DungeonAdventure.gameOver();
 			}
 		}
-
+		Pillar[] p =this.myHero.getMyInventory().getPillars();
+		for(Pillar i : p) {
+			if(i.getMY_TYPE() == PillarType.ABSTRACTION) {
+				PillarOfAbstraction a = (PillarOfAbstraction) i;
+				if(a.isActive()){
+					a.tick();
+				}
+			}
+		}
 
 	}
 

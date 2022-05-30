@@ -14,6 +14,10 @@ public class Skeleton extends Monster {
      * Stores boolean value for Skeleton object's special.
      */
     private boolean specialActive;
+    /**
+     * once the skeleton revives once, it cannot revive again
+     */
+    private boolean revived;
     private static final ImageIcon skeletonImage = new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png");
 
 
@@ -29,6 +33,7 @@ public class Skeleton extends Monster {
                 new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")));
 
         this.setSpecialActive(false);
+        this.revived = false;
     }
 
 
@@ -59,10 +64,11 @@ public class Skeleton extends Monster {
     @Override
     final protected void setHealth(final int theHealth) {
 
-        if (theHealth == 0 && this.getSpecialActive()) {
+        if (theHealth == 0 && this.getSpecialActive() && !this.revived ) {
 
             super.setHealth(this.getMaxHealth());
             this.setSpecialActive(false);
+            this.revived = true;
         } else {
             super.setHealth(theHealth);
         }
@@ -73,6 +79,7 @@ public class Skeleton extends Monster {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
+
         //TODO delete this output once GUI is made, since this is VIEW
         System.out.println(this.getName() + " prepares to reassemble itself after death! \n\n");
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " prepares to reassemble itself after death! "));

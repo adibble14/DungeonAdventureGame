@@ -11,9 +11,9 @@ public class CareTaker implements Serializable {
     private List<Originator.Memento> mySavedStates;
     private Originator myOriginator;
 
-    protected CareTaker(Hero theHero) {
+    protected CareTaker() {
         this.mySavedStates = new ArrayList<>();
-        Originator myOriginator = new Originator();
+        this.myOriginator = new Originator();
     }
     protected void saveState(Hero theHero) {
         myOriginator.set(theHero);

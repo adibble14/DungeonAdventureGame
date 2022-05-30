@@ -143,7 +143,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Abstraction - Use for temporary invulnerability!");
                         ((JButton) button).addActionListener(e -> {
-                            //pillar.use();
+                            pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);
                             repaint();
@@ -173,9 +173,9 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Polymorphism - Use for a small change.");
                         ((JButton) button).addActionListener(e -> {
-                            //pillar.use();
-                            button.setEnabled(false);
-                            ((JButton) button).setIcon(null);
+                            pillar.use(DungeonAdventure.getMyHero());
+                           // button.setEnabled(false);
+                            //((JButton) button).setIcon(null);
                             repaint();
                         });
                         break;
