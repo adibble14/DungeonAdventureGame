@@ -41,7 +41,9 @@ public class SaveGame {
             Hero hero = (Hero) in.readObject();
             Dungeon dungeon = (Dungeon) in.readObject();
             // setting read objects to class fields
-            hero.setSprite(new ImageIcon());
+            String name = hero.getClass().getSimpleName();
+            hero.setSprite(new ImageIcon(SQLiteDB.getCharacterImage(name,"heroes")));
+            hero.setMyInGameSprite(new ImageIcon(SQLiteDB.getCharacterInGameImage(name)));
             DungeonAdventure.setMyHero(hero);
             DungeonAdventure.setMyDungeon(dungeon);
             DungeonAdventure.sceneController("dungeon");
