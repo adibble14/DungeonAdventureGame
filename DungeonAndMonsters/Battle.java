@@ -126,9 +126,9 @@ public class Battle {
 		if((numb % 2) == 0 && numb > 50) {
 			return new Ogre();
 		}
-		/*else if( (numb % 3) == 0 && numb < 50 ) {
+		else if( (numb % 3) == 0 && numb < 50 ) {
 			return new Gremlin();
-		}*/
+		}
 		else if( (numb % 2) == 0 && numb < 50) {
 			return new Beast();
 		}
