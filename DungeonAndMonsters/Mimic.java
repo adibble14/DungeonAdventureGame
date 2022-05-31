@@ -19,8 +19,11 @@ public class Mimic extends Monster{
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal, null,null);
     }
     protected Mimic() {
-        super("Mimic",140,5,15,5,.5,.07,0,0,
-                new ImageIcon("DungeonAndMonsters/monster pics/Mimic UW Chest.png"),new ImageIcon("DungeonAndMonsters/monster pics/Mimic UW Chest.png"));
+        super(SQLiteDB.getCharacterName("Mimic"), SQLiteDB.getCharacterHealth("Mimic","monsters"),SQLiteDB.getCharacterSpeed("Mimic","monsters"),
+                SQLiteDB.getCharacterMaxDamage("Mimic","monsters"),SQLiteDB.getCharacterMinDamage("Mimic","monsters"),
+                SQLiteDB.getCharacterAccuracy("Mimic","monsters"), SQLiteDB.getCharacterHealChance("Mimic"),
+                SQLiteDB.getCharacterMinHeal("Mimic"), SQLiteDB.getCharacterMaxHeal("Mimic"),
+                new ImageIcon(SQLiteDB.getCharacterImage("Mimic", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Mimic", "monsters")));
     }
 
     /**

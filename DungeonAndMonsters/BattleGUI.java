@@ -226,11 +226,11 @@ public class BattleGUI extends JPanel {
         JButton surrender = new JButton("Run");
         surrender.setFont(thePixelFont);
         buttonArea.add(surrender,gbc);
-        surrender.addActionListener(e->{
+        surrender.addActionListener(e-> {
             //TODO lose all gold when surrendering????
-            int result =JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
-            if(result == 0)
-                DungeonAdventure.getMyHero().setGoldAmount(- Tools.RANDOM.nextInt(10, 50));
+            int result = JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
+            if (result == 0){
+                DungeonAdventure.getMyHero().setGoldAmount(-Tools.RANDOM.nextInt(10, 50));
                 DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - Tools.RANDOM.nextInt(5, 25));
                 DungeonAdventure.refreshBackPackGoldValue();
                 DungeonAdventure.refreshDungeonHealthValue();
@@ -238,6 +238,7 @@ public class BattleGUI extends JPanel {
                 DungeonGUI.enableButtons();
                 DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
                 DungeonAdventure.sceneController("dungeon");
+            }
         });
 
     }

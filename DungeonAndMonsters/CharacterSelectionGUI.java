@@ -272,7 +272,10 @@ public class CharacterSelectionGUI extends JPanel{
         JButton monsters = new JButton("MONSTERS");
         monsters.setFont(pixelFont);
         monsters.setPreferredSize(new Dimension(200,50));
-        //monsters.addActionListener();
+        monsters.addActionListener(e ->  {
+            Music.playSFX("buttonClicked");
+            DungeonAdventure.sceneController("monster");
+        });
         this.add(monsters,gbc);
 
 
@@ -285,13 +288,10 @@ public class CharacterSelectionGUI extends JPanel{
     /**
      * Displays information about the Hero characters on the console screen.
      */
-    public static StringBuilder heroInfo(String characterType) {
+    public static StringBuilder heroInfo(String theCharacterType) {
 
-        // When displaying a lot of information, using StringBuffer
-        // Nice choice, however, we will need to change this when implementing GUI
-        // TODO When implementing GUI, consider different menus for information
         StringBuilder heroInformation = new StringBuilder();
-        switch(characterType){
+        switch(theCharacterType){
             case "Warrior":
                 heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
                 heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");

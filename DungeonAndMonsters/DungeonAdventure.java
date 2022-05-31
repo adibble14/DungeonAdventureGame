@@ -205,7 +205,14 @@ public class DungeonAdventure implements Serializable {
 			currentRoom.setEmpty();
 			DungeonGUI.setPlayerConsole(playerConsole);
 		}else if(currentRoom.getMyType() == RoomType.EXIT) {
-			if(numDungeonsPassed == currentDungeonNum){
+			if(numDungeonsPassed == 4){
+				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
+				if(input == 0){		//play again
+					playAgain();
+				}else{		//close the game
+					System.exit(0);
+				}
+			} else if(numDungeonsPassed == currentDungeonNum){
 				JOptionPane.showMessageDialog(null,"Oh No! Looks like the exit leads to another Dungeon....");
 				currentDungeonNum++;
 				nextDungeon();
@@ -233,58 +240,49 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.closeBackPack();
 	}
 
-	protected static void battleWin(){
-		if(myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM){		//if the user defeated a boss monster, then advance to next dungeon
+	protected static void battleWin() {
+		if (myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM) {        //if the user defeated a boss monster, then advance to next dungeon
 			numDungeonsPassed++;
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
-			if(numDungeonsPassed == 4){		//beat all 4 dungeons
-				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
-				if(input == 0){		//play again
-					playAgain();
-				}else{		//close the game
-					System.exit(0);
+			PlayerInventory inv = myHero.getMyInventory();
+			Pillar[] pillars = inv.getPillars();
+			boolean addedPillar = false;
+			while (!addedPillar) {
+				PillarType pillarType = Pillar.getRandomPillar();
+				boolean duplicate = false;
+				for (int i = 0; i < pillars.length; i++) {
+					if (pillars[i].getMY_TYPE() == pillarType) {
+						duplicate = true;
+					}
 				}
-			}else{			//adding a pillar to the heroes inventory
-				PlayerInventory inv = myHero.getMyInventory();
-				Pillar[] pillars = inv.getPillars();
-				boolean addedPillar = false;
-				while(!addedPillar){
-					PillarType pillarType = Pillar.getRandomPillar();
-					boolean duplicate = false;
-					for(int i = 0; i<pillars.length; i++){
-						if(pillars[i].getMY_TYPE() == pillarType){
-							duplicate = true;
-						}
+				if (!duplicate) {
+					Pillar pillar = null;
+					if (pillarType == PillarType.ABSTRACTION) {
+						pillar = new PillarOfAbstraction(pillarType);
+						MAIN_GUI.getBackpackGui().addItemToBackpack("abstract", pillar.getMyImage(), pillar);
+					} else if (pillarType == PillarType.ENCAPSULATION) {
+						pillar = new PillarOfEncapsulation(pillarType);
+						MAIN_GUI.getBackpackGui().addItemToBackpack("encap", pillar.getMyImage(), pillar);
+					} else if (pillarType == PillarType.INHERITANCE) {
+						pillar = new PillarOfInheritance(pillarType);
+						MAIN_GUI.getBackpackGui().addItemToBackpack("inher", pillar.getMyImage(), pillar);
+					} else {
+						pillar = new PillarOfPolymorphism(pillarType);
+						MAIN_GUI.getBackpackGui().addItemToBackpack("poly", pillar.getMyImage(), pillar);
 					}
-					if(!duplicate) {
-						Pillar pillar = null;
-						if (pillarType == PillarType.ABSTRACTION) {
-							pillar = new PillarOfAbstraction(pillarType);
-							MAIN_GUI.getBackpackGui().addItemToBackpack("abstract", pillar.getMyImage(), pillar);
-						} else if (pillarType == PillarType.ENCAPSULATION) {
-							pillar = new PillarOfEncapsulation(pillarType);
-							MAIN_GUI.getBackpackGui().addItemToBackpack("encap",pillar.getMyImage(), pillar);
-						} else if (pillarType == PillarType.INHERITANCE) {
-							pillar = new PillarOfInheritance(pillarType);
-							MAIN_GUI.getBackpackGui().addItemToBackpack("inher",pillar.getMyImage(), pillar);
-						} else {
-							pillar = new PillarOfPolymorphism(pillarType);
-							MAIN_GUI.getBackpackGui().addItemToBackpack("poly",pillar.getMyImage(), pillar);
-						}
-						inv.addPillar(pillar);		//TODO add image to backpack
+					inv.addPillar(pillar);        //TODO add image to backpack
 
-						addedPillar = true;
-						JOptionPane.showMessageDialog(null,"Congrats! You have defeated the Boss of "+pillarType+"!\nYou have been awarded the Pillar of "+pillarType+"!\n" +
-								"Find the exit to escape!");
-						DungeonGUI.resetDungeonImage();
-						DungeonGUI.enableButtons();
-						DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
-						DungeonAdventure.sceneController("dungeon");
-					}
+					addedPillar = true;
+					JOptionPane.showMessageDialog(null, "Congrats! You have defeated the Boss of " + pillarType + "!\nYou have been awarded the Pillar of " + pillarType + "!\n" +
+							"Find the exit to escape!");
+					DungeonGUI.resetDungeonImage();
+					DungeonGUI.enableButtons();
+					DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
+					DungeonAdventure.sceneController("dungeon");
 				}
 			}
-		}else{
+		} else {
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
 			myHero.setGoldAmount(Tools.RANDOM.nextInt(25, 75));

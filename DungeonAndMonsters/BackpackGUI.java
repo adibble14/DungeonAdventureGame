@@ -146,7 +146,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).addActionListener(e -> {
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
-                            ((JButton) button).setIcon(null);
+                            //((JButton) button).setIcon(null);
                             repaint();
                         });
                         break;
@@ -156,7 +156,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).addActionListener(e -> {
                             pillar.use(DungeonAdventure.getMyDungeon());
                             button.setEnabled(false);
-                            ((JButton) button).setIcon(null);
+                            //((JButton) button).setIcon(null);
                             repaint();
                         });
                         break;
@@ -166,7 +166,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).addActionListener(e -> {
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
-                            ((JButton) button).setIcon(null);
+                            //((JButton) button).setIcon(null);
                             repaint();
                         });
                         break;
@@ -175,7 +175,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setToolTipText("Pillar of Polymorphism - Use for a small change.");
                         ((JButton) button).addActionListener(e -> {
                             pillar.use(DungeonAdventure.getMyHero());
-                           // button.setEnabled(false);
+                            button.setEnabled(false);
                             //((JButton) button).setIcon(null);
                             repaint();
                         });

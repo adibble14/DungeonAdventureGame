@@ -94,6 +94,17 @@ public class SQLiteDB {
             String skeletonQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
                     "VALUES ('Skeleton','Bone Thug',5, 100, 3, 50, 30, .8, .3, 40, 80, 'DungeonAndMonsters/monster pics/rpgCritterSkelly.png')";
 
+            String mimicQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Mimic','Surprise Mimic',1, 140, 5, 15, 5, .5, .07, 0, 0, 'DungeonAndMonsters/monster pics/Mimic UW Chest.png')";
+            String mimicQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Mimic','Gift Mimic',2, 140, 5, 15, 5, .5, .07, 0, 0, 'DungeonAndMonsters/monster pics/Mimic UW Chest.png')";
+            String mimicQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Mimic','Happy Mimic',3, 140, 5, 15, 5, .5, .07, 0, 0, 'DungeonAndMonsters/monster pics/Mimic UW Chest.png')";
+            String mimicQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Mimic','Shock Mimic',4, 140, 5, 15, 5, .5, .07, 0, 0, 'DungeonAndMonsters/monster pics/Mimic UW Chest.png')";
+            String mimicQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
+                    "VALUES ('Mimic','Startling Mimic',5, 140, 5, 15, 5, .5, .07, 0, 0, 'DungeonAndMonsters/monster pics/Mimic UW Chest.png')";
+
 
             try (Connection conn = ds.getConnection();
                  Statement stmt = conn.createStatement();) {
@@ -101,6 +112,7 @@ public class SQLiteDB {
                 stmt.executeUpdate(beastQuery);stmt.executeUpdate(beastQuery2);stmt.executeUpdate(beastQuery3);stmt.executeUpdate(beastQuery4);stmt.executeUpdate(beastQuery5);
                 stmt.executeUpdate(ogreQuery);stmt.executeUpdate(ogreQuery2);stmt.executeUpdate(ogreQuery3);stmt.executeUpdate(ogreQuery4);stmt.executeUpdate(ogreQuery5);
                 stmt.executeUpdate(skeletonQuery);stmt.executeUpdate(skeletonQuery2);stmt.executeUpdate(skeletonQuery3);stmt.executeUpdate(skeletonQuery4);stmt.executeUpdate(skeletonQuery5);
+                stmt.executeUpdate(mimicQuery);stmt.executeUpdate(mimicQuery2);stmt.executeUpdate(mimicQuery3);stmt.executeUpdate(mimicQuery4);stmt.executeUpdate(mimicQuery5);
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.exit(0);

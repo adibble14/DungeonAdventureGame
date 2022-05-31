@@ -36,6 +36,7 @@ public class MainGUI extends GUI{
         CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(myCustomFont);
         DungeonGUI dungeonGUI = new DungeonGUI(myCustomFont);
         BattleGUI battleGUI = new BattleGUI(myCustomFont);
+        MonsterGUI monsterGUI = new MonsterGUI(myCustomFont);
         myBackpackGui = new BackpackGUI(myCustomFont);
         myMapGui = new MapGUI(myCustomFont);
 
@@ -44,6 +45,7 @@ public class MainGUI extends GUI{
         myCardPanel.add(characterSelectionGUI, "character");
         myCardPanel.add(dungeonGUI, "dungeon");
         myCardPanel.add(battleGUI, "battle");
+        myCardPanel.add(monsterGUI, "monster");
 
         // Start by showing menuGUI
         myCardLayout.show(myCardPanel, "menu");
@@ -87,12 +89,13 @@ public class MainGUI extends GUI{
                 myMapGui.setVisible(true);
                 break;
             case "backpack":
-                //theCardLayout.show(theCardPanel, "backpack");
                 myBackpackGui.setVisible(true);
                 break;
             case "battle":
                 myCardLayout.show(myCardPanel, "battle");
                 break;
+            case "monster":
+                myCardLayout.show(myCardPanel, "monster");
         }
     }
 
