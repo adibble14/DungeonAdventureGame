@@ -170,7 +170,12 @@ public class DungeonAdventure implements Serializable {
 	 * Used when a chest is a mimic. Need to make a battle with a mimic happen.
 	 * @param theMonster
 	 */
+<<<<<<< HEAD
 	public static void createBattle(Monster theMonster){
+=======
+	protected static void createBattle(final Monster theMonster){
+		Music.playMusic("battle");
+>>>>>>> ceff3a6fc607c4fb6d885f15242b836c4b34fd4e
 		DungeonAdventure.sceneController("battle");
 		BattleGUI.setBattle(new Battle(myHero, theMonster));
 	}

@@ -32,7 +32,7 @@ public class Priestess extends Hero{
 
             int healing = (int) Math.ceil(damage*.66);
 
-            System.out.println(this.getName() + " lands the attack! Dealt " + damage + " of damage and healed " + healing+"points of health\n");
+            System.out.println(this.getName() + " lands the attack! Dealt " + damage + " of damage and healed " + healing+" points of health\n");
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals " + damage + " of damage and healed " + healing+" points of health. "));
 
             this.setHealth(this.getHealth() + healing);

@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 public class PillarOfPolymorphism extends Pillar{
     private static final Image myPillarImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/Polymorphism.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
@@ -29,8 +32,19 @@ public class PillarOfPolymorphism extends Pillar{
         if(!morphed) {
             careTaker.saveState(hero);
             //TODO: for testing, randomly choose an image
-            hero.setMyInGameSprite(new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png"));
+            Image myImage = new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png").getImage();
+            BufferedImage bufferedImage = new BufferedImage(myImage.getWidth(null), myImage.getHeight(null), BufferedImage.TYPE_INT_RGB);
+            Graphics gb = bufferedImage.getGraphics();
+            gb.drawImage(myImage, 0, 0, null);
+            gb.dispose();
+            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+            tx.translate(-myImage.getWidth(null), 0);
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            bufferedImage = op.filter(bufferedImage, null);
+
+            hero.setMyInGameSprite(new ImageIcon(bufferedImage));
             hero.setSprite(new ImageIcon("DungeonAndMonsters/random images/MonsterIcon.png"));
+            DungeonGUI.setMyInGameSprite(hero);
             morphed = true;
         } else {
             // revert back to original state

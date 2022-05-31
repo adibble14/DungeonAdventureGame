@@ -26,7 +26,7 @@ public class Chest extends Item {
     protected Chest() {
         super(new ImageIcon("DungeonAndMonsters/potion.png"));
         this.myContents = new ArrayList<>();
-        this.myMimicChance = 0;
+        this.myMimicChance = .3;
         this.myIsMimic = false;
         this.addContents();
     }
@@ -42,7 +42,7 @@ public class Chest extends Item {
         Hero player = (Hero) theObj;
         if(this.myIsMimic) {
             DungeonAdventure.createBattle(new Mimic());
-            return;
+            player.setGoldAmount(250);
         }else {
             for(Item i : this.myContents) {
                 if(i.getClass() == Gold.class) {

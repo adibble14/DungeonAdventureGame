@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Mimic extends Monster{
     /**
      * Child constructor of Monster class. Calls super class constructor to init fields.
@@ -17,7 +19,8 @@ public class Mimic extends Monster{
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theHealChance, theMinHeal, theMaxHeal, null,null);
     }
     protected Mimic() {
-        super("Mimic",140,5,15,5,.5,0,0,0,null,null);
+        super("Mimic",140,5,15,5,.5,.07,0,0,
+                new ImageIcon("DungeonAndMonsters/monster pics/Mimic UW Chest.png"),new ImageIcon("DungeonAndMonsters/monster pics/Mimic UW Chest.png"));
     }
 
     /**
@@ -25,8 +28,9 @@ public class Mimic extends Monster{
      * @param theChar object to deal damage to
      */
     @Override
-    protected void special(DungeonCharacter theChar) {  //TODO
-
+    protected void special(DungeonCharacter theChar) {
+        Hero hero = (Hero) theChar;
+        hero.setGoldAmount(Tools.RANDOM.nextInt(-50,-5));
     }
 
     @Override

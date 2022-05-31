@@ -346,7 +346,7 @@ public class DungeonGUI extends JPanel {
         myHeroImage.setIcon(theHero.getMySprite());
     }
 
-    private static void setMyInGameSprite(final Hero theHero){
+    protected static void setMyInGameSprite(final Hero theHero){
         myInGameSprite.setIcon(theHero.getMyInGameSprite());
     }
 
