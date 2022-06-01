@@ -49,7 +49,7 @@ public class Battle {
 			}
 			if(checkWinner()){
 				BattleGUI.updateBattle();
-				DungeonAdventure.battleWin();
+				DungeonAdventure.battleWin(this.myMonster);
 			}
 		} else {
 			if(theSpecialCase) {
@@ -59,7 +59,7 @@ public class Battle {
 			}
 			if(checkWinner()){
 				BattleGUI.updateBattle();
-				DungeonAdventure.battleWin();
+				DungeonAdventure.battleWin(this.myMonster);
 				return;
 			}
 			this.myMonster.attack(this.myHero);

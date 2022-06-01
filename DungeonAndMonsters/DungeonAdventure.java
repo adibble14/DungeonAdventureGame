@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -177,10 +178,6 @@ public class DungeonAdventure implements Serializable {
 		StringBuilder playerConsole = new StringBuilder();
 		Room currentRoom = myDungeon.getCurrentRoom();
 
-		/*if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
-			Music.playMusic("battle");
-			DungeonAdventure.createBattle();
-		}*/
 		if(currentRoom.getMyType() == RoomType.BOSS_ROOM){
 			Music.playMusic("battle");
 			DungeonAdventure.createBattle("boss");
@@ -249,7 +246,7 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.closeBackPack();
 	}
 
-	protected static void battleWin() {
+	protected static void battleWin(Monster theMonster) {
 		if (myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM) {        //if the user defeated a boss monster, then advance to next dungeon
 			numDungeonsPassed++;
 			myDungeon.getCurrentRoom().setEmpty();
@@ -266,7 +263,7 @@ public class DungeonAdventure implements Serializable {
 					}
 				}
 				if (!duplicate) {
-					Pillar pillar = null;
+					Pillar pillar;
 					if (pillarType == PillarType.ABSTRACTION) {
 						pillar = new PillarOfAbstraction(pillarType);
 						MAIN_GUI.getBackpackGui().addItemToBackpack("abstract", pillar.getMyImage(), pillar);
@@ -292,6 +289,10 @@ public class DungeonAdventure implements Serializable {
 				}
 			}
 		} else {
+			if(theMonster.getName().contains("Mimic")){  //adding Gold to backpack if they defeated Mimic
+				myHero.setGoldAmount(250);
+				refreshBackPackGoldValue();
+			}
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
 			myHero.setGoldAmount(Tools.RANDOM.nextInt(25, 75));

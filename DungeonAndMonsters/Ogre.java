@@ -13,15 +13,6 @@ public class Ogre extends Monster {
     /**
      * Constructor that has set values for Ogre object. Calls on super constructor to init fields.
      */
-    /*protected Ogre() {
-
-        super(SQLiteDB.getCharacterName("Ogre"), SQLiteDB.getCharacterHealth("Ogre","monsters"),
-                SQLiteDB.getCharacterSpeed("Ogre","monsters"), SQLiteDB.getCharacterMaxDamage("Ogre","monsters"),
-                SQLiteDB.getCharacterMinDamage("Ogre","monsters"), SQLiteDB.getCharacterAccuracy("Ogre","monsters"),
-                SQLiteDB.getCharacterHealChance("Ogre"), SQLiteDB.getCharacterMinHeal("Ogre"), SQLiteDB.getCharacterMaxHeal("Ogre"),
-                new ImageIcon(SQLiteDB.getCharacterImage("Ogre", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Ogre", "monsters")));
-    }*/
-
     protected Ogre(String theType) {
 
         super(SQLiteDB.getCharacterName("Ogre"), SQLiteDB.getCharacterHealth("Ogre", "monsters", theType),

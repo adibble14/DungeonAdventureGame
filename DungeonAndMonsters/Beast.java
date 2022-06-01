@@ -11,16 +11,6 @@ public class Beast extends Monster {
     /**
      * Constructor that has set values for Beast object. Calls on super constructor to init fields.
      */
-   /* protected Beast() {
-
-        super(SQLiteDB.getCharacterName("Beast"), SQLiteDB.getCharacterHealth("Beast","monsters"),SQLiteDB.getCharacterSpeed("Beast","monsters"),
-                SQLiteDB.getCharacterMaxDamage("Beast","monsters"),SQLiteDB.getCharacterMinDamage("Beast","monsters"),
-                SQLiteDB.getCharacterAccuracy("Beast","monsters"), SQLiteDB.getCharacterHealChance("Beast"),
-                SQLiteDB.getCharacterMinHeal("Beast"), SQLiteDB.getCharacterMaxHeal("Beast"),
-                new ImageIcon(SQLiteDB.getCharacterImage("Beast", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Beast", "monsters")));
-
-    }*/
-
     protected Beast(String theType) {
 
         super(SQLiteDB.getCharacterName("Beast"), SQLiteDB.getCharacterHealth("Beast", "monsters", theType),
