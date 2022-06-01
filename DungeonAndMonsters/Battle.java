@@ -122,6 +122,7 @@ public class Battle {
 	final private Monster createMonster() {
 		
 		int numb = Tools.RANDOM.nextInt(256);
+		Music.playSFX("monsterSpawn");
 		
 		if((numb % 2) == 0 && numb > 50) {
 			return new Ogre();

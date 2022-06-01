@@ -10,11 +10,11 @@ public class Music {
     protected static void playMusic(final String theFile) {
         String path = "";
         switch(theFile) {
-            case "mainMenu": path = "DungeonAndMonsters/BGM12dungeon1.wav";
+            case "mainMenu": path = "DungeonAndMonsters/soundfx/BGM12dungeon1.wav";
             break;
-            case "dungeon": path = "DungeonAndMonsters/BGM13dungeon2.wav";
+            case "dungeon": path = "DungeonAndMonsters/soundfx/BGM13dungeon2.wav";
             break;
-            case "battle": path = "DungeonAndMonsters/battle.wav";
+            case "battle": path = "DungeonAndMonsters/soundfx/battle.wav";
             break;
             default: path = "";
         }
@@ -42,17 +42,19 @@ public class Music {
     protected static void playSFX(String theAction) {
         String path = "";
         switch(theAction) {
-            case "buttonClicked": path = "DungeonAndMonsters/button_click.wav";
+            case "buttonClicked": path = "DungeonAndMonsters/soundfx/button_click.wav";
             break;
-            case "changeRoom": path = "DungeonAndMonsters/change_room.wav";
+            case "changeRoom": path = "DungeonAndMonsters/soundfx/change_room.wav";
             break;
-            case "itemPickup": path = "DungeonAndMonsters/item_pickup.wav";
+            case "itemPickup": path = "DungeonAndMonsters/soundfx/item_pickup.wav";
             break;
-            case "openMap": path = "DungeonAndMonsters/open_map.wav";
+            case "openMap": path = "DungeonAndMonsters/soundfx/open_map.wav";
             break;
-            case"visionPotion": path = "DungeonAndMonsters/use_potion.wav";
+            case"visionPotion": path = "DungeonAndMonsters/soundfx/use_potion.wav";
             break;
-            case "attack": path = "DungeonAndMonsters/attack.wav";
+            case "attack": path = "DungeonAndMonsters/soundfx/attack.wav";
+            break;
+            case "monsterSpawn": path = "DungeonAndMonsters/soundfx/painb.wav";
             break;
             default: path = "";
         }
