@@ -54,6 +54,20 @@ public class Music {
             break;
             case "attack": path = "DungeonAndMonsters/attack.wav";
             break;
+            case "backpack": path = "DungeonAndMonsters/backpack.wav";
+            break;
+            case "healthPotion": path = "DungeonAndMonsters/health_potion.wav";
+            break;
+            case "pitTrap": path = "DungeonAndMonsters/pit_trap.wav";
+            break;
+            case "runFromBattle": path = "DungeonAndMonsters/run_from_battle.wav";
+            break;
+            case "save": path = "DungeonAndMonsters/save.wav";
+            break;
+            case "switchDungeon": path = "DungeonAndMonsters/switch_dungeon.wav";
+            break;
+            case "usePillar": path = "DungeonAndMonsters/use_pillar.wav";
+            break;
             default: path = "";
         }
         try {

@@ -181,6 +181,7 @@ public class DungeonAdventure implements Serializable {
 			DungeonAdventure.createBattle();
 		}else if(currentRoom.getMyType() == RoomType.PIT){
 			DungeonGUI.addPit(new GridBagConstraints());
+			Music.playSFX("pitTrap");
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
 			playerConsole.append(myUserName + " has taken 10 damage from a pit trap!");
@@ -300,6 +301,7 @@ public class DungeonAdventure implements Serializable {
 		sceneController("dungeon");
 		DungeonGUI.setHealthLabel(myHero);
 		DungeonGUI.enableButtons();
+		Music.playSFX("switchDungeon");
 		checkRoom();
 	}
 

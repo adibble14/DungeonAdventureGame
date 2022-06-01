@@ -230,6 +230,7 @@ public class BattleGUI extends JPanel {
             //TODO lose all gold when surrendering????
             int result = JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
             if (result == 0){
+                Music.playSFX("runFromBattle");
                 DungeonAdventure.getMyHero().setGoldAmount(-Tools.RANDOM.nextInt(10, 50));
                 DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - Tools.RANDOM.nextInt(5, 25));
                 DungeonAdventure.refreshBackPackGoldValue();

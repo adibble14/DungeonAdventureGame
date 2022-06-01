@@ -94,6 +94,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(myHealthPotionImage);
                         ((JButton) button).setToolTipText("Health Potion");
                         ((JButton) button).addActionListener(e -> {
+                                Music.playSFX("healthPotion");
                                 int healthAmount = myHero.useHealthPotion();
                                 DungeonGUI.setHealthLabel(myHero);
                                 DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
@@ -144,6 +145,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Abstraction - Use for temporary invulnerability!");
                         ((JButton) button).addActionListener(e -> {
+                            Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
                             //((JButton) button).setIcon(null);
@@ -154,6 +156,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Encapsulation - Use to reveal the whole dungeon!");
                         ((JButton) button).addActionListener(e -> {
+                            Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyDungeon());
                             button.setEnabled(false);
                             //((JButton) button).setIcon(null);
@@ -164,6 +167,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Inheritance - Use to inherit some wealth!");
                         ((JButton) button).addActionListener(e -> {
+                            Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
                             //((JButton) button).setIcon(null);
@@ -174,6 +178,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Polymorphism - Use for a small change.");
                         ((JButton) button).addActionListener(e -> {
+                            Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
                             button.setEnabled(false);
                             //((JButton) button).setIcon(null);

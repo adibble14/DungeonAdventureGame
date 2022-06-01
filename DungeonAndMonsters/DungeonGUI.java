@@ -192,6 +192,7 @@ public class DungeonGUI extends JPanel {
         backpack.setFont(thePixelFont);
         buttonArea.add(backpack, gbc);
         backpack.addActionListener(e -> {
+            Music.playSFX("backpack");
             DungeonAdventure.sceneController("backpack");
         });
 
@@ -213,6 +214,7 @@ public class DungeonGUI extends JPanel {
         save.setFont(thePixelFont);
         buttonArea.add(save,gbc);
         save.addActionListener(e -> {
+            Music.playSFX("save");
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setDialogTitle("Save Game");
             int selection = chooser.showSaveDialog(null);
