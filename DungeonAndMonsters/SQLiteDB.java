@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -205,7 +206,8 @@ public class SQLiteDB {
         return null;
     }
 
-    public static int getCharacterHealth(String theCharacterType, String theTable){
+    public static int getCharacterHealth(String theCharacterType, String theTable){ return getCharacterHealth(theCharacterType, theTable, "");}
+    public static int getCharacterHealth(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "";
         if(theTable == "monsters"){
@@ -215,12 +217,14 @@ public class SQLiteDB {
             getQuery = "SELECT HEALTH" +
                     " FROM "+theTable+ " WHERE HERO_TYPE = '" + theCharacterType+"'";
         }
-
 
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
                 ResultSet rs = stmt.executeQuery(getQuery);
-                return rs.getInt("HEALTH");
+                if(Objects.equals(theType, "boss"))
+                    return rs.getInt("HEALTH") + 50;
+                else
+                    return rs.getInt("HEALTH");
 
         } catch ( SQLException e ) {
             e.printStackTrace();
@@ -229,7 +233,8 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static int getCharacterSpeed(String theCharacterType, String theTable){
+    public static int getCharacterSpeed(String theCharacterType, String theTable){return getCharacterSpeed(theCharacterType, theTable, "");}
+    public static int getCharacterSpeed(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "";
         if(theTable == "monsters"){
@@ -243,7 +248,10 @@ public class SQLiteDB {
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getInt("ATTACK_SPEED");
+            if(Objects.equals(theType, "boss"))
+                return rs.getInt("ATTACK_SPEED")+1;
+            else
+                return rs.getInt("ATTACK_SPEED");
 
         } catch ( SQLException e ) {
             e.printStackTrace();
@@ -252,7 +260,8 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static int getCharacterMaxDamage(String theCharacterType, String theTable){
+    public static int getCharacterMaxDamage(String theCharacterType, String theTable){return getCharacterMaxDamage(theCharacterType, theTable,"");}
+    public static int getCharacterMaxDamage(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "";
         if(theTable == "monsters"){
@@ -265,7 +274,10 @@ public class SQLiteDB {
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getInt("MAX_DAMAGE");
+            if(Objects.equals(theType, "boss"))
+                return rs.getInt("MAX_DAMAGE") + 15;
+            else
+                return rs.getInt("MAX_DAMAGE");
 
         } catch ( SQLException e ) {
             e.printStackTrace();
@@ -274,7 +286,8 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static int getCharacterMinDamage(String theCharacterType, String theTable){
+    public static int getCharacterMinDamage(String theCharacterType, String theTable){return getCharacterMinDamage(theCharacterType, theTable,"");}
+    public static int getCharacterMinDamage(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "";
         if(theTable == "monsters"){
@@ -287,7 +300,11 @@ public class SQLiteDB {
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getInt("MIN_DAMAGE");
+
+            if(Objects.equals(theType, "boss"))
+                return rs.getInt("MIN_DAMAGE") + 15;
+            else
+                return rs.getInt("MIN_DAMAGE");
 
         } catch ( SQLException e ) {
             e.printStackTrace();
@@ -296,7 +313,8 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static double getCharacterAccuracy(String theCharacterType, String theTable){
+    public static double getCharacterAccuracy(String theCharacterType, String theTable){return getCharacterAccuracy(theCharacterType, theTable, "");}
+    public static double getCharacterAccuracy(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "";
         if(theTable == "monsters"){
@@ -309,7 +327,11 @@ public class SQLiteDB {
         try ( Connection conn = ds.getConnection();
               Statement stmt = conn.createStatement(); ) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getDouble("ACCURACY");
+
+            if(Objects.equals(theType, "boss"))
+                return rs.getDouble("ACCURACY") + 0.1;
+            else
+                return rs.getDouble("ACCURACY");
 
         } catch ( SQLException e ) {
             e.printStackTrace();
@@ -318,14 +340,19 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static double getCharacterHealChance(String theCharacterType){
+    public static double getCharacterHealChance(String theCharacterType){return getCharacterHealChance(theCharacterType, "");}
+    public static double getCharacterHealChance(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT HEAL_CHANCE" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
         try (Connection conn = ds.getConnection();
              Statement stmt = conn.createStatement();) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getDouble("HEAL_CHANCE");
+
+            if(Objects.equals(theType, "boss"))
+                return rs.getDouble("HEAL_CHANCE")+0.1;
+            else
+                return rs.getDouble("HEAL_CHANCE");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -334,14 +361,19 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static int getCharacterMinHeal(String theCharacterType){
+    public static int getCharacterMinHeal(String theCharacterType){return getCharacterMinHeal(theCharacterType, "");}
+    public static int getCharacterMinHeal(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT MIN_HEAL" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
         try (Connection conn = ds.getConnection();
              Statement stmt = conn.createStatement();) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getInt("MIN_HEAL");
+
+            if(Objects.equals(theType, "boss"))
+                return rs.getInt("MIN_HEAL") + 15;
+            else
+                return rs.getInt("MIN_HEAL");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -350,14 +382,19 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static int getCharacterMaxHeal(String theCharacterType){
+    public static int getCharacterMaxHeal(String theCharacterType){return getCharacterMaxHeal(theCharacterType, "");}
+    public static int getCharacterMaxHeal(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT MAX_HEAL" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
         try (Connection conn = ds.getConnection();
              Statement stmt = conn.createStatement();) {
             ResultSet rs = stmt.executeQuery(getQuery);
-            return rs.getInt("MAX_HEAL");
+
+            if(Objects.equals(theType, "boss"))
+                return rs.getInt("MAX_HEAL") + 15;
+            else
+                return rs.getInt("MAX_HEAL");
 
         } catch (SQLException e) {
             e.printStackTrace();

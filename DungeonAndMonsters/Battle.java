@@ -18,9 +18,9 @@ public class Battle {
 	private Hero myHero;
 	private Monster myMonster;
 
-	protected Battle(final Hero theHero) {
+	protected Battle(final Hero theHero, final String theType) {
 		this.myHero = theHero;
-		this.myMonster = createMonster();
+		this.myMonster = createMonster(theType);
 	}
 
 	protected Battle(final Hero theHero, final Monster theMonster) {
@@ -119,21 +119,37 @@ public class Battle {
 	 * @return returns a Monster object.
 	 */
 
-	final private Monster createMonster() {
-		
+	final private Monster createMonster(String theType) {
+
 		int numb = Tools.RANDOM.nextInt(256);
-		
+
 		if(numb > 200) {
-			return new Skeleton();
+			return new Skeleton(theType);
 		}
 		else if(numb > 150 && numb < 200 ) {
-			return new Gremlin();
+			return new Gremlin(theType);
 		}
 		else if( numb > 100 && numb < 150) {
-			return new Beast();
+			return new Beast(theType);
 		}
-		return new Ogre();
+		return new Ogre(theType);
 	}
+
+	/*final private Monster createBossMonster(String theType) {
+
+		int numb = Tools.RANDOM.nextInt(256);
+
+		if(numb > 200) {
+			return new Skeleton(theType);
+		}
+		else if(numb > 150 && numb < 200 ) {
+			return new Gremlin(theType);
+		}
+		else if( numb > 100 && numb < 150) {
+			return new Beast(theType);
+		}
+		return new Ogre(theType);
+	}*/
 
 
 }

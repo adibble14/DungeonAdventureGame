@@ -25,11 +25,23 @@ public class Skeleton extends Monster {
      * Constructor that has set values for Skeleton object. Calls on super constructor
      * to init fields.
      */
-    protected Skeleton() {
+   /* protected Skeleton() {
         super(SQLiteDB.getCharacterName("Skeleton"), SQLiteDB.getCharacterHealth("Skeleton","monsters"),
                 SQLiteDB.getCharacterSpeed("Skeleton","monsters"), SQLiteDB.getCharacterMaxDamage("Skeleton","monsters"),
                 SQLiteDB.getCharacterMinDamage("Skeleton","monsters"), SQLiteDB.getCharacterAccuracy("Skeleton","monsters"),
                 SQLiteDB.getCharacterHealChance("Skeleton"), SQLiteDB.getCharacterMinHeal("Skeleton"), SQLiteDB.getCharacterMaxHeal("Skeleton"),
+                new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")));
+
+        this.setSpecialActive(false);
+        this.revived = false;
+    }*/
+
+    protected Skeleton(String theType) {
+
+        super(SQLiteDB.getCharacterName("Skeleton"), SQLiteDB.getCharacterHealth("Skeleton", "monsters", theType),
+                SQLiteDB.getCharacterSpeed("Skeleton", "monsters", theType), SQLiteDB.getCharacterMaxDamage("Skeleton", "monsters", theType),
+                SQLiteDB.getCharacterMinDamage("Skeleton", "monsters", theType), SQLiteDB.getCharacterAccuracy("Skeleton", "monsters", theType),
+                SQLiteDB.getCharacterHealChance("Skeleton", theType), SQLiteDB.getCharacterMinHeal("Skeleton", theType), SQLiteDB.getCharacterMaxHeal("Skeleton", theType),
                 new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Skeleton", "monsters")));
 
         this.setSpecialActive(false);

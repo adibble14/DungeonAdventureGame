@@ -155,9 +155,10 @@ public class DungeonAdventure implements Serializable {
 				+ "," + theDungeon.getCurrentRoom().getYCoord() + "]";
 	}
 
-	protected static void createBattle(){
+	protected static void createBattle(String theType){
 		DungeonAdventure.sceneController("battle");
-		BattleGUI.setBattle(new Battle(myHero));
+		BattleGUI.setBattle(new Battle(myHero, theType));
+
 	}
 
 	/**
@@ -176,10 +177,17 @@ public class DungeonAdventure implements Serializable {
 		StringBuilder playerConsole = new StringBuilder();
 		Room currentRoom = myDungeon.getCurrentRoom();
 
-		if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
+		/*if(currentRoom.getMyType() == RoomType.BOSS_ROOM || currentRoom.containsMonster()){
 			Music.playMusic("battle");
 			DungeonAdventure.createBattle();
-		}else if(currentRoom.getMyType() == RoomType.PIT){
+		}*/
+		if(currentRoom.getMyType() == RoomType.BOSS_ROOM){
+			Music.playMusic("battle");
+			DungeonAdventure.createBattle("boss");
+		}else if(currentRoom.containsMonster()){
+			Music.playMusic("battle");
+			DungeonAdventure.createBattle("monster");
+		} else if(currentRoom.getMyType() == RoomType.PIT){
 			DungeonGUI.addPit(new GridBagConstraints());
 			Music.playSFX("pitTrap");
 			myHero.takeDamage(10);

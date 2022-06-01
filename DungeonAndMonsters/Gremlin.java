@@ -11,12 +11,21 @@ public class Gremlin extends Monster {
     /**
      * Constructor that has set values for Gremlin object. Calls on super constructor to init fields.
      */
-    protected Gremlin() {
+   /* protected Gremlin() {
         
         super(SQLiteDB.getCharacterName("Gremlin"), SQLiteDB.getCharacterHealth("Gremlin","monsters"),
                 SQLiteDB.getCharacterSpeed("Gremlin","monsters"), SQLiteDB.getCharacterMaxDamage("Gremlin","monsters"),
                 SQLiteDB.getCharacterMinDamage("Gremlin","monsters"), SQLiteDB.getCharacterAccuracy("Gremlin","monsters"), 
                 SQLiteDB.getCharacterHealChance("Gremlin"), SQLiteDB.getCharacterMinHeal("Gremlin"), SQLiteDB.getCharacterMaxHeal("Gremlin"),
+                new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")));
+    }*/
+
+    protected Gremlin(String theType) {
+
+        super(SQLiteDB.getCharacterName("Gremlin"), SQLiteDB.getCharacterHealth("Gremlin", "monsters", theType),
+                SQLiteDB.getCharacterSpeed("Gremlin", "monsters", theType), SQLiteDB.getCharacterMaxDamage("Gremlin", "monsters", theType),
+                SQLiteDB.getCharacterMinDamage("Gremlin", "monsters", theType), SQLiteDB.getCharacterAccuracy("Gremlin", "monsters", theType),
+                SQLiteDB.getCharacterHealChance("Gremlin", theType), SQLiteDB.getCharacterMinHeal("Gremlin", theType), SQLiteDB.getCharacterMaxHeal("Gremlin", theType),
                 new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")), new ImageIcon(SQLiteDB.getCharacterImage("Gremlin", "monsters")));
     }
 
