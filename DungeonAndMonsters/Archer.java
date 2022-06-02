@@ -6,12 +6,14 @@ import javax.swing.*;
 
 public class Archer extends Hero {
 
+    /**
+     * the image for the character select screen - (resized from original image)
+     */
     private static final ImageIcon myCharacterSelectImage = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectArcher.png");
 
     /**
      * Constructor with set values. Calls on super constructor to init fields
      * Initializes class specific fields
-     *
      * @param theName value given by user input
      */
     protected Archer(final String theName) {
@@ -29,16 +31,11 @@ public class Archer extends Hero {
     @Override
     final protected void special(final DungeonCharacter theChar) {
 
-        //TODO delete this output once GUI is made, since this is VIEW
-        //System.out.println(this.getName() + " shoots a volley of arrows!\n");
-
         int specialMaxTurns = 5;
         int count = Tools.RANDOM.nextInt(specialMaxTurns);
         int totalArrows = count;
 
         if (count == 0) {
-
-            System.out.println("The attack misses!");
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + "'s attack missed! "));
         }
         int totalDamage = 0;
@@ -51,7 +48,6 @@ public class Archer extends Hero {
             if (result < 0) {
                 result = 0;
             }
-            System.out.println(theChar.getName() + " gets pierced by an arrow. Took " + damage + " of damage.\n\n");
             theChar.setHealth(result);
             count--;
         }
@@ -59,10 +55,16 @@ public class Archer extends Hero {
 
     }
 
+    /**
+     * @return the character select image
+     */
     public static ImageIcon getImage(){
         return myCharacterSelectImage;
     }
 
+    /**
+     * @return info about the character's super
+     */
     @Override
     public String getSpecialInfo(){
         return "Volley special attack. Shoots a random number of arrows with a maximum of 5.";

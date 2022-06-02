@@ -1,44 +1,57 @@
 
-
-import javax.swing.*;
-import java.util.Random;
-import java.util.Scanner;
-
 /**
- * This class initializes the game. It takes input from the user. Creates hero and monster objects.
- *  Has the game loop logic.
- * 
- * @author Mario FLores Vences
- * @version 031221
- *
+ *Creates a battle between the hero and a random monster
  */
 public class Battle {
 
+	/**
+	 * our hero
+	 */
+	private final Hero myHero;
 
-	private Hero myHero;
-	private Monster myMonster;
+	/**
+	 * the monster to fight
+	 */
+	private final Monster myMonster;
 
+
+	/**
+	 * constructor for battle, used for all monsters except mimic
+	 * @param theHero the hero
+	 * @param theType whether it is a boss monster or not
+	 */
 	protected Battle(final Hero theHero, final String theType) {
 		this.myHero = theHero;
 		this.myMonster = createMonster(theType);
 	}
 
+	/**
+	 * constructor for battle, used for mimic monster found in chests
+	 * @param theHero the hero
+	 * @param theMonster initiates the monster to the monster passed in
+	 */
 	protected Battle(final Hero theHero, final Monster theMonster) {
 		this.myHero = theHero;
 		this.myMonster = theMonster;
 	}
 
-	// Getter for our private fields - Hero and Monster
+	/**
+	 * @return our hero
+	 */
 	protected Hero getMyHero() {
 		return myHero;
 	}
 
+	/**
+	 * @return the monster in battle
+	 */
 	protected Monster getMyMonster() {
 		return myMonster;
 	}
 
 	/**
-	 * the DungeonCharacter with the highest speed stat goes first
+	 * the attack turn process for each character in the batter
+	 * @param theSpecialCase if the special is activated
 	 */
 	protected void attackPhase(final boolean theSpecialCase) {
 		if (this.myHero.getSpeed() < this.myMonster.getSpeed()) {
@@ -74,7 +87,7 @@ public class Battle {
 				DungeonAdventure.gameOver();
 			}
 		}
-		Pillar[] p = this.myHero.getMyInventory().getPillars();
+		Pillar[] p = this.myHero.getMyInventory().getPillars();			//checks to see if the player is still invincible from abstraction pillar
 		for (Pillar i : p) {
 			if (i.getMY_TYPE() == PillarType.ABSTRACTION) {
 				PillarOfAbstraction a = (PillarOfAbstraction) i;
@@ -86,78 +99,34 @@ public class Battle {
 
 	}
 
-	protected boolean checkWinner() {
-		if (myHero.getHealth() <= 0 || myMonster.getHealth() <= 0) {
-			return true;
-		} else {
-			return false;
-		}
-		/*if(myHero.getHealth() <= 0){
-			BattleGUI.updateBattle();
-			DungeonAdventure.gameOver();
-		}else if(myMonster.getHealth() <= 0){
-			BattleGUI.updateBattle();
-			DungeonAdventure.battleWin();
-		}*/
-	}
-
 	/**
-	 * There may be other items that will be usable during battles?
+	 * @return if the monster or hero won
 	 */
-	//TODO: Edit this method so it takes a parameter, if it is the case that other types of items may be used during battles
-	public void useItem() {
-		this.myHero.useHealthPotion();        //this now returns an integer
-		this.myMonster.attack(this.myHero);
+	protected boolean checkWinner() {
+		return myHero.getHealth() <= 0 || myMonster.getHealth() <= 0;
 	}
-
-	public void block() {
-		if (!this.myHero.block()) {
-			this.myMonster.attack(this.myHero);
-		}
-	}
-
 
 	/**
 	 * Creates a random Monster object.
-	 * Sort of like a factory method to create a random Monster.
-	 *
 	 * @return returns a Monster object.
 	 */
-
-	final private Monster createMonster(String theType) {
+	private Monster createMonster(String theType) {
 
 		int numb = Tools.RANDOM.nextInt(256);
 
 		Music.playSFX("monsterSpawn");
+
 		if (numb > 200) {
 			return new Skeleton(theType);
-		}
-
-			if ((numb % 2) == 0 && numb > 50) {
-				return new Ogre(theType);
-			} else if (numb > 150 && numb < 200) {
-				return new Gremlin(theType);
-			} else if (numb > 100 && numb < 150) {
-				return new Beast(theType);
-			}
+		} else if ((numb % 2) == 0 && numb > 50) {
 			return new Ogre(theType);
-
-	/*final private Monster createBossMonster(String theType) {
-
-		int numb = Tools.RANDOM.nextInt(256);
-
-		if(numb > 200) {
-			return new Skeleton(theType);
-		}
-		else if(numb > 150 && numb < 200 ) {
+		} else if (numb > 150) {
 			return new Gremlin(theType);
-		}
-		else if( numb > 100 && numb < 150) {
+		} else if (numb > 100) {
 			return new Beast(theType);
+		}else{
+			return new Ogre(theType);
 		}
-		return new Ogre(theType);
-	}*/
-
 
 	}
 }

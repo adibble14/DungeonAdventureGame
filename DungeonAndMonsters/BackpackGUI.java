@@ -2,43 +2,56 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * We want the backpack menu to popout, so we
- * implement our GUI frame
+ * Creates the Backpack implemented as a GUI. Holds items found by the hero in the dungeon.
  */
 public class BackpackGUI extends JFrame {
-    // How many objects we can hold on the x axis
-    private final int myBackpackWidth = 5;
-    // How many objects we can hold on the y axis
-    private final int myBackpackHeight = 5;
 
+    /**
+     * active health potions
+     */
     private int myActiveHealthPotions;
+
+    /**
+     * active vision potions
+     */
     private int myActiveVisionPotions;
 
-    // Panel to store things
+    /**
+     * panel to store the items retrieved from dungeon
+     */
     private static final JPanel myItemPanel = new JPanel();
 
-    // Image Icon Creation ---------------------------------------
+    /**
+     * the image of the health potion
+     */
     private static ImageIcon myHealthPotionImage = new ImageIcon("DungeonAndMonsters/random images/ResizedPotion.png");
     Image actualHealthPotionImage = myHealthPotionImage.getImage();
     Image resizedHealthPotionImage = actualHealthPotionImage.getScaledInstance(48,48, Image.SCALE_SMOOTH);
 
+    /**
+     * the image of the vision potion
+     */
     private static ImageIcon myVisionPotionImage = new ImageIcon("DungeonAndMonsters/random images/VisionPotion.png");
     Image actualVisionPotionImage = myVisionPotionImage.getImage();
     Image resizedVisionPotionImage = actualVisionPotionImage.getScaledInstance(48,48, Image.SCALE_SMOOTH);
-    // Image Icon Creation End------------------------------------
 
-    private static Hero myHero;
+    /**
+     * the amount of gold, resembled as a JLabel
+     */
     private final JLabel myPlayerGoldCount = new JLabel();
+
+    /**
+     * the constructor for the backpack
+     * @param pixelFont a certain font used in the frame
+     */
     BackpackGUI(Font pixelFont){
-        // Change the name of the frame
+
         this.setTitle("Backpack");
-        // Size this frame to be slightly smaller
         this.setSize(450, 400);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        // Not resizable and starts invisible
         this.setResizable(false);
         this.setVisible(false);
-        // Gridbag
+
         myItemPanel.setLayout(new GridBagLayout());
         myItemPanel.setBackground(Color.BLACK);
         this.add(myItemPanel);
@@ -46,6 +59,9 @@ public class BackpackGUI extends JFrame {
         myVisionPotionImage = new ImageIcon(resizedVisionPotionImage);
 
         GridBagConstraints gbc = new GridBagConstraints();
+
+        int myBackpackWidth = 5;
+        int myBackpackHeight = 5;
         setSlotLayout(gbc, myBackpackWidth, myBackpackHeight);
         gbc.fill = GridBagConstraints.NONE;
 
@@ -60,12 +76,12 @@ public class BackpackGUI extends JFrame {
 
     /**
      * Creates the content within the backpack frame.
-     * Uses gridbaglayout to place buttons along the x and y axis
+     * Uses gridbaglayout to place buttons along the x and y-axis
      * The buttons, if they have content to them, can be clicked to
      * activate things like potions
      * @param theGbc Constraints we place on the buttons
-     * @param theBackpackWidth How many objects we can hold on the x axis
-     * @param theBackpackHeight How many objects we can hold on the y axis
+     * @param theBackpackWidth How many objects we can hold on the x-axis
+     * @param theBackpackHeight How many objects we can hold on the y-axis
      */
     private static void setSlotLayout(final GridBagConstraints theGbc, final int theBackpackWidth, final int theBackpackHeight){
         theGbc.weightx = 1;
@@ -82,47 +98,49 @@ public class BackpackGUI extends JFrame {
             }
         }
     }
-    // TODO update images and or functionality of buttons when we receive items
-    public void addItemToBackpack(final String theItem){
+
+    /**
+     * adding the potions to the backpack when found in the dungeon
+     * @param thePotion which potion it is
+     */
+    public void addPotionToBackpack(final String thePotion){
         for (Component button:
              myItemPanel.getComponents()) {
             if(button instanceof JButton && ((JButton) button).getIcon() == null){
                 button.setEnabled(true);
-                switch(theItem){
-                    case "HEALTH_POTION":
+                switch (thePotion) {
+                    case "HEALTH_POTION" -> {
                         this.myActiveHealthPotions++;
                         ((JButton) button).setIcon(myHealthPotionImage);
                         ((JButton) button).setToolTipText("Health Potion");
                         ((JButton) button).addActionListener(e -> {
-                                Music.playSFX("healthPotion");
-                                int healthAmount = myHero.useHealthPotion();
-                                DungeonGUI.setHealthLabel(myHero);
-                                DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
-                                if(BattleGUI.getMyBattle() != null){
-                                    BattleGUI.updateBattle();
-                                    BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
-                                }
-                                button.setEnabled(false);
-                                ((JButton) button).setIcon(null);
-                                repaint();
+                            Music.playSFX("healthPotion");
+                            int healthAmount = DungeonAdventure.getMyHero().useHealthPotion();
+                            DungeonGUI.setHealthLabel(DungeonAdventure.getMyHero());
+                            DungeonGUI.setPlayerConsole(new StringBuilder("Healed " + healthAmount + " health points!"));
+                            if (BattleGUI.getMyBattle() != null) {
+                                BattleGUI.updateBattle();
+                                BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
+                            }
+                            button.setEnabled(false);
+                            ((JButton) button).setIcon(null);
+                            repaint();
                         });
-                        break;
-                    case "VISION_POTION":
+                    }
+                    case "VISION_POTION" -> {
                         this.myActiveVisionPotions++;
                         ((JButton) button).setIcon(myVisionPotionImage);
                         ((JButton) button).setToolTipText("Vision Potion");
                         ((JButton) button).addActionListener(e -> {
                             Music.playSFX("visionPotion");
-                            myHero.useVisionPotion(DungeonAdventure.getMyDungeon());
-                            DungeonGUI.setPlayerConsole(new StringBuilder(myHero.getName() + " used a vision potion."));
+                            DungeonAdventure.getMyHero().useVisionPotion(DungeonAdventure.getMyDungeon());
+                            DungeonGUI.setPlayerConsole(new StringBuilder(DungeonAdventure.getMyHero().getName() + " used a vision potion."));
                             DungeonAdventure.refreshMap();
                             button.setEnabled(false);
-                            ((JButton)button).setIcon(null);
+                            ((JButton) button).setIcon(null);
                         });
-                        break;
-                    default:
-                        System.out.println("Null item");
-                        break;
+                    }
+                    default -> System.out.println("Null item");
                 }
                 break;
             }
@@ -130,18 +148,18 @@ public class BackpackGUI extends JFrame {
     }
 
     /**
-     * Specifically for adding pillars
-     * @param theItem
-     * @param itemImage
-     * @param pillar
+     * adds pillar to backpack after defeating a boss monster
+     * @param theItem the pillar in String form
+     * @param itemImage the image
+     * @param pillar the pillar
      */
-    protected void addItemToBackpack(final String theItem, final ImageIcon itemImage, Pillar pillar){
+    protected void addPillarToBackpack(final String theItem, final ImageIcon itemImage, Pillar pillar){
         for (Component button:
                 myItemPanel.getComponents()) {
             if(button instanceof JButton && ((JButton) button).getIcon() == null){
                 button.setEnabled(true);
-                switch(theItem){
-                    case "abstract":
+                switch (theItem) {
+                    case "abstract" -> {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Abstraction - Use for temporary invulnerability!");
                         ((JButton) button).addActionListener(e -> {
@@ -151,8 +169,8 @@ public class BackpackGUI extends JFrame {
                             //((JButton) button).setIcon(null);
                             repaint();
                         });
-                        break;
-                    case "encap":
+                    }
+                    case "encapsulation" -> {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Encapsulation - Use to reveal the whole dungeon!");
                         ((JButton) button).addActionListener(e -> {
@@ -162,8 +180,8 @@ public class BackpackGUI extends JFrame {
                             //((JButton) button).setIcon(null);
                             repaint();
                         });
-                        break;
-                    case "inher":
+                    }
+                    case "inheritance" -> {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Inheritance - Use to inherit some wealth!");
                         ((JButton) button).addActionListener(e -> {
@@ -173,8 +191,8 @@ public class BackpackGUI extends JFrame {
                             //((JButton) button).setIcon(null);
                             repaint();
                         });
-                        break;
-                    case "poly":
+                    }
+                    case "polymorphism" -> {
                         ((JButton) button).setIcon(itemImage);
                         ((JButton) button).setToolTipText("Pillar of Polymorphism - Use for a small change.");
                         ((JButton) button).addActionListener(e -> {
@@ -184,10 +202,8 @@ public class BackpackGUI extends JFrame {
                             //((JButton) button).setIcon(null);
                             repaint();
                         });
-                        break;
-                    default:
-                        System.out.println("Null item");
-                        break;
+                    }
+                    default -> System.out.println("Null item");
                 }
                 break;
             }
@@ -195,19 +211,13 @@ public class BackpackGUI extends JFrame {
     }
 
     /**
-     * removes a component from the item Panel. Right now only used for removing health potions when pushing button in battle GUI
-     * @param theItem
+     * removes a health potion from the backpack
      */
-    public static void removeItemFromBackPack(final String theItem){
-        for (Component button:
-                myItemPanel.getComponents()) {
-            switch (theItem) {
-                case "HEALTH_POTION":
-                    ((JButton) button).setToolTipText(null);
-                    button.setEnabled(false);
-                    ((JButton) button).setIcon(null);
-                    break;
-            }
+    public static void removeHealthPotion(){
+        for (Component button: myItemPanel.getComponents()) {
+            ((JButton) button).setToolTipText(null);
+            button.setEnabled(false);
+            ((JButton) button).setIcon(null);
             break;
         }
     }
@@ -225,14 +235,16 @@ public class BackpackGUI extends JFrame {
         }
     }
 
-    public void setMyHero(Hero theHero){
-        myHero = theHero;
-        myPlayerGoldCount.setText("Gold: "+ myHero.getGoldCount());
-    }
 
+    /**
+     * @return count of active health potions
+     */
     public int getMyActiveHealthPotions() {
         return this.myActiveHealthPotions;
     }
+    /**
+     * @return count of active vision potions
+     */
     public int getMyActiveVisionPotions() {
         return this.myActiveVisionPotions;
     }
@@ -241,19 +253,19 @@ public class BackpackGUI extends JFrame {
      * refreshes gold label when player received more gold.
      */
     public void refreshGoldValue() {
-        myPlayerGoldCount.setText("Gold: "+ myHero.getGoldCount());
+        myPlayerGoldCount.setText("Gold: "+ DungeonAdventure.getMyHero().getGoldCount());
     }
 
     /**
      * called when loading a saved file
      */
     public void loadPlayerInventory() {
-        PlayerInventory inv = myHero.getMyInventory();
+        PlayerInventory inv = DungeonAdventure.getMyHero().getMyInventory();
         while(this.getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {
-            this.addItemToBackpack(ItemType.HEALTH_POTION.toString());
+            this.addPotionToBackpack(ItemType.HEALTH_POTION.toString());
         }
         while(this.getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
-            this.addItemToBackpack(ItemType.VISION_POTION.toString());
+            this.addPotionToBackpack(ItemType.VISION_POTION.toString());
         }
         this.refreshGoldValue();
     }

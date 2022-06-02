@@ -26,7 +26,7 @@ public class Chest extends Item {
     protected Chest() {
         super(new ImageIcon("DungeonAndMonsters/potion.png"));
         this.myContents = new ArrayList<>();
-        this.myMimicChance = 1;
+        this.myMimicChance = .1;
         this.myIsMimic = false;
         this.addContents();
     }

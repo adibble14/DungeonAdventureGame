@@ -56,10 +56,10 @@ public class MainGUI extends GUI{
         return myBackpackGui;
     }
 
-    public void setTheHero(Hero myHero){
+    /*public void setTheHero(Hero myHero){
         //theHero = myHero;
         myBackpackGui.setMyHero(myHero);
-    }
+    }*/
 
     protected void setMyDungeon(Dungeon theDungeon){
         myDungeon = theDungeon;

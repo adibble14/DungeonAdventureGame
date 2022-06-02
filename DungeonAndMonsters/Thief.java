@@ -6,7 +6,11 @@ import javax.swing.*;
 
 public class Thief extends Hero {
 
+    /**
+     * the image for the character select screen - (resized from original image)
+     */
     private static final ImageIcon characterSelectThief = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectThief.png");
+
     /**
      * Constructor with set values. Calls on super constructor to init fields.
      * Initializes Thief class fields.
@@ -27,21 +31,18 @@ public class Thief extends Hero {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
+
         int specialMaxDamage = 20;
         int damage = Tools.RANDOM.nextInt(specialMaxDamage * 2) + this.getMaxDamage();
         double randAccuracy = Tools.RANDOM.nextDouble();
 
-        //System.out.println(this.getName() + " goes for a surprise attack!\n\n");
 
         double specialAccuracy = .6;
         if (specialAccuracy < randAccuracy) {
-            System.out.println(this.getName() + " almost gets caught! Swiftly escapes at the last second. Dealt No damage....\n\n");
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " almost gets caught! Swiftly escapes at the last second. Dealt No damage. "));
         } else if (specialAccuracy > randAccuracy) {
 
-            System.out.println(this.getName() + " lands the backstab! Dealt " + damage + " of damage.\n");
-            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " lands the backstab! Dealt " + damage + " of damage. "));
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " lands the back stab! Dealt " + damage + " of damage. "));
 
             int result = theChar.getHealth() - damage;
             if (result < 0) {
@@ -53,7 +54,6 @@ public class Thief extends Hero {
 
             damage += this.getMaxDamage();
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " connects another attack for " + damage + " damage. "));
-            System.out.println(this.getName() + " connects another attack! Dealt " + damage + " more of damage.\n\n");
 
             int secondResult = theChar.getHealth() - damage;
             if (secondResult < 0) {
@@ -63,10 +63,17 @@ public class Thief extends Hero {
         }
     }
 
+    /**
+     * @return the character select image
+     */
     public static ImageIcon getImage(){
         return characterSelectThief;
     }
 
+
+    /**
+     * @return info about the character's super
+     */
     @Override
     public String getSpecialInfo(){
         return "Surprise Attack. This special deals more damage than a regular attack. It also allows the Thief to follow up with a second attack";

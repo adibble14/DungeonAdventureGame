@@ -5,10 +5,14 @@ import javax.swing.*;
  */
 
 public class Mage extends Hero {
+
+    /**
+     * the image for the character select screen - (resized from original image)
+     */
     private static final ImageIcon characterSelectImage = new ImageIcon("DungeonAndMonsters/character pics/CharacterSelectMage.png");
+
     /**
      * Constructor that has set values for object. Calls on super constructor to init fields.
-     *
      * @param theName name value given by user input
      */
     protected Mage(final String theName) {
@@ -25,8 +29,6 @@ public class Mage extends Hero {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
-        System.out.println(this.getName() + " activates life steal!\n\n");
 
         int damage = theChar.getHealth() / 2;
         int result = this.getHealth() + damage;
@@ -35,14 +37,20 @@ public class Mage extends Hero {
 
         theChar.setHealth(damage);
 
-        System.out.println(this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health!!\n\n");
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health! "));
     }
 
+    /**
+     * @return the character select image
+     */
     public static ImageIcon getImage(){
         return characterSelectImage;
     }
 
+
+    /**
+     * @return info about the character's super
+     */
     @Override
     public String getSpecialInfo(){
         return "Life Steal. This attack does not fail to land. It halves the enemies' health value. It also adds that value to the mage's health.";

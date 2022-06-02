@@ -35,7 +35,7 @@ public class DungeonAdventure implements Serializable {
 		numDungeonsPassed = 0;
 		currentDungeonNum = 1;
 		createHero();
-		MAIN_GUI.setTheHero(myHero);
+		refreshBackPackGoldValue();
 		MAIN_GUI.setMyDungeon(myDungeon);
 		createDungeon();
 		// First run through updating the dungeonGUI scene
@@ -45,7 +45,7 @@ public class DungeonAdventure implements Serializable {
 		//TODO: Just for testing purposes. Should load images from database later on.
 
 		numDungeonsPassed = myDungeon.getMyCurrentDungeonNumber();
-		MAIN_GUI.setTheHero(myHero);
+		refreshBackPackGoldValue();
 		MAIN_GUI.setMyDungeon(myDungeon);
 		DungeonGUI.setUpVisualDungeon(myHero,myDungeon);
 		MAIN_GUI.getBackpackGui().loadPlayerInventory();
@@ -199,11 +199,11 @@ public class DungeonAdventure implements Serializable {
 			currentRoom.addItemsToPlayerInventory(myHero);
 			PlayerInventory inv = myHero.getMyInventory();
 			while(MAIN_GUI.getBackpackGui().getMyActiveHealthPotions() < inv.getItemCount(ItemType.HEALTH_POTION)) {
-				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.HEALTH_POTION.toString());
+				MAIN_GUI.getBackpackGui().addPotionToBackpack(ItemType.HEALTH_POTION.toString());
 				playerConsole.append(myUserName).append(" has obtained a Health Potion!\n");
 			}
 			while(MAIN_GUI.getBackpackGui().getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
-				MAIN_GUI.getBackpackGui().addItemToBackpack(ItemType.VISION_POTION.toString());
+				MAIN_GUI.getBackpackGui().addPotionToBackpack(ItemType.VISION_POTION.toString());
 				playerConsole.append(myUserName).append(" has obtained a Vision Potion!\n");
 			}
 
@@ -266,16 +266,16 @@ public class DungeonAdventure implements Serializable {
 					Pillar pillar;
 					if (pillarType == PillarType.ABSTRACTION) {
 						pillar = new PillarOfAbstraction(pillarType);
-						MAIN_GUI.getBackpackGui().addItemToBackpack("abstract", pillar.getMyImage(), pillar);
+						MAIN_GUI.getBackpackGui().addPillarToBackpack("abstract", pillar.getMyImage(), pillar);
 					} else if (pillarType == PillarType.ENCAPSULATION) {
 						pillar = new PillarOfEncapsulation(pillarType);
-						MAIN_GUI.getBackpackGui().addItemToBackpack("encap", pillar.getMyImage(), pillar);
+						MAIN_GUI.getBackpackGui().addPillarToBackpack("encapsulation", pillar.getMyImage(), pillar);
 					} else if (pillarType == PillarType.INHERITANCE) {
 						pillar = new PillarOfInheritance(pillarType);
-						MAIN_GUI.getBackpackGui().addItemToBackpack("inher", pillar.getMyImage(), pillar);
+						MAIN_GUI.getBackpackGui().addPillarToBackpack("inheritance", pillar.getMyImage(), pillar);
 					} else {
 						pillar = new PillarOfPolymorphism(pillarType);
-						MAIN_GUI.getBackpackGui().addItemToBackpack("poly", pillar.getMyImage(), pillar);
+						MAIN_GUI.getBackpackGui().addPillarToBackpack("polymorphism", pillar.getMyImage(), pillar);
 					}
 					inv.addPillar(pillar);        //TODO add image to backpack
 
