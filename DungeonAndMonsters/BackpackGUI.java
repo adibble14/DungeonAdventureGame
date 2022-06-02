@@ -198,7 +198,7 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).addActionListener(e -> {
                             Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
-                            button.setEnabled(false);
+                            //button.setEnabled(false);
                             //((JButton) button).setIcon(null);
                             repaint();
                         });

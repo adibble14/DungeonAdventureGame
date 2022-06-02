@@ -56,19 +56,19 @@ public class Music {
             break;
             case "monsterSpawn": path = "DungeonAndMonsters/soundfx/painb.wav";
             break;
-            case "backpack": path = "DungeonAndMonsters/backpack.wav";
+            case "backpack": path = "DungeonAndMonsters/soundfx/backpack.wav";
             break;
-            case "healthPotion": path = "DungeonAndMonsters/health_potion.wav";
+            case "healthPotion": path = "DungeonAndMonsters/soundfx/health_potion.wav";
             break;
-            case "pitTrap": path = "DungeonAndMonsters/pit_trap.wav";
+            case "pitTrap": path = "DungeonAndMonsters/soundfx/pit_trap.wav";
             break;
-            case "runFromBattle": path = "DungeonAndMonsters/run_from_battle.wav";
+            case "runFromBattle": path = "DungeonAndMonsters/soundfx/run_from_battle.wav";
             break;
-            case "save": path = "DungeonAndMonsters/save.wav";
+            case "save": path = "DungeonAndMonsters/soundfx/save.wav";
             break;
-            case "switchDungeon": path = "DungeonAndMonsters/switch_dungeon.wav";
+            case "switchDungeon": path = "DungeonAndMonsters/soundfx/switch_dungeon.wav";
             break;
-            case "usePillar": path = "DungeonAndMonsters/use_pillar.wav";
+            case "usePillar": path = "DungeonAndMonsters/soundfx/use_pillar.wav";
             break;
             default: path = "";
         }

@@ -31,26 +31,22 @@ public class PillarOfPolymorphism extends Pillar{
         Hero hero = (Hero) theObj;
         if(!morphed) {
             careTaker.saveState(hero);
-            //TODO: for testing, randomly choose an image
-            Image myImage = new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png").getImage();
-            BufferedImage bufferedImage = new BufferedImage(myImage.getWidth(null), myImage.getHeight(null), BufferedImage.TYPE_INT_RGB);
-            Graphics gb = bufferedImage.getGraphics();
-            gb.drawImage(myImage, 0, 0, null);
-            gb.dispose();
-            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-            tx.translate(-myImage.getWidth(null), 0);
-            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-            bufferedImage = op.filter(bufferedImage, null);
+            // choose random monster sprite
 
-            hero.setMyInGameSprite(new ImageIcon(bufferedImage));
-            hero.setSprite(new ImageIcon("DungeonAndMonsters/random images/MonsterIcon.png"));
+            ImageIcon image = new ImageIcon("DungeonAndMonsters/monster pics/poly" + Tools.RANDOM.nextInt(1,4) +".png");
+            hero.setMyInGameSprite(image);
             DungeonGUI.setMyInGameSprite(hero);
+            hero.setMaxDamage(hero.getMaxDamage() + 40);
+            hero.setAccuracy(hero.getMyAccuracy() + .1);
             morphed = true;
         } else {
             // revert back to original state
             Hero original = careTaker.revertState();
             hero.setMyInGameSprite(original.getMyInGameSprite());
-            hero.setSprite(original.getMySprite());
+            DungeonGUI.setMyInGameSprite(hero);
+            hero.setMaxDamage(original.getMaxDamage());
+            hero.setAccuracy(original.getMyAccuracy());
+            morphed = false;
         }
 
         //TODO: Steps to take
