@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class MonsterGUI extends JPanel {
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 2);
+    private static final int IMG_WIDTH = 192;
+    private static final int IMG_HEIGHT = 192;
     MonsterGUI(Font pixelFont){
         GridBagConstraints gbc = new GridBagConstraints();
         //this.setBackground(new Color(32,42,68));
@@ -20,35 +22,40 @@ public class MonsterGUI extends JPanel {
         // Image placement ----------------------------------------
         gbc.gridx = 0;
         gbc.gridy = 0;
-        JLabel beastLabel = new JLabel(new ImageIcon("DungeonAndMonsters/monster pics/Beast.png"));
+        Image beastImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/monster pics/Beast.png").getScaledInstance(IMG_WIDTH,IMG_HEIGHT, Image.SCALE_SMOOTH);
+        JLabel beastLabel = new JLabel(new ImageIcon(beastImg));
         beastLabel.setBorder(OUTLINE_BORDER);
         this.add(beastLabel, gbc);
 
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel gremlinLabel = new JLabel(new ImageIcon("DungeonAndMonsters/monster pics/GremlinInGame.png"));
+        Image gremlinImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/monster pics/GremlinInGame.png").getScaledInstance(IMG_WIDTH,IMG_HEIGHT, Image.SCALE_SMOOTH);
+        JLabel gremlinLabel = new JLabel(new ImageIcon(gremlinImg));
         gremlinLabel.setBorder(OUTLINE_BORDER);
         this.add(gremlinLabel, gbc);
 
 
         gbc.gridx = 2;
         gbc.gridy = 0;
-        JLabel ogreLabel = new JLabel(new ImageIcon("DungeonAndMonsters/monster pics/Ogre.png"));
+        Image ogreImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/monster pics/Ogre.png").getScaledInstance(IMG_WIDTH,IMG_HEIGHT, Image.SCALE_SMOOTH);
+        JLabel ogreLabel = new JLabel(new ImageIcon(ogreImg));
         ogreLabel.setBorder(OUTLINE_BORDER);
         this.add(ogreLabel, gbc);
 
 
         gbc.gridx = 3;
         gbc.gridy = 0;
-        JLabel skelLabel = new JLabel(new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png"));
+        Image skelImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/monster pics/rpgCritterSkelly.png").getScaledInstance(IMG_WIDTH,IMG_HEIGHT, Image.SCALE_SMOOTH);
+        JLabel skelLabel = new JLabel(new ImageIcon(skelImg));
         skelLabel.setBorder(OUTLINE_BORDER);
         this.add(skelLabel, gbc);
 
 
         gbc.gridx = 4;
         gbc.gridy = 0;
-        JLabel mimicLabel = new JLabel(new ImageIcon("DungeonAndMonsters/monster pics/Mimic UW Chest.png"));
+        Image mimicImg = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/monster pics/Mimic UW Chest.png").getScaledInstance(IMG_WIDTH,IMG_HEIGHT, Image.SCALE_SMOOTH);
+        JLabel mimicLabel = new JLabel(new ImageIcon(mimicImg));
         mimicLabel.setBorder(OUTLINE_BORDER);
         this.add(mimicLabel, gbc);
         // image placement end ----------------------------------------------------------------
@@ -59,10 +66,10 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 1;
         String beastFormat = monsterInfo("Beast").toString().replace("\n", "<br>");
-        String finalArcherFormat = "<html><style>" +
+        String finalBeastFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + beastFormat + "</h1></font></html>";
-        JLabel beastDesc = new JLabel(finalArcherFormat, SwingConstants.CENTER);
+        JLabel beastDesc = new JLabel(finalBeastFormat, SwingConstants.CENTER);
         beastDesc.setFont(pixelFont);
         // Color of text
         beastDesc.setForeground(Color.white);
@@ -77,10 +84,10 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 1;
         String gremlinFormat = monsterInfo("Gremlin").toString().replace("\n", "<br>");
-        String finalMageFormat = "<html><style>" +
+        String finalGremlinFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + gremlinFormat + "</h1></font></html>";
-        JLabel gremlinDesc = new JLabel(finalMageFormat, SwingConstants.CENTER);
+        JLabel gremlinDesc = new JLabel(finalGremlinFormat, SwingConstants.CENTER);
         gremlinDesc.setFont(pixelFont);
         gremlinDesc.setForeground(Color.white);
 
@@ -93,10 +100,10 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 2;
         gbc.gridy = 1;
         String ogreFormat = monsterInfo("Ogre").toString().replace("\n", "<br>");
-        String finalThiefFormat = "<html><style>" +
+        String finalOgreFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + ogreFormat + "</h1></font></html>";
-        JLabel ogreDesc = new JLabel(finalThiefFormat, SwingConstants.CENTER);
+        JLabel ogreDesc = new JLabel(finalOgreFormat, SwingConstants.CENTER);
         ogreDesc.setFont(pixelFont);
         ogreDesc.setForeground(Color.white);
 
@@ -109,10 +116,10 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 3;
         gbc.gridy = 1;
         String skelFormat = monsterInfo("Skeleton").toString().replace("\n", "<br>");
-        String finalWarriorFormat = "<html><style>" +
+        String finalSkelFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + skelFormat + "</h1></font></html>";
-        JLabel skelDesc = new JLabel(finalWarriorFormat, SwingConstants.CENTER);
+        JLabel skelDesc = new JLabel(finalSkelFormat, SwingConstants.CENTER);
         skelDesc.setFont(pixelFont);
         skelDesc.setForeground(Color.white);
 
@@ -125,10 +132,10 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 4;
         gbc.gridy = 1;
         String mimicFormat = monsterInfo("Mimic").toString().replace("\n", "<br>");
-        String finalPriestessFormat = "<html><style>" +
+        String finalMimicFormat = "<html><style>" +
                 "h1 {text-align: center;}\n" +
                 "</style><h1><<font size='5'>" + mimicFormat + "</h1></font></html>";
-        JLabel mimicDesc = new JLabel(finalPriestessFormat, SwingConstants.CENTER);
+        JLabel mimicDesc = new JLabel(finalMimicFormat, SwingConstants.CENTER);
         mimicDesc.setFont(pixelFont);
         mimicDesc.setForeground(Color.white);
 
@@ -143,7 +150,7 @@ public class MonsterGUI extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 3;
 
-        JButton mainMenu = new JButton("MAIN MENU");
+        JButton mainMenu = new JButton("Main Menu");
         mainMenu.setFont(pixelFont);
         mainMenu.setPreferredSize(new Dimension(200,50));
         mainMenu.addActionListener(e -> {
@@ -187,23 +194,23 @@ public class MonsterGUI extends JPanel {
         StringBuilder monsterInformation = new StringBuilder();
         switch(theCharacterType){
             case "Beast":
-                monsterInformation.append("Stats: \n500 hp\n1 attack speed\n30-50 damage\n30% accuracy\n20% heal chance\n");
+                monsterInformation.append("Beast\n\nStats: \n500 hp\n1 attack speed\n30-50 damage\n30% accuracy\n20% heal chance\n");
                 monsterInformation.append("Special: Feral Swipe\nHalves hero's health value");
                 break;
             case "Gremlin":
-                monsterInformation.append("Stats: \n70 hp\n5 attack speed\n15-30 damage\n80% accuracy\n40% heal chance\n");
+                monsterInformation.append("Gremlin\n\nStats: \n70 hp\n5 attack speed\n15-30 damage\n80% accuracy\n40% heal chance\n");
                 monsterInformation.append("Special: Gremlin Frenzy\nGenerates a random number of gremlins");
                 break;
             case "Ogre":
-                monsterInformation.append("Stats: \n200 hp\n2 attack speed\n30-60 damage\n60% accuracy\n10% heal chance\n");
+                monsterInformation.append("Ogre\n\nStats: \n200 hp\n2 attack speed\n30-60 damage\n60% accuracy\n10% heal chance\n");
                 monsterInformation.append("Special: Devastating Blow\n60-100 damage");
                 break;
             case "Skeleton":
-                monsterInformation.append("Stats: \n100 hp\n3 attack speed\n30-50 damage\n80% accuracy\n30% heal chance\n");
+                monsterInformation.append("Skeleton\n\nStats: \n100 hp\n3 attack speed\n30-50 damage\n80% accuracy\n30% heal chance\n");
                 monsterInformation.append("Special: Rise!\nWhen the Skeleton is about to die, it revives to max health instead");
                 break;
             case "Mimic":
-                monsterInformation.append("Stats: \n140 hp\n5 attack speed\n5-15 damage\n50% accuracy\n7% heal chance\n");
+                monsterInformation.append("Mimic\n\nStats: \n140 hp\n5 attack speed\n5-15 damage\n50% accuracy\n7% heal chance\n");
                 monsterInformation.append("Special: Robin Hood\nSteals some gold from the hero");
                 break;
             default:

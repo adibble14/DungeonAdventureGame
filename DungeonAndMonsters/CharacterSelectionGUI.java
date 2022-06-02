@@ -243,7 +243,7 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.gridx = 1;
         gbc.gridy = 3;
 
-        JButton mainMenu = new JButton("MAIN MENU");
+        JButton mainMenu = new JButton("Main Menu");
         mainMenu.setFont(pixelFont);
         mainMenu.setPreferredSize(new Dimension(200,50));
         mainMenu.addActionListener(e -> {
@@ -270,7 +270,7 @@ public class CharacterSelectionGUI extends JPanel{
 
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton monsters = new JButton("MONSTERS");
+        JButton monsters = new JButton("Monsters");
         monsters.setFont(pixelFont);
         monsters.setPreferredSize(new Dimension(200,50));
         monsters.addActionListener(e ->  {
