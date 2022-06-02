@@ -1,21 +1,24 @@
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * vision class that can reveal a part of the dungeon
+ */
 public class VisionPotion extends Item {
 
 
     /**
      * Constructor for this class. Simply initializes fields.
-     *
      */
     protected VisionPotion() {
         super(new ImageIcon("DungeonAndMonsters/potion.png"));
     }
 
-    //TODO: Implement this method
+    /**
+     * uses the potion, reveals some rooms
+     * @param theObj the hero
+     */
     @Override
     public void use(Object theObj) {
         Dungeon dung = (Dungeon)  theObj;
@@ -37,6 +40,5 @@ public class VisionPotion extends Item {
         }
 
     }
-
 
 }

@@ -109,7 +109,6 @@ public class Dungeon implements Serializable {
 	 * For debug purposes at this point.
 	 * @return the dungeon as a string
 	 */
-	//TODO delete once GUI is made
 	@Override
 	final public String toString() {
 		
@@ -120,7 +119,6 @@ public class Dungeon implements Serializable {
 				if (rooms[j] == null)
 					roomContents.append("* ");
 				else {
-					rooms[j].unhide();
 					roomContents.append(rooms[j].toString()).append(" ");
 				}
 			}

@@ -12,12 +12,12 @@ public class PlayerInventory implements Serializable {
     /**
      * Map data structure that will hold Item and Item count info.
      */
-    private HashMap<ItemType, Integer> myInventory;
+    private final HashMap<ItemType, Integer> myInventory;
 
     /**
      * Map data structure that will hold Pillars
      */
-    private HashMap<Pillar,Integer> myPillars;
+    private final HashMap<Pillar,Integer> myPillars;
 
     /**
      * Gold currency of the player
@@ -35,7 +35,7 @@ public class PlayerInventory implements Serializable {
 
     /**
      * adds the passed in argument value to this gold amount
-     * @param theValue
+     * @param theValue gold amount
      */
     public void addGold(final int theValue) {
         this.myGoldAmount += theValue;
@@ -43,7 +43,7 @@ public class PlayerInventory implements Serializable {
 
     /**
      * Returns the players gold amount
-     * @return
+     * @return the gold
      */
     public int getMyGoldAmount() {
         return this.myGoldAmount;
@@ -51,7 +51,7 @@ public class PlayerInventory implements Serializable {
 
     /**
      * Adds an Item to the players inventory
-     * @param theItem
+     * @param theItem the item
      */
     public void addItem(final ItemType theItem, final int theAmount) {
         this.myInventory.put(theItem, this.myInventory.getOrDefault(theItem,0) + theAmount);
@@ -72,7 +72,7 @@ public class PlayerInventory implements Serializable {
 
     /**
      * Returns the count of the passed in item.
-     * @param theItem
+     * @param theItem the item
      * @return item count or null if item does not exist in inventory map
      */
     public int getItemCount(final ItemType theItem) {
@@ -81,7 +81,7 @@ public class PlayerInventory implements Serializable {
 
     /**
      * Adds a pillar to pillar inventory
-     * @param thePillar
+     * @param thePillar the pillar
      */
     public void addPillar(final Pillar thePillar) {
         this.myPillars.put(thePillar, 1);
@@ -109,6 +109,10 @@ public class PlayerInventory implements Serializable {
         return result.toArray();
     }
 
+    /**
+     * to string method
+     * @return a string
+     */
     public String toString() {
 
         StringBuilder string = new StringBuilder();

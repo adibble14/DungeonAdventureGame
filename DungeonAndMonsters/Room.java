@@ -1,14 +1,9 @@
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * This is the Room class that contains randomly generated items, entrance, and exit. Interacts with
  * Hero object to give items and check for pit damage, win condition.
- * 
- * @author Mario Flores Vences
- * @version 031221
- *
  */
 public class Room implements Serializable {
 
@@ -39,7 +34,7 @@ public class Room implements Serializable {
 	private boolean myContainsMonster;
 
 	/**
-	 * Whether or not we have discovered the room - for mini map
+	 * Whether we have discovered the room - for mini map
 	 */
 	private boolean myDiscovery;
 
@@ -47,8 +42,8 @@ public class Room implements Serializable {
 	 * Room constructor, initializes fields. Takes coords from Dungeon class
 	 * Coords are index values.
 	 * 
-	 * @param theXCoord
-	 * @param theYCoord
+	 * @param theXCoord the x
+	 * @param theYCoord the y
 	 */
 	protected Room(final int theXCoord, final int theYCoord, RoomType theType) {
 		
@@ -60,12 +55,11 @@ public class Room implements Serializable {
 		this.myType = theType;
 		if(theType == RoomType.ITEM_ROOM)
 			this.myChest = new Chest();
-		this.hide();
 	}
 	
 	/**
 	 * get method for x coord value
-	 * @return
+	 * @return the x
 	 */
 	final protected int getXCoord() {
 		return this.myXCoord;
@@ -73,7 +67,7 @@ public class Room implements Serializable {
 	
 	/**
 	 * get method for y coord value
-	 * @return
+	 * @return the y
 	 */
 	final protected int getYCoord() {
 		return this.myYCoord;
@@ -100,17 +94,8 @@ public class Room implements Serializable {
 	}
 	
 	/**
-	 * Checks to see if room is an exit
-	 * @return
-	 */
-	final protected boolean isExit() {
-		return this.myType == RoomType.EXIT;
-	}
-
-	
-	/**
 	 * Checks to see if room contains a Monster
-	 * @return
+	 * @return boolean if the room contains a monster
 	 */
 	final protected boolean containsMonster() {
 		return this.myContainsMonster;
@@ -136,22 +121,6 @@ public class Room implements Serializable {
 
 	
 	/**
-	 * Appends a question mark at the beginning of list
-	 * to hide items in room.
-	 * 
-	 */
-	final protected void hide() {
-	}
-	
-	 /**
-	  * Removes question mark to uncover contents of room.
-	  */ //TODO empty?
-	final protected void unhide() {
-
-	}
-
-	
-	/**
 	 * Prints the item that is in the first index of object list.
 	 */
 	@Override
@@ -159,25 +128,29 @@ public class Room implements Serializable {
 		if(this.myContainsMonster) {
 			return "M";
 		}
-		switch(this.myType) {
-			case EXIT: return "O";
-			case ENTRANCE: return "N";
-			case EMPTY: return "E";
-			case ITEM_ROOM: return "I";
-			case BOSS_ROOM: return "B";
-			case PIT: return "S";
-			default: return "?";
-		}
+		return switch (this.myType) {
+			case EXIT -> "O";
+			case ENTRANCE -> "N";
+			case EMPTY -> "E";
+			case ITEM_ROOM -> "I";
+			case BOSS_ROOM -> "B";
+			case PIT -> "S";
+			default -> "?";
+		};
 	}
 
 	/**
 	 * Returns this Room's type
-	 * @return
+	 * @return type
 	 */
 	public RoomType getMyType() {
 		return this.myType;
 	}
 
+	/**
+	 * adds items to inventory
+	 * @param theHero the hero
+	 */
 	public void addItemsToPlayerInventory(final Hero theHero) {
 		if(this.myChest != null) {
 			this.myChest.use(theHero);

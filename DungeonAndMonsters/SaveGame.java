@@ -14,6 +14,10 @@ import java.io.ObjectOutputStream;
 public class SaveGame {
 
 
+    /**
+     * save game
+     * @param theFile file
+     */
     public static void save(final String theFile) {
         try {
             FileOutputStream outputFile = new FileOutputStream(theFile);
@@ -32,6 +36,10 @@ public class SaveGame {
         }
     }
 
+    /**
+     * load game
+     * @param theFile file
+     */
     public static void load(final String theFile) {
 
         try {

@@ -3,21 +3,27 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
+/**
+ * class that controls which music is playing
+ */
 public class Music {
 
+    /**
+     * the music clap
+     */
     private static Clip musicClip;
 
+    /**
+     * plays music based on which part in the game we are in
+     * @param theFile theFile
+     */
     protected static void playMusic(final String theFile) {
-        String path = "";
-        switch(theFile) {
-            case "mainMenu": path = "DungeonAndMonsters/soundfx/BGM12dungeon1.wav";
-            break;
-            case "dungeon": path = "DungeonAndMonsters/soundfx/BGM13dungeon2.wav";
-            break;
-            case "battle": path = "DungeonAndMonsters/soundfx/battle.wav";
-            break;
-            default: path = "";
-        }
+        String path = switch (theFile) {
+            case "mainMenu" -> "DungeonAndMonsters/soundfx/BGM12dungeon1.wav";
+            case "dungeon" -> "DungeonAndMonsters/soundfx/BGM13dungeon2.wav";
+            case "battle" -> "DungeonAndMonsters/soundfx/battle.wav";
+            default -> "";
+        };
         try {
             File songPath = new File (path);
             if(songPath.exists()) {
@@ -39,39 +45,29 @@ public class Music {
             e.printStackTrace();
         }
     }
+
+    /**
+     * play sounds for different actions
+     * @param theAction the action
+     */
     protected static void playSFX(String theAction) {
-        String path = "";
-        switch(theAction) {
-            case "buttonClicked": path = "DungeonAndMonsters/soundfx/button_click.wav";
-            break;
-            case "changeRoom": path = "DungeonAndMonsters/soundfx/change_room.wav";
-            break;
-            case "itemPickup": path = "DungeonAndMonsters/soundfx/item_pickup.wav";
-            break;
-            case "openMap": path = "DungeonAndMonsters/soundfx/open_map.wav";
-            break;
-            case"visionPotion": path = "DungeonAndMonsters/soundfx/use_potion.wav";
-            break;
-            case "attack": path = "DungeonAndMonsters/soundfx/attack.wav";
-            break;
-            case "monsterSpawn": path = "DungeonAndMonsters/soundfx/painb.wav";
-            break;
-            case "backpack": path = "DungeonAndMonsters/soundfx/backpack.wav";
-            break;
-            case "healthPotion": path = "DungeonAndMonsters/soundfx/health_potion.wav";
-            break;
-            case "pitTrap": path = "DungeonAndMonsters/soundfx/pit_trap.wav";
-            break;
-            case "runFromBattle": path = "DungeonAndMonsters/soundfx/run_from_battle.wav";
-            break;
-            case "save": path = "DungeonAndMonsters/soundfx/save.wav";
-            break;
-            case "switchDungeon": path = "DungeonAndMonsters/soundfx/switch_dungeon.wav";
-            break;
-            case "usePillar": path = "DungeonAndMonsters/soundfx/use_pillar.wav";
-            break;
-            default: path = "";
-        }
+        String path = switch (theAction) {
+            case "buttonClicked" -> "DungeonAndMonsters/soundfx/button_click.wav";
+            case "changeRoom" -> "DungeonAndMonsters/soundfx/change_room.wav";
+            case "itemPickup" -> "DungeonAndMonsters/soundfx/item_pickup.wav";
+            case "openMap" -> "DungeonAndMonsters/soundfx/open_map.wav";
+            case "visionPotion" -> "DungeonAndMonsters/soundfx/use_potion.wav";
+            case "attack" -> "DungeonAndMonsters/soundfx/attack.wav";
+            case "monsterSpawn" -> "DungeonAndMonsters/soundfx/painb.wav";
+            case "backpack" -> "DungeonAndMonsters/soundfx/backpack.wav";
+            case "healthPotion" -> "DungeonAndMonsters/soundfx/health_potion.wav";
+            case "pitTrap" -> "DungeonAndMonsters/soundfx/pit_trap.wav";
+            case "runFromBattle" -> "DungeonAndMonsters/soundfx/run_from_battle.wav";
+            case "save" -> "DungeonAndMonsters/soundfx/save.wav";
+            case "switchDungeon" -> "DungeonAndMonsters/soundfx/switch_dungeon.wav";
+            case "usePillar" -> "DungeonAndMonsters/soundfx/use_pillar.wav";
+            default -> "";
+        };
         try {
             File songPath = new File (path);
             if(songPath.exists()) {

@@ -7,9 +7,6 @@ import javax.swing.*;
 
 public class Ogre extends Monster {
 
-
-    private static final ImageIcon ogreImage = new ImageIcon("DungeonAndMonsters/monster pics/Ogre.png");
-
     /**
      * Constructor that has set values for Ogre object. Calls on super constructor to init fields.
      */
@@ -28,19 +25,15 @@ public class Ogre extends Monster {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
         int specialMaxDamage = 100;
         int specialMinDamage = 60;
         int damage = Tools.RANDOM.nextInt(specialMaxDamage) + specialMinDamage;
         double randAccuracy = Tools.RANDOM.nextDouble();
 
-        //System.out.println(this.getName() + " throws a Devastating Blow!\n\n");
-
         double specialAccuracy = .5;
         if (specialAccuracy < randAccuracy) {
 
             damage = specialMinDamage;
-            //System.out.println(theChar.getName() + " dodges the attack! Splash damage taken.\n");
         }
 
         int result = theChar.getHealth() - damage;
@@ -51,7 +44,6 @@ public class Ogre extends Monster {
         }
         theChar.setHealth(result);
 
-        System.out.println(this.getName() + " deals a Devastating Blow to " + theChar.getName() + "! Dealt " + damage + " of damage.\n\n");
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals a Devastating Blow to " + theChar.getName() + " of "+ damage + " damage. "));
     }
 

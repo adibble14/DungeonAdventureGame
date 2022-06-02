@@ -1,11 +1,9 @@
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used
  * exclusively by Monster objects.
  */
-
 public abstract class Monster extends DungeonCharacter {
 
     /**
@@ -38,17 +36,14 @@ public abstract class Monster extends DungeonCharacter {
     protected Monster(final String theName, final int theHealth, final int theSpeed, final int theMaxDamage, final int theMinDamage,
                       final double theAccuracy, final double theHealChance, final int theMinHeal, final int theMaxHeal, final ImageIcon theSprite, final ImageIcon theInGameSprite) {
 
-        // TODO fix, give sprites to every monster
         super(theName, theHealth, theSpeed, theMaxDamage, theMinDamage, theAccuracy, theSprite, theInGameSprite);
         this.setHealChance(theHealChance);
         this.setMinHeal(theMinHeal);
         this.setMaxHeal(theMaxHeal);
-
     }
 
     /**
      * Get method for heal chance field
-     *
      * @return returns heal chance value
      */
     final protected double getHealChance() {
@@ -58,7 +53,6 @@ public abstract class Monster extends DungeonCharacter {
 
     /**
      * Set method for heal chance
-     *
      * @param theHealChance value given by child class
      */
     final protected void setHealChance(final double theHealChance) {
@@ -71,7 +65,6 @@ public abstract class Monster extends DungeonCharacter {
 
     /**
      * Set method for minimum heal field
-     *
      * @param theMinHeal value given by child class
      */
     final protected void setMinHeal(final int theMinHeal) {
@@ -84,7 +77,6 @@ public abstract class Monster extends DungeonCharacter {
 
     /**
      * Set method for maximum heal field
-     *
      * @param theMaxHeal value given by child class
      */
     final protected void setMaxHeal(final int theMaxHeal) {
@@ -108,8 +100,7 @@ public abstract class Monster extends DungeonCharacter {
         }
 
         this.setHealth(Math.min((this.getHealth() + healPoints), this.getMaxHealth()));
-        //TODO delete this output once GUI is made, since this is VIEW
-        System.out.println(this.getName() + " recovers " + healPoints + " of health.\n\n");
+
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " recovers " + healPoints + " of health. "));
     }
 
@@ -119,7 +110,7 @@ public abstract class Monster extends DungeonCharacter {
      */
     @Override
     protected void attack(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
+
         if (this.isSpecialActive()) {
 
             this.special(theChar);
@@ -133,16 +124,13 @@ public abstract class Monster extends DungeonCharacter {
             super.attack(hero);
         } else {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() +hero.getName() + " blocked the attack! "));
-            System.out.println(hero.getName() + " blocked the attack!\n\n");
         }
 
         this.heal();
-
     }
 
     /**
      * Generates a random value and compares it to special accuracy field
-     *
      * @return returns true if special accuracy is greater. This activates the class special attack
      */
     private boolean isSpecialActive() {
@@ -168,6 +156,9 @@ public abstract class Monster extends DungeonCharacter {
      */
     protected abstract void special(final DungeonCharacter theChar);
 
+    /**
+     * @return special info about the monster
+     */
     public abstract String getSpecialInfo();
 
 }

@@ -7,19 +7,36 @@
 
 public class Originator {
 
+    /**
+     * hero instance
+     */
     private Hero myHero;
 
+    /**
+     * @param theHero sets the hero
+     */
     protected final void set(Hero theHero) {
         this.myHero = theHero;
     }
 
+    /**
+     * @return a new memento object
+     */
     protected Memento saveToMemento() {
         return new Memento(myHero);
     }
 
+    /**
+     * @param theMemento restoring hero to saved state
+     */
     public void restoreFromMemento(Memento theMemento) {
         myHero = theMemento.getSavedState();
     }
+
+    /**
+     * getting the current state of the hero
+     * @return hero
+     */
     public Hero getState() {
         return this.myHero;
     }

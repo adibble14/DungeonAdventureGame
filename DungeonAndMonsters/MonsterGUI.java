@@ -2,17 +2,36 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * this class creates a GUI similar to character selection but instead with monsters
+ * the hero can see who they could fight in the dungeon
+ */
 public class MonsterGUI extends JPanel {
+
+    /**
+     * the border used in the GUI
+     */
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 2);
+
+    /**
+     * width of the character images
+     */
     private static final int IMG_WIDTH = 192;
+
+    /**
+     * height of the character images
+     */
     private static final int IMG_HEIGHT = 192;
+
+    /**
+     * constructor for the monster GUI screen
+     * @param pixelFont the font used in the GUI
+     */
     MonsterGUI(Font pixelFont){
         GridBagConstraints gbc = new GridBagConstraints();
-        //this.setBackground(new Color(32,42,68));
         this.setBackground(Color.BLACK);
         this.setLayout(new GridBagLayout());
-
-        // settings for our initial images
+        
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.insets = new Insets(10, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -62,7 +81,6 @@ public class MonsterGUI extends JPanel {
 
         // Character description texts start ----------------------------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        //Archer
         gbc.gridx = 0;
         gbc.gridy = 1;
         String beastFormat = monsterInfo("Beast").toString().replace("\n", "<br>");
@@ -71,16 +89,13 @@ public class MonsterGUI extends JPanel {
                 "</style><h1><<font size='5'>" + beastFormat + "</h1></font></html>";
         JLabel beastDesc = new JLabel(finalBeastFormat, SwingConstants.CENTER);
         beastDesc.setFont(pixelFont);
-        // Color of text
         beastDesc.setForeground(Color.white);
-
-        // To color a black background with border
+        
         beastDesc.setOpaque(true);
         beastDesc.setBackground(Color.BLACK);
         beastDesc.setBorder(OUTLINE_BORDER);
         this.add(beastDesc, gbc);
-
-        //Mage
+        
         gbc.gridx = 1;
         gbc.gridy = 1;
         String gremlinFormat = monsterInfo("Gremlin").toString().replace("\n", "<br>");
@@ -96,7 +111,7 @@ public class MonsterGUI extends JPanel {
         gremlinDesc.setBorder(OUTLINE_BORDER);
         this.add(gremlinDesc, gbc);
 
-        //Thief
+
         gbc.gridx = 2;
         gbc.gridy = 1;
         String ogreFormat = monsterInfo("Ogre").toString().replace("\n", "<br>");
@@ -112,7 +127,7 @@ public class MonsterGUI extends JPanel {
         ogreDesc.setBorder(OUTLINE_BORDER);
         this.add(ogreDesc, gbc);
 
-        //Warrior
+
         gbc.gridx = 3;
         gbc.gridy = 1;
         String skelFormat = monsterInfo("Skeleton").toString().replace("\n", "<br>");
@@ -128,7 +143,7 @@ public class MonsterGUI extends JPanel {
         skelDesc.setBorder(OUTLINE_BORDER);
         this.add(skelDesc, gbc);
 
-        //Priestess
+
         gbc.gridx = 4;
         gbc.gridy = 1;
         String mimicFormat = monsterInfo("Mimic").toString().replace("\n", "<br>");
@@ -167,7 +182,7 @@ public class MonsterGUI extends JPanel {
         stats.setPreferredSize(new Dimension(200,50));
         StringBuilder statText = statInfo();
         String statFormat = statText.toString().replace("\n", "<br>");
-        String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></htmt>";
+        String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></html>";
 
         stats.addActionListener(e ->  {
             Music.playSFX("buttonClicked");
@@ -189,29 +204,35 @@ public class MonsterGUI extends JPanel {
 
     }
 
+    /**
+     * info about the monsters stats
+     * @param theCharacterType which monster 
+     * @return a string of their stats
+     */
     public static StringBuilder monsterInfo(String theCharacterType) {
 
         StringBuilder monsterInformation = new StringBuilder();
         switch(theCharacterType){
             case "Beast":
-                monsterInformation.append("Beast\n\nStats: \n500 hp\n1 attack speed\n30-50 damage\n30% accuracy\n20% heal chance\n");
+                monsterInformation.append("Beast\nStats: \n500 hp\n1 attack speed\n30-50 damage\n30% accuracy\n20% heal chance\n");
                 monsterInformation.append("Special: Feral Swipe\nHalves hero's health value");
                 break;
             case "Gremlin":
-                monsterInformation.append("Gremlin\n\nStats: \n70 hp\n5 attack speed\n15-30 damage\n80% accuracy\n40% heal chance\n");
+                monsterInformation.append("Gremlin\nStats: \n70 hp\n5 attack speed\n15-30 damage\n80% accuracy\n40% heal chance\n");
                 monsterInformation.append("Special: Gremlin Frenzy\nGenerates a random number of gremlins");
                 break;
             case "Ogre":
-                monsterInformation.append("Ogre\n\nStats: \n200 hp\n2 attack speed\n30-60 damage\n60% accuracy\n10% heal chance\n");
+                monsterInformation.append("Ogre\nStats: \n200 hp\n2 attack speed\n30-60 damage\n60% accuracy\n10% heal chance\n");
                 monsterInformation.append("Special: Devastating Blow\n60-100 damage");
                 break;
             case "Skeleton":
-                monsterInformation.append("Skeleton\n\nStats: \n100 hp\n3 attack speed\n30-50 damage\n80% accuracy\n30% heal chance\n");
+                monsterInformation.append("Skeleton\nstats: \n100 hp\n3 attack speed\n30-50 damage\n80% accuracy\n30% heal chance\n");
                 monsterInformation.append("Special: Rise!\nWhen the Skeleton is about to die, it revives to max health instead");
                 break;
             case "Mimic":
-                monsterInformation.append("Mimic\n\nStats: \n140 hp\n5 attack speed\n5-15 damage\n50% accuracy\n7% heal chance\n");
-                monsterInformation.append("Special: Robin Hood\nSteals some gold from the hero");
+                monsterInformation.append("Mimic\nStats: \n140 hp\n5 attack speed\n5-15 damage\n50% accuracy\n7% heal chance\n");
+                monsterInformation.append("Special: Robin Hood\nSteals some gold from the hero\n");
+                monsterInformation.append("Note: Mimic appears randomly in some chests!");
                 break;
             default:
                 monsterInformation.append("No info stored!");
@@ -221,6 +242,10 @@ public class MonsterGUI extends JPanel {
         return monsterInformation;
     }
 
+    /**
+     * info on what each stat means
+     * @return a string
+     */
     public static StringBuilder statInfo(){
         StringBuilder statInfo = new StringBuilder();
         statInfo.append("Stat Definitions\n");
@@ -229,6 +254,7 @@ public class MonsterGUI extends JPanel {
         statInfo.append("Damage: the number of damage dealt to the enemy per attack\n");
         statInfo.append("Accuracy: the chance an attack lands a hit on enemy\n");
         statInfo.append("Heal Chance: the chance the monster can heal after an attack phase\n");
+        statInfo.append("Note: Boss monsters have boosted stats!");
         
         return statInfo;
     }

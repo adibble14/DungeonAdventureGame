@@ -1,5 +1,7 @@
+/**
+ * type of rooms
+ */
 public enum RoomType {
-
     ENTRANCE,
     EXIT,
     EMPTY,

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.Random;
 
 public abstract class Pillar extends Item{
 
@@ -7,7 +6,7 @@ public abstract class Pillar extends Item{
     /**
      * Constructor for this class. Simply initializes fields.
      *
-     * @param theImage
+     * @param theImage the image of the pillar
      */
     protected Pillar(final ImageIcon theImage, final PillarType theType) {
         super(theImage);
@@ -16,12 +15,15 @@ public abstract class Pillar extends Item{
 
     /**
      * Get method for MY_TYPE field
-     * @return
+     * @return pillar type
      */
     protected final PillarType getMY_TYPE() {
         return this.MY_TYPE;
     }
 
+    /**
+     * @return a random pillar
+     */
     public static PillarType getRandomPillar(){
         int num = Tools.RANDOM.nextInt(1,5);
         if(num == 1) return PillarType.ABSTRACTION;

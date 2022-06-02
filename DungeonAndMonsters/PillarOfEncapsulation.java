@@ -1,14 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * pillar class that makes all rooms visible
+ */
 public class PillarOfEncapsulation extends Pillar{
+
+    /**
+     * image of pillar
+     */
     private static final Image myPillarImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/Encapsulation.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
 
     private static final ImageIcon myImage = new ImageIcon(myPillarImage);
     /**
      * Constructor for this class. Simply initializes fields.
      *
-     * @param theType
+     * @param theType type of pillar
      */
     protected PillarOfEncapsulation(PillarType theType) {
         super(myImage, theType);
@@ -16,7 +23,7 @@ public class PillarOfEncapsulation extends Pillar{
 
     /**
      * Setting every room to visible
-     * @param theObj
+     * @param theObj the dungeon
      */
     @Override
     public void use(Object theObj) {
@@ -30,6 +37,10 @@ public class PillarOfEncapsulation extends Pillar{
         }
         DungeonAdventure.getMainGui().getMapGui().repaint();
     }
+
+    /**
+     * @return the image
+     */
     protected final ImageIcon getImage(){
         return myImage;
     }

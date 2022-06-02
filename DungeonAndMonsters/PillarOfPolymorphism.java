@@ -1,15 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 
 public class PillarOfPolymorphism extends Pillar{
+
+    /**
+     * the image
+     */
     private static final Image myPillarImage = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/Polymorphism.png").getScaledInstance(96,96, Image.SCALE_SMOOTH);
     /**
      * CareTaker pattern that saves the state of Hero object and reverts to previous state.
      */
-    private CareTaker careTaker;
+    private final CareTaker careTaker;
     /**
      * boolean to check if player morphed
      */
@@ -18,7 +19,7 @@ public class PillarOfPolymorphism extends Pillar{
     private static final ImageIcon myImage = new ImageIcon(myPillarImage);
     /**
      * Constructor for this class. Simply initializes fields.
-     * @param theType
+     * @param theType the pillar type
      */
     protected PillarOfPolymorphism(PillarType theType) {
         super(myImage, theType);
@@ -26,6 +27,10 @@ public class PillarOfPolymorphism extends Pillar{
         this.morphed = false;
     }
 
+    /**
+     * turning hero into monster
+     * @param theObj the hero
+     */
     @Override
     public void use(Object theObj) {
         Hero hero = (Hero) theObj;
@@ -40,7 +45,6 @@ public class PillarOfPolymorphism extends Pillar{
             hero.setAccuracy(hero.getMyAccuracy() + .1);
             morphed = true;
         } else {
-            // revert back to original state
             Hero original = careTaker.revertState();
             hero.setMyInGameSprite(original.getMyInGameSprite());
             DungeonGUI.setMyInGameSprite(hero);
@@ -48,16 +52,11 @@ public class PillarOfPolymorphism extends Pillar{
             hero.setAccuracy(original.getMyAccuracy());
             morphed = false;
         }
-
-        //TODO: Steps to take
-        // save the current hero state using CareTaker class
-        // randomly choose a Monster maybe?
-        // set that monster to DungeonAdventure hero object
-        // other classes may need to be adjusted
-        // How to revert back to original hero object?
-
     }
 
+    /**
+     * @return the image
+     */
     protected final ImageIcon getImage(){
         return myImage;
     }

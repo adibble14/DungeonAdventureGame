@@ -43,7 +43,6 @@ public class DungeonTest {
                 if(rooms[i][j] == null)
                     roomContents.append("* ");
                 else {
-                    rooms[i][j].unhide();
                     roomContents.append(rooms[i][j].toString() + " ");
                 }
             }

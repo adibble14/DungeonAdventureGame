@@ -6,7 +6,8 @@ import java.awt.*;
  */
 public class MenuGUI extends JPanel{
 
-    //Setting panel background before constructor
+    /**Setting panel background before constructor
+     */
     Image img = Toolkit.getDefaultToolkit().getImage("DungeonAndMonsters/random images/danksouls.jpg");
     @Override
     public void paintComponent(Graphics g){
@@ -18,12 +19,11 @@ public class MenuGUI extends JPanel{
     /**
      * Constructor which defines what will be inside the Frame
      */
-    MenuGUI(Font pixelFont){
-        // Using gridbag layout see https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+    MenuGUI(){
+        // Using Grid bag layout see https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        // Change gridbag constraint settings for **Title**
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
 
@@ -37,7 +37,6 @@ public class MenuGUI extends JPanel{
         // Add the label to the menu panel using the grid bag layout constraints
         this.add(titleLabel,gbc);
 
-        // Change gridbag constraint settings for ***button panel***
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
@@ -77,10 +76,8 @@ public class MenuGUI extends JPanel{
         instr.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             StringBuilder instructionText = GUI.gamePlay();
-            // Formatting using built in Java to HTML
             String instFormat = instructionText.toString().replace("\n", "<br>");
-            String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></htmt>";
-            // Action listener implementing a dialog box
+            String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></html>";
             JOptionPane.showMessageDialog(this, finalInstFormat);
         });
 
@@ -90,7 +87,7 @@ public class MenuGUI extends JPanel{
         quit.addActionListener(e -> System.exit(0));
 
 
-        // Buttons have their own gridbag constraints setup here
+        // Buttons have their own grid bag constraints setup here
         gbc.insets = new Insets(2,0,2,0);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -112,5 +109,4 @@ public class MenuGUI extends JPanel{
         this.add(buttonPanel, gbc);
 
     }
-
 }

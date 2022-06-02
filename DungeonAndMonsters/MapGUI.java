@@ -1,22 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
+/**
+ * this class implements the map GUI
+ */
 public class MapGUI extends JFrame {
 
-    MapGUI(Font pixelFont){
-        // Change the name of the frame
+    /**
+     * constructor for map GUI
+     */
+    MapGUI(){
         this.setTitle("Map");
-        // Size this frame to be slightly smaller
         this.setSize(450, 400);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        // Not resizable and starts invisible
         this.setResizable(false);
         this.setVisible(false);
         this.add(new DrawWindow());
     }
-    
 
+
+    /**
+     * inner class to draw a window in the panel
+     */
     protected static class DrawWindow extends JPanel{
 
         Image currentRoomImage;
@@ -44,7 +49,6 @@ public class MapGUI extends JFrame {
                     else if((currentRoom == DungeonAdventure.getMyDungeon().getCurrentRoom())){
                         g2d.setColor(Color.WHITE);
                         currentRoomImage = DungeonAdventure.getMyHero().getMySprite().getImage();
-                        //currentRoomImage = DungeonAdventure.getMyHero().getMyInGameSprite().getImage();
                     }
                     else if(currentRoom.containsMonster() && currentRoom.getMyDiscovery()){
                         g2d.setColor(Color.CYAN);

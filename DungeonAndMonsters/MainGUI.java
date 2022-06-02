@@ -48,13 +48,13 @@ public class MainGUI extends GUI{
         this.add(myCardPanel);
 
         // Create all our content panels
-        MenuGUI menuGUI = new MenuGUI(myCustomFont);
+        MenuGUI menuGUI = new MenuGUI();
         CharacterSelectionGUI characterSelectionGUI = new CharacterSelectionGUI(myCustomFont);
         DungeonGUI dungeonGUI = new DungeonGUI(myCustomFont);
         BattleGUI battleGUI = new BattleGUI(myCustomFont);
         MonsterGUI monsterGUI = new MonsterGUI(myCustomFont);
         myBackpackGui = new BackpackGUI(myCustomFont);
-        myMapGui = new MapGUI(myCustomFont);
+        myMapGui = new MapGUI();
 
         // Add the panels to the cardPanel using string constraints
         myCardPanel.add(menuGUI, "menu");
