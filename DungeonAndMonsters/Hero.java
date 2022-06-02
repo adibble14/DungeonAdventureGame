@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * This abstract class inherits from DungeonCharacter super class. Adds fields and methods used exclusively
  * by hero objects.
  */
-
 public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
@@ -17,21 +16,26 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     /**
      * Stores hero object's turn count value. Changes depending on enemy speed value.
      */
-
     private int myTurnCount;
 
     /**
      * Number of keys in Hero's inventory
      */
-    private int myKeyCount;
+    private final int myKeyCount;
 
     /**
      * Inventory of this player. Underneath data structure is a hashmap
      */
     private final PlayerInventory myInventory;
 
+    /**
+     * the health potions
+     */
     private final ArrayList<HealthPotion> myHealthPotions;
 
+    /**
+     * the vision potions
+     */
     private final ArrayList<VisionPotion> myVisionPotions;
 
 
@@ -59,7 +63,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Get method for turn count field
-     *
      * @return returns turn count value
      */
     final protected int getTurnCount() {
@@ -69,7 +72,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Get method for block chance field
-     *
      * @return returns block chance value
      */
     final protected double getBlockChance() {
@@ -79,7 +81,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Set method for turn count field
-     *
      * @param theChar turn count is influenced by theChar's speed value
      */
     private void setTurnCount(final DungeonCharacter theChar) {
@@ -94,7 +95,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Set method for block chance field
-     *
      * @param theBlockChance value given by child classes
      */
     final protected void setBlockChance(final double theBlockChance) {
@@ -110,7 +110,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      */
     @Override
     protected void attack(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
         this.setTurnCount(theChar);
 
         int turns = this.getTurnCount();
@@ -125,21 +124,23 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     /**
      * Block logic. Calculates if this object is able to block an attack. Depends on block
      * chance value.
-     *
      * @return returns true if block chance value is greater than random generated value
      */
     final protected boolean block() {
-
         return this.getBlockChance() > Tools.RANDOM.nextDouble();
     }
 
     /**
      * Abstract method for child classes. Each child should have a unique special.
-     *
      * @param theChar object to deal damage to
      */
     protected abstract void special(final DungeonCharacter theChar);
 
+    /**
+     * adds item to hero inventory from chest
+     * @param theItem which items to add
+     * @param theAmount the number of items
+     */
     final protected void addInventory(final Item theItem, final int theAmount) {
         if(theItem.getClass() == HealthPotion.class) {
             this.myInventory.addItem(ItemType.HEALTH_POTION, theAmount);
@@ -147,14 +148,11 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
         } else if(theItem.getClass() == VisionPotion.class) {
             this.myInventory.addItem(ItemType.VISION_POTION, theAmount);
             this.myVisionPotions.add((VisionPotion) theItem);
-        } else if (theItem.getClass() == Pillar.class) {
-            this.myInventory.addPillar((Pillar) theItem);
         }
     }
 
     /**
      * Returns the key count in Hero inventory
-     *
      * @return the number of keys
      */
     final protected int getKeyCount() {
@@ -163,7 +161,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Returns the Health Potion count in Hero inventory
-     *
      * @return the number of health potions
      */
     final protected int getHealthPotionCount() {
@@ -172,7 +169,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
 
     /**
      * Returns the Vision Potion count in Hero inventory
-     *
      * @return the number of vision potions
      */
     final protected int getVisionPotionCount() {
@@ -208,7 +204,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     /**
      * If Vision Potion count is at least one, interacts with a Dungeon object to
      * uncover Rooms that surround the player's current Room location.
-     *
      * @param theDung the dungeon
      */
     final protected void useVisionPotion(final Dungeon theDung) {
@@ -224,7 +219,6 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
      */
     @Override
     final public String toString() {
-        //TODO delete this output once GUI is made, since this is VIEW
         return "HP: " +
                 this.getHealth() +
                 "\n" +
@@ -246,5 +240,8 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
         return this.myInventory;
     }
 
+    /**
+     * @return special info about the hero
+     */
     public abstract String getSpecialInfo();
 }

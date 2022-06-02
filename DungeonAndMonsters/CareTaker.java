@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class CareTaker implements Serializable {
 
-    private List<Originator.Memento> mySavedStates;
-    private Originator myOriginator;
+    private final List<Originator.Memento> mySavedStates;
+    private final Originator myOriginator;
 
     protected CareTaker() {
         this.mySavedStates = new ArrayList<>();

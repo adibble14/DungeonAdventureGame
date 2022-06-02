@@ -1,22 +1,47 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Scanner;
 
 /**
+ * The controller for the project
  * Handles logic for game. Receives input from player. Interacts with Dungeon and Hero classes.
  */
 public class DungeonAdventure implements Serializable {
-	// Scene list
-	private static MainGUI MAIN_GUI = new MainGUI();
+
+	/**
+	 * instance of MainGUI, has all the different panels of the GUI
+	 */
+	private static final MainGUI MAIN_GUI = new MainGUI();
+
+	/**
+	 * hero's name
+	 */
 	private static String myUserName;
+
+	/**
+	 * the choice of the hero
+	 */
 	private static String myHeroChoice;
+
+	/**
+	 * the hero instance
+	 */
 	private static Hero myHero;
+
+	/**
+	 * the dungeon instance
+	 */
 	private static Dungeon myDungeon;
-	private static double myItemRoomChance = .8;
-	private static int numDungeonsPassed;
-	private static int currentDungeonNum;
+
+	/**
+	 * number of dungeons completed
+	 */
+	private static int myNumDungeonsPassed;
+
+	/**
+	 * which dungeon hero is currently on
+	 */
+	private static int myCurrentDungeonNum;
 
 	/**
 	 * main method of class. Creates instance of Hero, Dungeon objects.
@@ -28,23 +53,26 @@ public class DungeonAdventure implements Serializable {
 	public static void main(String[] theArgs) {
 	}
 
-	// START METHOD
+	/**
+	 * method that initiates the game after character is chosen
+	 */
 	protected static void setUPGame(){
 		SQLiteDB.createMonstersTable(); //creating the monsters table
 		SQLiteDB.createHeroesTable(); //creating the heroes table
-		numDungeonsPassed = 0;
-		currentDungeonNum = 1;
+		myNumDungeonsPassed = 0;
+		myCurrentDungeonNum = 1;
 		createHero();
 		refreshBackPackGoldValue();
 		MAIN_GUI.setMyDungeon(myDungeon);
 		createDungeon();
-		// First run through updating the dungeonGUI scene
-		//DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
-	protected static void loadUpGame() {
-		//TODO: Just for testing purposes. Should load images from database later on.
 
-		numDungeonsPassed = myDungeon.getMyCurrentDungeonNumber();
+	/**
+	 * method that initiates the game after loading up a previous game
+	 */
+	protected static void loadUpGame() {
+		myCurrentDungeonNum = myDungeon.getMyCurrentDungeonNumber();
+		myNumDungeonsPassed = myDungeon.getMyDungeonsPassed();
 		refreshBackPackGoldValue();
 		MAIN_GUI.setMyDungeon(myDungeon);
 		DungeonGUI.setUpVisualDungeon(myHero,myDungeon);
@@ -54,43 +82,31 @@ public class DungeonAdventure implements Serializable {
 
 
 	/**
-	 * Scene manager, pass in string representation of which scene you want
+	 * Scene manager, pass in string representation of which scene you want,
 	 * and it will move you to that scene. I.E. "character" brings you to character scene
 	 * @param theMenuChoice choice for which scene you want
 	 */
 	protected static void sceneController(final String theMenuChoice){
 		MAIN_GUI.setCurrentCard(theMenuChoice);
-		//setSaveLoad();
 	}
 
 
 	/**
 	 * Creates a Hero object depending on user's input name and user's choice.
-	 * @return returns Hero Object
 	 */
 	protected static void createHero() {
-		switch(getMyHeroChoice()){
-			case "w":
-				myHero = new Warrior(getUserName());
-				break;
-			case "m":
-				myHero = new Mage(getUserName());
-				break;
-			case "t":
-				myHero = new Thief(getUserName());
-				break;
-			case "p":
-				myHero = new Priestess(getUserName());
-				break;
-			case "a":
-				myHero = new Archer(getUserName());
-				break;
+		switch (getMyHeroChoice()) {
+			case "w" -> myHero = new Warrior(getUserName());
+			case "m" -> myHero = new Mage(getUserName());
+			case "t" -> myHero = new Thief(getUserName());
+			case "p" -> myHero = new Priestess(getUserName());
+			case "a" -> myHero = new Archer(getUserName());
 		}
 	}
 
 	/**
 	 * Set method used when loading save file
-	 * @param theHero
+	 * @param theHero what to set hero to
 	 */
 	protected static void setMyHero(final Hero theHero) {
 		myHero = theHero;
@@ -98,29 +114,62 @@ public class DungeonAdventure implements Serializable {
 
 	/**
 	 * Set method used when loading in save file
-	 * @param theDungeon
+	 * @param theDungeon what to set the dungeon to
 	 */
 	protected static void setMyDungeon(final Dungeon theDungeon) {
 		myDungeon = theDungeon;
 	}
 
+	/**
+	 * @return the username
+	 */
 	protected static String getUserName(){return myUserName;}
+
+	/**
+	 * @param theName what to set the username to
+	 */
 	protected static void setMyUserName(final String theName){
 		myUserName = theName;
 	}
 
+
+	/**
+	 * @return the hero choice
+	 */
 	protected static String getMyHeroChoice(){return myHeroChoice;}
+
+	/**
+	 * @param theChoice what hero the user chooses
+	 */
 	protected static void setMyHeroChoice(final String theChoice){myHeroChoice = theChoice;}
 
+	/**
+	 * creates a dungeon
+	 */
 	protected static void createDungeon(){
 		myDungeon = new Dungeon( 10, .23, getNumDungeonsPassed(), getCurrentDungeonNum());
 		DungeonGUI.setUpVisualDungeon(getMyHero(), getMyDungeon());
 	}
+
+	/**
+	 * @return the current dungeon
+	 */
 	protected static Dungeon getMyDungeon(){return  myDungeon;}
 
+	/**
+	 * @return the instance of hero
+	 */
 	protected static Hero getMyHero(){return  myHero;}
 
 
+	/**
+	 * changes rooms, happens when user hits arrow buttons
+	 * @param theDungeon the instance of dungeon
+	 * @param theCurrentImage the current room image
+	 * @param theX x coordinate to move to
+	 * @param theY y coordinate to move to
+	 * @return a new image of the new room
+	 */
 	protected static Image changeRooms(final Dungeon theDungeon, final Image theCurrentImage, final int theX, final int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		if(newCurrent != null){
@@ -134,11 +183,31 @@ public class DungeonAdventure implements Serializable {
 		}
 
 	}
+
+	/**
+	 * refreshes the JLabel containing the amount of gold
+	 */
 	protected static void refreshBackPackGoldValue(){MAIN_GUI.getBackpackGui().refreshGoldValue();}
+
+	/**
+	 * refreshes the JLabel containing the amount of health of the hero
+	 */
 	protected static void refreshDungeonHealthValue(){DungeonGUI.setHealthLabel(myHero);}
+
+	/**
+	 * repaints the map
+	 */
 	protected static void refreshMap(){
 		MAIN_GUI.getMapGui().repaint();
 	}
+
+	/**
+	 * setting the room in the dungeon
+	 * @param theDungeon the instance of dungeon
+	 * @param theX the x coordinate
+	 * @param theY the y coordinate
+	 * @return the image of the room
+	 */
 	protected static Image setRoomWindow(final Dungeon theDungeon, final int theX, final int theY){
 		Room newCurrent = theDungeon.getRoom(theX, theY);
 		theDungeon.setCurrentRoom(newCurrent);
@@ -156,6 +225,10 @@ public class DungeonAdventure implements Serializable {
 				+ "," + theDungeon.getCurrentRoom().getYCoord() + "]";
 	}
 
+	/**
+	 * called when the user encounters a monster
+	 * @param theType whether it is a boss monster
+	 */
 	protected static void createBattle(String theType){
 		DungeonAdventure.sceneController("battle");
 		BattleGUI.setBattle(new Battle(myHero, theType));
@@ -164,13 +237,14 @@ public class DungeonAdventure implements Serializable {
 
 	/**
 	 * Used when a chest is a mimic. Need to make a battle with a mimic happen.
-	 * @param theMonster
+	 * @param theMonster the type of monster
 	 */
 	protected static void createBattle(final Monster theMonster){
 		Music.playMusic("battle");
 		DungeonAdventure.sceneController("battle");
 		BattleGUI.setBattle(new Battle(myHero, theMonster));
 	}
+
 	/**
 	 * Check rooms for monsters, boss, pits, and items and acts accordingly
 	 */
@@ -189,7 +263,7 @@ public class DungeonAdventure implements Serializable {
 			Music.playSFX("pitTrap");
 			myHero.takeDamage(10);
 			DungeonGUI.setHealthLabel(myHero);
-			playerConsole.append(myUserName + " has taken 10 damage from a pit trap!");
+			playerConsole.append(myUserName).append(" has taken 10 damage from a pit trap!");
 			DungeonGUI.setPlayerConsole(playerConsole);
 			if(myHero.getHealth() <= 0){		//because the player died
 				gameOver();
@@ -211,16 +285,16 @@ public class DungeonAdventure implements Serializable {
 			currentRoom.setEmpty();
 			DungeonGUI.setPlayerConsole(playerConsole);
 		}else if(currentRoom.getMyType() == RoomType.EXIT) {
-			if(numDungeonsPassed == 4){
+			if(myNumDungeonsPassed == 4){
 				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
 				if(input == 0){		//play again
 					playAgain();
 				}else{		//close the game
 					System.exit(0);
 				}
-			} else if(numDungeonsPassed == currentDungeonNum){
+			} else if(myNumDungeonsPassed == myCurrentDungeonNum){
 				JOptionPane.showMessageDialog(null,"Oh No! Looks like the exit leads to another Dungeon....");
-				currentDungeonNum++;
+				myCurrentDungeonNum++;
 				nextDungeon();
 			}
 		} else{
@@ -230,6 +304,9 @@ public class DungeonAdventure implements Serializable {
 	}
 
 
+	/**
+	 * if the player died
+	 */
 	protected static void gameOver(){
 		int input = JOptionPane.showConfirmDialog(null, "GAME OVER.\nPLAY AGAIN?"); // 0=yes, 1=no, 2=cancel
 
@@ -239,6 +316,10 @@ public class DungeonAdventure implements Serializable {
 			System.exit(0);
 		}
 	}
+
+	/**
+	 * asking the user if they want to play again
+	 */
 	protected static void playAgain(){
 		sceneController("menu");
 		BackpackGUI.removeAllItems();
@@ -246,9 +327,13 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.closeBackPack();
 	}
 
+	/**
+	 * if the hero won the battle
+	 * @param theMonster the monster they defeated
+	 */
 	protected static void battleWin(Monster theMonster) {
 		if (myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM) {        //if the user defeated a boss monster, then advance to next dungeon
-			numDungeonsPassed++;
+			myNumDungeonsPassed++;
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
 			PlayerInventory inv = myHero.getMyInventory();
@@ -257,9 +342,10 @@ public class DungeonAdventure implements Serializable {
 			while (!addedPillar) {
 				PillarType pillarType = Pillar.getRandomPillar();
 				boolean duplicate = false;
-				for (int i = 0; i < pillars.length; i++) {
-					if (pillars[i].getMY_TYPE() == pillarType) {
+				for (Pillar value : pillars) {
+					if (value.getMY_TYPE() == pillarType) {
 						duplicate = true;
+						break;
 					}
 				}
 				if (!duplicate) {
@@ -277,7 +363,7 @@ public class DungeonAdventure implements Serializable {
 						pillar = new PillarOfPolymorphism(pillarType);
 						MAIN_GUI.getBackpackGui().addPillarToBackpack("polymorphism", pillar.getMyImage(), pillar);
 					}
-					inv.addPillar(pillar);        //TODO add image to backpack
+					inv.addPillar(pillar);
 
 					addedPillar = true;
 					JOptionPane.showMessageDialog(null, "Congrats! You have defeated the Boss of " + pillarType + "!\nYou have been awarded the Pillar of " + pillarType + "!\n" +
@@ -302,11 +388,14 @@ public class DungeonAdventure implements Serializable {
 		}
 	}
 
+	/**
+	 * goes to next dungeon, creates a new dungeon and sets the appropriate labels
+	 */
 	protected static void nextDungeon(){
 		MAIN_GUI.closeMap();
 		MAIN_GUI.closeBackPack();
 		createDungeon();	//creating new dungeon
-		myHero.setHealth(myHero.getMaxHealth()); //setting health back to full  //TODO should we set the health back to full???
+		myHero.setHealth(myHero.getMaxHealth()); //setting health back to full
 		sceneController("dungeon");
 		DungeonGUI.setHealthLabel(myHero);
 		DungeonGUI.enableButtons();
@@ -314,23 +403,25 @@ public class DungeonAdventure implements Serializable {
 		checkRoom();
 	}
 
-	// TODO not used decide if needed
+	/**
+	 * @return the main GUI instance
+	 */
 	protected static MainGUI getMainGui() {
 		return MAIN_GUI;
 	}
 
 	/**
-	 * Methods to use for loading in a save file
+	 * @return the number of dungeons completed
 	 */
-	// TODO not used decide if needed
-	protected static void setNumDungeonsPassed(final int theVal) {
-		numDungeonsPassed = theVal;
-	}
 	protected static int getNumDungeonsPassed() {
-		return numDungeonsPassed;
+		return myNumDungeonsPassed;
 	}
+
+	/**
+	 * @return the current dungeon number
+	 */
 	protected static int getCurrentDungeonNum(){
-		return currentDungeonNum;
+		return myCurrentDungeonNum;
 	}
 
 

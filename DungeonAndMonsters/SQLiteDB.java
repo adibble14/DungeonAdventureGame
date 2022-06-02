@@ -403,7 +403,7 @@ public class SQLiteDB {
         return 0;
     }
 
-    public static double getCharacterBlockChange(String theCharacterType){
+    public static double getCharacterBlockChance(String theCharacterType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT BLOCK_CHANCE" +
                 " FROM heroes WHERE HERO_TYPE = '" + theCharacterType+"'";

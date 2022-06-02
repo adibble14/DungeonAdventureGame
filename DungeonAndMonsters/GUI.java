@@ -1,11 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
+/**
+ * abstract class that creates a basis for what all the GUIs have in common
+ */
 public abstract class GUI extends JFrame {
+    /**
+     * the width of the window
+     */
     protected static final int MY_WINDOW_WIDTH = 950;
+
+    /**
+     * the height of the window
+     */
     protected static final int MY_WINDOW_HEIGHT = 650;
+
+    /**
+     * constructor of GUI
+     */
     GUI(){
         Icon swordIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png", "Sword");
         ImageIcon swordImageIcon = new ImageIcon("DungeonAndMonsters/random images/sword.png");
@@ -24,30 +36,21 @@ public abstract class GUI extends JFrame {
 
         // Instruction submenu
         JMenuItem instr = new JMenuItem("Instructions");
-        // Pulling stringbuilder text from DungeonAdventure.gamePlay method
         StringBuilder instructionText = gamePlay();
-        // Formatting using built in Java to HTML
         String instFormat = instructionText.toString().replace("\n", "<br>");
-        String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></htmt>";
-        // Action listener implementing a dialog box
-        instr.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, finalInstFormat);
-        });
+        String finalInstFormat = "<html><font size='5'>" + instFormat + "</font></html>";
+        instr.addActionListener(e -> JOptionPane.showMessageDialog(this, finalInstFormat));
 
         // About message
         JMenuItem about = new JMenuItem("About");
         StringBuilder aboutText = aboutInfo();
         String aboutFormat = aboutText.toString().replace("\n", "<br>");
-        String finalAboutFormat = "<html><font size='5'>" + aboutFormat + "</font></htmt>";
-        // pull sword image for icon for dialog popup
-
-        about.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, finalAboutFormat, "About", JOptionPane.INFORMATION_MESSAGE, swordIcon);
-        });
+        String finalAboutFormat = "<html><font size='5'>" + aboutFormat + "</font></html>";
+        about.addActionListener(e -> JOptionPane.showMessageDialog(this, finalAboutFormat, "About", JOptionPane.INFORMATION_MESSAGE, swordIcon));
 
         // Simple quitting button
         JMenuItem quit = new JMenuItem("Quit");
-        quit.addActionListener(e -> System.exit(0));;
+        quit.addActionListener(e -> System.exit(0));
 
         // Add menu items to help menu
         help.add(instr); help.add(about); help.add(quit);
@@ -57,14 +60,13 @@ public abstract class GUI extends JFrame {
 
     /**
      * Can be moved to wherever we want to store large text data
-     * TODO possibly can store in database?
      * @return Large StringBuilder representing our about info for use in GUI menu
      */
     public static StringBuilder aboutInfo() {
         float versionNum = 1.0f;
         StringBuilder aboutInfo = new StringBuilder();
         aboutInfo.append("Dungeons and Monsters - A Game Made for TCSS 360 Spring 2022. \n");
-        aboutInfo.append("Alpha version:" + versionNum + "\n\nCreated by:\n");
+        aboutInfo.append("Alpha version:").append(versionNum).append("\n\nCreated by:\n");
         aboutInfo.append("- Mario Flores\n");
         aboutInfo.append("- Andrew Dibble\n");
         aboutInfo.append("- Alex Humphries\n");

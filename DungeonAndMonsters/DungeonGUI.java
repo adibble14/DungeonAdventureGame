@@ -4,45 +4,58 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class DungeonGUI extends JPanel {
-    // white outline border to be used in dungeon
+
+    /**
+     * border used in GUI
+     */
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 5);
 
+    /**
+     * instance of dungeon
+     */
     private static Dungeon myDungeon;
 
-    // Health indicator reference
+    /** Health indicator reference
+     */
     private static JLabel myHealthLabel;
 
-    // Console to display what's going on in the dungeon
+    /**
+     * Console to display what's going on in the dungeon
+      */
     private static JTextArea myPlayerConsole;
-    // Room indicator (we are in room 0,0)
+
+    /** Room indicator (we are in room 0,0)
+     */
     private static JLabel myRoomLabel;
 
-    // Image for the hero above health
+    /** Image for the hero above health
+     */
     private static JLabel myHeroImage;
 
-    // Name for hero
+    /** Name for hero
+     */
     private static JLabel myHeroName;
 
-    // Display "window" we have inside the display panel
-    // Used for displaying the hero in game, monsters, items, rooms
+    /** Display "window" we have inside the display panel .
+     * Used for displaying the hero in game, monsters, items, rooms
+     */
     private static drawWindow myDungeonWindow;
 
-    // Buttons used for movement
+    /** Buttons used for movement
+     */
     private static JButton myUpMoveButton;
     private static JButton myDownMoveButton;
     private static JButton myLeftMoveButton;
     private static JButton myRightMoveButton;
 
+    /**
+     * in game images
+     */
+    private static final JLabel myInGameSprite = new JLabel();
+    private static final JLabel myInGamePit = new JLabel(new ImageIcon("DungeonAndMonsters/random images/smallerpit.png"));
 
 
-    // TODO temporary variable to test dungeonWindow
-    //private JLabel myThiefInGameSprite = new JLabel(new ImageIcon("DungeonAndMonsters/character pics/goblinthief.png"));
-    private static JLabel myInGameSprite = new JLabel();
-    private static JLabel myInGamePit = new JLabel(new ImageIcon("DungeonAndMonsters/random images/smallerpit.png"));
-
-    // TODO Any variables that are updated outside this class make static?
     DungeonGUI(Font thePixelFont) {
-        // Set up DungeonGUI Layout, it contains two panels
         GridBagConstraints gbc = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
 
@@ -300,42 +313,55 @@ public class DungeonGUI extends JPanel {
      */
     public static void setUpVisualDungeon(Hero theHero, Dungeon theDungeon){
         setDungeon(theDungeon);
-        // Sets the Dungeon Hero locally inside DungeonGUI as well as his health
         setHealthLabel(theHero);
-        // Sets the image of the hero
         setMyHeroImage(theHero);
-
         setMyInGameSprite(theHero);
-        // Sets the name specified by what the player types in
         setMyHeroName(theHero);
 
         myDungeonWindow.remove(myInGamePit);
-        // Sets the starting room number in the corner of the GUI
+
         myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(theDungeon, theDungeon.getCurrentRoom().getXCoord(), theDungeon.getCurrentRoom().getYCoord()));
 
         myRoomLabel.setText(DungeonAdventure.getRoomLabel(theDungeon));
 
         enableButtons();
-        ArrayList theRooms = Dungeon.availableRooms(theDungeon);
+        ArrayList<String> theRooms = Dungeon.availableRooms(theDungeon);
         disableButtons(theRooms);
-
     }
 
 
+    /**
+     * sets the health label
+     * @param theHero the hero
+     */
     static void setHealthLabel(final Hero theHero){
         myHealthLabel.setText("Current health: " + theHero.getHealth());
     }
 
+    /**
+     * sets the player console
+     * @param theMessage the message
+     */
     static void setPlayerConsole(StringBuilder theMessage){
         myPlayerConsole.setText(theMessage.toString());
     }
+
+    /**
+     * @return the room label
+     */
     public static JLabel getMyRoomLabel(){return myRoomLabel;}
 
 
+    /**
+     * @return dungeon instance
+     */
     public static Dungeon getDungeon(){
         return myDungeon;
     }
 
+    /**
+     * @param theDungeon what to set the dungeon to
+     */
     public static void setDungeon(Dungeon theDungeon){
         myDungeon = theDungeon;
     }
@@ -348,6 +374,9 @@ public class DungeonGUI extends JPanel {
         myHeroImage.setIcon(theHero.getMySprite());
     }
 
+    /**
+     * @param theHero what to set the image to
+     */
     protected static void setMyInGameSprite(final Hero theHero){
         myInGameSprite.setIcon(theHero.getMyInGameSprite());
     }
@@ -362,19 +391,19 @@ public class DungeonGUI extends JPanel {
 
     /**
      * adds the pit image to the dungeon
-     * @param gbc
+     * @param gbc constraints
      */
     public static void addPit(GridBagConstraints gbc){
         gbc.gridx = 0;
         gbc.gridy = 0;
-        //gbc.weighty = 0.5;
-        //gbc.weightx = 0.5;
-        //gbc.insets = new Insets(70,80,70,80);
-        //gbc.anchor = GridBagConstraints.SOUTH;
         myDungeonWindow.add(myInGamePit, gbc);
     }
 
-    static void disableButtons(ArrayList theRooms){
+    /**
+     * disables the arrow buttons
+     * @param theRooms which rooms to disable
+     */
+    static void disableButtons(ArrayList<String> theRooms){
         if(!theRooms.contains("south")){
             myDownMoveButton.setEnabled(false);
         }
@@ -389,6 +418,9 @@ public class DungeonGUI extends JPanel {
         }
     }
 
+    /**
+     * sets all arrow buttons to enabled
+     */
     static void enableButtons(){
         myDownMoveButton.setEnabled(true);
         myUpMoveButton.setEnabled(true);
@@ -396,6 +428,9 @@ public class DungeonGUI extends JPanel {
         myLeftMoveButton.setEnabled(true);
     }
 
+    /**
+     * resets teh dungeon room image
+     */
     static void resetDungeonImage(){
         myDungeonWindow.setWindowImg(DungeonAdventure.setRoomWindow(getDungeon(), getDungeon().getCurrentRoom().getXCoord(), getDungeon().getCurrentRoom().getYCoord()));
     }

@@ -1,12 +1,9 @@
-
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.Random;
 
 /**
  * This is the parent abstract class that is inherited from the Hero and Monster class.
  */
-
 public abstract class DungeonCharacter implements Serializable {
 
     /**
@@ -43,6 +40,9 @@ public abstract class DungeonCharacter implements Serializable {
      */
     private transient ImageIcon mySprite;
 
+    /**
+     * stores the objects in game image
+     */
     private transient ImageIcon myInGameSprite;
 
     /**
@@ -129,11 +129,7 @@ public abstract class DungeonCharacter implements Serializable {
      * @param theHealth takes health value given by attack() method of child classes.
      */
     protected void setHealth(final int theHealth) {
-
-        if (theHealth < 0) {
-            this.myCurrentHealth = 0;
-        }
-        this.myCurrentHealth = theHealth;
+        this.myCurrentHealth = Math.max(theHealth, 0);
     }
 
     /**
@@ -194,10 +190,6 @@ public abstract class DungeonCharacter implements Serializable {
      * @param theAccuracy takes accuracy value given by child classes.
      */
     final protected void setAccuracy(final double theAccuracy) {
-
-/*        if (!(theAccuracy > 0)) {
-            throw new IllegalArgumentException("Accuracy value must be greater than zero.");
-        }*/
         this.myAccuracy = theAccuracy;
     }
 
@@ -214,10 +206,15 @@ public abstract class DungeonCharacter implements Serializable {
         this.mySprite = theSprite;
     }
 
+    /**
+     * @return the in game image
+     */
     protected ImageIcon getMyInGameSprite(){return this.myInGameSprite;}
+
+    /**
+     * @param theSprite what to set the in game image to
+     */
     protected void setMyInGameSprite(final ImageIcon theSprite){this.myInGameSprite = theSprite;}
-
-
 
 
     /**
@@ -228,9 +225,7 @@ public abstract class DungeonCharacter implements Serializable {
      *                setHealth to change health value.
      */
     protected void attack(final DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
         if (this.isAttack()) {
-
             int damage = Tools.RANDOM.nextInt(this.myMaxDamage - this.myMinDamage) + this.myMinDamage;
             int result = theChar.getHealth() - damage;
 
@@ -238,16 +233,11 @@ public abstract class DungeonCharacter implements Serializable {
 
                 result = 0;
             }
-
             theChar.setHealth(result);
 
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " dealt " + damage + " of damage. "));
-            System.out.println(this.getName() + " landed an attack on " + theChar.getName() + "!! Dealt " + damage + " of damage.\n\n");
-
-
         } else {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + "'s attack missed! "));
-            System.out.println(this.getName() + "'s attack missed!\n\n");
         }
     }
 
@@ -290,8 +280,14 @@ public abstract class DungeonCharacter implements Serializable {
 
     }
 
+    /**
+     * @return the accuracy
+     */
     public double getMyAccuracy(){return myAccuracy;}
 
+    /**
+     * @return info about the objects special
+     */
     public abstract String getSpecialInfo();
 
 

@@ -1,7 +1,9 @@
 import javax.swing.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * this class creates a chest that a hero can find that contains various items in it
+ */
 public class Chest extends Item {
 
     /**
@@ -35,7 +37,7 @@ public class Chest extends Item {
      * Places the chests contents into the players inventory.
      * If chest contains a monster, does not add anything to player inventory and
      * Starts a battle.
-     * @param theObj
+     * @param theObj the hero
      */
     @Override
     public void use(Object theObj) {
@@ -55,34 +57,20 @@ public class Chest extends Item {
     /**
      * Initiates myContents field by adding a maximum of three Items.
      */
-    //new Mimic("Mimic",150,5,30,15,.7,.2,10,15);
     private void addContents() {
-        // 17% chance of being a mimic
         if(Tools.RANDOM.nextDouble() < this.myMimicChance) {
-            this.myIsMimic = true; //TODO: Create a Mimic monster.
+            this.myIsMimic = true;
             return;
         }
 
         // amount of items to add to this chest, max of three
         for(int i = 0; i < Tools.RANDOM.nextInt(1, 4); i++) {
-            switch(Tools.RANDOM.nextInt(3)) {
-                case 0: this.myContents.add(new HealthPotion());
-                        break;
-                case 1: this.myContents.add(new VisionPotion());
-                        break;
-                default: this.myContents.add(new Gold());
+            switch (Tools.RANDOM.nextInt(3)) {
+                case 0 -> this.myContents.add(new HealthPotion());
+                case 1 -> this.myContents.add(new VisionPotion());
+                default -> this.myContents.add(new Gold());
             }
         }
 
-
-
-    }
-
-    /**
-     * Access method for boolean myIsMimic flag
-     * @return
-     */
-    public boolean isMimic() {
-        return this.myIsMimic;
     }
 }

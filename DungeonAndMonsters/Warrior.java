@@ -21,7 +21,7 @@ public class Warrior extends Hero {
 
         super(theName, SQLiteDB.getCharacterHealth("Warrior", "heroes"), SQLiteDB.getCharacterSpeed("Warrior", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Warrior", "heroes"), SQLiteDB.getCharacterMinDamage("Warrior", "heroes"),
-                SQLiteDB.getCharacterAccuracy("Warrior", "heroes"), SQLiteDB.getCharacterBlockChange("Warrior"),
+                SQLiteDB.getCharacterAccuracy("Warrior", "heroes"), SQLiteDB.getCharacterBlockChance("Warrior"),
                 new ImageIcon(SQLiteDB.getCharacterImage("Warrior", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Warrior")));
     }
 

@@ -27,13 +27,10 @@ public class Beast extends Monster {
      */
     @Override
     final protected void special(DungeonCharacter theChar) {
-        //TODO delete this output once GUI is made, since this is VIEW
-        System.out.println(this.getName() + " goes for a Feral Swipe!\n\n");
 
         int damage = theChar.getHealth() / 2;
         theChar.setHealth(damage);
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " halves "+ theChar.getName() + "'s health with the Feral Swipe. "));
-        System.out.println(this.getName() + " halves " + theChar.getName() + "'s health!\n\n");
     }
 
     @Override

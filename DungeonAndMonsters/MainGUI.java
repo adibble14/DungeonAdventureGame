@@ -4,31 +4,47 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * the main GUI class that holds all the panels of the other GUI classes
+ */
 public class MainGUI extends GUI{
-    // Layout that will control when cards are shown
+    /** Layout that will control when cards are shown
+     */
     CardLayout myCardLayout = new CardLayout();
-    // Panel to hold the cardlayout
+
+    /**
+     * panel that controls which cards are shown
+     */
     JPanel myCardPanel = new JPanel(myCardLayout);
-    // Pixel font
+    /** Pixel font
+     */
     private Font myCustomFont;
-    // Reference to backpack frame
-    private BackpackGUI myBackpackGui;
-    // Reference to Map Frame
-    private MapGUI myMapGui;
-    // Reference to the hero and dungeon
-    //private Hero theHero;
+
+    /**
+     * instance of the backpack
+     */
+    private final BackpackGUI myBackpackGui;
+    /**
+     * instance of the map
+     */
+    private final MapGUI myMapGui;
+    /**
+     * the dungeon
+     */
     private static Dungeon myDungeon;
+
+    /**
+     * the constructor of mainGUI
+     */
     MainGUI(){
         try {
-            //create the font to use. Specify the size!
             myCustomFont = Font.createFont(Font.TRUETYPE_FONT, new File("DungeonAndMonsters/VT323-Regular.ttf")).deriveFont(25f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
             ge.registerFont(myCustomFont);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
-        // Adding the cardPanel to the Frame
+
         this.add(myCardPanel);
 
         // Create all our content panels
@@ -52,71 +68,57 @@ public class MainGUI extends GUI{
         Music.playMusic("mainMenu");
     }
 
+    /**
+     * @return the backpack
+     */
     public BackpackGUI getBackpackGui(){
         return myBackpackGui;
     }
 
-    /*public void setTheHero(Hero myHero){
-        //theHero = myHero;
-        myBackpackGui.setMyHero(myHero);
-    }*/
-
+    /**
+     * @param theDungeon set the dungeon
+     */
     protected void setMyDungeon(Dungeon theDungeon){
         myDungeon = theDungeon;
     }
 
-    protected static Dungeon getMyDungeon(){
-        return myDungeon;
-    }
 
+    /**
+     * @return the map
+     */
     protected MapGUI getMapGui(){
         return myMapGui;
     }
 
+    /**
+     * called by scene controller in DungeonAdventure, switches the card that is shown
+     * @param myCardName which card to switch to
+     */
     protected void setCurrentCard(String myCardName){
-        switch (myCardName){
-            case "menu":
-                myCardLayout.show(myCardPanel,"menu");
-                break;
-            case "character":
-                myCardLayout.show(myCardPanel, "character");
-                break;
-            case "dungeon":
+        switch (myCardName) {
+            case "menu" -> myCardLayout.show(myCardPanel, "menu");
+            case "character" -> myCardLayout.show(myCardPanel, "character");
+            case "dungeon" -> {
                 myCardLayout.show(myCardPanel, "dungeon");
                 Music.playMusic("dungeon");
-                break;
-            case "map":
-                myMapGui.setVisible(true);
-                break;
-            case "backpack":
-                myBackpackGui.setVisible(true);
-                break;
-            case "battle":
-                myCardLayout.show(myCardPanel, "battle");
-                break;
-            case "monster":
-                myCardLayout.show(myCardPanel, "monster");
+            }
+            case "map" -> myMapGui.setVisible(true);
+            case "backpack" -> myBackpackGui.setVisible(true);
+            case "battle" -> myCardLayout.show(myCardPanel, "battle");
+            case "monster" -> myCardLayout.show(myCardPanel, "monster");
         }
     }
 
     /**
-     * returns the current panel visible
-     * @return
+     * close the backpack
      */
-    JPanel getCurrentCard(){
-        for(Component comp : myCardPanel.getComponents()) {
-            if (comp.isVisible()) {
-                return (JPanel)comp;
-            }
-        }
-        return null;
-    }
-
-
     void closeBackPack(){
         myBackpackGui.dispatchEvent(new WindowEvent(myBackpackGui, WindowEvent.WINDOW_CLOSING));
     }
 
+    /**
+     * close the map
+     */
     void closeMap(){
         myMapGui.dispatchEvent(new WindowEvent(myMapGui, WindowEvent.WINDOW_CLOSING));
     }

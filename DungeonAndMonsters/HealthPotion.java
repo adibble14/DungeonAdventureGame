@@ -1,20 +1,18 @@
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
+/**
+ * the health potion class, can heal the hero
+ */
 public class HealthPotion extends Item {
 
     /**
      * Represents the potency of this potion.
-     * Such has heal amount,
+     * Such has healed amount,
      */
-    private int myAffectAmount;
-
-
+    private final int myAffectAmount;
 
     /**
      * Constructor for this class. Simply initializes fields.
-     *
      */
     protected HealthPotion() {
         super(new ImageIcon("DungeonAndMonsters/potion.png"));
@@ -23,7 +21,7 @@ public class HealthPotion extends Item {
 
     /**
      * Heals Hero, increases health amount by this potions amount.
-     * @param theObject
+     * @param theObject the hero
      */
     @Override
     public void use(Object theObject) {

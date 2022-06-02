@@ -1,13 +1,10 @@
 import javax.swing.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * This class inherits from Monster super class. Has fields associated with special attack method.
  * Sets a random name from array of names.
  */
 
-//TODO don't understand Skeleton Super logic, think there might be an error
 public class Skeleton extends Monster {
 
     /**
@@ -18,7 +15,6 @@ public class Skeleton extends Monster {
      * once the skeleton revives once, it cannot revive again
      */
     private boolean revived;
-    private static final ImageIcon skeletonImage = new ImageIcon("DungeonAndMonsters/monster pics/rpgCritterSkelly.png");
 
 
     /**
@@ -80,9 +76,6 @@ public class Skeleton extends Monster {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
-
-        //TODO delete this output once GUI is made, since this is VIEW
-        System.out.println(this.getName() + " prepares to reassemble itself after death! \n\n");
         BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " prepares to reassemble itself after death! "));
         this.setSpecialActive(true);
 

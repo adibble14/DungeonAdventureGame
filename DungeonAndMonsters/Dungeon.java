@@ -1,15 +1,10 @@
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Builds a matrix consisting of Room objects. Interacts with Hero objects as well.
- * 
- * @author Mario Flores Vences
- *
  */
 
 public class Dungeon implements Serializable {
@@ -33,7 +28,6 @@ public class Dungeon implements Serializable {
 	 * Chance of spawning a pit in room
 	 */
 	private final transient double myPitSpawnChance;
-	//TODO: Remove the numDungeonsPassed from DungeonAdventure
 	/**
 	 * Current dungeon that the player is on. Must clear 4 to beat the game
 	 */
@@ -45,17 +39,21 @@ public class Dungeon implements Serializable {
 	private final int myDungeonsPassed;
 
 	/**
+	 * the chance a monster can spawn in a room
+	 */
+	private transient final double myMonsterSpawnChance = .05;
+
+	/**
 	 * Constructs Dungeon matrix of Room objects and places Hero object in 
 	 * the entrance of the Dungeon. Randomly generates the entrance and exit Rooms
 	 * Randomly places keys in rooms.
-	 *
 	 */
-	protected Dungeon(final int theSize, final double theItemRoomChance, final int numDungeonsPassed, final int theCurrentDungeon) {
+	protected Dungeon(final int theSize, final double theItemRoomChance, final int theNumDungeonsPassed, final int theCurrentDungeon) {
 
 		this.myItemRoomChance = theItemRoomChance;
-		this.myPitSpawnChance = .1; //TODO: implement arguments after done testing
+		this.myPitSpawnChance = .1;
 		this.myDungeon = this.generateDungeon(theSize);
-		this.myDungeonsPassed = numDungeonsPassed;
+		this.myDungeonsPassed = theNumDungeonsPassed;
 		this.myCurrentDungeonNumber = theCurrentDungeon;
 		this.placeMonsters();
 		System.out.println(this);
@@ -87,7 +85,6 @@ public class Dungeon implements Serializable {
 		}
 
 		return null;
-		
 	}
 	
 	/**
@@ -107,12 +104,10 @@ public class Dungeon implements Serializable {
 		this.myCurrentRoom = theRoom;
 	}
 
-
-
 	/**
 	 * Prints the Dungeon. Shows what the types for each Room.
 	 * For debug purposes at this point.
-	 * @return
+	 * @return the dungeon as a string
 	 */
 	//TODO delete once GUI is made
 	@Override
@@ -120,13 +115,13 @@ public class Dungeon implements Serializable {
 		
 		StringBuilder roomContents = new StringBuilder();
 
-		for(int i = 0; i < myDungeon.length; i++) {
-			for(int j = 0; j < myDungeon.length; j++) {
-				if(myDungeon[i][j] == null)
+		for (Room[] rooms : myDungeon) {
+			for (int j = 0; j < myDungeon.length; j++) {
+				if (rooms[j] == null)
 					roomContents.append("* ");
 				else {
-					myDungeon[i][j].unhide();
-					roomContents.append(myDungeon[i][j].toString() + " ");
+					rooms[j].unhide();
+					roomContents.append(rooms[j].toString()).append(" ");
 				}
 			}
 			roomContents.append("\n");
@@ -135,10 +130,9 @@ public class Dungeon implements Serializable {
 	}
 
 	/**
-	 * Generates the Dungeon, does a lot so it will be very difficult to write a unit test for.
-	 *
-	 * @param theSize
-	 * @return
+	 * Generates the Dungeon
+	 * @param theSize the size of the dungeon
+	 * @return a dungeon
 	 */
 	private Room[][] generateDungeon(final int theSize) {
 		Room[][] dung = new Room[theSize][theSize];
@@ -158,13 +152,11 @@ public class Dungeon implements Serializable {
 
 		dung[entranceXCoord][entranceYCoord] = entrance;
 		dung[exitXCoord][exitYCoord] = exit;
-		//dung[bossX][bossY] = bossRoom;
 
 		System.out.println("Entrance Coords: " + entranceXCoord + " " + entranceYCoord);
 		System.out.println("Exit Coords: " + exitXCoord + " " + exitYCoord);
 
 		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
-		//this.DFSGenerateRooms(dung, bossRoom, RoomType.ENTRANCE);
 		while(true) {
 			if(dung[bossX][bossY] == null) {
 				bossX = Tools.RANDOM.nextInt(0,theSize-1);
@@ -213,7 +205,7 @@ public class Dungeon implements Serializable {
 	 * @return the RoomType
 	 */
 	private RoomType getRandomRoomType() {
-		Double dub = Tools.RANDOM.nextDouble();
+		double dub = Tools.RANDOM.nextDouble();
 		if(dub < this.myPitSpawnChance) {
 			return RoomType.PIT;
 		}
@@ -225,11 +217,11 @@ public class Dungeon implements Serializable {
 
 	/**
 	 * returns all the possible ways to move
-	 * @param theDung
-	 * @return
+	 * @param theDung the dungeon
+	 * @return an arraylist containing the ways available to move
 	 */
-	public static ArrayList availableRooms(final Dungeon theDung){
-		ArrayList theRooms = new ArrayList();
+	public static ArrayList<String> availableRooms(final Dungeon theDung){
+		ArrayList<String> theRooms = new ArrayList<>();
 		Room room = theDung.getCurrentRoom();
 		int row = room.getXCoord();
 		int col = room.getYCoord();
@@ -261,12 +253,11 @@ public class Dungeon implements Serializable {
 	 * @param theDung Dungeon created after CharacterSelect
 	 */
 	public static Image setMyDungeonRoom(final Dungeon theDung){
-		ArrayList theRooms = availableRooms(theDung);
+		ArrayList<String> theRooms = availableRooms(theDung);
 		Boolean north = theRooms.contains("north");
 		Boolean south = theRooms.contains("south");
 		Boolean east = theRooms.contains("east");
 		Boolean west = theRooms.contains("west");
-		
 
 
 		if(north && south && east && west){
@@ -316,8 +307,8 @@ public class Dungeon implements Serializable {
 					continue;
 				}
 				RoomType type = room.getMyType();
-				if(Tools.RANDOM.nextDouble() < .05 && type != RoomType.EXIT && type != RoomType.ENTRANCE
-						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) { //TODO: Change magic number into a class field
+				if(Tools.RANDOM.nextDouble() < myMonsterSpawnChance && type != RoomType.EXIT && type != RoomType.ENTRANCE
+						&& type != RoomType.PIT && type != RoomType.BOSS_ROOM) {
 					room.setMonster();
 				}
 			}
@@ -331,5 +322,13 @@ public class Dungeon implements Serializable {
 	public int getMyCurrentDungeonNumber() {
 		return this.myCurrentDungeonNumber;
 	}
+
+	/**
+	 * @return getter for the number of dungeons passed
+	 */
+	public int getMyDungeonsPassed(){
+		return this.myDungeonsPassed;
+	}
+
 }
 

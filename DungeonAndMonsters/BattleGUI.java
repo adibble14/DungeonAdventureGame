@@ -337,9 +337,9 @@ public class BattleGUI extends JPanel {
 
     /**
      * setter for battle
-     * @param battle the instance of battle to set
+     * @param theBattle the instance of battle to set
      */
-    public static void setMyBattle(Battle battle){myBattle = battle;}
+    public static void setMyBattle(Battle theBattle){myBattle = theBattle;}
 
     /**
      * @return instance of battle

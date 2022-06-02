@@ -21,7 +21,7 @@ public class Thief extends Hero {
 
         super(theName, SQLiteDB.getCharacterHealth("Thief", "heroes"), SQLiteDB.getCharacterSpeed("Thief", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Thief", "heroes"), SQLiteDB.getCharacterMinDamage("Thief", "heroes"),
-                SQLiteDB.getCharacterAccuracy("Thief", "heroes"), SQLiteDB.getCharacterBlockChange("Thief"),
+                SQLiteDB.getCharacterAccuracy("Thief", "heroes"), SQLiteDB.getCharacterBlockChance("Thief"),
                 new ImageIcon(SQLiteDB.getCharacterImage("Thief", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Thief")));
     }
 

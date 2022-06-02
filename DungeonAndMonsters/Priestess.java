@@ -15,7 +15,7 @@ public class Priestess extends Hero{
 
         super(theName, SQLiteDB.getCharacterHealth("Priestess", "heroes"), SQLiteDB.getCharacterSpeed("Priestess", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Priestess", "heroes"), SQLiteDB.getCharacterMinDamage("Priestess", "heroes"),
-                SQLiteDB.getCharacterAccuracy("Priestess", "heroes"), SQLiteDB.getCharacterBlockChange("Priestess"),
+                SQLiteDB.getCharacterAccuracy("Priestess", "heroes"), SQLiteDB.getCharacterBlockChance("Priestess"),
                 new ImageIcon(SQLiteDB.getCharacterImage("Priestess", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Priestess")));
     }
 

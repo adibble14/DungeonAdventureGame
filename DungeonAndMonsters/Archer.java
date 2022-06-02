@@ -20,7 +20,7 @@ public class Archer extends Hero {
 
         super(theName, SQLiteDB.getCharacterHealth("Archer", "heroes"), SQLiteDB.getCharacterSpeed("Archer", "heroes"),
                 SQLiteDB.getCharacterMaxDamage("Archer", "heroes"), SQLiteDB.getCharacterMinDamage("Archer", "heroes"),
-                SQLiteDB.getCharacterAccuracy("Archer", "heroes"), SQLiteDB.getCharacterBlockChange("Archer"),
+                SQLiteDB.getCharacterAccuracy("Archer", "heroes"), SQLiteDB.getCharacterBlockChance("Archer"),
                 new ImageIcon(SQLiteDB.getCharacterImage("Archer", "heroes")), new ImageIcon(SQLiteDB.getCharacterInGameImage("Archer")));
     }
 

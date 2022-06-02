@@ -3,15 +3,22 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 
+/**
+ * GUI class that creates the character selection screen
+ */
 public class CharacterSelectionGUI extends JPanel{
 
+    /**
+     * border we use in the frame
+     */
     private static final Border OUTLINE_BORDER = BorderFactory.createLineBorder(Color.WHITE, 2);
+
+    /**
+     * the constructor for the panel
+     * @param pixelFont a font it uses
+     */
     CharacterSelectionGUI(Font pixelFont){
-        // Settings for our internal panel
-        // bg color and how it is laid out.
-        // as well as the grid bag constraints
         GridBagConstraints gbc = new GridBagConstraints();
-        //this.setBackground(new Color(32,42,68));
         this.setBackground(Color.BLACK);
         this.setLayout(new GridBagLayout());
 
@@ -23,35 +30,34 @@ public class CharacterSelectionGUI extends JPanel{
         gbc.weightx = 0.5;
 
         // Image placement ----------------------------------------
-        // Archer
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel archerLabel = new JLabel(Archer.getImage());
         archerLabel.setBorder(OUTLINE_BORDER);
         this.add(archerLabel, gbc);
 
-        //Mage
+
         gbc.gridx = 1;
         gbc.gridy = 0;
         JLabel mageLabel = new JLabel(Mage.getImage());
         mageLabel.setBorder(OUTLINE_BORDER);
         this.add(mageLabel, gbc);
 
-        //Thief
+
         gbc.gridx = 2;
         gbc.gridy = 0;
         JLabel thiefLabel = new JLabel(Thief.getImage());
         thiefLabel.setBorder(OUTLINE_BORDER);
         this.add(thiefLabel, gbc);
 
-        //Warrior
+
         gbc.gridx = 3;
         gbc.gridy = 0;
         JLabel warriorLabel = new JLabel(Warrior.getImage());
         warriorLabel.setBorder(OUTLINE_BORDER);
         this.add(warriorLabel, gbc);
 
-        //Priestess
+
         gbc.gridx = 4;
         gbc.gridy = 0;
         JLabel priestessLabel = new JLabel(Priestess.getImage());
@@ -61,7 +67,7 @@ public class CharacterSelectionGUI extends JPanel{
 
         // Character description texts start ----------------------------------
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        //Archer
+
         gbc.gridx = 0;
         gbc.gridy = 1;
         String archerFormat = heroInfo("Archer").toString().replace("\n", "<br>");
@@ -70,16 +76,14 @@ public class CharacterSelectionGUI extends JPanel{
                 "</style><h1><<font size='5'>" + archerFormat + "</h1></font></html>";
         JLabel archerDesc = new JLabel(finalArcherFormat, SwingConstants.CENTER);
         archerDesc.setFont(pixelFont);
-        // Color of text
         archerDesc.setForeground(Color.white);
 
-        // To color a black background with border
         archerDesc.setOpaque(true);
         archerDesc.setBackground(Color.BLACK);
         archerDesc.setBorder(OUTLINE_BORDER);
         this.add(archerDesc, gbc);
 
-        //Mage
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         String mageFormat = heroInfo("Mage").toString().replace("\n", "<br>");
@@ -95,7 +99,7 @@ public class CharacterSelectionGUI extends JPanel{
         mageDesc.setBorder(OUTLINE_BORDER);
         this.add(mageDesc, gbc);
 
-        //Thief
+
         gbc.gridx = 2;
         gbc.gridy = 1;
         String thiefFormat = heroInfo("Thief").toString().replace("\n", "<br>");
@@ -111,7 +115,7 @@ public class CharacterSelectionGUI extends JPanel{
         thiefDesc.setBorder(OUTLINE_BORDER);
         this.add(thiefDesc, gbc);
 
-        //Warrior
+
         gbc.gridx = 3;
         gbc.gridy = 1;
         String warriorFormat = heroInfo("Warrior").toString().replace("\n", "<br>");
@@ -127,7 +131,7 @@ public class CharacterSelectionGUI extends JPanel{
         warriorDesc.setBorder(OUTLINE_BORDER);
         this.add(warriorDesc, gbc);
 
-        //Priestess
+
         gbc.gridx = 4;
         gbc.gridy = 1;
         String priestessFormat = heroInfo("Priestess").toString().replace("\n", "<br>");
@@ -146,10 +150,9 @@ public class CharacterSelectionGUI extends JPanel{
 
 
         // button placement start -------------------------------------------------------------
-
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipady = 20;
-        //Archer
+
         gbc.gridx = 0;
         gbc.gridy = 2;
         JButton archerButton = new JButton("Archer");
@@ -166,7 +169,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
         });
 
-        //Mage
+
         gbc.gridx = 1;
         gbc.gridy = 2;
         JButton mageButton = new JButton("Mage");
@@ -183,7 +186,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
         });
 
-        //Thief
+
         gbc.gridx = 2;
         gbc.gridy = 2;
         JButton thiefButton = new JButton("Thief");
@@ -200,7 +203,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
         });
 
-        //Warrior
+
         gbc.gridx = 3;
         gbc.gridy = 2;
         JButton warriorButton = new JButton("Warrior");
@@ -217,7 +220,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
         });
 
-        //Priestess
+
         gbc.gridx = 4;
         gbc.gridy = 2;
         JButton priestessButton = new JButton("Priestess");
@@ -234,9 +237,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
 
         });
-
         // button placement end -----------------------------------------------
-
 
         gbc.anchor = GridBagConstraints.SOUTH;
         gbc.gridx = 1;
@@ -259,7 +260,7 @@ public class CharacterSelectionGUI extends JPanel{
         stats.setPreferredSize(new Dimension(200,50));
         StringBuilder statText = statInfo();
         String statFormat = statText.toString().replace("\n", "<br>");
-        String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></htmt>";
+        String finalStatFormat = "<html><font size='5'>" + statFormat + "</font></html>";
 
         stats.addActionListener(e ->  {
             Music.playSFX("buttonClicked");
@@ -281,6 +282,10 @@ public class CharacterSelectionGUI extends JPanel{
 
     }
 
+    /**
+     * asks the user for their username
+     * @return the string of their username
+     */
     private String setUserName() {
         return JOptionPane.showInputDialog(this, "Provide User Name:");
     }
@@ -291,35 +296,36 @@ public class CharacterSelectionGUI extends JPanel{
     public static StringBuilder heroInfo(String theCharacterType) {
 
         StringBuilder heroInformation = new StringBuilder();
-        switch(theCharacterType){
-            case "Warrior":
-                heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
+        switch (theCharacterType) {
+            case "Warrior" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Warrior", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Warrior", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Warrior", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Warrior", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Warrior", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Warrior") * 100)).append("% block\n");
                 heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");
-                break;
-            case "Mage":
-                heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
+            }
+            case "Mage" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Mage", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Mage", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Mage", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Mage", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Mage", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Mage") * 100)).append("% block\n");
                 heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n100% accuracy");
-                break;
-            case "Thief":
-                heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
+            }
+            case "Thief" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Thief", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Thief", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Thief", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Thief", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Thief", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Thief") * 100)).append("% block\n");
                 heroInformation.append("Special: Surprise!\n20-60 damage\nCan also land extra attack\n40-80 damage\n60% accuracy.");
-                break;
-            case "Archer":
-                heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
+            }
+            case "Archer" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Archer", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Archer", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Archer", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Archer", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Archer", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Archer") * 100)).append("% block\n");
                 heroInformation.append("Special: Volley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
-                break;
-            case "Priestess":
-                heroInformation.append("Stats: \n75 hp\n5 attack speed\n25-45 damage\n70% accuracy\n30% block\n");
+            }
+            case "Priestess" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Priestess", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Priestess", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Priestess", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Priestess", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Priestess", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Priestess") * 100)).append("% block\n");
                 heroInformation.append("Special: Revive\n45-90 damage\n50% accuracy for every point of damage dealt priestess heals 2/3 of the points");
-                break;
-            default:
-                heroInformation.append("No info stored!");
-                break;
+            }
+            default -> heroInformation.append("No info stored!");
         }
 
         return heroInformation;
     }
 
+    /**
+     * @return info on what each stat means
+     */
     public static StringBuilder statInfo(){
         StringBuilder statInfo = new StringBuilder();
         statInfo.append("Stat Definitions\n");
@@ -328,7 +334,6 @@ public class CharacterSelectionGUI extends JPanel{
         statInfo.append("Damage: the number of damage dealt to the enemy per attack\n");
         statInfo.append("Accuracy: the chance an attack lands a hit on enemy\n");
         statInfo.append("Block Rate: the chance your hero can defend an attack from an enemy\n");
-
 
         return statInfo;
     }
