@@ -113,12 +113,6 @@ public abstract class DungeonCharacter implements Serializable {
     final protected int getMaxDamage() {
         return this.myMaxDamage;
     }
-    /**
-     * Get method for minimun damage value
-     */
-    final protected int getMyMinDamage() {
-        return this.myMinDamage;
-    }
 
     /**
      * Set method for name value
@@ -289,12 +283,11 @@ public abstract class DungeonCharacter implements Serializable {
     /**
      * @return the accuracy
      */
-    public double getMyAccuracy(){return myAccuracy;}
+    final double getMyAccuracy(){return myAccuracy;}
 
     /**
      * @return info about the objects special
      */
-    public abstract String getSpecialInfo();
-
+    abstract String getSpecialInfo();
 
 }

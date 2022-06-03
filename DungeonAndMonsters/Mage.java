@@ -43,7 +43,7 @@ public class Mage extends Hero {
     /**
      * @return the character select image
      */
-    public static ImageIcon getImage(){
+    static ImageIcon getImage(){
         return characterSelectImage;
     }
 
@@ -52,7 +52,7 @@ public class Mage extends Hero {
      * @return info about the character's super
      */
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Life Steal. This attack does not fail to land. It halves the enemies' health value. It also adds that value to the mage's health.";
     }
 

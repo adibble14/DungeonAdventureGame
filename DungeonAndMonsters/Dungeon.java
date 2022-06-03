@@ -218,7 +218,7 @@ public class Dungeon implements Serializable {
 	 * @param theDung the dungeon
 	 * @return an arraylist containing the ways available to move
 	 */
-	public static ArrayList<String> availableRooms(final Dungeon theDung){
+	static ArrayList<String> availableRooms(final Dungeon theDung){
 		ArrayList<String> theRooms = new ArrayList<>();
 		Room room = theDung.getCurrentRoom();
 		int row = room.getXCoord();
@@ -250,7 +250,7 @@ public class Dungeon implements Serializable {
 	 * changes depending on free rooms around us.
 	 * @param theDung Dungeon created after CharacterSelect
 	 */
-	public static Image setMyDungeonRoom(final Dungeon theDung){
+	static Image setMyDungeonRoom(final Dungeon theDung){
 		ArrayList<String> theRooms = availableRooms(theDung);
 		Boolean north = theRooms.contains("north");
 		Boolean south = theRooms.contains("south");
@@ -317,14 +317,14 @@ public class Dungeon implements Serializable {
 	/**
 	 * Getter for the myDungeonNumber field
 	 */
-	public int getMyCurrentDungeonNumber() {
+	int getMyCurrentDungeonNumber() {
 		return this.myCurrentDungeonNumber;
 	}
 
 	/**
 	 * @return getter for the number of dungeons passed
 	 */
-	public int getMyDungeonsPassed(){
+	int getMyDungeonsPassed(){
 		return this.myDungeonsPassed;
 	}
 

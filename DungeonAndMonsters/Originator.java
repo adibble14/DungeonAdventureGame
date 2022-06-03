@@ -42,7 +42,7 @@ public class Originator implements Serializable {
     /**
      * @param theMemento restoring hero to saved state
      */
-    public void restoreFromMemento(Memento theMemento) {
+    void restoreFromMemento(Memento theMemento) {
         myHero = theMemento.getSavedState();
     }
 
@@ -50,7 +50,7 @@ public class Originator implements Serializable {
      * getting the current state of the hero
      * @return hero
      */
-    public Hero getState() {
+    Hero getState() {
         return this.myHero;
     }
 

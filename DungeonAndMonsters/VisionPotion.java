@@ -20,7 +20,7 @@ public class VisionPotion extends Item {
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Dungeon dung = (Dungeon)  theObj;
         HashMap<int[], Room> map = Tools.GET_NEIGHBORS(dung.getDungeon(), dung.getCurrentRoom());
         ArrayList<int[]> keys = new ArrayList<>(map.keySet());

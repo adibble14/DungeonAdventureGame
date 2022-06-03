@@ -32,7 +32,7 @@ public class PillarOfPolymorphism extends Pillar{
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Hero hero = (Hero) theObj;
         if(!morphed) {
             careTaker.saveState(hero);

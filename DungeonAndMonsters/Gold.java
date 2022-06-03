@@ -26,7 +26,7 @@ public class Gold extends Item{
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Hero player = (Hero) theObj;
         player.setGoldAmount(this.myValue);
     }

@@ -52,7 +52,7 @@ public class Priestess extends Hero{
     /**
      * @return the character select image
      */
-    public static ImageIcon getImage(){
+    static ImageIcon getImage(){
         return characterSelectImage;
     }
 
@@ -61,7 +61,7 @@ public class Priestess extends Hero{
      * @return info about the character's super
      */
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Healing. For every point of damage dealt, priestess will heal 2/3 the amount.";
     }
 }

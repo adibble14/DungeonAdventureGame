@@ -62,7 +62,7 @@ public abstract class GUI extends JFrame {
      * Can be moved to wherever we want to store large text data
      * @return Large StringBuilder representing our about info for use in GUI menu
      */
-    public static StringBuilder aboutInfo() {
+    private static StringBuilder aboutInfo() {
         float versionNum = 1.0f;
         StringBuilder aboutInfo = new StringBuilder();
         aboutInfo.append("Dungeons and Monsters - A Game Made for TCSS 360 Spring 2022. \n");
@@ -77,7 +77,7 @@ public abstract class GUI extends JFrame {
     /**
      * Displays general information on the console screen.
      */
-    public static StringBuilder gamePlay() {
+    static StringBuilder gamePlay() {
 
         StringBuilder generalInfo = new StringBuilder();
         generalInfo.append("Dungeons and Monsters - A Dungeon Crawling & Monster Fighting Game. \n\n");

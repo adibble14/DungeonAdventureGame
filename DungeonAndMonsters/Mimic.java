@@ -27,7 +27,7 @@ public class Mimic extends Monster{
     }
 
     @Override
-    public String getSpecialInfo(){  //TODO
+    final String getSpecialInfo(){  //TODO
         return "Robin Hood: steals gold from the hero!";
     }
 }

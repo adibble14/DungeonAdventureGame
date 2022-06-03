@@ -35,5 +35,5 @@ public abstract class Item implements Serializable {
      * Uses this object, each child is used differently.
      * @param theObj the hero
      */
-    public abstract void use(Object theObj);
+     abstract void use(final Object theObj);
 }

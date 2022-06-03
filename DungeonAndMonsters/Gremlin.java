@@ -49,7 +49,7 @@ public class Gremlin extends Monster {
     }
 
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Gremlin Frenzy. Generates a random number of gremlins that each deal their own attack.";
     }
 

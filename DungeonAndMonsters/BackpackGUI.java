@@ -44,7 +44,7 @@ public class BackpackGUI extends JFrame {
      * the constructor for the backpack
      * @param pixelFont a certain font used in the frame
      */
-    BackpackGUI(Font pixelFont){
+    BackpackGUI(final Font pixelFont){
 
         this.setTitle("Backpack");
         this.setSize(450, 400);
@@ -198,8 +198,6 @@ public class BackpackGUI extends JFrame {
                         ((JButton) button).addActionListener(e -> {
                             Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
-                            //button.setEnabled(false);
-                            //((JButton) button).setIcon(null);
                             repaint();
                         });
                     }
@@ -213,7 +211,7 @@ public class BackpackGUI extends JFrame {
     /**
      * removes a health potion from the backpack
      */
-    public static void removeHealthPotion(){
+    static void removeHealthPotion(){
         for (Component button: myItemPanel.getComponents()) {
             ((JButton) button).setToolTipText(null);
             button.setEnabled(false);
@@ -225,7 +223,7 @@ public class BackpackGUI extends JFrame {
     /**
      * when playing again need to remove all items
      */
-    public static void removeAllItems(){
+    static void removeAllItems(){
         for(Component button: myItemPanel.getComponents()){
             if(button instanceof JButton) {
                 ((JButton) button).setToolTipText(null);
@@ -239,20 +237,20 @@ public class BackpackGUI extends JFrame {
     /**
      * @return count of active health potions
      */
-    public int getMyActiveHealthPotions() {
+    int getMyActiveHealthPotions() {
         return this.myActiveHealthPotions;
     }
     /**
      * @return count of active vision potions
      */
-    public int getMyActiveVisionPotions() {
+    int getMyActiveVisionPotions() {
         return this.myActiveVisionPotions;
     }
 
     /**
      * refreshes gold label when player received more gold.
      */
-    public void refreshGoldValue() {
+    void refreshGoldValue() {
         myPlayerGoldCount.setText("Gold: "+ DungeonAdventure.getMyHero().getGoldCount());
     }
 

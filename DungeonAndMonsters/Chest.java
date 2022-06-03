@@ -40,7 +40,7 @@ public class Chest extends Item {
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    void use(final Object theObj) {
         Hero player = (Hero) theObj;
         if(this.myIsMimic) {
             DungeonAdventure.createBattle(new Mimic());

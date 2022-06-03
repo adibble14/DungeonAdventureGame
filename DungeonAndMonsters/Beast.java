@@ -26,7 +26,7 @@ public class Beast extends Monster {
      * Feral Swipe special attack. This special always deals half the enemies' health value.
      */
     @Override
-    final protected void special(DungeonCharacter theChar) {
+    final protected void special(final DungeonCharacter theChar) {
 
         int damage = theChar.getHealth() / 2;
         theChar.setHealth(damage);
@@ -34,7 +34,7 @@ public class Beast extends Monster {
     }
 
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Feral Swipe. This special always deals half the enemies' health value.";
     }
 

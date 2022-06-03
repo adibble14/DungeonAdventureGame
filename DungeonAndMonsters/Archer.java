@@ -58,7 +58,7 @@ public class Archer extends Hero {
     /**
      * @return the character select image
      */
-    public static ImageIcon getImage(){
+    static ImageIcon getImage(){
         return myCharacterSelectImage;
     }
 
@@ -66,7 +66,7 @@ public class Archer extends Hero {
      * @return info about the character's super
      */
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Volley special attack. Shoots a random number of arrows with a maximum of 5.";
     }
 

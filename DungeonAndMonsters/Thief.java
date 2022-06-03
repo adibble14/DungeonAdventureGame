@@ -75,7 +75,7 @@ public class Thief extends Hero {
      * @return info about the character's super
      */
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Surprise Attack. This special deals more damage than a regular attack. It also allows the Thief to follow up with a second attack";
     }
 

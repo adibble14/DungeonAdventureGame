@@ -48,7 +48,7 @@ public class Ogre extends Monster {
     }
 
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Devastating Blow. This special has a guaranteed min value damage.";
     }
 

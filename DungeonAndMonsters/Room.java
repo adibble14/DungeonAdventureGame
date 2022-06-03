@@ -143,7 +143,7 @@ public class Room implements Serializable {
 	 * Returns this Room's type
 	 * @return type
 	 */
-	public RoomType getMyType() {
+	RoomType getMyType() {
 		return this.myType;
 	}
 
@@ -151,7 +151,7 @@ public class Room implements Serializable {
 	 * adds items to inventory
 	 * @param theHero the hero
 	 */
-	public void addItemsToPlayerInventory(final Hero theHero) {
+	void addItemsToPlayerInventory(final Hero theHero) {
 		if(this.myChest != null) {
 			this.myChest.use(theHero);
 		}

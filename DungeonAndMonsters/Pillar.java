@@ -24,7 +24,7 @@ public abstract class Pillar extends Item {
     /**
      * @return a random pillar
      */
-    public static PillarType getRandomPillar(){
+    static PillarType getRandomPillar(){
         int num = Tools.RANDOM.nextInt(1,5);
         if(num == 1) return PillarType.ABSTRACTION;
         else if(num == 2) return PillarType.ENCAPSULATION;

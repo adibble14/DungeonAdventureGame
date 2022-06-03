@@ -27,7 +27,7 @@ public class MonsterGUI extends JPanel {
      * constructor for the monster GUI screen
      * @param pixelFont the font used in the GUI
      */
-    MonsterGUI(Font pixelFont){
+    MonsterGUI(final Font pixelFont){
         GridBagConstraints gbc = new GridBagConstraints();
         this.setBackground(Color.BLACK);
         this.setLayout(new GridBagLayout());
@@ -209,7 +209,7 @@ public class MonsterGUI extends JPanel {
      * @param theCharacterType which monster
      * @return a string of their stats
      */
-    public static StringBuilder monsterInfo(String theCharacterType) {
+    private static StringBuilder monsterInfo(String theCharacterType) {
 
         StringBuilder monsterInformation = new StringBuilder();
         switch(theCharacterType){
@@ -246,7 +246,7 @@ public class MonsterGUI extends JPanel {
      * info on what each stat means
      * @return a string
      */
-    public static StringBuilder statInfo(){
+    private static StringBuilder statInfo(){
         StringBuilder statInfo = new StringBuilder();
         statInfo.append("Stat Definitions\n");
         statInfo.append("Hit Points (hp): the number of health the monster has\n");

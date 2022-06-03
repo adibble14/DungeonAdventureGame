@@ -17,7 +17,7 @@ public class Music {
      * plays music based on which part in the game we are in
      * @param theFile theFile
      */
-    protected static void playMusic(final String theFile) {
+    static void playMusic(final String theFile) {
         String path = switch (theFile) {
             case "mainMenu" -> "DungeonAndMonsters/soundfx/BGM12dungeon1.wav";
             case "dungeon" -> "DungeonAndMonsters/soundfx/BGM13dungeon2.wav";
@@ -50,7 +50,7 @@ public class Music {
      * play sounds for different actions
      * @param theAction the action
      */
-    protected static void playSFX(String theAction) {
+    static void playSFX(String theAction) {
         String path = switch (theAction) {
             case "buttonClicked" -> "DungeonAndMonsters/soundfx/button_click.wav";
             case "changeRoom" -> "DungeonAndMonsters/soundfx/change_room.wav";

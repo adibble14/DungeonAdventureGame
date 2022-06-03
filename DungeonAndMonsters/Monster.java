@@ -159,6 +159,6 @@ public abstract class Monster extends DungeonCharacter {
     /**
      * @return special info about the monster
      */
-    public abstract String getSpecialInfo();
+    abstract String getSpecialInfo();
 
 }

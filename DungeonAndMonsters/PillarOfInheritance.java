@@ -26,7 +26,7 @@ public class PillarOfInheritance extends Pillar{
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Hero player = (Hero) theObj;
         player.setGoldAmount(player.getGoldCount() + Tools.RANDOM.nextInt(1000, 5000));
         DungeonAdventure.refreshBackPackGoldValue();

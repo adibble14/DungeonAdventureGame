@@ -40,7 +40,7 @@ public class PillarOfAbstraction extends Pillar{
      * @param theObj the hero
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Hero hero = (Hero) theObj;
         this.myHeroOriginalVal = hero.getBlockChance();
         this.myTurnsPassed = 0;

@@ -243,5 +243,5 @@ public abstract class Hero extends DungeonCharacter implements Serializable {
     /**
      * @return special info about the hero
      */
-    public abstract String getSpecialInfo();
+    abstract String getSpecialInfo();
 }

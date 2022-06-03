@@ -311,7 +311,7 @@ public class DungeonGUI extends JPanel {
      * @param theHero Hero that the user chose on CharacterSelect
      * @param theDungeon Dungeon that is generated on createDungeon method.
      */
-    public static void setUpVisualDungeon(Hero theHero, Dungeon theDungeon){
+    static void setUpVisualDungeon(final Hero theHero, final Dungeon theDungeon){
         setDungeon(theDungeon);
         setHealthLabel(theHero);
         setMyHeroImage(theHero);
@@ -349,20 +349,20 @@ public class DungeonGUI extends JPanel {
     /**
      * @return the room label
      */
-    public static JLabel getMyRoomLabel(){return myRoomLabel;}
+    static JLabel getMyRoomLabel(){return myRoomLabel;}
 
 
     /**
      * @return dungeon instance
      */
-    public static Dungeon getDungeon(){
+    static Dungeon getDungeon(){
         return myDungeon;
     }
 
     /**
      * @param theDungeon what to set the dungeon to
      */
-    public static void setDungeon(Dungeon theDungeon){
+     static void setDungeon(final Dungeon theDungeon){
         myDungeon = theDungeon;
     }
 
@@ -377,7 +377,7 @@ public class DungeonGUI extends JPanel {
     /**
      * @param theHero what to set the image to
      */
-    protected static void setMyInGameSprite(final Hero theHero){
+     static void setMyInGameSprite(final Hero theHero){
         myInGameSprite.setIcon(theHero.getMyInGameSprite());
     }
 
@@ -393,7 +393,7 @@ public class DungeonGUI extends JPanel {
      * adds the pit image to the dungeon
      * @param gbc constraints
      */
-    public static void addPit(GridBagConstraints gbc){
+    static void addPit(GridBagConstraints gbc){
         gbc.gridx = 0;
         gbc.gridy = 0;
         myDungeonWindow.add(myInGamePit, gbc);

@@ -26,7 +26,7 @@ public class PillarOfEncapsulation extends Pillar{
      * @param theObj the dungeon
      */
     @Override
-    public void use(Object theObj) {
+    final void use(Object theObj) {
         Dungeon dungeon = (Dungeon) theObj;
         for (int i = 0; i < dungeon.getDungeon().length; i++) {
             for (int j = 0; j < dungeon.getDungeon()[0].length; j++) {

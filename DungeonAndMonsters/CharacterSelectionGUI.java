@@ -17,7 +17,7 @@ public class CharacterSelectionGUI extends JPanel{
      * the constructor for the panel
      * @param pixelFont a font it uses
      */
-    CharacterSelectionGUI(Font pixelFont){
+    CharacterSelectionGUI(final Font pixelFont){
         GridBagConstraints gbc = new GridBagConstraints();
         this.setBackground(Color.BLACK);
         this.setLayout(new GridBagLayout());
@@ -293,7 +293,7 @@ public class CharacterSelectionGUI extends JPanel{
     /**
      * Displays information about the Hero characters on the console screen.
      */
-    public static StringBuilder heroInfo(String theCharacterType) {
+    private static StringBuilder heroInfo(final String theCharacterType) {
 
         StringBuilder heroInformation = new StringBuilder();
         switch (theCharacterType) {
@@ -326,7 +326,7 @@ public class CharacterSelectionGUI extends JPanel{
     /**
      * @return info on what each stat means
      */
-    public static StringBuilder statInfo(){
+    private static StringBuilder statInfo(){
         StringBuilder statInfo = new StringBuilder();
         statInfo.append("Stat Definitions\n");
         statInfo.append("Hit Points (hp): the number of health your hero has\n");

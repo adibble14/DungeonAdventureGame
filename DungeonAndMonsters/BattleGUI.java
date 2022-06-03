@@ -285,7 +285,7 @@ public class BattleGUI extends JPanel {
      * setting all the labels and icons for a certain battle
      * @param theBattle the instance of battle
      */
-    public static void setBattle(Battle theBattle){
+    static void setBattle(final Battle theBattle){
         setMyBattle(theBattle);
         Hero hero = theBattle.getMyHero();
         Monster monster = theBattle.getMyMonster();
@@ -315,7 +315,7 @@ public class BattleGUI extends JPanel {
     /**
      * updates the stats after each attack turn in battle frame
      */
-    public static void updateBattle(){
+    static void updateBattle(){
         Hero hero = myBattle.getMyHero();
         Monster monster = myBattle.getMyMonster();
 
@@ -339,18 +339,18 @@ public class BattleGUI extends JPanel {
      * setter for battle
      * @param theBattle the instance of battle to set
      */
-    public static void setMyBattle(Battle theBattle){myBattle = theBattle;}
+    static void setMyBattle(final Battle theBattle){myBattle = theBattle;}
 
     /**
      * @return instance of battle
      */
-    public static Battle getMyBattle(){return myBattle;}
+    static Battle getMyBattle(){return myBattle;}
 
     /**
      * setting the console with a certain message
      * @param theMessage the message
      */
-    static void setBattleConsole(StringBuilder theMessage){
+    static void setBattleConsole(final StringBuilder theMessage){
         myBattleConsole.setText(theMessage.toString());
     }
 

@@ -82,7 +82,7 @@ public class Skeleton extends Monster {
     }
 
     @Override
-    public String getSpecialInfo(){
+    final String getSpecialInfo(){
         return "Rise! When the Skeleton is about to die, it revives to max health instead.";
     }
 }

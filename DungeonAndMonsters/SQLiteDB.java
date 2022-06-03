@@ -26,7 +26,7 @@ public class SQLiteDB {
     /**
      * creates the monsters table
      */
-    public static void createMonstersTable(){
+     static void createMonstersTable(){
         SQLiteDataSource ds = new SQLiteDataSource();
         ds.setUrl("jdbc:sqlite:characters.db");
 
@@ -133,7 +133,7 @@ public class SQLiteDB {
     /**
      * creates the heroes table
      */
-    public static void createHeroesTable(){
+     static void createHeroesTable(){
         ds.setUrl("jdbc:sqlite:characters.db");
 
         String createQuery = "CREATE TABLE IF NOT EXISTS heroes ("+
@@ -188,7 +188,7 @@ public class SQLiteDB {
      * @param tableName the name of the table
      * @return row count
      */
-    public static int getRowCount(String tableName){
+     static int getRowCount(String tableName){
         ds.setUrl("jdbc:sqlite:characters.db");
         String countQuery = "SELECT COUNT(*) FROM " + tableName;
         try ( Connection conn = ds.getConnection();
@@ -207,7 +207,7 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return name of character
      */
-    public static String getCharacterName(String theCharacterType){
+     static String getCharacterName(String theCharacterType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT MONSTER_NAME" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
@@ -228,8 +228,8 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character health
      */
-    public static int getCharacterHealth(String theCharacterType, String theTable){ return getCharacterHealth(theCharacterType, theTable, "");}
-    public static int getCharacterHealth(String theCharacterType, String theTable, String theType){
+     static int getCharacterHealth(String theCharacterType, String theTable){ return getCharacterHealth(theCharacterType, theTable, "");}
+     static int getCharacterHealth(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -260,8 +260,8 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character speed
      */
-    public static int getCharacterSpeed(String theCharacterType, String theTable){return getCharacterSpeed(theCharacterType, theTable, "");}
-    public static int getCharacterSpeed(String theCharacterType, String theTable, String theType){
+     static int getCharacterSpeed(String theCharacterType, String theTable){return getCharacterSpeed(theCharacterType, theTable, "");}
+     static int getCharacterSpeed(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -292,8 +292,8 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character max damage
      */
-    public static int getCharacterMaxDamage(String theCharacterType, String theTable){return getCharacterMaxDamage(theCharacterType, theTable,"");}
-    public static int getCharacterMaxDamage(String theCharacterType, String theTable, String theType){
+     static int getCharacterMaxDamage(String theCharacterType, String theTable){return getCharacterMaxDamage(theCharacterType, theTable,"");}
+     static int getCharacterMaxDamage(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -323,8 +323,8 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character min damage
      */
-    public static int getCharacterMinDamage(String theCharacterType, String theTable){return getCharacterMinDamage(theCharacterType, theTable,"");}
-    public static int getCharacterMinDamage(String theCharacterType, String theTable, String theType){
+     static int getCharacterMinDamage(String theCharacterType, String theTable){return getCharacterMinDamage(theCharacterType, theTable,"");}
+     static int getCharacterMinDamage(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -355,8 +355,8 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character accuracy
      */
-    public static double getCharacterAccuracy(String theCharacterType, String theTable){return getCharacterAccuracy(theCharacterType, theTable, "");}
-    public static double getCharacterAccuracy(String theCharacterType, String theTable, String theType){
+     static double getCharacterAccuracy(String theCharacterType, String theTable){return getCharacterAccuracy(theCharacterType, theTable, "");}
+     static double getCharacterAccuracy(String theCharacterType, String theTable, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -386,8 +386,8 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return the heal chance for a certain monster
      */
-    public static double getCharacterHealChance(String theCharacterType){return getCharacterHealChance(theCharacterType, "");}
-    public static double getCharacterHealChance(String theCharacterType, String theType){
+     static double getCharacterHealChance(String theCharacterType){return getCharacterHealChance(theCharacterType, "");}
+     static double getCharacterHealChance(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT HEAL_CHANCE" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
@@ -411,8 +411,8 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return the monster min heal
      */
-    public static int getCharacterMinHeal(String theCharacterType){return getCharacterMinHeal(theCharacterType, "");}
-    public static int getCharacterMinHeal(String theCharacterType, String theType){
+     static int getCharacterMinHeal(String theCharacterType){return getCharacterMinHeal(theCharacterType, "");}
+     static int getCharacterMinHeal(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT MIN_HEAL" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
@@ -436,8 +436,8 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return the monster max heal
      */
-    public static int getCharacterMaxHeal(String theCharacterType){return getCharacterMaxHeal(theCharacterType, "");}
-    public static int getCharacterMaxHeal(String theCharacterType, String theType){
+     static int getCharacterMaxHeal(String theCharacterType){return getCharacterMaxHeal(theCharacterType, "");}
+     static int getCharacterMaxHeal(String theCharacterType, String theType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT MAX_HEAL" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
@@ -461,7 +461,7 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return the hero block chance
      */
-    public static double getCharacterBlockChance(String theCharacterType){
+     static double getCharacterBlockChance(String theCharacterType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT BLOCK_CHANCE" +
                 " FROM heroes WHERE HERO_TYPE = '" + theCharacterType+"'";
@@ -482,7 +482,7 @@ public class SQLiteDB {
      * @param theTable which table to query
      * @return the character image
      */
-    public static String getCharacterImage(String theCharacterType, String theTable){
+     static String getCharacterImage(String theCharacterType, String theTable){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery;
         if(Objects.equals(theTable, "monsters")){
@@ -508,7 +508,7 @@ public class SQLiteDB {
      * @param theCharacterType type of character
      * @return the hero in game image
      */
-    public static String getCharacterInGameImage(String theCharacterType){
+     static String getCharacterInGameImage(String theCharacterType){
         ds.setUrl("jdbc:sqlite:characters.db");
         String getQuery = "SELECT IN_GAME_IMAGE" +
                 " FROM heroes WHERE HERO_TYPE = '" + theCharacterType+"'";

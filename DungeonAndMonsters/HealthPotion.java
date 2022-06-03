@@ -24,7 +24,7 @@ public class HealthPotion extends Item {
      * @param theObject the hero
      */
     @Override
-    public void use(Object theObject) {
+    final void use(Object theObject) {
         Hero player = (Hero) theObject;
         player.setHealth(player.getHealth() + this.myAffectAmount);
     }
