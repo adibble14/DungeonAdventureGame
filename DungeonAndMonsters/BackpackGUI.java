@@ -220,10 +220,15 @@ public class BackpackGUI extends JFrame {
      */
     static void removeHealthPotion(){
         for (Component button: myItemPanel.getComponents()) {
-            ((JButton) button).setToolTipText(null);
-            button.setEnabled(false);
-            ((JButton) button).setIcon(null);
-            break;
+            if(button.isEnabled()){
+                JButton jbutton = (JButton) button;
+                if(jbutton.getIcon() == myHealthPotionImage) {
+                    ((JButton) button).setToolTipText(null);
+                    button.setEnabled(false);
+                    ((JButton) button).setIcon(null);
+                    break;
+                }
+            }
         }
     }
 
