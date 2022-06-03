@@ -296,30 +296,28 @@ public class CharacterSelectionGUI extends JPanel{
     public static StringBuilder heroInfo(String theCharacterType) {
 
         StringBuilder heroInformation = new StringBuilder();
-        switch(theCharacterType){
-            case "Warrior":
-                heroInformation.append("Stats: \n125 hp\n3 attack speed\n30-50 damage\n80% accuracy\n60% block\n");
+        switch (theCharacterType) {
+            case "Warrior" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Warrior", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Warrior", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Warrior", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Warrior", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Warrior", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Warrior") * 100)).append("% block\n");
                 heroInformation.append("Special: Crushing Blow\n75-175 damage\n40% accuracy");
-                break;
-            case "Mage":
-                heroInformation.append("Stats: \n75 hp\n4 attack speed\n50-80 damage\n70% accuracy\n30% block\n");
+            }
+            case "Mage" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Mage", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Mage", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Mage", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Mage", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Mage", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Mage") * 100)).append("% block\n");
                 heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n100% accuracy");
-                break;
-            case "Thief":
-                heroInformation.append("Stats: \n95 hp\n6 attack speed\n10-20 damage\n90% accuracy\n40% block\n");
+            }
+            case "Thief" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Thief", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Thief", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Thief", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Thief", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Thief", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Thief") * 100)).append("% block\n");
                 heroInformation.append("Special: Surprise!\n20-60 damage\nCan also land extra attack\n40-80 damage\n60% accuracy.");
-                break;
-            case "Archer":
-                heroInformation.append("Stats: \n100 hp\n4 attack speed\n25-30 damage\n70% accuracy\n50% block\n");
+            }
+            case "Archer" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Archer", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Archer", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Archer", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Archer", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Archer", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Archer") * 100)).append("% block\n");
                 heroInformation.append("Special: Volley\nGenerates random number of attack turns\nmax number of attacks: 5\n30-50 damage");
-                break;
-            case "Priestess":
-                heroInformation.append("Stats: \n75 hp\n5 attack speed\n25-45 damage\n70% accuracy\n30% block\n");
+            }
+            case "Priestess" -> {
+                heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Priestess", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Priestess", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Priestess", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Priestess", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Priestess", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Priestess") * 100)).append("% block\n");
                 heroInformation.append("Special: Revive\n45-90 damage\n50% accuracy for every point of damage dealt priestess heals 2/3 of the points");
-                break;
-            default:
-                heroInformation.append("No info stored!");
-                break;
+            }
+            default -> heroInformation.append("No info stored!");
         }
 
         return heroInformation;

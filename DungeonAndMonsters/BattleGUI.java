@@ -322,8 +322,8 @@ public class BattleGUI extends JPanel {
 
         String string = "STATS" + "\n" + hero.getHealth() + " Health "
                 + monster.getHealth() + "\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
-                + hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + hero.getMyAccuracy() +
-                " Accuracy " + monster.getMyAccuracy() + "\n" + hero.getBlockChance() + " Block Chance n/a" + "\n" +
+                + hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + Math.round(hero.getMyAccuracy()*100) +
+                "% Accuracy " + monster.getMyAccuracy() + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
                 "n/a Heal Chance " + monster.getHealChance();
 
         String statsFormat = string.replace("\n", "<br>");

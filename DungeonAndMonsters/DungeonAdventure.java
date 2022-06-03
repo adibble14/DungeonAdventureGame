@@ -11,7 +11,8 @@ public class DungeonAdventure implements Serializable {
 	/**
 	 * instance of MainGUI, has all the different panels of the GUI
 	 */
-	private static final MainGUI MAIN_GUI = new MainGUI();
+	//private static final MainGUI MAIN_GUI = new MainGUI();
+	private static MainGUI MAIN_GUI;
 
 	/**
 	 * hero's name
@@ -51,14 +52,17 @@ public class DungeonAdventure implements Serializable {
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
+		SQLiteDB.createMonstersTable(); //creating the monsters table
+		SQLiteDB.createHeroesTable(); //creating the heroes table
+		MAIN_GUI = new MainGUI();
 	}
 
 	/**
 	 * method that initiates the game after character is chosen
 	 */
 	protected static void setUPGame(){
-		SQLiteDB.createMonstersTable(); //creating the monsters table
-		SQLiteDB.createHeroesTable(); //creating the heroes table
+		//SQLiteDB.createMonstersTable(); //creating the monsters table
+		//SQLiteDB.createHeroesTable(); //creating the heroes table
 		myNumDungeonsPassed = 0;
 		myCurrentDungeonNum = 1;
 		createHero();

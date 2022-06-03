@@ -21,7 +21,7 @@ public class SQLiteDB {
      * random int
      */
     static Random random = new Random();
-    static int num = 0;
+    static int num = random.nextInt(1,6);
 
     /**
      * creates the monsters table
@@ -209,7 +209,6 @@ public class SQLiteDB {
      */
     public static String getCharacterName(String theCharacterType){
         ds.setUrl("jdbc:sqlite:characters.db");
-        num = random.nextInt(1,6);
         String getQuery = "SELECT MONSTER_NAME" +
                 " FROM monsters WHERE MONSTER_TYPE = '" + theCharacterType+"' AND NUM = "+num;
         try ( Connection conn = ds.getConnection();

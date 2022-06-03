@@ -90,12 +90,12 @@ public class MonsterGUI extends JPanel {
         JLabel beastDesc = new JLabel(finalBeastFormat, SwingConstants.CENTER);
         beastDesc.setFont(pixelFont);
         beastDesc.setForeground(Color.white);
-        
+
         beastDesc.setOpaque(true);
         beastDesc.setBackground(Color.BLACK);
         beastDesc.setBorder(OUTLINE_BORDER);
         this.add(beastDesc, gbc);
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         String gremlinFormat = monsterInfo("Gremlin").toString().replace("\n", "<br>");
@@ -192,7 +192,7 @@ public class MonsterGUI extends JPanel {
 
         gbc.gridx = 3;
         gbc.gridy = 3;
-        JButton monsters = new JButton("Character Select");
+        JButton monsters = new JButton("Heroes");
         monsters.setFont(pixelFont);
         monsters.setPreferredSize(new Dimension(200,50));
         monsters.addActionListener(e ->  {
@@ -206,7 +206,7 @@ public class MonsterGUI extends JPanel {
 
     /**
      * info about the monsters stats
-     * @param theCharacterType which monster 
+     * @param theCharacterType which monster
      * @return a string of their stats
      */
     public static StringBuilder monsterInfo(String theCharacterType) {
@@ -214,23 +214,23 @@ public class MonsterGUI extends JPanel {
         StringBuilder monsterInformation = new StringBuilder();
         switch(theCharacterType){
             case "Beast":
-                monsterInformation.append("Beast\nStats: \n500 hp\n1 attack speed\n30-50 damage\n30% accuracy\n20% heal chance\n");
+                monsterInformation.append("Beast\nStats: \n").append(SQLiteDB.getCharacterHealth("Beast", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Beast", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Beast", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Beast", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Beast", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Beast") * 100)).append("% heal chance\n");
                 monsterInformation.append("Special: Feral Swipe\nHalves hero's health value");
                 break;
             case "Gremlin":
-                monsterInformation.append("Gremlin\nStats: \n70 hp\n5 attack speed\n15-30 damage\n80% accuracy\n40% heal chance\n");
+                monsterInformation.append("Gremlin\nStats: \n").append(SQLiteDB.getCharacterHealth("Gremlin", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Gremlin", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Gremlin", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Gremlin", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Gremlin", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Gremlin") * 100)).append("% heal chance\n");
                 monsterInformation.append("Special: Gremlin Frenzy\nGenerates a random number of gremlins");
                 break;
             case "Ogre":
-                monsterInformation.append("Ogre\nStats: \n200 hp\n2 attack speed\n30-60 damage\n60% accuracy\n10% heal chance\n");
+                monsterInformation.append("Ogre\nStats: \n").append(SQLiteDB.getCharacterHealth("Ogre", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Ogre", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Ogre", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Ogre", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Ogre", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Ogre") * 100)).append("% heal chance\n");
                 monsterInformation.append("Special: Devastating Blow\n60-100 damage");
                 break;
             case "Skeleton":
-                monsterInformation.append("Skeleton\nstats: \n100 hp\n3 attack speed\n30-50 damage\n80% accuracy\n30% heal chance\n");
+                monsterInformation.append("Skeleton\nStats: \n").append(SQLiteDB.getCharacterHealth("Skeleton", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Skeleton", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Skeleton", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Skeleton", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Skeleton", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Skeleton") * 100)).append("% heal chance\n");
                 monsterInformation.append("Special: Rise!\nWhen the Skeleton is about to die, it revives to max health instead");
                 break;
             case "Mimic":
-                monsterInformation.append("Mimic\nStats: \n140 hp\n5 attack speed\n5-15 damage\n50% accuracy\n7% heal chance\n");
+                monsterInformation.append("Mimic\nStats: \n").append(SQLiteDB.getCharacterHealth("Mimic", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Mimic", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Mimic", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Mimic", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Mimic", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Mimic") * 100)).append("% heal chance\n");
                 monsterInformation.append("Special: Robin Hood\nSteals some gold from the hero\n");
                 monsterInformation.append("Note: Mimic appears randomly in some chests!");
                 break;
