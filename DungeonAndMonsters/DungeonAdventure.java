@@ -45,10 +45,7 @@ public class DungeonAdventure implements Serializable {
 	private static int myCurrentDungeonNum;
 
 	/**
-	 * main method of class. Creates instance of Hero, Dungeon objects.
-	 * Prints useful information for the player.
-	 * //TODO could be changed to simply create the Display, keeping things simple
-	 *
+	 * main method of class. Starts the game
 	 * @param theArgs Command line arguments
 	 */
 	public static void main(String[] theArgs) {
