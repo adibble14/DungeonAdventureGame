@@ -14,7 +14,7 @@ public class PillarOfPolymorphism extends Pillar{
     /**
      * boolean to check if player morphed
      */
-    private boolean morphed;
+    private transient boolean morphed;
 
     private static final ImageIcon myImage = new ImageIcon(myPillarImage);
     /**
@@ -46,6 +46,7 @@ public class PillarOfPolymorphism extends Pillar{
             morphed = true;
         } else {
             Hero original = careTaker.revertState();
+            System.out.println(original.toString() + "\nMax Damage Value: " + original.getMaxDamage());
             hero.setMyInGameSprite(original.getMyInGameSprite());
             DungeonGUI.setMyInGameSprite(hero);
             hero.setMaxDamage(original.getMaxDamage());

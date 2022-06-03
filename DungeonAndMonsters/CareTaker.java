@@ -21,7 +21,7 @@ public class CareTaker implements Serializable {
     }
 
     protected Hero revertState() {
-        myOriginator.restoreFromMemento(mySavedStates.get(0));
+        myOriginator.restoreFromMemento(mySavedStates.get(mySavedStates.size()-1));
         return myOriginator.getState();
     }
 }

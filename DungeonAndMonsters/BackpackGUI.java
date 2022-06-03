@@ -267,6 +267,17 @@ public class BackpackGUI extends JFrame {
         while(this.getMyActiveVisionPotions() < inv.getItemCount(ItemType.VISION_POTION)) {
             this.addPotionToBackpack(ItemType.VISION_POTION.toString());
         }
+        // adding pillars
+        Pillar [] p = inv.getPillars();
+        for(Pillar pillar : p) {
+            PillarType t = pillar.getMY_TYPE();
+            switch(t) {
+                case ABSTRACTION -> this.addPillarToBackpack("abstract",new ImageIcon("DungeonAndMonsters/random images/Abstraction.png"),pillar);
+                case INHERITANCE -> this.addPillarToBackpack("inheritance",new ImageIcon("DungeonAndMonsters/random images/Inheritance.png"),pillar);
+                case ENCAPSULATION -> this.addPillarToBackpack("encapsulation",new ImageIcon("DungeonAndMonsters/random images/Encapsulation.png"),pillar);
+                default -> this.addPillarToBackpack("polymorphism",new ImageIcon("DungeonAndMonsters/random images/Polymorphism.png"),pillar);
+            }
+        }
         this.refreshGoldValue();
     }
 

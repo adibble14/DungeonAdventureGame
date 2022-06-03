@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public abstract class Pillar extends Item{
+public abstract class Pillar extends Item {
 
     private final PillarType MY_TYPE;
     /**
