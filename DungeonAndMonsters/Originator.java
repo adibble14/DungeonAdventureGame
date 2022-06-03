@@ -1,3 +1,6 @@
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+
 /**
  * Originator class used in Memento Pattern. Use is for
  * saving player Hero object when using Pillar of Polymorphism.
@@ -5,7 +8,7 @@
  * will be used to revert to the players original character
  */
 
-public class Originator {
+public class Originator implements Serializable {
 
     /**
      * hero instance
@@ -13,10 +16,20 @@ public class Originator {
     private Hero myHero;
 
     /**
+     * Creates a deep clone of a Hero object
      * @param theHero sets the hero
      */
     protected final void set(Hero theHero) {
-        this.myHero = theHero;
+
+        String type = theHero.getClass().getSimpleName();
+        switch(type) {
+            case"Archer": this.myHero = new Archer(theHero.getName());
+            case"Warrior": this.myHero = new Warrior(theHero.getName());
+            case"Mage": this.myHero = new Mage(theHero.getName());
+            case"Priestess": this.myHero = new Priestess(theHero.getName());
+            case"Thief": this.myHero = new Thief(theHero.getName());
+        }
+        this.myHero.setHealth(theHero.getHealth());
     }
 
     /**
@@ -46,7 +59,7 @@ public class Originator {
      * Memento pattern, used to save the player's original hero state when
      * using pillar of polymorphism
      */
- class Memento {
+ class Memento implements Serializable {
 
         private final Hero myHero;
 

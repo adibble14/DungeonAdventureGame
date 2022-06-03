@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Test class for the pillar of Polymorphism
@@ -13,8 +14,9 @@ public class PillarOfPolymorphismTest {
         PillarOfPolymorphism p = new PillarOfPolymorphism(PillarType.POLYMORPHISM);
         Hero h = new Archer("A");
         p.use(h);
-        System.out.println(h.getMyInGameSprite());
+        String before = h.getMyInGameSprite().toString();
         p.use(h);
-        System.out.println(h.getMyInGameSprite());
+        String after = h.getMyInGameSprite().toString();
+        assertFalse(before.equalsIgnoreCase(after));
     }
 }
