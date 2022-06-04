@@ -168,7 +168,7 @@ public class CharacterSelectionGUI extends JPanel{
         archerButton.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             String name = setUserName();
-            if(name != null && !name.equals("")){
+            if(name != null && !name.equals("")&& name.length() < 12){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("a");
                 DungeonAdventure.sceneController("dungeon");
@@ -185,7 +185,7 @@ public class CharacterSelectionGUI extends JPanel{
         mageButton.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             String name = setUserName();
-            if(name != null && !name.equals("")){
+            if(name != null && !name.equals("")&& name.length() < 12){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("m");
                 DungeonAdventure.sceneController("dungeon");
@@ -202,7 +202,7 @@ public class CharacterSelectionGUI extends JPanel{
         thiefButton.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             String name = setUserName();
-            if(name != null && !name.equals("")){
+            if(name != null && !name.equals("")&& name.length() < 12){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("t");
                 DungeonAdventure.sceneController("dungeon");
@@ -219,7 +219,7 @@ public class CharacterSelectionGUI extends JPanel{
         warriorButton.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             String name = setUserName();
-            if(name != null && !name.equals("")){
+            if(name != null && !name.equals("") && name.length() < 12){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("w");
                 DungeonAdventure.sceneController("dungeon");
@@ -236,7 +236,7 @@ public class CharacterSelectionGUI extends JPanel{
         priestessButton.addActionListener(e -> {
             Music.playSFX("buttonClicked");
             String name = setUserName();
-            if(name != null && !name.equals("")){
+            if(name != null && !name.equals("")&& name.length() < 12){
                 DungeonAdventure.setMyUserName(name);
                 DungeonAdventure.setMyHeroChoice("p");
                 DungeonAdventure.sceneController("dungeon");
@@ -294,7 +294,7 @@ public class CharacterSelectionGUI extends JPanel{
      * @return the string of their username
      */
     private String setUserName() {
-        return JOptionPane.showInputDialog(this, "Provide User Name:");
+        return JOptionPane.showInputDialog(this, "Provide User Name (12 Characters Or Less):");
     }
 
     /**

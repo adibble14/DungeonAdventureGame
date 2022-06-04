@@ -75,15 +75,15 @@ public class SQLiteDB {
 
 
             String beastQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Ravager', 1,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
+                    "VALUES ('Beast','Ravager', 1,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/BeastLarger.png')";
             String beastQuery2 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Owl Bear', 2,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
+                    "VALUES ('Beast','Owl Bear', 2,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/BeastLarger.png')";
             String beastQuery3 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Beholder', 3,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
+                    "VALUES ('Beast','Beholder', 3,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/BeastLarger.png')";
             String beastQuery4 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','plankTon', 4,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
+                    "VALUES ('Beast','plankTon', 4,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/BeastLarger.png')";
             String beastQuery5 = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
-                    "VALUES ('Beast','Man Beast', 5,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/Beast.png')";
+                    "VALUES ('Beast','Man Beast', 5,450, 1, 50, 30, .3, .2, 50, 100, 'DungeonAndMonsters/monster pics/BeastLarger.png')";
 
 
             String ogreQuery = "INSERT INTO monsters (MONSTER_TYPE, MONSTER_NAME, NUM, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, HEAL_CHANCE, MIN_HEAL, MAX_HEAL, IMAGE)" +
