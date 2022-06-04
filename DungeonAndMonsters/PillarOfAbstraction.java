@@ -83,5 +83,7 @@ public class PillarOfAbstraction extends Pillar{
     protected final ImageIcon getImage(){
         return myImage;
     }
+
+    protected final int getMyTurnsPassed(){return this.myTurnsPassed;}
 }
 

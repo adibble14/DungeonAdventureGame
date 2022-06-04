@@ -273,13 +273,18 @@ public class BattleGUI extends JPanel {
             int result = JOptionPane.showConfirmDialog(this, "Do you wish to run away? (Lose Gold and Health)");
             if (result == 0){
                 Music.playSFX("runFromBattle");
-                DungeonAdventure.getMyHero().setGoldAmount(-Tools.RANDOM.nextInt(10, 50));
-                DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - Tools.RANDOM.nextInt(15, 30));
+                int lostGold = Tools.RANDOM.nextInt(10, 50);
+                int lostHealth = Tools.RANDOM.nextInt(15, 30);
+                DungeonAdventure.getMyHero().setGoldAmount(-lostGold);
+                DungeonAdventure.getMyHero().setHealth(DungeonAdventure.getMyHero().getHealth() - lostHealth);
                 DungeonAdventure.refreshBackPackGoldValue();
                 DungeonAdventure.refreshDungeonHealthValue();
                 DungeonGUI.resetDungeonImage();
                 DungeonGUI.enableButtons();
                 DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
+                DungeonGUI.setPlayerConsole(new StringBuilder("The monster hits " + DungeonAdventure.getMyHero().getName() +
+                        " for " + lostHealth + " damage, and " + DungeonAdventure.getMyHero().getName() + " drops " +
+                        lostGold + " gold!"));
                 DungeonAdventure.sceneController("dungeon");
                 DungeonGUI.setHealthLabel(DungeonAdventure.getMyHero());
                 if(DungeonAdventure.getMyHero().getHealth() <= 0){  //checking if the player died from running
@@ -327,13 +332,34 @@ public class BattleGUI extends JPanel {
     static void updateBattle(){
         Hero hero = myBattle.getMyHero();
         Monster monster = myBattle.getMyMonster();
+        String string = "";
+        PillarOfAbstraction pOA = null;
 
-
-        String string = "STATS" + "\n" + hero.getHealth() + " Health "
+        for (Pillar pillar :
+                hero.getMyInventory().getPillars()) {
+            if(pillar instanceof PillarOfAbstraction)
+                if(((PillarOfAbstraction) pillar).isActive())
+                    pOA = (PillarOfAbstraction) pillar;
+        }
+        string = "STATS" + "\n" + hero.getHealth() + " Health "
                 + monster.getHealth() + "\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
                 + hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + Math.round(hero.getMyAccuracy()*100) +
+<<<<<<< HEAD
                 "% Accuracy " + Math.round(monster.getMyAccuracy()*100) + "%" + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
                 "n/a Heal Chance " + Math.round(monster.getHealChance()*100)+"%";
+=======
+                "% Accuracy " + monster.getMyAccuracy() + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
+                "n/a Heal Chance " + monster.getHealChance();
+        if(pOA != null && pOA.isActive()){
+            string = "STATS" + "\n" + hero.getHealth() + " Health "
+                    + monster.getHealth() + "\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
+                    + hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + Math.round(hero.getMyAccuracy()*100) +
+                    "% Accuracy " + monster.getMyAccuracy() + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
+                    "n/a Heal Chance " + monster.getHealChance()+
+                    "\nRounds of abstraction left: " + (10 - pOA.getMyTurnsPassed());
+        }
+
+>>>>>>> 2a5a442f8448d9aaa63c72abd6f7c81c4b641357
 
         String statsFormat = string.replace("\n", "<br>");
         String finalStatsFormat = "<html><style>" +
