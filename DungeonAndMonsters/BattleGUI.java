@@ -344,12 +344,8 @@ public class BattleGUI extends JPanel {
         string = "STATS" + "\n" + hero.getHealth() + " Health "
                 + monster.getHealth() + "\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
                 + hero.getMaxDamage() + " Max Damage " + monster.getMaxDamage() + "\n" + Math.round(hero.getMyAccuracy()*100) +
-<<<<<<< HEAD
                 "% Accuracy " + Math.round(monster.getMyAccuracy()*100) + "%" + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
                 "n/a Heal Chance " + Math.round(monster.getHealChance()*100)+"%";
-=======
-                "% Accuracy " + monster.getMyAccuracy() + "\n" + Math.round(hero.getBlockChance()*100) + "% Block Chance n/a" + "\n" +
-                "n/a Heal Chance " + monster.getHealChance();
         if(pOA != null && pOA.isActive()){
             string = "STATS" + "\n" + hero.getHealth() + " Health "
                     + monster.getHealth() + "\n" + hero.getSpeed() + " Attack Speed " + monster.getSpeed() + "\n"
@@ -358,8 +354,6 @@ public class BattleGUI extends JPanel {
                     "n/a Heal Chance " + monster.getHealChance()+
                     "\nRounds of abstraction left: " + (10 - pOA.getMyTurnsPassed());
         }
-
->>>>>>> 2a5a442f8448d9aaa63c72abd6f7c81c4b641357
 
         String statsFormat = string.replace("\n", "<br>");
         String finalStatsFormat = "<html><style>" +
