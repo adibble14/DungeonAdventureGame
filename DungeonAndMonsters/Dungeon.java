@@ -158,9 +158,6 @@ public class Dungeon implements Serializable {
 		dung[entranceXCoord][entranceYCoord] = entrance;
 		dung[exitXCoord][exitYCoord] = exit;
 
-		System.out.println("Entrance Coords: " + entranceXCoord + " " + entranceYCoord);
-		System.out.println("Exit Coords: " + exitXCoord + " " + exitYCoord);
-
 		this.DFSGenerateRooms(dung, entrance, RoomType.EXIT);
 		while(true) {
 			if(dung[bossX][bossY] == null) {
