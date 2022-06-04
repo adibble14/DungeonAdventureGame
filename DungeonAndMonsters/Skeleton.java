@@ -63,14 +63,14 @@ public class Skeleton extends Monster {
 
     /**
      * Overrides super class setHealth. Checks to see if special is activated. If so,
-     * when the health field is going to be set to zero, sets it to max health instead.
+     * when the health field is going to be set to zero, sets it to half of max health instead.
      */
     @Override
     final protected void setHealth(final int theHealth) {
 
         if (theHealth == 0 && this.getSpecialActive() && !this.revived ) {
 
-            super.setHealth(this.getMaxHealth());
+            super.setHealth(this.getMaxHealth()/2);
             this.setSpecialActive(false);
             this.revived = true;
         } else {

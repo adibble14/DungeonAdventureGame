@@ -34,13 +34,13 @@ public class Priestess extends Hero{
     @Override
     protected void special(DungeonCharacter theChar) {
         double randAccuracy = Tools.RANDOM.nextDouble();
-        int specialMaxDamage = 45;
+        int specialMaxDamage = 35;
         int damage = Tools.RANDOM.nextInt(specialMaxDamage) + this.getMaxDamage();
 
         double specialAccuracy = .5;
         if (specialAccuracy < randAccuracy) {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " The healing attack misses. "));
-        } else if (specialAccuracy > randAccuracy) {
+        } else{
 
             int healing = (int) Math.ceil(damage*.66);
 

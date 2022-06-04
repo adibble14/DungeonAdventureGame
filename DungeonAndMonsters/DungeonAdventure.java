@@ -337,6 +337,7 @@ public class DungeonAdventure implements Serializable {
 	 * @param theMonster the monster they defeated
 	 */
 	static void battleWin(final Monster theMonster) {
+		DungeonGUI.setHealthLabel(myHero);
 		if (myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM) {        //if the user defeated a boss monster, then advance to next dungeon
 			myNumDungeonsPassed++;
 			myDungeon.getCurrentRoom().setEmpty();
@@ -389,7 +390,6 @@ public class DungeonAdventure implements Serializable {
 			myHero.setGoldAmount(Tools.RANDOM.nextInt(25, 75));
 			JOptionPane.showMessageDialog(null, "Congrats! You won the battle!");
 			DungeonAdventure.sceneController("dungeon");
-			DungeonGUI.setHealthLabel(myHero);
 		}
 	}
 
@@ -400,7 +400,9 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.closeMap();
 		MAIN_GUI.closeBackPack();
 		createDungeon();	//creating new dungeon
-		myHero.setHealth(myHero.getMaxHealth()); //setting health back to full
+		if(myHero.getHealth() < myHero.getMaxHealth()){
+			myHero.setHealth(myHero.getMaxHealth()); //setting health back to full
+		}
 		sceneController("dungeon");
 		DungeonGUI.setHealthLabel(myHero);
 		DungeonGUI.enableButtons();

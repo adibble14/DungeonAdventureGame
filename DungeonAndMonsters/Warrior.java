@@ -40,8 +40,8 @@ public class Warrior extends Hero {
     @Override
     final protected void special(final DungeonCharacter theChar) {
 
-        int specialMinDamage = 75;
-        int specialMaxDamage = 175;
+        int specialMinDamage = 65;
+        int specialMaxDamage = 150;
         int damage = Tools.RANDOM.nextInt(specialMaxDamage - specialMinDamage) + specialMinDamage;
         double randAccuracy = Tools.RANDOM.nextDouble();
 

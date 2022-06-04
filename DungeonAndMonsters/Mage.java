@@ -31,20 +31,31 @@ public class Mage extends Hero {
     }
 
     /**
-     * Life Steal super attack. This attack does not fail to land. It halves the enemies' health value. It also
+     * Life Steal super attack. It halves the enemies' health value. It also
      * adds that value to this object's health value.
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
+        double randAccuracy = Tools.RANDOM.nextDouble();
 
-        int damage = theChar.getHealth() / 2;
-        int result = this.getHealth() + damage;
+        double specialAccuracy = .8;
+        if (specialAccuracy < randAccuracy) {
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " The life steal attack missed. "));
+        }else if((this.getMaxHealth() * 2) < this.getHealth()){  //dealing damage but not healing
+            int damage = theChar.getHealth() / 2;
+            theChar.setHealth(damage);
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals " + damage + " points of " + theChar.getName() + " damage. Max health limit reached."));
+        } else{
+            int damage = theChar.getHealth() / 2;
+            int result = this.getHealth() + damage;
 
-        this.setHealth(result);
+            this.setHealth(result);
 
-        theChar.setHealth(damage);
+            theChar.setHealth(damage);
 
-        BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health! "));
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health! "));
+        }
+
     }
 
     /**

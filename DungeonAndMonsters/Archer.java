@@ -48,7 +48,7 @@ public class Archer extends Hero {
         int totalDamage = 0;
         while (count > 0 && theChar.isAlive()) {
 
-            int specialMaxDamage = 20;
+            int specialMaxDamage = 10;
             int damage = Tools.RANDOM.nextInt(specialMaxDamage) + this.getMaxDamage();
             totalDamage += damage;
             int result = theChar.getHealth() - damage;

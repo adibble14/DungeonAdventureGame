@@ -32,7 +32,7 @@ public class Ogre extends Monster {
      */
     @Override
     final protected void special(final DungeonCharacter theChar) {
-        int specialMaxDamage = 100;
+        int specialMaxDamage = 80;
         int specialMinDamage = 60;
         int damage = Tools.RANDOM.nextInt(specialMaxDamage) + specialMinDamage;
         double randAccuracy = Tools.RANDOM.nextDouble();

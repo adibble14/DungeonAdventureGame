@@ -280,6 +280,7 @@ public class BattleGUI extends JPanel {
                 DungeonGUI.enableButtons();
                 DungeonGUI.disableButtons(Dungeon.availableRooms(DungeonGUI.getDungeon()));
                 DungeonAdventure.sceneController("dungeon");
+                DungeonGUI.setHealthLabel(DungeonAdventure.getMyHero());
                 if(DungeonAdventure.getMyHero().getHealth() <= 0){  //checking if the player died from running
                     DungeonAdventure.gameOver();
                 }
