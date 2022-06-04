@@ -63,7 +63,7 @@ public class Dungeon implements Serializable {
 		this.myDungeonsPassed = theNumDungeonsPassed;
 		this.myCurrentDungeonNumber = theCurrentDungeon;
 		this.placeMonsters();
-		//System.out.println(this);
+		System.out.println(this);
 	}
 	
 	/**

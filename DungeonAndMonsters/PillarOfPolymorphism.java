@@ -49,15 +49,16 @@ public class PillarOfPolymorphism extends Pillar{
             hero.setMyInGameSprite(image);
             DungeonGUI.setMyInGameSprite(hero);
             hero.setMaxDamage(hero.getMaxDamage() + 40);
-            hero.setAccuracy(hero.getMyAccuracy() + .1);
+            hero.setAccuracy(hero.getMyAccuracy() + .15);
+            hero.setMaxHealth(hero.getMaxHealth() + hero.getHealth()/2);
             morphed = true;
         } else {
             Hero original = careTaker.revertState();
-            System.out.println(original.toString() + "\nMax Damage Value: " + original.getMaxDamage());
             hero.setMyInGameSprite(original.getMyInGameSprite());
             DungeonGUI.setMyInGameSprite(hero);
             hero.setMaxDamage(original.getMaxDamage());
             hero.setAccuracy(original.getMyAccuracy());
+            hero.setMaxHealth(original.getMaxHealth());
             morphed = false;
         }
     }

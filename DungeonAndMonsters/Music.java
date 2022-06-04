@@ -73,6 +73,7 @@ public class Music {
             case "save" -> "DungeonAndMonsters/soundfx/save.wav";
             case "switchDungeon" -> "DungeonAndMonsters/soundfx/switch_dungeon.wav";
             case "usePillar" -> "DungeonAndMonsters/soundfx/use_pillar.wav";
+            case "useSpecial" -> "DungeonAndMonsters/soundfx/use_special.wav";
             default -> "";
         };
         try {

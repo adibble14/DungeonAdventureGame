@@ -48,11 +48,13 @@ public class PillarOfAbstraction extends Pillar{
      */
     @Override
     final void use(Object theObj) {
-        Hero hero = (Hero) theObj;
-        this.myHeroOriginalVal = hero.getBlockChance();
-        this.myTurnsPassed = 0;
-        this.myActive = true;
-        hero.setBlockChance(1);
+        if(!myActive) {
+            Hero hero = (Hero) theObj;
+            this.myHeroOriginalVal = hero.getBlockChance();
+            this.myTurnsPassed = 0;
+            this.myActive = true;
+            hero.setBlockChance(1);
+        }
     }
 
     /**
