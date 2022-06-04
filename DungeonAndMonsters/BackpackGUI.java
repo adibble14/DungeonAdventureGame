@@ -206,6 +206,7 @@ public class BackpackGUI extends JFrame {
                             Music.playSFX("usePillar");
                             pillar.use(DungeonAdventure.getMyHero());
                             repaint();
+                            button.setEnabled(false);
                         });
                     }
                     default -> System.out.println("Null item");

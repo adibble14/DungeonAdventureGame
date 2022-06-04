@@ -165,7 +165,7 @@ public class SQLiteDB {
 
         if(count < 5) {
             String archerQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
-                    "VALUES ('Archer', 500, 4, 30, 25, .7, .5, 'DungeonAndMonsters/character pics/archerpixel.png','DungeonAndMonsters/character pics/archerInGame.png')";
+                    "VALUES ('Archer', 100, 4, 30, 25, .7, .5, 'DungeonAndMonsters/character pics/archerpixel.png','DungeonAndMonsters/character pics/archerInGame.png')";
             String mageQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
                     "VALUES ('Mage', 75, 4, 80, 50, .7, .3, 'DungeonAndMonsters/character pics/MageFaceSprite.png', 'DungeonAndMonsters/character pics/MageInGameSprite.png')";
             String warriorQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +

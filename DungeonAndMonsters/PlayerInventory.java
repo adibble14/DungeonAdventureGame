@@ -112,7 +112,6 @@ public class PlayerInventory implements Serializable {
                 result.add(i.toString());
             }
         }
-        System.out.println(Arrays.toString(result.toArray()));
         return result.toArray();
     }
 
