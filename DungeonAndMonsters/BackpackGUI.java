@@ -7,6 +7,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Creates the Backpack implemented as a GUI. Holds items found by the hero in the dungeon.
@@ -115,6 +116,9 @@ public class BackpackGUI extends JFrame {
              myItemPanel.getComponents()) {
             if(button instanceof JButton && ((JButton) button).getIcon() == null){
                 button.setEnabled(true);
+                for (ActionListener listener :  ((JButton) button).getActionListeners()) {  //removing all previous action listeners
+                    ((JButton) button).removeActionListener(listener);
+                }
                 switch (thePotion) {
                     case "HEALTH_POTION" -> {
                         this.myActiveHealthPotions++;
@@ -129,6 +133,7 @@ public class BackpackGUI extends JFrame {
                                 BattleGUI.updateBattle();
                                 BattleGUI.setBattleConsole(new StringBuilder("Health Potion revived " + healthAmount + " points of health. "));
                             }
+                            myActiveHealthPotions--;
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);
                             repaint();
@@ -145,6 +150,7 @@ public class BackpackGUI extends JFrame {
                             DungeonAdventure.refreshMap();
                             button.setEnabled(false);
                             ((JButton) button).setIcon(null);
+                            myActiveVisionPotions--;
                         });
                     }
                     default -> System.out.println("Null item");
@@ -165,6 +171,9 @@ public class BackpackGUI extends JFrame {
                 myItemPanel.getComponents()) {
             if(button instanceof JButton && ((JButton) button).getIcon() == null){
                 button.setEnabled(true);
+                for (ActionListener listener :  ((JButton) button).getActionListeners()) {  //removing all previous action listeners
+                    ((JButton) button).removeActionListener(listener);
+                }
                 switch (theItem) {
                     case "abstract" -> {
                         ((JButton) button).setIcon(itemImage);

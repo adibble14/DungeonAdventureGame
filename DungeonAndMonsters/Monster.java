@@ -102,8 +102,11 @@ public abstract class Monster extends DungeonCharacter {
         int healPoints = 0;
 
         if (isHealable() && this.getHealChance() > Tools.RANDOM.nextDouble()) {
+            try {
+                healPoints = Tools.RANDOM.nextInt(this.myMaxHeal - this.myMinHeal) + this.myMinHeal;
+            }catch (IllegalArgumentException e){  //the mimic monster doesn't heal
 
-            healPoints = Tools.RANDOM.nextInt(this.myMaxHeal - this.myMinHeal) + this.myMinHeal;
+            }
         }
 
         this.setHealth(Math.min((this.getHealth() + healPoints), this.getMaxHealth()));
