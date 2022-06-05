@@ -41,7 +41,12 @@ public class Priestess extends Hero{
         if (specialAccuracy < randAccuracy) {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " The healing attack misses. "));
         }else if((this.getMaxHealth() * 2) < this.getHealth()) {  //dealing damage but not healing
-
+            int result = theChar.getHealth() - damage;
+            if (result < 0) {
+                result = 0;
+            }
+            theChar.setHealth(result);
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals " + damage + " of damage. Max health limit reached. "));
         } else{
 
             int healing = (int) Math.ceil(damage*.66);
@@ -71,6 +76,6 @@ public class Priestess extends Hero{
      */
     @Override
     final String getSpecialInfo(){
-        return "Healing. For every point of damage dealt, priestess will heal 2/3 the amount.";
+        return "Healing. For every point of damage dealt, priestess will heal 2/3 the amount. Once you have more than 200 health, you can't heal anymore.";
     }
 }

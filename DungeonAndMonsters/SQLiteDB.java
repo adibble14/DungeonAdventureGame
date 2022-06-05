@@ -165,7 +165,7 @@ public class SQLiteDB {
 
         if(count < 5) {
             String archerQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
-                    "VALUES ('Archer', 125, 4, 30, 25, .7, .5, 'DungeonAndMonsters/character pics/archerpixel.png','DungeonAndMonsters/character pics/archerInGame.png')";
+                    "VALUES ('Archer', 130, 4, 30, 25, .7, .5, 'DungeonAndMonsters/character pics/archerpixel.png','DungeonAndMonsters/character pics/archerInGame.png')";
             String mageQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
                     "VALUES ('Mage', 90, 4, 80, 50, .7, .3, 'DungeonAndMonsters/character pics/MageFaceSprite.png', 'DungeonAndMonsters/character pics/MageInGameSprite.png')";
             String warriorQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
@@ -173,7 +173,7 @@ public class SQLiteDB {
             String priestessQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
                     "VALUES ('Priestess', 100, 5, 45, 25, .7, .3,'DungeonAndMonsters/character pics/PriestessFace.png', 'DungeonAndMonsters/character pics/PriestessInGame.png')";
             String thiefQuery = "INSERT INTO heroes (HERO_TYPE, HEALTH, ATTACK_SPEED, MAX_DAMAGE, MIN_DAMAGE, ACCURACY, BLOCK_CHANCE, IMAGE, IN_GAME_IMAGE)" +
-                    "VALUES ('Thief', 115, 6, 35, 20, .9, .4,'DungeonAndMonsters/character pics/thiefpixel.png','DungeonAndMonsters/character pics/goblinthief.png')";
+                    "VALUES ('Thief', 120, 6, 35, 25, .9, .5,'DungeonAndMonsters/character pics/thiefpixel.png','DungeonAndMonsters/character pics/goblinthief.png')";
 
 
             try (Connection conn = ds.getConnection();

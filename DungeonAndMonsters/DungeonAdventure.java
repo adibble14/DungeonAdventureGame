@@ -334,6 +334,7 @@ public class DungeonAdventure implements Serializable {
 		MAIN_GUI.closeMap();
 		MAIN_GUI.closeBackPack();
 		Music.playMusic("mainMenu");
+		DungeonGUI.setPlayerConsole(new StringBuilder());
 	}
 
 	/**

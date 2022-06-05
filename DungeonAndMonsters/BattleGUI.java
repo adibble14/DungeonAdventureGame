@@ -248,13 +248,12 @@ public class BattleGUI extends JPanel {
         myHealthPotion.setFont(thePixelFont);
         buttonArea.add(myHealthPotion, gbc);
         myHealthPotion.addActionListener(e->{
-            PlayerInventory inv = getMyBattle().getMyHero().getMyInventory();
-            if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
-                int heal = myBattle.getMyHero().useHealthPotion();
-                setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
-                updateBattle();
-                BackpackGUI.removeHealthPotion();
-            }
+            int heal = myBattle.getMyHero().useHealthPotion();
+            setBattleConsole(new StringBuilder("Health Potion revived " + heal + " points of health. "));
+            updateBattle();
+            BackpackGUI.removeHealthPotion();
+            DungeonAdventure.getMainGui().getBackpackGui().setMyActiveHealthPotions(DungeonAdventure.getMainGui().getBackpackGui().getMyActiveHealthPotions()-1);
+            checkHealthPotions();
         });
 
         gbc.gridx = 5;
@@ -316,13 +315,6 @@ public class BattleGUI extends JPanel {
 
         setBattleConsole(new StringBuilder());
 
-        PlayerInventory inv = getMyBattle().getMyHero().getMyInventory();
-        if(inv.getItemCount(ItemType.HEALTH_POTION) > 0){
-            enableHealthButton();
-        }else{
-            disableHealthButton();
-        }
-
         updateBattle();
     }
 
@@ -361,6 +353,8 @@ public class BattleGUI extends JPanel {
                 "</style><h1><<font size='5'>" + statsFormat + "</h1></font></html>";
 
         myStatsLabel.setText(finalStatsFormat);
+
+        checkHealthPotions();
     }
 
 
@@ -420,6 +414,16 @@ public class BattleGUI extends JPanel {
      */
     static void disableHealthButton(){
         myHealthPotion.setEnabled(false);}
+
+    static void checkHealthPotions(){
+        PlayerInventory inv = getMyBattle().getMyHero().getMyInventory();
+        if(inv.getItemCount(ItemType.HEALTH_POTION) > 0  && DungeonAdventure.getMainGui().getBackpackGui().getMyActiveHealthPotions() > 0){
+            enableHealthButton();
+        }else{
+            disableHealthButton();
+        }
+    }
+
 
 
     /**

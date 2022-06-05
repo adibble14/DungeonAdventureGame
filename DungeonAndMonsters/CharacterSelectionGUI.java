@@ -322,7 +322,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
             case "Priestess" -> {
                 heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Priestess", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Priestess", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Priestess", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Priestess", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Priestess", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Priestess") * 100)).append("% block\n");
-                heroInformation.append("Special: Revive\n35-80 damage\n60% accuracy\n For every point of damage dealt priestess heals 2/3 of the points");
+                heroInformation.append("Special: Revive\n35-80 damage\n60% accuracy\n For every point of damage dealt priestess heals 2/3 of the points\nCan't heal more than double of max health");
             }
             default -> heroInformation.append("No info stored!");
         }

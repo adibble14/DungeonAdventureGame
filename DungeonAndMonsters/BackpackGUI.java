@@ -269,6 +269,10 @@ public class BackpackGUI extends JFrame {
         return this.myActiveVisionPotions;
     }
 
+    void setMyActiveHealthPotions(int theNum){
+        this.myActiveHealthPotions = theNum;
+    }
+
     /**
      * refreshes gold label when player received more gold.
      */
@@ -300,5 +304,6 @@ public class BackpackGUI extends JFrame {
         }
         this.refreshGoldValue();
     }
+
 
 }

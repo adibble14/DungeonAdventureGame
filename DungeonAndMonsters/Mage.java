@@ -47,7 +47,7 @@ public class Mage extends Hero {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals " + damage + " points of " + theChar.getName() + " damage. Max health limit reached."));
         } else{
             int damage = theChar.getHealth() / 2;
-            int result = this.getHealth() + damage/2;
+            int result = this.getHealth() + damage;
 
             this.setHealth(result);
 
@@ -71,7 +71,7 @@ public class Mage extends Hero {
      */
     @Override
     final String getSpecialInfo(){
-        return "Life Steal. This attack does not fail to land. It halves the enemies' health value. It also adds that value to the mage's health.";
+        return "Life Steal. 50% accuracy. It halves the enemies' health value. It also adds that value to the mage's health. Once you have more than 180 health you can't heal anymore";
     }
 
 }
