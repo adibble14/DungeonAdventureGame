@@ -53,7 +53,7 @@ public class Mage extends Hero {
 
             theChar.setHealth(damage);
 
-            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage + " points of " + theChar.getName() + "'s health! "));
+            BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " absorbs " + damage/2 + " points of " + theChar.getName() + "'s health! "));
         }
 
     }
