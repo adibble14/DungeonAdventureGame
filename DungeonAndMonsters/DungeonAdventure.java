@@ -317,6 +317,7 @@ public class DungeonAdventure implements Serializable {
 
 		if(input == 0){		//play again
 			playAgain();
+			Music.playMusic("mainMenu");
 		}else{		//close the game
 			System.exit(0);
 		}
