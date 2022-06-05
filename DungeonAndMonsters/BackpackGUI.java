@@ -57,7 +57,7 @@ public class BackpackGUI extends JFrame {
         this.setTitle("Backpack");
         this.setSize(450, 400);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setVisible(false);
 
         myItemPanel.setLayout(new GridBagLayout());

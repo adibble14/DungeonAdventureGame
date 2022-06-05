@@ -38,7 +38,7 @@ public class Mage extends Hero {
     final protected void special(final DungeonCharacter theChar) {
         double randAccuracy = Tools.RANDOM.nextDouble();
 
-        double specialAccuracy = .8;
+        double specialAccuracy = .5;
         if (specialAccuracy < randAccuracy) {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " The life steal attack missed. "));
         }else if((this.getMaxHealth() * 2) < this.getHealth()){  //dealing damage but not healing
