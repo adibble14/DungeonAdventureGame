@@ -310,7 +310,7 @@ public class CharacterSelectionGUI extends JPanel{
             }
             case "Mage" -> {
                 heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Mage", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Mage", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Mage", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Mage", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Mage", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Mage") * 100)).append("% block\n");
-                heroInformation.append("Special: Life Steal\nHalves enemies health and heals the damage taken\n50% accuracy\nCan't heal more than double of max health");
+                heroInformation.append("Special: Life Steal\nHalves enemies health and heals half the damage taken\n50% accuracy\nCan't heal more than double of max health");
             }
             case "Thief" -> {
                 heroInformation.append("Stats: \n").append(SQLiteDB.getCharacterHealth("Thief", "heroes")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Thief", "heroes")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Thief", "heroes")).append("-").append(SQLiteDB.getCharacterMaxDamage("Thief", "heroes")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Thief", "heroes") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterBlockChance("Thief") * 100)).append("% block\n");

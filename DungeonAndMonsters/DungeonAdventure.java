@@ -333,6 +333,7 @@ public class DungeonAdventure implements Serializable {
 		BackpackGUI.removeAllItems();
 		MAIN_GUI.closeMap();
 		MAIN_GUI.closeBackPack();
+		Music.playMusic("mainMenu");
 	}
 
 	/**

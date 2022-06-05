@@ -47,7 +47,7 @@ public class Mage extends Hero {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + this.getName() + " deals " + damage + " points of " + theChar.getName() + " damage. Max health limit reached."));
         } else{
             int damage = theChar.getHealth() / 2;
-            int result = this.getHealth() + damage;
+            int result = this.getHealth() + damage/2;
 
             this.setHealth(result);
 
