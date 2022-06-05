@@ -230,7 +230,7 @@ public class MonsterGUI extends JPanel {
                 break;
             case "Ogre":
                 monsterInformation.append("Ogre\nStats: \n").append(SQLiteDB.getCharacterHealth("Ogre", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Ogre", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Ogre", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Ogre", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Ogre", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Ogre") * 100)).append("% heal chance\n");
-                monsterInformation.append("Special: Devastating Blow\n60-140 damage");
+                monsterInformation.append("Special: Devastating Blow\n60-100 damage");
                 break;
             case "Skeleton":
                 monsterInformation.append("Skeleton\nStats: \n").append(SQLiteDB.getCharacterHealth("Skeleton", "monsters")).append(" hp\n").append(SQLiteDB.getCharacterSpeed("Skeleton", "monsters")).append(" attack speed").append("\n").append(SQLiteDB.getCharacterMinDamage("Skeleton", "monsters")).append("-").append(SQLiteDB.getCharacterMaxDamage("Skeleton", "monsters")).append(" damage\n").append(Math.round(SQLiteDB.getCharacterAccuracy("Skeleton", "monsters") * 100)).append("% accuracy\n").append(Math.round(SQLiteDB.getCharacterHealChance("Skeleton") * 100)).append("% heal chance\n");
