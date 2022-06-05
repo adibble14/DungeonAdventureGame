@@ -40,6 +40,8 @@ public class Priestess extends Hero{
         double specialAccuracy = .6;
         if (specialAccuracy < randAccuracy) {
             BattleGUI.setBattleConsole(new StringBuilder(BattleGUI.getBattleConsole() + " The healing attack misses. "));
+        }else if((this.getMaxHealth() * 2) < this.getHealth()) {  //dealing damage but not healing
+
         } else{
 
             int healing = (int) Math.ceil(damage*.66);

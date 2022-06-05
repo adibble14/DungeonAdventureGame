@@ -76,6 +76,8 @@ public class DungeonAdventure implements Serializable {
 	 * method that initiates the game after loading up a previous game
 	 */
 	static void loadUpGame() {
+		SQLiteDB.createHeroesTable();
+		SQLiteDB.createMonstersTable();
 		myCurrentDungeonNum = myDungeon.getMyCurrentDungeonNumber();
 		myNumDungeonsPassed = myDungeon.getMyDungeonsPassed();
 		refreshBackPackGoldValue();
