@@ -121,13 +121,12 @@ public abstract class Monster extends DungeonCharacter {
     @Override
     protected void attack(final DungeonCharacter theChar) {
 
-        if (this.isSpecialActive()) {
+        Hero hero = (Hero) theChar;
+        if (this.isSpecialActive() && !(hero.block())) {
 
             this.special(theChar);
             return;
         }
-
-        Hero hero = (Hero) theChar;
 
         if (!(hero.block())) {
 
