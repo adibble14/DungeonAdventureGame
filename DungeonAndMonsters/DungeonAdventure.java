@@ -292,14 +292,14 @@ public class DungeonAdventure implements Serializable {
 			currentRoom.setEmpty();
 			DungeonGUI.setPlayerConsole(playerConsole);
 		}else if(currentRoom.getMyType() == RoomType.EXIT) {
-			if(myNumDungeonsPassed == 4){
+			if(myDungeon.getMyDungeonsPassed() == 4){
 				int input = JOptionPane.showConfirmDialog(null,"You have found all four Pillars of OO!\nYou have escaped the Dungeon!\nPLAY AGAIN?");
 				if(input == 0){		//play again
 					playAgain();
 				}else{		//close the game
 					System.exit(0);
 				}
-			} else if(myNumDungeonsPassed == myCurrentDungeonNum){
+			} else if(myDungeon.getMyCurrentDungeonNumber() == myCurrentDungeonNum){
 				JOptionPane.showMessageDialog(null,"Oh No! Looks like the exit leads to another Dungeon....");
 				myCurrentDungeonNum++;
 				nextDungeon();
@@ -345,6 +345,7 @@ public class DungeonAdventure implements Serializable {
 		DungeonGUI.setHealthLabel(myHero);
 		if (myDungeon.getCurrentRoom().getMyType() == RoomType.BOSS_ROOM) {        //if the user defeated a boss monster, then advance to next dungeon
 			myNumDungeonsPassed++;
+			myDungeon.setMyDungeonsPassed(myDungeon.getMyDungeonsPassed()+1);
 			myDungeon.getCurrentRoom().setEmpty();
 			myDungeon.getCurrentRoom().removeMonster();
 			PlayerInventory inv = myHero.getMyInventory();
