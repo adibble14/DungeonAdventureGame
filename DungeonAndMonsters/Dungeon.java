@@ -43,7 +43,7 @@ public class Dungeon implements Serializable {
 	/**
 	 * number of dungeons completed
 	 */
-	private final int myDungeonsPassed;
+	private int myDungeonsPassed;
 
 	/**
 	 * the chance a monster can spawn in a room
@@ -331,6 +331,8 @@ public class Dungeon implements Serializable {
 	int getMyDungeonsPassed(){
 		return this.myDungeonsPassed;
 	}
+
+	void setMyDungeonsPassed(int num){myDungeonsPassed = num;}
 
 }
 
